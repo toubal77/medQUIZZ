@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:med_quizz/screens/auth/bezierContainer.dart';
-import 'package:med_quizz/screens/auth/bezierContainer2.dart';
 
 enum AuthMode { Signup, Login }
 
@@ -44,6 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   labelText: 'Nom',
                   labelStyle: TextStyle(
                     fontSize: 15.0,
+                    color: Colors.white,
                   ),
                 ),
                 keyboardType: TextInputType.emailAddress,
@@ -61,6 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 labelText: 'E-mail',
                 labelStyle: TextStyle(
                   fontSize: 15.0,
+                  color: Colors.white,
                 ),
               ),
               keyboardType: TextInputType.emailAddress,
@@ -74,7 +74,13 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             TextFormField(
               controller: passwordController,
-              decoration: InputDecoration(labelText: 'Password'),
+              decoration: InputDecoration(
+                labelText: 'Password',
+                labelStyle: TextStyle(
+                  fontSize: 15.0,
+                  color: Colors.white,
+                ),
+              ),
               obscureText: true,
               validator: (value) {
                 if (value!.isEmpty || value.length < 6) {
@@ -140,7 +146,11 @@ class _LoginScreenState extends State<LoginScreen> {
               _authMode == AuthMode.Login
                   ? 'vous n\'avez pas de compte ?'
                   : 'vous avez un compte ?',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
             ),
             SizedBox(
               width: 8,
@@ -148,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Text(
               _authMode == AuthMode.Login ? 'cree un' : 'ce connecte',
               style: TextStyle(
-                color: Color(0xffb5487e),
+                color: Colors.green,
                 fontSize: 15,
                 fontWeight: FontWeight.w600,
               ),
@@ -188,61 +198,51 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    return Material(
-      child: Stack(
-        children: <Widget>[
-          Scaffold(
-            body: Container(
-              height: height,
-              child: Stack(
+    return Scaffold(
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/login-background.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 30, right: 30),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Positioned(
-                    top: -height * .15,
-                    right: -MediaQuery.of(context).size.width * .4,
-                    child: BezierContainer(),
-                  ),
-                  Positioned(
-                    bottom: -height * .15,
-                    left: -MediaQuery.of(context).size.width * .4,
-                    child: BezierContainer2(),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          SizedBox(height: height * .2),
-                          _title(),
-                          SizedBox(height: 50),
-                          _entryField(),
-                          if (_authMode == AuthMode.Login) SizedBox(height: 20),
-                          _isLoading
-                              ? CircularProgressIndicator()
-                              : _submitButton(),
-                          GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 10),
-                              alignment: Alignment.centerRight,
-                              child: Text(
-                                'mot de passe oublie ?',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
+                  SizedBox(height: height * .3),
+                  _title(),
+                  SizedBox(height: 50),
+                  _entryField(),
+                  SizedBox(height: 20),
+                  _isLoading ? CircularProgressIndicator() : _submitButton(),
+                  SizedBox(height: 10),
+                  if (_authMode == AuthMode.Login)
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          'mot de passe oublie ?',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
                           ),
-                          SizedBox(
-                            height: height * .040,
-                          ),
-                          _createAccountLabel(),
-                        ],
+                        ),
                       ),
                     ),
+                  SizedBox(
+                    height: height * .025,
                   ),
+                  _createAccountLabel(),
                 ],
               ),
             ),
