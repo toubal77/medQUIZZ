@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:med_quizz/screens/login_screen.dart';
+import 'package:med_quizz/screens/auth/login_screen.dart';
 
 void main() {
   runApp(MyApp());
