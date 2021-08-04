@@ -1,4 +1,7 @@
 class ApiHealper {
-  static const singIn = 'https://rayanzinotblans.000webhostapp.com/login.php';
-  static const singUp = 'https://rayanzinotblans.000webhostapp.com/singUp.php';
+  ApiHealper._();
+  static const String singIn =
+      'https://rayanzinotblans.000webhostapp.com/login.php';
+  static const String singUp =
+      'https://rayanzinotblans.000webhostapp.com/singUp.php';
 }
