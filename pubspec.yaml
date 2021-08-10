@@ -51,6 +51,7 @@ flutter:
     - assets/images/Rectangle 5.png
     - assets/images/Rectangle 5 1.png
     - assets/images/Rectangle 5 2.png
+    - assets/images/profile_doctor.jpeg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

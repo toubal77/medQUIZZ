@@ -23,10 +23,14 @@ class ProfileScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    width: 105,
-                    height: 105,
-                    margin: EdgeInsets.only(top: 35, bottom: 20),
+                    width: 110,
+                    height: 110,
+                    margin: EdgeInsets.only(top: 25, bottom: 20),
                     decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/profile_doctor.jpeg'),
+                        fit: BoxFit.cover,
+                      ),
                       color: Colors.blue,
                       borderRadius: BorderRadius.circular(60),
                     ),

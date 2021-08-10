@@ -53,7 +53,177 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Container(
+              height: 1000,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [Color(0xffd1abbd), Color(0xffb5487e)],
+                ),
+              ),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    'Modules',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Divider(
+                    height: 1,
+                    color: Colors.white,
+                  ),
+                  ListTile(
+                    onTap: () {},
+                    title: Text(
+                      '1 er annee',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.navigate_next,
+                      size: 28,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Divider(
+                    height: 1,
+                    color: Colors.white,
+                  ),
+                  ListTile(
+                    onTap: () {},
+                    title: Text(
+                      '2 eme annee',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.navigate_next,
+                      size: 28,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Divider(
+                    height: 1,
+                    color: Colors.white,
+                  ),
+                  ListTile(
+                    onTap: () {},
+                    title: Text(
+                      '3 eme annee',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.navigate_next,
+                      size: 28,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Divider(
+                    height: 1,
+                    color: Colors.white,
+                  ),
+                  ListTile(
+                    onTap: () {},
+                    title: Text(
+                      '4 eme annee',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.navigate_next,
+                      size: 28,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Divider(
+                    height: 1,
+                    color: Colors.white,
+                  ),
+                  ListTile(
+                    onTap: () {},
+                    title: Text(
+                      '5 eme annee',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.navigate_next,
+                      size: 28,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Divider(
+                    height: 1,
+                    color: Colors.white,
+                  ),
+                  ListTile(
+                    onTap: () {},
+                    title: Text(
+                      '6 eme annee',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.navigate_next,
+                      size: 28,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Divider(
+                    height: 1,
+                    color: Colors.white,
+                  ),
+                  ListTile(
+                    onTap: () {},
+                    title: Text(
+                      '7 eme annee',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.navigate_next,
+                      size: 28,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Divider(
+                    height: 1,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
