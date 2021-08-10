@@ -17,15 +17,15 @@ class ProfileScreen extends StatelessWidget {
       //   ),
       // ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            height: 730,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/background_page.jpeg'),
-                fit: BoxFit.cover,
-              ),
+        child: Container(
+          height: 730,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/background_page.jpeg'),
+              fit: BoxFit.cover,
             ),
+          ),
+          child: SingleChildScrollView(
             child: Column(
               children: [
                 Column(
@@ -107,8 +107,18 @@ class ProfileScreen extends StatelessWidget {
                   () {},
                 ),
                 ProfileMenu(
-                  'Terms & Condition',
+                  'Suggections',
+                  Icons.help,
+                  () {},
+                ),
+                ProfileMenu(
+                  'Note l\'applications',
                   Icons.low_priority_sharp,
+                  () {},
+                ),
+                ProfileMenu(
+                  'Partage l\'applications',
+                  Icons.share,
                   () {},
                 ),
                 ProfileMenu(
