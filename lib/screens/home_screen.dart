@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:med_quizz/screens/profile_screen.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -39,7 +40,15 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.search),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return ProfileScreen();
+                  },
+                ),
+              );
+            },
             icon: Icon(Icons.account_circle),
           ),
         ],
