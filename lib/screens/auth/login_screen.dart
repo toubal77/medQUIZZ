@@ -53,8 +53,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return HomePage(
-                            'vous etes connecte avec ${emailController.text}');
+                        return HomePage();
+                        // return HomePage(
+                        //     'vous etes connecte avec ${emailController.text}');
                       },
                     ),
                   );
@@ -78,8 +79,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return HomePage(
-                            'vous venez de cree un compte avec ${emailController.text}');
+                        return HomePage();
+                        // return HomePage(
+                        //     'vous venez de cree un compte avec ${emailController.text}');
                       },
                     ),
                   );
