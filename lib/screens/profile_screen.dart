@@ -17,10 +17,17 @@ class ProfileScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              child: Column(
+        child: Container(
+          height: 1000,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/background_page.jpeg'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Column(
+            children: [
+              Column(
                 children: [
                   Container(
                     width: 110,
@@ -57,28 +64,28 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-            ProfileMenu(
-              'Settings',
-              Icons.settings,
-              () {},
-            ),
-            ProfileMenu(
-              'Change Password',
-              Icons.lock,
-              () {},
-            ),
-            ProfileMenu(
-              'Terms & Condition',
-              Icons.low_priority_sharp,
-              () {},
-            ),
-            ProfileMenu(
-              'Log Out',
-              Icons.exit_to_app,
-              () {},
-            ),
-          ],
+              ProfileMenu(
+                'Settings',
+                Icons.settings,
+                () {},
+              ),
+              ProfileMenu(
+                'Change Password',
+                Icons.lock,
+                () {},
+              ),
+              ProfileMenu(
+                'Terms & Condition',
+                Icons.low_priority_sharp,
+                () {},
+              ),
+              ProfileMenu(
+                'Log Out',
+                Icons.exit_to_app,
+                () {},
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -103,7 +110,8 @@ class ProfileMenu extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
-        color: Color(0xFFE5E5E5),
+        //color: Color(0xFFE5E5E5),
+        color: Colors.white54.withOpacity(0.38),
         onPressed: press,
         child: Row(
           children: <Widget>[
