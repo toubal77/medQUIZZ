@@ -6,85 +6,121 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Profile'),
-        centerTitle: true,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.of(context).pop();
-          },
-          child: Icon(Icons.arrow_back),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          height: 1000,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/background_page.jpeg'),
-              fit: BoxFit.cover,
+      // appBar: AppBar(
+      //   title: Text('Profile'),
+      //   centerTitle: true,
+      //   leading: GestureDetector(
+      //     onTap: () {
+      //       Navigator.of(context).pop();
+      //     },
+      //     child: Icon(Icons.arrow_back),
+      //   ),
+      // ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            height: 730,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/background_page.jpeg'),
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          child: Column(
-            children: [
-              Column(
-                children: [
-                  Container(
-                    width: 110,
-                    height: 110,
-                    margin: EdgeInsets.only(top: 25, bottom: 20),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/profile_doctor.jpeg'),
-                        fit: BoxFit.cover,
+            child: Column(
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      height: 30,
+                      child: Container(
+                        margin: EdgeInsets.only(left: 10, right: 10, top: 5),
+                        child: Row(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Icon(
+                                Icons.arrow_back,
+                                color: Colors.blue,
+                              ),
+                            ),
+                            Spacer(),
+                            Container(
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Profile',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                            ),
+                            Spacer(),
+                          ],
+                        ),
                       ),
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(60),
                     ),
-                  ),
-                  Text(
-                    'toubal zine eddine',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
+                    Container(
+                      width: 110,
+                      height: 110,
+                      margin: EdgeInsets.only(top: 25, bottom: 20),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image:
+                              AssetImage('assets/images/profile_doctor.jpeg'),
+                          fit: BoxFit.cover,
+                        ),
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(60),
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    'toubalzineddine77@gmail.com',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
+                    Text(
+                      'toubal zine eddine',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                ],
-              ),
-              ProfileMenu(
-                'Settings',
-                Icons.settings,
-                () {},
-              ),
-              ProfileMenu(
-                'Change Password',
-                Icons.lock,
-                () {},
-              ),
-              ProfileMenu(
-                'Terms & Condition',
-                Icons.low_priority_sharp,
-                () {},
-              ),
-              ProfileMenu(
-                'Log Out',
-                Icons.exit_to_app,
-                () {},
-              ),
-            ],
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      'toubalzineddine77@gmail.com',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                  ],
+                ),
+                ProfileMenu(
+                  'Settings',
+                  Icons.settings,
+                  () {},
+                ),
+                ProfileMenu(
+                  'Change Password',
+                  Icons.lock,
+                  () {},
+                ),
+                ProfileMenu(
+                  'Terms & Condition',
+                  Icons.low_priority_sharp,
+                  () {},
+                ),
+                ProfileMenu(
+                  'Log Out',
+                  Icons.exit_to_app,
+                  () {},
+                ),
+              ],
+            ),
           ),
         ),
       ),
