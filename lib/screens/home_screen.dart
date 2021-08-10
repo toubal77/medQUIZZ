@@ -514,6 +514,7 @@ class _HomePageState extends State<HomePage> {
                     'Module Populare',
                     style: TextStyle(
                       fontSize: 20,
+                      color: Colors.blue,
                       fontWeight: FontWeight.w600,
                     ),
                   ),

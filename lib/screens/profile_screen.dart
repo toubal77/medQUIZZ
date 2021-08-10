@@ -79,6 +79,7 @@ class ProfileScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
+                        color: Colors.blue,
                       ),
                     ),
                     SizedBox(
@@ -89,6 +90,7 @@ class ProfileScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
+                        color: Colors.blue,
                       ),
                     ),
                     SizedBox(
@@ -160,7 +162,7 @@ class ProfileMenu extends StatelessWidget {
           children: <Widget>[
             Icon(
               icon,
-              color: Colors.purple,
+              color: Colors.blue,
             ),
             SizedBox(
               width: 20.0,
@@ -169,7 +171,7 @@ class ProfileMenu extends StatelessWidget {
               child: Text(
                 title,
                 style: const TextStyle(
-                  color: Colors.purple,
+                  color: Colors.blue,
                 ),
               ),
             ),
