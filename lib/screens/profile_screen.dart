@@ -34,7 +34,7 @@ class ProfileScreen extends StatelessWidget {
                       height: 30,
                       child: Container(
                         margin: EdgeInsets.only(left: 10, right: 10, top: 5),
-                        child: Row(
+                        child: Stack(
                           children: [
                             GestureDetector(
                               onTap: () {
@@ -45,9 +45,7 @@ class ProfileScreen extends StatelessWidget {
                                 color: Colors.blue,
                               ),
                             ),
-                            Spacer(),
-                            Container(
-                              alignment: Alignment.center,
+                            Center(
                               child: Text(
                                 'Profile',
                                 textAlign: TextAlign.center,
@@ -58,7 +56,6 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Spacer(),
                           ],
                         ),
                       ),

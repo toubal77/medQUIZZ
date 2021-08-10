@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_quizz/screens/profile_screen.dart';
+import 'package:med_quizz/screens/search_screen.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -269,7 +270,15 @@ class _HomePageState extends State<HomePage> {
                               child: Row(
                                 children: [
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) {
+                                            return SearchScreen();
+                                          },
+                                        ),
+                                      );
+                                    },
                                     icon: Icon(Icons.search),
                                     color: Colors.blue,
                                   ),
