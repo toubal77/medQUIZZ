@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:med_quizz/screens/home_screen.dart';
+import 'package:med_quizz/services/auth.dart';
 
 enum AuthMode { Signup, Login }
 
@@ -13,18 +15,90 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordController = new TextEditingController();
   TextEditingController nameController = new TextEditingController();
   AuthMode _authMode = AuthMode.Login;
-  var _isLoading = false;
+  bool _isLoading = false;
 
   void _switchAuthMode() {
     if (_authMode == AuthMode.Login) {
+      print('sinUp');
       setState(() {
         _authMode = AuthMode.Signup;
       });
     } else {
+      print('singIn');
       setState(() {
         _authMode = AuthMode.Login;
       });
     }
+  }
+
+  Future _submitForm() async {
+    print('submit form');
+    FocusScope.of(context).unfocus();
+    _formKey.currentState!.save();
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+    setState(() {
+      _isLoading = true;
+    });
+    try {
+      _authMode == AuthMode.Login
+          ? AuthService()
+              .singIn(
+                  emailController.text.trim(), passwordController.text.trim())
+              .then(
+              (result) {
+                if (result! == 'Login') {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return HomePage(
+                            'vous etes connecte avec ${emailController.text}');
+                      },
+                    ),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      duration: Duration(seconds: 3),
+                      content: Text(result),
+                    ),
+                  );
+                }
+              },
+            )
+          : AuthService()
+              .singUp(emailController.text.trim(),
+                  passwordController.text.trim(), nameController.text.trim())
+              .then(
+              (result) {
+                if (result! == 'Login') {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return HomePage(
+                            'vous venez de cree un compte avec ${emailController.text}');
+                      },
+                    ),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      duration: Duration(seconds: 3),
+                      content: Text(result),
+                    ),
+                  );
+                }
+              },
+            );
+    } catch (e) {
+      print(e.toString());
+    }
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   Widget _entryField() {
@@ -44,6 +118,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     fontSize: 15.0,
                     color: Colors.white,
                   ),
+                  errorStyle: TextStyle(
+                    fontSize: 12.0,
+                    color: Colors.cyanAccent,
+                  ),
                 ),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
@@ -52,7 +130,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   }
                   return null;
                 },
-                onSaved: (value) {},
+                onSaved: (value) {
+                  nameController.text = value!;
+                },
               ),
             TextFormField(
               controller: emailController,
@@ -62,6 +142,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   fontSize: 15.0,
                   color: Colors.white,
                 ),
+                errorStyle: TextStyle(
+                  fontSize: 12.0,
+                  color: Colors.cyanAccent,
+                ),
               ),
               keyboardType: TextInputType.emailAddress,
               validator: (value) {
@@ -70,7 +154,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 }
                 return null;
               },
-              onSaved: (value) {},
+              onSaved: (value) {
+                emailController.text = value!;
+              },
             ),
             TextFormField(
               controller: passwordController,
@@ -80,6 +166,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   fontSize: 15.0,
                   color: Colors.white,
                 ),
+                errorStyle: TextStyle(
+                  fontSize: 12.0,
+                  color: Colors.cyanAccent,
+                ),
               ),
               obscureText: true,
               validator: (value) {
@@ -88,7 +178,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 }
                 return null;
               },
-              onSaved: (value) {},
+              onSaved: (value) {
+                passwordController.text = value!;
+              },
             ),
           ],
         ),
@@ -98,7 +190,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _submitButton() {
     return GestureDetector(
-      onTap: () {},
+      onTap: _submitForm,
       child: Container(
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 15),
@@ -221,7 +313,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 50),
                   _entryField(),
                   SizedBox(height: 20),
-                  _isLoading ? CircularProgressIndicator() : _submitButton(),
+                  _isLoading == true
+                      ? CircularProgressIndicator()
+                      : _submitButton(),
                   SizedBox(height: 10),
                   if (_authMode == AuthMode.Login)
                     GestureDetector(

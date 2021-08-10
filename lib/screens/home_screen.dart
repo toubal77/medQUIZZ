@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final String text;
+  HomePage(this.text);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Center(
-        child: Text('vous etes connecte'),
+        child: Text(text),
       ),
     );
   }
