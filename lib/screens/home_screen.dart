@@ -3,6 +3,7 @@ import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/screens/profile_screen.dart';
 import 'package:med_quizz/screens/search_screen.dart';
 import 'package:med_quizz/services/database.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -588,7 +589,30 @@ class _HomePageState extends State<HomePage> {
                           },
                         );
                       } else {
-                        return CircularProgressIndicator();
+                        return SizedBox(
+                          height: 235.0,
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 3,
+                            itemBuilder: (context, index) {
+                              return Shimmer.fromColors(
+                                baseColor: Colors.white,
+                                highlightColor: Colors.grey.shade300,
+                                child: Container(
+                                  width: 315,
+                                  height: 220,
+                                  margin:
+                                      const EdgeInsets.only(top: 4, right: 23),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        );
                       }
                     },
                   ),
