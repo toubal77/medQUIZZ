@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/screens/profile_screen.dart';
 import 'package:med_quizz/screens/search_screen.dart';
+import 'package:med_quizz/services/database.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,26 +10,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List _events = [
-    {
-      'image': 'assets/images/Rectangle 5.png',
-      'nom': 'Montagne tikajda',
-      'date': '14 juil',
-      'price': '1200 DA',
-    },
-    {
-      'image': 'assets/images/Rectangle 5 1.png',
-      'nom': 'Plage sauvage',
-      'date': '14 juil',
-      'price': '1200 DA',
-    },
-    {
-      'image': 'assets/images/Rectangle 5 2.png',
-      'nom': 'Kayak adventure',
-      'date': '22 juil',
-      'price': '3200 DA',
-    }
-  ];
+  // final List _events = [
+  //   {
+  //     'image': 'assets/images/Rectangle 5.png',
+  //     'nom': 'Montagne tikajda',
+  //     'date': '14 juil',
+  //     'price': '1200 DA',
+  //   },
+  //   {
+  //     'image': 'assets/images/Rectangle 5 1.png',
+  //     'nom': 'Plage sauvage',
+  //     'date': '14 juil',
+  //     'price': '1200 DA',
+  //   },
+  //   {
+  //     'image': 'assets/images/Rectangle 5 2.png',
+  //     'nom': 'Kayak adventure',
+  //     'date': '22 juil',
+  //     'price': '3200 DA',
+  //   }
+  // ];
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
@@ -522,60 +524,74 @@ class _HomePageState extends State<HomePage> {
                 Container(
                   padding: const EdgeInsets.only(left: 20.0),
                   height: 270,
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: _events.length,
-                      itemBuilder: (contex, index) {
-                        return Container(
-                          margin: const EdgeInsets.only(top: 4, right: 23),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          height: 235,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Stack(
-                                alignment: Alignment.bottomCenter,
+                  child: FutureBuilder<List<Modules?>?>(
+                    future: DatabaseMethods().getModules(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (contex, index) {
+                            return Container(
+                              margin: const EdgeInsets.only(top: 4, right: 23),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              height: 235,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Container(
-                                    width: 315,
-                                    height: 220,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                          _events[index]['image'].toString(),
+                                  Stack(
+                                    alignment: Alignment.bottomCenter,
+                                    children: [
+                                      Container(
+                                        width: 315,
+                                        height: 220,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          image: DecorationImage(
+                                            image: NetworkImage(
+                                              'https://rayanzinotblans.000webhostapp.com/images/' +
+                                                  snapshot.data![index]!.image
+                                                      .toString(),
+                                            ),
+                                            fit: BoxFit.cover,
+                                          ),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey,
+                                              offset: Offset(0, 2),
+                                            ),
+                                          ],
                                         ),
-                                        fit: BoxFit.cover,
                                       ),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          offset: Offset(0, 2),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Positioned(
-                                    bottom: 10,
-                                    child: Text(
-                                      _events[index]['nom'].toString(),
-                                      style: TextStyle(
-                                        fontSize: 23,
-                                        fontWeight: FontWeight.w800,
-                                        letterSpacing: -0.33,
-                                        color: Colors.white,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
+                                      // Positioned(
+                                      //   bottom: 10,
+                                      //   child: Text(
+                                      //     snapshot.data![index]!.nom.toString(),
+                                      //     style: TextStyle(
+                                      //       fontSize: 23,
+                                      //       fontWeight: FontWeight.w800,
+                                      //       letterSpacing: -0.33,
+                                      //       color: Colors.white,
+                                      //     ),
+                                      //     textAlign: TextAlign.center,
+                                      //   ),
+                                      // ),
+                                    ],
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
+                            );
+                          },
                         );
-                      }),
+                      } else {
+                        return CircularProgressIndicator();
+                      }
+                    },
+                  ),
                 ),
               ],
             ),
