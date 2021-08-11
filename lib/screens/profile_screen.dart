@@ -18,7 +18,7 @@ class ProfileScreen extends StatelessWidget {
       // ),
       body: SafeArea(
         child: Container(
-          height: 730,
+          height: 1000,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/background_page.jpeg'),

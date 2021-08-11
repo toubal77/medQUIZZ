@@ -520,8 +520,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.only(left: 20.0, bottom: 10),
-                  height: 260,
+                  padding: const EdgeInsets.only(left: 20.0),
+                  height: 270,
                   child: ListView.builder(
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
