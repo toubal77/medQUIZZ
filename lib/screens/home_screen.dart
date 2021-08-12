@@ -38,199 +38,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Color(0xFFE5E5E5),
-      // appBar: AppBar(
-      //   title: Text('Med QUIZZ'),
-      //   centerTitle: true,
-      //   actions: [
-      //     IconButton(
-      //       onPressed: () {},
-      //       icon: Icon(Icons.search),
-      //     ),
-      //     IconButton(
-      //       onPressed: () {
-      //         Navigator.of(context).push(
-      //           MaterialPageRoute(
-      //             builder: (context) {
-      //               return ProfileScreen();
-      //             },
-      //           ),
-      //         );
-      //       },
-      //       icon: Icon(Icons.account_circle),
-      //     ),
-      //   ],
-      // ),
-      drawer: Drawer(
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Container(
-              height: 1000,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Color(0xffd1abbd), Color(0xffb5487e)],
-                ),
-              ),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'Modules',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Divider(
-                    height: 1,
-                    color: Colors.white,
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    title: Text(
-                      '1 er annee',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.navigate_next,
-                      size: 28,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Divider(
-                    height: 1,
-                    color: Colors.white,
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    title: Text(
-                      '2 eme annee',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.navigate_next,
-                      size: 28,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Divider(
-                    height: 1,
-                    color: Colors.white,
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    title: Text(
-                      '3 eme annee',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.navigate_next,
-                      size: 28,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Divider(
-                    height: 1,
-                    color: Colors.white,
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    title: Text(
-                      '4 eme annee',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.navigate_next,
-                      size: 28,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Divider(
-                    height: 1,
-                    color: Colors.white,
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    title: Text(
-                      '5 eme annee',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.navigate_next,
-                      size: 28,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Divider(
-                    height: 1,
-                    color: Colors.white,
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    title: Text(
-                      '6 eme annee',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.navigate_next,
-                      size: 28,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Divider(
-                    height: 1,
-                    color: Colors.white,
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    title: Text(
-                      '7 eme annee',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.navigate_next,
-                      size: 28,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Divider(
-                    height: 1,
-                    color: Colors.white,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
@@ -253,14 +60,18 @@ class _HomePageState extends State<HomePage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            GestureDetector(
-                              onTap: () {
-                                _scaffoldKey.currentState!.openDrawer();
+                            IconButton(
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return SearchScreen();
+                                    },
+                                  ),
+                                );
                               },
-                              child: Icon(
-                                Icons.menu,
-                                color: Colors.blue,
-                              ),
+                              icon: Icon(Icons.search),
+                              color: Colors.blue,
                             ),
                             Text(
                               'Med QUIZZ',
@@ -273,19 +84,6 @@ class _HomePageState extends State<HomePage> {
                             Container(
                               child: Row(
                                 children: [
-                                  IconButton(
-                                    onPressed: () {
-                                      Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                          builder: (context) {
-                                            return SearchScreen();
-                                          },
-                                        ),
-                                      );
-                                    },
-                                    icon: Icon(Icons.search),
-                                    color: Colors.blue,
-                                  ),
                                   IconButton(
                                     onPressed: () {
                                       Navigator.of(context).push(
@@ -413,7 +211,7 @@ class _HomePageState extends State<HomePage> {
                               height: 20,
                             ),
                             Icon(
-                              Icons.favorite,
+                              Icons.sick,
                               size: 70,
                               color: Colors.white,
                             ),
@@ -421,7 +219,7 @@ class _HomePageState extends State<HomePage> {
                               height: 20,
                             ),
                             Text(
-                              'Module Favoris',
+                              'Diagnostics',
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -491,7 +289,7 @@ class _HomePageState extends State<HomePage> {
                               height: 20,
                             ),
                             Icon(
-                              Icons.account_circle,
+                              Icons.file_copy,
                               size: 70,
                               color: Colors.white,
                             ),
@@ -499,7 +297,7 @@ class _HomePageState extends State<HomePage> {
                               height: 20,
                             ),
                             Text(
-                              'Profile',
+                              'Cours & resumes',
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
