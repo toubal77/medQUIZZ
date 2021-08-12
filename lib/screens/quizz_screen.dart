@@ -21,11 +21,18 @@ class _QuizzPlayState extends State<QuizzPlay> {
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Med QUIZZ'),
+        title: Text(
+          'Med QUIZZ',
+          style: TextStyle(
+            color: Colors.blue,
+          ),
+        ),
+        iconTheme: IconThemeData(
+          color: Colors.blue,
+        ),
         brightness: Brightness.light,
         elevation: 0.0,
         backgroundColor: Colors.transparent,
-        //brightness: Brightness.li,
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -54,7 +61,20 @@ class _QuizzPlayState extends State<QuizzPlay> {
             future: DatabaseMethods().getQuestions(),
             builder: (context, snapshot) {
               return snapshot.data == null
-                  ? Container()
+                  ? Center(
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.4,
+                          ),
+                          CircularProgressIndicator(),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text('Chargement...'),
+                        ],
+                      ),
+                    )
                   : ListView.builder(
                       itemCount: snapshot.data!.length,
                       shrinkWrap: true,
@@ -64,7 +84,8 @@ class _QuizzPlayState extends State<QuizzPlay> {
                           questionModel: snapshot.data![index],
                           index: index,
                         );
-                      });
+                      },
+                    );
             },
           )
         ],
@@ -95,9 +116,8 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              "Q${widget.index + 1} ${widget.questionModel!.question}",
-              style:
-                  TextStyle(fontSize: 18, color: Colors.black.withOpacity(0.8)),
+              "Q${widget.index + 1}: ${widget.questionModel!.question}",
+              style: TextStyle(fontSize: 18, color: Colors.blue),
             ),
           ),
           SizedBox(
@@ -133,6 +153,10 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
           ),
           SizedBox(
             height: 4,
+            child: Divider(
+              height: 3,
+              color: Colors.grey,
+            ),
           ),
           GestureDetector(
             onTap: () {
@@ -164,6 +188,10 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
           ),
           SizedBox(
             height: 4,
+            child: Divider(
+              height: 3,
+              color: Colors.grey,
+            ),
           ),
           GestureDetector(
             onTap: () {
@@ -195,6 +223,10 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
           ),
           SizedBox(
             height: 4,
+            child: Divider(
+              height: 3,
+              color: Colors.grey,
+            ),
           ),
           GestureDetector(
             onTap: () {
@@ -224,6 +256,43 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
               optionSelected: optionSelected,
             ),
           ),
+          if (widget.questionModel!.rep5 != 'null')
+            SizedBox(
+              height: 4,
+              child: Divider(
+                height: 3,
+                color: Colors.grey,
+              ),
+            ),
+          if (widget.questionModel!.rep5 != 'null')
+            GestureDetector(
+              onTap: () {
+                ///correct
+                if (widget.questionModel!.respo5 ==
+                    widget.questionModel!.respo5) {
+                  setState(() {
+                    optionSelected = widget.questionModel!.rep5;
+                    // widget.questionModel!.respo4 = true;
+                    _correct = _correct + 1;
+                    _notAttempted = _notAttempted + 1;
+                  });
+                } else {
+                  setState(() {
+                    optionSelected = widget.questionModel!.rep5;
+                    // widget.questionModel!.respo4 = true;
+                    _incorrect = _incorrect + 1;
+                    _notAttempted = _notAttempted - 1;
+                  });
+                }
+              },
+              child: OptionTile(
+                option: "E",
+                answer: "${widget.questionModel!.rep5}",
+                correctAnswer:
+                    widget.questionModel!.respo5 == 'true' ? true : false,
+                optionSelected: optionSelected,
+              ),
+            ),
           SizedBox(
             height: 20,
           ),
@@ -251,7 +320,9 @@ class _OptionTileState extends State<OptionTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      height: 45,
+      padding: EdgeInsets.only(left: 20, right: 10),
+      margin: EdgeInsets.only(top: 3, bottom: 3),
       child: Row(
         children: [
           Container(
@@ -274,6 +345,7 @@ class _OptionTileState extends State<OptionTile> {
                 borderRadius: BorderRadius.circular(24)),
             child: Text(
               widget.option,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 color: widget.optionSelected == widget.answer
                     ? Colors.white
@@ -284,9 +356,18 @@ class _OptionTileState extends State<OptionTile> {
           SizedBox(
             width: 8,
           ),
-          Text(
-            widget.answer,
-            style: TextStyle(fontSize: 17, color: Colors.black54),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: Text(
+              widget.answer,
+              textDirection: TextDirection.ltr,
+              style: TextStyle(
+                fontSize: 17,
+                color: Colors.blue,
+                letterSpacing: 0.36,
+              ),
+              maxLines: 2,
+            ),
           )
         ],
       ),
