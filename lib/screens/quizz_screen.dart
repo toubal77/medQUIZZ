@@ -18,6 +18,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Med QUIZZ'),
@@ -26,7 +27,18 @@ class _QuizzPlayState extends State<QuizzPlay> {
         backgroundColor: Colors.transparent,
         //brightness: Brightness.li,
       ),
-      body: SingleChildScrollView(child: quizList()),
+      body: SingleChildScrollView(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/background_page.jpeg'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: quizList(),
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.coronavirus),
         onPressed: () {},
