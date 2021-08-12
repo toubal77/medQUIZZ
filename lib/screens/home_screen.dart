@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/screens/profile_screen.dart';
+import 'package:med_quizz/screens/quizz_screen.dart';
 import 'package:med_quizz/screens/search_screen.dart';
 import 'package:med_quizz/services/database.dart';
 import 'package:shimmer/shimmer.dart';
@@ -534,56 +535,68 @@ class _HomePageState extends State<HomePage> {
                           scrollDirection: Axis.horizontal,
                           itemCount: snapshot.data!.length,
                           itemBuilder: (contex, index) {
-                            return Container(
-                              margin: const EdgeInsets.only(top: 4, right: 23),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              height: 235,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Stack(
-                                    alignment: Alignment.bottomCenter,
-                                    children: [
-                                      Container(
-                                        width: 315,
-                                        height: 220,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          image: DecorationImage(
-                                            image: NetworkImage(
-                                              'https://rayanzinotblans.000webhostapp.com/images/' +
-                                                  snapshot.data![index]!.image
-                                                      .toString(),
-                                            ),
-                                            fit: BoxFit.cover,
-                                          ),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.grey,
-                                              offset: Offset(0, 2),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      // Positioned(
-                                      //   bottom: 10,
-                                      //   child: Text(
-                                      //     snapshot.data![index]!.nom.toString(),
-                                      //     style: TextStyle(
-                                      //       fontSize: 23,
-                                      //       fontWeight: FontWeight.w800,
-                                      //       letterSpacing: -0.33,
-                                      //       color: Colors.white,
-                                      //     ),
-                                      //     textAlign: TextAlign.center,
-                                      //   ),
-                                      // ),
-                                    ],
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return QuizzPlay();
+                                    },
                                   ),
-                                ],
+                                );
+                              },
+                              child: Container(
+                                margin:
+                                    const EdgeInsets.only(top: 4, right: 23),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                height: 235,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Stack(
+                                      alignment: Alignment.bottomCenter,
+                                      children: [
+                                        Container(
+                                          width: 315,
+                                          height: 220,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            image: DecorationImage(
+                                              image: NetworkImage(
+                                                'https://rayanzinotblans.000webhostapp.com/images/' +
+                                                    snapshot.data![index]!.image
+                                                        .toString(),
+                                              ),
+                                              fit: BoxFit.cover,
+                                            ),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey,
+                                                offset: Offset(0, 2),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        // Positioned(
+                                        //   bottom: 10,
+                                        //   child: Text(
+                                        //     snapshot.data![index]!.nom.toString(),
+                                        //     style: TextStyle(
+                                        //       fontSize: 23,
+                                        //       fontWeight: FontWeight.w800,
+                                        //       letterSpacing: -0.33,
+                                        //       color: Colors.white,
+                                        //     ),
+                                        //     textAlign: TextAlign.center,
+                                        //   ),
+                                        // ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             );
                           },
