@@ -164,7 +164,11 @@ class QuizPlayTile extends StatefulWidget {
 
 class _QuizPlayTileState extends State<QuizPlayTile> {
   String optionSelected = "";
-
+  bool checkValue1 = false;
+  bool checkValue2 = false;
+  bool checkValue3 = false;
+  bool checkValue4 = false;
+  bool checkValue5 = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -183,22 +187,25 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
           ),
           GestureDetector(
             onTap: () {
-              ///correct
-              if (widget.questionModel!.respo1 ==
-                  widget.questionModel!.respo1) {
-                setState(() {
-                  optionSelected = widget.questionModel!.rep1;
-                  //  widget.questionModel!.respo1 = true;
-                  _correct = _correct + 1;
-                  _notAttempted = _notAttempted + 1;
-                });
-              } else {
-                setState(() {
-                  optionSelected = widget.questionModel!.rep1;
-                  //  widget.questionModel!.respo1 = true;
-                  _incorrect = _incorrect + 1;
-                  _notAttempted = _notAttempted - 1;
-                });
+              checkValue1 = !checkValue1;
+              if (checkValue1) {
+                ///correct
+                if (widget.questionModel!.respo1 ==
+                    widget.questionModel!.respo1) {
+                  setState(() {
+                    optionSelected = widget.questionModel!.rep1;
+                    //  widget.questionModel!.respo1 = true;
+                    _correct = _correct + 1;
+                    _notAttempted = _notAttempted + 1;
+                  });
+                } else {
+                  setState(() {
+                    optionSelected = widget.questionModel!.rep1;
+                    //  widget.questionModel!.respo1 = true;
+                    _incorrect = _incorrect + 1;
+                    _notAttempted = _notAttempted - 1;
+                  });
+                }
               }
             },
             child: OptionTile(
@@ -218,22 +225,25 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
           ),
           GestureDetector(
             onTap: () {
-              ///correct
-              if (widget.questionModel!.respo2 ==
-                  widget.questionModel!.respo2) {
-                setState(() {
-                  optionSelected = widget.questionModel!.rep2;
-                  // widget.questionModel!.respo2 = true;
-                  _correct = _correct + 1;
-                  _notAttempted = _notAttempted + 1;
-                });
-              } else {
-                setState(() {
-                  optionSelected = widget.questionModel!.rep2;
-                  // widget.questionModel!.respo2 = true;
-                  _incorrect = _incorrect + 1;
-                  _notAttempted = _notAttempted - 1;
-                });
+              checkValue2 = !checkValue2;
+              if (checkValue2) {
+                ///correct
+                if (widget.questionModel!.respo2 ==
+                    widget.questionModel!.respo2) {
+                  setState(() {
+                    optionSelected = widget.questionModel!.rep2;
+                    // widget.questionModel!.respo2 = true;
+                    _correct = _correct + 1;
+                    _notAttempted = _notAttempted + 1;
+                  });
+                } else {
+                  setState(() {
+                    optionSelected = widget.questionModel!.rep2;
+                    // widget.questionModel!.respo2 = true;
+                    _incorrect = _incorrect + 1;
+                    _notAttempted = _notAttempted - 1;
+                  });
+                }
               }
             },
             child: OptionTile(
@@ -253,22 +263,25 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
           ),
           GestureDetector(
             onTap: () {
-              ///correct
-              if (widget.questionModel!.respo3 ==
-                  widget.questionModel!.respo3) {
-                setState(() {
-                  optionSelected = widget.questionModel!.rep3;
-                  // widget.questionModel!.respo3 = true;
-                  _correct = _correct + 1;
-                  _notAttempted = _notAttempted + 1;
-                });
-              } else {
-                setState(() {
-                  optionSelected = widget.questionModel!.rep3;
-                  // widget.questionModel!.respo3 = true;
-                  _incorrect = _incorrect + 1;
-                  _notAttempted = _notAttempted - 1;
-                });
+              checkValue3 = !checkValue3;
+              if (checkValue3) {
+                ///correct
+                if (widget.questionModel!.respo3 ==
+                    widget.questionModel!.respo3) {
+                  setState(() {
+                    optionSelected = widget.questionModel!.rep3;
+                    // widget.questionModel!.respo3 = true;
+                    _correct = _correct + 1;
+                    _notAttempted = _notAttempted + 1;
+                  });
+                } else {
+                  setState(() {
+                    optionSelected = widget.questionModel!.rep3;
+                    // widget.questionModel!.respo3 = true;
+                    _incorrect = _incorrect + 1;
+                    _notAttempted = _notAttempted - 1;
+                  });
+                }
               }
             },
             child: OptionTile(
@@ -288,22 +301,25 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
           ),
           GestureDetector(
             onTap: () {
-              ///correct
-              if (widget.questionModel!.respo4 ==
-                  widget.questionModel!.respo4) {
-                setState(() {
-                  optionSelected = widget.questionModel!.rep4;
-                  // widget.questionModel!.respo4 = true;
-                  _correct = _correct + 1;
-                  _notAttempted = _notAttempted + 1;
-                });
-              } else {
-                setState(() {
-                  optionSelected = widget.questionModel!.rep4;
-                  // widget.questionModel!.respo4 = true;
-                  _incorrect = _incorrect + 1;
-                  _notAttempted = _notAttempted - 1;
-                });
+              checkValue4 = !checkValue4;
+              if (checkValue4) {
+                ///correct
+                if (widget.questionModel!.respo4 ==
+                    widget.questionModel!.respo4) {
+                  setState(() {
+                    optionSelected = widget.questionModel!.rep4;
+                    // widget.questionModel!.respo4 = true;
+                    _correct = _correct + 1;
+                    _notAttempted = _notAttempted + 1;
+                  });
+                } else {
+                  setState(() {
+                    optionSelected = widget.questionModel!.rep4;
+                    // widget.questionModel!.respo4 = true;
+                    _incorrect = _incorrect + 1;
+                    _notAttempted = _notAttempted - 1;
+                  });
+                }
               }
             },
             child: OptionTile(
@@ -325,22 +341,24 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
           if (widget.questionModel!.rep5 != 'null')
             GestureDetector(
               onTap: () {
-                ///correct
-                if (widget.questionModel!.respo5 ==
-                    widget.questionModel!.respo5) {
-                  setState(() {
-                    optionSelected = widget.questionModel!.rep5;
-                    // widget.questionModel!.respo4 = true;
-                    _correct = _correct + 1;
-                    _notAttempted = _notAttempted + 1;
-                  });
-                } else {
-                  setState(() {
-                    optionSelected = widget.questionModel!.rep5;
-                    // widget.questionModel!.respo4 = true;
-                    _incorrect = _incorrect + 1;
-                    _notAttempted = _notAttempted - 1;
-                  });
+                checkValue5 = !checkValue5;
+                if (checkValue5) {
+                  ///correct
+                  if (widget.questionModel!.respo5 == 'true') {
+                    setState(() {
+                      optionSelected = widget.questionModel!.rep5;
+                      // widget.questionModel!.respo4 = true;
+                      _correct = _correct + 1;
+                      _notAttempted = _notAttempted + 1;
+                    });
+                  } else {
+                    setState(() {
+                      optionSelected = widget.questionModel!.rep5;
+                      // widget.questionModel!.respo4 = true;
+                      _incorrect = _incorrect + 1;
+                      _notAttempted = _notAttempted - 1;
+                    });
+                  }
                 }
               },
               child: OptionTile(
