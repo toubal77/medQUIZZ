@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_quizz/models/modules.dart';
+import 'package:med_quizz/screens/all_modules.dart';
 import 'package:med_quizz/screens/profile_screen.dart';
 import 'package:med_quizz/screens/quizz_screen.dart';
 import 'package:med_quizz/screens/search_screen.dart';
@@ -229,43 +230,54 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(
-                            top: 5, bottom: 10, left: 5, right: 5),
-                        decoration: BoxDecoration(
-                          color: Colors.pinkAccent,
-                          borderRadius: BorderRadius.circular(35),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.blueGrey,
-                              spreadRadius: 1,
-                              blurRadius: 3,
-                              offset: Offset(0.3, 0.3),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return AllModules();
+                              },
                             ),
-                          ],
-                        ),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Icon(
-                              Icons.school,
-                              size: 70,
-                              color: Colors.white,
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Text(
-                              'Modules',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
+                          );
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(
+                              top: 5, bottom: 10, left: 5, right: 5),
+                          decoration: BoxDecoration(
+                            color: Colors.pinkAccent,
+                            borderRadius: BorderRadius.circular(35),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.blueGrey,
+                                spreadRadius: 1,
+                                blurRadius: 3,
+                                offset: Offset(0.3, 0.3),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Icon(
+                                Icons.school,
+                                size: 70,
                                 color: Colors.white,
                               ),
-                            ),
-                          ],
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                'Modules',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       Container(
@@ -400,8 +412,12 @@ class _HomePageState extends State<HomePage> {
                           },
                         );
                       } else {
-                        return SizedBox(
-                          height: 235.0,
+                        return Container(
+                          margin: const EdgeInsets.only(top: 4, right: 23),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          height: 235,
                           child: ListView.builder(
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
@@ -413,8 +429,8 @@ class _HomePageState extends State<HomePage> {
                                 child: Container(
                                   width: 315,
                                   height: 220,
-                                  margin:
-                                      const EdgeInsets.only(top: 4, right: 23),
+                                  margin: const EdgeInsets.only(
+                                      top: 4, right: 23, bottom: 40),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(20),
