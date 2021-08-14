@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HeaderProfile extends StatelessWidget {
-  const HeaderProfile({Key? key}) : super(key: key);
+  final String? title;
+  HeaderProfile({required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class HeaderProfile extends StatelessWidget {
             ),
             Center(
               child: Text(
-                'Profile',
+                title!,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,

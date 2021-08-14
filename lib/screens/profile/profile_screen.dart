@@ -24,7 +24,7 @@ class ProfileScreen extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    HeaderProfile(),
+                    HeaderProfile(title: 'Profile'),
                     UserInfo(),
                   ],
                 ),
