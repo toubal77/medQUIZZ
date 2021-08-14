@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/screens/all_modules.dart';
-import 'package:med_quizz/screens/profile_screen.dart';
+import 'package:med_quizz/screens/profile/profile_screen.dart';
 import 'package:med_quizz/screens/quizz_screen.dart';
 import 'package:med_quizz/screens/search_screen.dart';
 import 'package:med_quizz/services/database.dart';
@@ -13,26 +13,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // final List _events = [
-  //   {
-  //     'image': 'assets/images/Rectangle 5.png',
-  //     'nom': 'Montagne tikajda',
-  //     'date': '14 juil',
-  //     'price': '1200 DA',
-  //   },
-  //   {
-  //     'image': 'assets/images/Rectangle 5 1.png',
-  //     'nom': 'Plage sauvage',
-  //     'date': '14 juil',
-  //     'price': '1200 DA',
-  //   },
-  //   {
-  //     'image': 'assets/images/Rectangle 5 2.png',
-  //     'nom': 'Kayak adventure',
-  //     'date': '22 juil',
-  //     'price': '3200 DA',
-  //   }
-  // ];
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
