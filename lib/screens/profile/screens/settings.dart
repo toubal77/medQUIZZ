@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:med_quizz/screens/profile/widgets/header_profile.dart';
 
-class ChangePassword extends StatefulWidget {
-  const ChangePassword({Key? key}) : super(key: key);
+class Settings extends StatefulWidget {
+  const Settings({Key? key}) : super(key: key);
 
   @override
-  _ChangePasswordState createState() => _ChangePasswordState();
+  _SettingsState createState() => _SettingsState();
 }
 
-class _ChangePasswordState extends State<ChangePassword> {
+class _SettingsState extends State<Settings> {
   final _formKey = GlobalKey<FormState>();
-
-  TextEditingController passwordController = new TextEditingController();
-  TextEditingController confPasswordController = new TextEditingController();
   bool isLoading = false;
-  Future _submitForm(String password) async {
+  TextEditingController usernameController = new TextEditingController();
+  TextEditingController emailController = new TextEditingController();
+  Future _submitForm(String username, String email) async {
     FocusScope.of(context).unfocus();
     _formKey.currentState!.save();
     if (!_formKey.currentState!.validate()) {
@@ -60,7 +59,10 @@ class _ChangePasswordState extends State<ChangePassword> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              HeaderProfile(title: 'Change Password'),
+              HeaderProfile(title: 'Settings'),
+              SizedBox(
+                height: 40,
+              ),
               SingleChildScrollView(
                 child: Container(
                   padding: EdgeInsets.only(left: 15, right: 15),
@@ -68,62 +70,55 @@ class _ChangePasswordState extends State<ChangePassword> {
                     key: _formKey,
                     child: Column(
                       children: <Widget>[
-                        SizedBox(
-                          height: 20,
-                        ),
                         TextFormField(
-                          controller: passwordController,
+                          controller: usernameController,
+                          keyboardType: TextInputType.name,
                           decoration: InputDecoration(
                             border: new OutlineInputBorder(
                               borderSide: new BorderSide(),
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(30.0)),
                             ),
-                            labelText: 'New Password',
+                            labelText: 'Votre Nom',
                             labelStyle: TextStyle(
                               fontSize: 15.0,
                             ),
                           ),
-                          obscureText: true,
-                          validator: (value) {
-                            if (value!.trim().isEmpty &&
-                                value.trim().length < 8) {
-                              return 'Password Can\'t be last then 8 ';
-                            }
-                            return null;
-                          },
-                          onSaved: (value) {
-                            passwordController.text = value!.trim();
-                          },
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          controller: confPasswordController,
-                          decoration: InputDecoration(
-                            border: new OutlineInputBorder(
-                              borderSide: new BorderSide(),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(30.0)),
-                            ),
-                            labelText: 'Confirme Password',
-                            labelStyle: TextStyle(
-                              fontSize: 15.0,
-                            ),
-                          ),
-                          obscureText: true,
                           validator: (value) {
                             if (value!.trim().isEmpty) {
                               return 'Can\'t be empty';
-                            } else if (passwordController.text.trim() !=
-                                value.trim()) {
-                              return 'Passwords not match';
                             }
                             return null;
                           },
                           onSaved: (value) {
-                            confPasswordController.text = value!.trim();
+                            usernameController.text = value!.trim();
+                          },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        TextFormField(
+                          controller: emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                            border: new OutlineInputBorder(
+                              borderSide: new BorderSide(),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(30.0)),
+                            ),
+                            labelText: 'Email',
+                            labelStyle: TextStyle(
+                              fontSize: 15.0,
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty || !value.contains('@')) {
+                              return 'veuillez entrer un email valide';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            emailController.text = value!.trim();
                           },
                         ),
                         SizedBox(
@@ -133,7 +128,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                             ? GestureDetector(
                                 onTap: () {
                                   _submitForm(
-                                    passwordController.text.trim(),
+                                    usernameController.text.trim(),
+                                    emailController.text.trim(),
                                   );
                                 },
                                 child: Container(

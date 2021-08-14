@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_quizz/screens/profile/components/profile_menu.dart';
 import 'package:med_quizz/screens/profile/screens/change_password.dart';
+import 'package:med_quizz/screens/profile/screens/settings.dart';
 import 'package:med_quizz/screens/profile/widgets/header_profile.dart';
 import 'package:med_quizz/screens/profile/widgets/user_info.dart';
 
@@ -31,7 +32,15 @@ class ProfileScreen extends StatelessWidget {
                 ProfileMenu(
                   'Settings',
                   Icons.settings,
-                  () {},
+                  () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return Settings();
+                        },
+                      ),
+                    );
+                  },
                 ),
                 ProfileMenu(
                   'Change Password',
