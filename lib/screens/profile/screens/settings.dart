@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_quizz/screens/profile/widgets/header_profile.dart';
+import 'package:med_quizz/services/database.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -23,19 +24,19 @@ class _SettingsState extends State<Settings> {
       isLoading = true;
     });
     try {
-      // DatabasesMethods().updatePassword(password).then(
-      //   (result) {
-      //     if (result == true)
-      //       Navigator.of(context).pop();
-      //     else {
-      //       ScaffoldMessenger.of(context).showSnackBar(
-      //         SnackBar(
-      //           content: Text(result.toString()),
-      //         ),
-      //       );
-      //     }
-      //   },
-      // );
+      DatabaseMethods().editProfile(email, username).then(
+        (result) {
+          if (result == true)
+            Navigator.of(context).pop();
+          else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(result.toString()),
+              ),
+            );
+          }
+        },
+      );
     } catch (e) {
       print(e.toString());
     }

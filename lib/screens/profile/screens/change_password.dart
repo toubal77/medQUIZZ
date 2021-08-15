@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_quizz/screens/profile/widgets/header_profile.dart';
+import 'package:med_quizz/services/database.dart';
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({Key? key}) : super(key: key);
@@ -24,19 +25,19 @@ class _ChangePasswordState extends State<ChangePassword> {
       isLoading = true;
     });
     try {
-      // DatabasesMethods().updatePassword(password).then(
-      //   (result) {
-      //     if (result == true)
-      //       Navigator.of(context).pop();
-      //     else {
-      //       ScaffoldMessenger.of(context).showSnackBar(
-      //         SnackBar(
-      //           content: Text(result.toString()),
-      //         ),
-      //       );
-      //     }
-      //   },
-      // );
+      DatabaseMethods().updatePassword(password).then(
+        (result) {
+          if (result == true)
+            Navigator.of(context).pop();
+          else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(result.toString()),
+              ),
+            );
+          }
+        },
+      );
     } catch (e) {
       print(e.toString());
     }
