@@ -51,4 +51,81 @@ class DatabaseMethods {
       print(e.toString());
     }
   }
+
+  Future updatePassword(String password) async {
+    try {
+      var url = Uri.parse(
+          'https://rayanzinotblans.000webhostapp.com/update_password.php');
+      var response = await http.post(url, body: {
+        'id': '1',
+        'password': password,
+      });
+      if (response.statusCode == 200) {
+        if (json.decode(response.body)['status']) {
+          print('update Password with seccus');
+          return true;
+        } else {
+          return json.decode(response.body)['message'];
+        }
+      } else {
+        print('field update Password');
+        print(response.statusCode);
+        return 'error to connecte';
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future editProfile(String email, String username) async {
+    try {
+      var url = Uri.parse(
+          'https://rayanzinotblans.000webhostapp.com/update_profile.php');
+      var response = await http.post(url, body: {
+        'id': '1',
+        'email': email,
+        'username': username,
+      });
+      if (response.statusCode == 200) {
+        if (json.decode(response.body)['status']) {
+          print('update profile with seccus');
+          return true;
+        } else {
+          return json.decode(response.body)['message'];
+        }
+      } else {
+        print('field update Profile');
+        print(response.statusCode);
+        return 'error to connecte';
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future sendSuggestion(String message) async {
+    try {
+      var url =
+          Uri.parse('https://rayanzinotblans.000webhostapp.com/suggestion.php');
+      var response = await http.post(url, body: {
+        'email': 'toubalzineddine77@gmail.com',
+        'username': 'toubal zineddine',
+        'message': message,
+      });
+      if (response.statusCode == 200) {
+        if (json.decode(response.body)['status']) {
+          print('send suggestion with seccus');
+          return true;
+        } else {
+          return json.decode(response.body)['message'];
+        }
+      } else {
+        print('field to send sugestions');
+        print(response.statusCode);
+        return 'error to connecte';
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }
