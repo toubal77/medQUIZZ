@@ -4,10 +4,18 @@ import 'package:med_quizz/screens/profile/screens/change_password.dart';
 import 'package:med_quizz/screens/profile/screens/settings.dart';
 import 'package:med_quizz/screens/profile/widgets/header_profile.dart';
 import 'package:med_quizz/screens/profile/widgets/user_info.dart';
+import 'package:med_quizz/services/database.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey();
+  TextEditingController suggController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +66,105 @@ class ProfileScreen extends StatelessWidget {
                 ProfileMenu(
                   'Suggections',
                   Icons.help,
-                  () {},
+                  () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          content: Stack(
+                            clipBehavior: Clip.antiAlias,
+                            children: <Widget>[
+                              Positioned(
+                                right: -40.0,
+                                top: -40.0,
+                                child: InkResponse(
+                                  onTap: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: CircleAvatar(
+                                    child: Icon(Icons.close),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                ),
+                              ),
+                              Form(
+                                key: _formKey,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: TextFormField(
+                                        controller: suggController,
+                                        keyboardType: TextInputType.text,
+                                        decoration: InputDecoration(
+                                          border: new OutlineInputBorder(
+                                            borderSide: new BorderSide(),
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(30.0)),
+                                          ),
+                                          labelText: 'Votre Suggestion',
+                                          labelStyle: TextStyle(
+                                            fontSize: 15.0,
+                                          ),
+                                        ),
+                                        validator: (value) {
+                                          if (value!.trim().isEmpty) {
+                                            return 'Can\'t be empty';
+                                          }
+                                          return null;
+                                        },
+                                        onSaved: (value) {
+                                          suggController.text = value!.trim();
+                                        },
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: ElevatedButton(
+                                        child: Text("send message"),
+                                        onPressed: () {
+                                          FocusScope.of(context).unfocus();
+                                          _formKey.currentState!.save();
+                                          if (!_formKey.currentState!
+                                              .validate()) {
+                                            return;
+                                          }
+                                          try {
+                                            DatabaseMethods()
+                                                .sendSuggestion(
+                                                    suggController.text.trim())
+                                                .then(
+                                              (result) {
+                                                if (result == true)
+                                                  Navigator.of(context).pop();
+                                                else {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                          result.toString()),
+                                                    ),
+                                                  );
+                                                }
+                                              },
+                                            );
+                                          } catch (e) {
+                                            return print(e.toString());
+                                          }
+                                        },
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
                 ),
                 ProfileMenu(
                   'Note l\'applications',
