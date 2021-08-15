@@ -189,7 +189,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             ),
                           ),
                         )
-                      : Expanded(
+                      : SingleChildScrollView(
                           child: Container(
                             margin: const EdgeInsets.only(right: 20, left: 20),
                             child: ListView.builder(
