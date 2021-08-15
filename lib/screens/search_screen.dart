@@ -1,4 +1,9 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:med_quizz/models/modules.dart';
+import 'package:med_quizz/screens/quizz_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -9,6 +14,60 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   TextEditingController pickUpController = new TextEditingController();
+  List<Modules?> _search = [];
+  List<Modules?> _list = [];
+  var isLoading = false;
+  Future<List<Modules?>?> getModules() async {
+    setState(() {
+      isLoading = true;
+    });
+    _list.clear();
+    try {
+      var url =
+          Uri.parse('https://rayanzinotblans.000webhostapp.com/get_module.php');
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        print('seccus get module');
+        var data = json.decode(response.body);
+        var rest = data["modules"] as List;
+        setState(() {
+          for (Map<String, dynamic> i in rest) {
+            _list.add(Modules.fromJson(i));
+          }
+        });
+      } else {
+        print('field get module');
+        print('Response status: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('field to try get module');
+      print(e.toString());
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  onSearch(String title) async {
+    _search.clear();
+    if (title.isEmpty) {
+      setState(() {});
+      return;
+    }
+    _list.forEach((f) {
+      if (f!.nom.contains(title)) _search.add(f);
+    });
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    getModules().then((value) => setState(() {
+          isLoading = false;
+        }));
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +87,8 @@ class _SearchScreenState extends State<SearchScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
+                          _list.clear();
+                          _search.clear();
                           Navigator.of(context).pop();
                         },
                         child: Icon(Icons.arrow_back),
@@ -70,6 +131,9 @@ class _SearchScreenState extends State<SearchScreen> {
                                 contentPadding: EdgeInsets.only(
                                     left: 11, top: 8, bottom: 8),
                               ),
+                              onChanged: (value) {
+                                onSearch(value);
+                              },
                             ),
                           ),
                         ),
@@ -77,6 +141,53 @@ class _SearchScreenState extends State<SearchScreen> {
                     ],
                   ),
                 ],
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                itemCount: _search.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return QuizzPlay();
+                          },
+                        ),
+                      );
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(
+                          right: 20, left: 20, bottom: 20),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Container(
+                        width: 315,
+                        height: 220,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          image: DecorationImage(
+                            image: NetworkImage(
+                              'https://rayanzinotblans.000webhostapp.com/images/' +
+                                  _search[index]!.image.toString(),
+                            ),
+                            fit: BoxFit.cover,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              offset: Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
           ],
