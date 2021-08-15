@@ -72,21 +72,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       builder: (BuildContext context) {
                         return AlertDialog(
                           content: Stack(
-                            clipBehavior: Clip.antiAlias,
                             children: <Widget>[
-                              Positioned(
-                                right: -40.0,
-                                top: -40.0,
-                                child: InkResponse(
-                                  onTap: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: CircleAvatar(
-                                    child: Icon(Icons.close),
-                                    backgroundColor: Colors.red,
-                                  ),
-                                ),
-                              ),
                               Form(
                                 key: _formKey,
                                 child: Column(
@@ -120,41 +106,68 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         },
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: ElevatedButton(
-                                        child: Text("send message"),
-                                        onPressed: () {
-                                          FocusScope.of(context).unfocus();
-                                          _formKey.currentState!.save();
-                                          if (!_formKey.currentState!
-                                              .validate()) {
-                                            return;
-                                          }
-                                          try {
-                                            DatabaseMethods()
-                                                .sendSuggestion(
-                                                    suggController.text.trim())
-                                                .then(
-                                              (result) {
-                                                if (result == true)
-                                                  Navigator.of(context).pop();
-                                                else {
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                    SnackBar(
-                                                      content: Text(
-                                                          result.toString()),
-                                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          width: 100,
+                                          height: 45,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: ElevatedButton(
+                                              child: Text("Annule"),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          width: 100,
+                                          height: 45,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: ElevatedButton(
+                                              child: Text("send"),
+                                              onPressed: () {
+                                                FocusScope.of(context)
+                                                    .unfocus();
+                                                _formKey.currentState!.save();
+                                                if (!_formKey.currentState!
+                                                    .validate()) {
+                                                  return;
+                                                }
+                                                try {
+                                                  DatabaseMethods()
+                                                      .sendSuggestion(
+                                                          suggController.text
+                                                              .trim())
+                                                      .then(
+                                                    (result) {
+                                                      if (result == true)
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      else {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(result
+                                                                .toString()),
+                                                          ),
+                                                        );
+                                                      }
+                                                    },
                                                   );
+                                                } catch (e) {
+                                                  return print(e.toString());
                                                 }
                                               },
-                                            );
-                                          } catch (e) {
-                                            return print(e.toString());
-                                          }
-                                        },
-                                      ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     )
                                   ],
                                 ),
