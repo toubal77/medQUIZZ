@@ -148,6 +148,7 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             SizedBox(
                               height: 20,
@@ -162,6 +163,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Text(
                               'Mes scores',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -187,6 +189,7 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             SizedBox(
                               height: 20,
@@ -201,6 +204,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Text(
                               'Diagnostics',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -236,6 +240,7 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(
                                 height: 20,
@@ -250,6 +255,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               Text(
                                 'Modules',
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
@@ -276,6 +282,7 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             SizedBox(
                               height: 20,
@@ -290,6 +297,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Text(
                               'Cours & resumes',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
