@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/screens/all_module/all_modules.dart';
+import 'package:med_quizz/screens/diagnostics/diagnostics.dart';
 import 'package:med_quizz/screens/profile/profile_screen.dart';
 import 'package:med_quizz/screens/quizz/quizz_screen.dart';
 import 'package:med_quizz/screens/search/search_screen.dart';
@@ -173,45 +174,56 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(
-                            top: 5, bottom: 10, left: 5, right: 5),
-                        decoration: BoxDecoration(
-                          color: Colors.deepPurpleAccent,
-                          borderRadius: BorderRadius.circular(35),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.blueGrey,
-                              spreadRadius: 1,
-                              blurRadius: 3,
-                              offset: Offset(0.3, 0.3),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return Diagnostics();
+                              },
                             ),
-                          ],
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Icon(
-                              Icons.sick,
-                              size: 70,
-                              color: Colors.white,
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Text(
-                              'Diagnostics',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
+                          );
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(
+                              top: 5, bottom: 10, left: 5, right: 5),
+                          decoration: BoxDecoration(
+                            color: Colors.deepPurpleAccent,
+                            borderRadius: BorderRadius.circular(35),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.blueGrey,
+                                spreadRadius: 1,
+                                blurRadius: 3,
+                                offset: Offset(0.3, 0.3),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Icon(
+                                Icons.sick,
+                                size: 70,
                                 color: Colors.white,
                               ),
-                            ),
-                          ],
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                'Diagnostics',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       GestureDetector(
