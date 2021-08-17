@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:med_quizz/helper/controller.dart';
+
 import 'package:med_quizz/models/questions.dart';
 import 'package:med_quizz/screens/quizz/components/progress_bar.dart';
 import 'package:med_quizz/screens/quizz/widgets/quiz_play_tile.dart';
