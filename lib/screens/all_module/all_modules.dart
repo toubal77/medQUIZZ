@@ -3,7 +3,7 @@ import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/screens/all_module/widgets/module_tile.dart';
 import 'package:med_quizz/screens/all_module/widgets/shimmer_module_tile.dart';
 import 'package:med_quizz/screens/home_screen.dart';
-import 'package:med_quizz/screens/search_screen.dart';
+import 'package:med_quizz/screens/search/search_screen.dart';
 import 'package:med_quizz/services/database.dart';
 
 class AllModules extends StatelessWidget {

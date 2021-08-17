@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:med_quizz/models/modules.dart';
-import 'package:med_quizz/screens/quizz/quizz_screen.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:med_quizz/screens/search/widgets/module_tile.dart';
+import 'package:med_quizz/screens/search/widgets/shimmer_module_tile.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -151,69 +151,8 @@ class _SearchScreenState extends State<SearchScreen> {
                 itemCount: _search.length,
                 itemBuilder: (context, index) {
                   return _search.length == 0
-                      ? GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return QuizzPlay();
-                                },
-                              ),
-                            );
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.only(
-                                right: 20, left: 20, bottom: 20),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Container(
-                              width: 315,
-                              height: 220,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                    'https://rayanzinotblans.000webhostapp.com/images/' +
-                                        _search[index]!.image.toString(),
-                                  ),
-                                  fit: BoxFit.cover,
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey,
-                                    offset: Offset(0, 2),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        )
-                      : SingleChildScrollView(
-                          child: Container(
-                            margin: const EdgeInsets.only(right: 20, left: 20),
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              scrollDirection: Axis.vertical,
-                              itemCount: 3,
-                              itemBuilder: (context, index) {
-                                return Shimmer.fromColors(
-                                  baseColor: Colors.white,
-                                  highlightColor: Colors.grey.shade300,
-                                  child: Container(
-                                    width: 315,
-                                    height: 220,
-                                    margin: EdgeInsets.only(bottom: 20),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        );
+                      ? ModuleTileSearch(_search[index])
+                      : ShimmerModuleTileSearch();
                 },
               ),
             ),
