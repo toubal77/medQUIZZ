@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/screens/home_screen.dart';
-import 'package:med_quizz/screens/quizz_screen.dart';
+import 'package:med_quizz/screens/quizz/quizz_screen.dart';
 import 'package:med_quizz/screens/search_screen.dart';
 import 'package:med_quizz/services/database.dart';
 import 'package:shimmer/shimmer.dart';
