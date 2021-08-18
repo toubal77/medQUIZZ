@@ -13,7 +13,7 @@ class DiagTile extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return DetailDiag();
+              return DetailDiag(diag);
             },
           ),
         );

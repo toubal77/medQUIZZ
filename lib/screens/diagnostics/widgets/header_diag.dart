@@ -16,15 +16,18 @@ class HeaderDiag extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).pop();
               },
-              child: Icon(
-                Icons.arrow_back,
-                color: Colors.blue,
+              child: Container(
+                child: Icon(
+                  Icons.arrow_back,
+                  color: Colors.blue,
+                ),
               ),
             ),
             Center(
               child: Text(
-                title!,
-                textAlign: TextAlign.center,
+                //    title!.substring(0, 25) + ' ...',
+                title!, textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w500,
