@@ -20,37 +20,33 @@ class Diagnostic extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: Expanded(
-            child: ListView(
-              children: [
-                HeaderDiag(title: 'Diagnostics'),
-                SizedBox(
-                  height: 20,
+          child: ListView(
+            children: [
+              HeaderDiag(title: 'Diagnostics'),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 60),
+                child: FutureBuilder<List<Diagnostics?>?>(
+                  future: DatabaseMethods().getDiag(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        //    physics: NeverScrollableScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index) {
+                          return DiagTile(snapshot.data![index]!);
+                        },
+                      );
+                    }
+                    return DiagTileShimmer();
+                  },
                 ),
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: 60),
-                    child: FutureBuilder<List<Diagnostics?>?>(
-                      future: DatabaseMethods().getDiag(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          return ListView.builder(
-                            shrinkWrap: true,
-                            //    physics: NeverScrollableScrollPhysics(),
-                            scrollDirection: Axis.vertical,
-                            itemCount: snapshot.data!.length,
-                            itemBuilder: (context, index) {
-                              return DiagTile(snapshot.data![index]!);
-                            },
-                          );
-                        }
-                        return DiagTileShimmer();
-                      },
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
