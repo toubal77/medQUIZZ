@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:med_quizz/models/diagnostics.dart';
 import 'package:med_quizz/screens/diagnostics/widgets/diag_tile.dart';
 import 'package:med_quizz/screens/diagnostics/widgets/header_diag.dart';
+import 'package:med_quizz/services/database.dart';
 
-class Diagnostics extends StatelessWidget {
-  const Diagnostics({Key? key}) : super(key: key);
+class Diagnostic extends StatelessWidget {
+  const Diagnostic({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +29,21 @@ class Diagnostics extends StatelessWidget {
                 Expanded(
                   child: Container(
                     margin: EdgeInsets.only(bottom: 60),
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      //    physics: NeverScrollableScrollPhysics(),
-                      scrollDirection: Axis.vertical,
-                      itemCount: 3,
-                      itemBuilder: (context, index) {
-                        return DiagTile();
+                    child: FutureBuilder<List<Diagnostics?>?>(
+                      future: DatabaseMethods().getDiag(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return ListView.builder(
+                            shrinkWrap: true,
+                            //    physics: NeverScrollableScrollPhysics(),
+                            scrollDirection: Axis.vertical,
+                            itemCount: snapshot.data!.length,
+                            itemBuilder: (context, index) {
+                              return DiagTile(snapshot.data![index]!);
+                            },
+                          );
+                        }
+                        return CircularProgressIndicator();
                       },
                     ),
                   ),

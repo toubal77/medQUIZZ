@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:med_quizz/models/diagnostics.dart';
 import 'package:med_quizz/screens/diagnostics/detail_Diag/detail_diag.dart';
 
 class DiagTile extends StatelessWidget {
-  const DiagTile({Key? key}) : super(key: key);
+  final Diagnostics diag;
+  DiagTile(this.diag);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class DiagTile extends StatelessWidget {
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30)),
                   image: DecorationImage(
-                    image: AssetImage('assets/images/background_page.jpeg'),
+                    image: NetworkImage(diag.image),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -64,7 +66,8 @@ class DiagTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'What is Lorem Ipsum?',
+                      diag.title,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
@@ -74,7 +77,7 @@ class DiagTile extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+                      diag.description,
                       maxLines: 6,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
