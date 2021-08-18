@@ -46,7 +46,9 @@ class DiagTile extends StatelessWidget {
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30)),
                   image: DecorationImage(
-                    image: NetworkImage(diag.image),
+                    image: NetworkImage(
+                        'https://rayanzinotblans.000webhostapp.com/images/diagnostics/' +
+                            diag.image.toString()),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -67,6 +69,7 @@ class DiagTile extends StatelessWidget {
                   children: [
                     Text(
                       diag.title,
+                      maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontSize: 20,
@@ -78,7 +81,7 @@ class DiagTile extends StatelessWidget {
                     ),
                     Text(
                       diag.description,
-                      maxLines: 6,
+                      maxLines: 5,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontSize: 13,
