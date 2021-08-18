@@ -19,65 +19,66 @@ class DetailDiag extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  HeaderDiag(title: diag.title.substring(0, 25) + ' ...'),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 330,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      image: DecorationImage(
-                        image: NetworkImage(
-                            'https://rayanzinotblans.000webhostapp.com/images/diagnostics/' +
-                                diag.image.toString()),
-                        fit: BoxFit.cover,
-                      ),
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30),
-                      ),
+            child: Column(
+              children: [
+                HeaderDiag(
+                    title: diag.title.length > 20
+                        ? diag.title.substring(0, 25) + ' ...'
+                        : diag.title),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 330,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    image: DecorationImage(
+                      image: NetworkImage(
+                          'https://rayanzinotblans.000webhostapp.com/images/diagnostics/' +
+                              diag.image.toString()),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30),
                     ),
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Expanded(
+                  child: Padding(
                     padding: EdgeInsets.only(left: 15, right: 15),
-                    child: Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            diag.image,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700,
-                            ),
+                    child: ListView(
+                      //        crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          diag.title,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
                           ),
-                          SizedBox(
-                            height: 5,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          diag.description,
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
                           ),
-                          Text(
-                            diag.description,
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 180,
-                          ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(
+                          height: 130,
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
