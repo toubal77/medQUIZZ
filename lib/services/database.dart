@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/models/questions.dart';
+import 'package:med_quizz/models/diagnostics.dart';
 
 class DatabaseMethods {
   Future<List<Modules?>?> getModules() async {
@@ -48,6 +49,32 @@ class DatabaseMethods {
       }
     } catch (e) {
       print('field to try get question');
+      print(e.toString());
+    }
+  }
+
+  Future<List<Diagnostics?>?> getDiag() async {
+    List<Diagnostics?>? list = [];
+    try {
+      var url =
+          Uri.parse('https://rayanzinotblans.000webhostapp.com/get_diag.php');
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        print('seccus get diagnostics');
+        var data = json.decode(response.body);
+        var rest = data["diag"] as List;
+
+        list = rest
+            .map<Diagnostics>((json) => Diagnostics.fromJson(json))
+            .toList();
+
+        return list;
+      } else {
+        print('field get diangostics');
+        print('Response status: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('field to try get diangostics');
       print(e.toString());
     }
   }
