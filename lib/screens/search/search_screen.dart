@@ -14,25 +14,25 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  TextEditingController pickUpController = new TextEditingController();
-  List<Modules?> _search = [];
-  List<Modules?> _list = [];
-  var isLoading = false;
+  TextEditingController pickUpController = TextEditingController();
+  final List<Modules?> _search = [];
+  final List<Modules?> _list = [];
+  bool isLoading = false;
   Future<List<Modules?>?> getModules() async {
     setState(() {
       isLoading = true;
     });
     _list.clear();
     try {
-      var url =
+      final url =
           Uri.parse('https://rayanzinotblans.000webhostapp.com/get_module.php');
-      var response = await http.get(url);
+      final response = await http.get(url);
       if (response.statusCode == 200) {
         print('seccus get module');
-        var data = json.decode(response.body);
-        var rest = data["modules"] as List;
+        final data = json.decode(response.body);
+        final rest = data["modules"] as List;
         setState(() {
-          for (Map<String, dynamic> i in rest) {
+          for (final Map<String, dynamic> i in rest) {
             _list.add(Modules.fromJson(i));
           }
         });
@@ -49,12 +49,13 @@ class _SearchScreenState extends State<SearchScreen> {
     });
   }
 
-  onSearch(String title) async {
+  Future<void> onSearch(String title) async {
     _search.clear();
     if (title.isEmpty) {
       setState(() {});
       return;
     }
+    // ignore: avoid_function_literals_in_foreach_calls
     _list.forEach((f) {
       if (f!.nom.contains(title)) _search.add(f);
     });
@@ -147,10 +148,9 @@ class _SearchScreenState extends State<SearchScreen> {
             Expanded(
               child: ListView.builder(
                 shrinkWrap: true,
-                scrollDirection: Axis.vertical,
                 itemCount: _search.length,
                 itemBuilder: (context, index) {
-                  return _search.length == 0
+                  return _search.isEmpty
                       ? ModuleTileSearch(_search[index])
                       : ShimmerModuleTileSearch();
                 },

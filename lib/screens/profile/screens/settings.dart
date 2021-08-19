@@ -12,8 +12,8 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   final _formKey = GlobalKey<FormState>();
   bool isLoading = false;
-  TextEditingController usernameController = new TextEditingController();
-  TextEditingController emailController = new TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   Future _submitForm(String username, String email) async {
     FocusScope.of(context).unfocus();
     _formKey.currentState!.save();
@@ -26,9 +26,9 @@ class _SettingsState extends State<Settings> {
     try {
       DatabaseMethods().editProfile(email, username).then(
         (result) {
-          if (result == true)
+          if (result == true) {
             Navigator.of(context).pop();
-          else {
+          } else {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(result.toString()),
@@ -75,8 +75,8 @@ class _SettingsState extends State<Settings> {
                           controller: usernameController,
                           keyboardType: TextInputType.name,
                           decoration: InputDecoration(
-                            border: new OutlineInputBorder(
-                              borderSide: new BorderSide(),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(),
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(30.0)),
                             ),
@@ -87,7 +87,7 @@ class _SettingsState extends State<Settings> {
                           ),
                           validator: (value) {
                             if (value!.trim().isEmpty) {
-                              return 'Can\'t be empty';
+                              return "Can't be empty";
                             }
                             return null;
                           },
@@ -102,8 +102,8 @@ class _SettingsState extends State<Settings> {
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
-                            border: new OutlineInputBorder(
-                              borderSide: new BorderSide(),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(),
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(30.0)),
                             ),
@@ -125,35 +125,36 @@ class _SettingsState extends State<Settings> {
                         SizedBox(
                           height: 20,
                         ),
-                        isLoading == false
-                            ? GestureDetector(
-                                onTap: () {
-                                  _submitForm(
-                                    usernameController.text.trim(),
-                                    emailController.text.trim(),
-                                  );
-                                },
-                                child: Container(
-                                  width: 200,
-                                  padding: EdgeInsets.symmetric(vertical: 15),
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20)),
-                                    border: Border.all(color: Colors.grey),
-                                  ),
-                                  child: Text(
-                                    'Confirme',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            : Container(
-                                height: 20,
-                                child: CircularProgressIndicator(),
+                        if (isLoading == false)
+                          GestureDetector(
+                            onTap: () {
+                              _submitForm(
+                                usernameController.text.trim(),
+                                emailController.text.trim(),
+                              );
+                            },
+                            child: Container(
+                              width: 200,
+                              padding: EdgeInsets.symmetric(vertical: 15),
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                border: Border.all(color: Colors.grey),
                               ),
+                              child: Text(
+                                'Confirme',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          )
+                        else
+                          SizedBox(
+                            height: 20,
+                            child: CircularProgressIndicator(),
+                          ),
                       ],
                     ),
                   ),

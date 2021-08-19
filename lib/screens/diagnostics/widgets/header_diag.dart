@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class HeaderDiag extends StatelessWidget {
   final String? title;
-  HeaderDiag({required this.title});
+  const HeaderDiag({required this.title});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 30,
       child: Container(
         margin: EdgeInsets.only(left: 10, right: 10, top: 5),
@@ -16,7 +16,7 @@ class HeaderDiag extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).pop();
               },
-              child: Container(
+              child: SizedBox(
                 child: Icon(
                   Icons.arrow_back,
                   color: Colors.blue,

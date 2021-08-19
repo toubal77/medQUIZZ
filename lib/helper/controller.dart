@@ -8,8 +8,8 @@ class QuestionController extends GetxController
   late AnimationController _animationController;
   late Animation _animation;
   // so that we can access our animation outside
-  Animation get animation => this._animation;
-
+  //Animation get animation => this._animation;    kanat kayna hadi w package gla3hali
+  Animation get animation => _animation;
   @override
   void onInit() {
     // Our animation duration is 60 s

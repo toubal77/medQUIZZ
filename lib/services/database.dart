@@ -8,14 +8,15 @@ class DatabaseMethods {
   Future<List<Modules?>?> getModules() async {
     List<Modules?> list = [];
     try {
-      var url =
+      final url =
           Uri.parse('https://rayanzinotblans.000webhostapp.com/get_module.php');
-      var response = await http.get(url);
+      final response = await http.get(url);
       if (response.statusCode == 200) {
         print('seccus get module');
-        var data = json.decode(response.body);
-        var rest = data["modules"] as List;
+        final data = json.decode(response.body);
+        final rest = data["modules"] as List;
 
+        // ignore: join_return_with_assignment
         list = rest.map<Modules>((json) => Modules.fromJson(json)).toList();
 
         return list;
@@ -32,14 +33,15 @@ class DatabaseMethods {
   Future<List<Questions?>?> getQuestions() async {
     List<Questions?>? list = [];
     try {
-      var url = Uri.parse(
+      final url = Uri.parse(
           'https://rayanzinotblans.000webhostapp.com/get_question.php');
-      var response = await http.get(url);
+      final response = await http.get(url);
       if (response.statusCode == 200) {
         print('seccus get question');
-        var data = json.decode(response.body);
-        var rest = data["questions"] as List;
+        final data = json.decode(response.body);
+        final rest = data["questions"] as List;
 
+        // ignore: join_return_with_assignment
         list = rest.map<Questions>((json) => Questions.fromJson(json)).toList();
 
         return list;
@@ -56,14 +58,15 @@ class DatabaseMethods {
   Future<List<Diagnostics?>?> getDiag() async {
     List<Diagnostics?>? list = [];
     try {
-      var url =
+      final url =
           Uri.parse('https://rayanzinotblans.000webhostapp.com/get_diag.php');
-      var response = await http.get(url);
+      final response = await http.get(url);
       if (response.statusCode == 200) {
         print('seccus get diagnostics');
-        var data = json.decode(response.body);
-        var rest = data["diag"] as List;
+        final data = json.decode(response.body);
+        final rest = data["diag"] as List;
 
+        // ignore: join_return_with_assignment
         list = rest
             .map<Diagnostics>((json) => Diagnostics.fromJson(json))
             .toList();
@@ -81,14 +84,14 @@ class DatabaseMethods {
 
   Future updatePassword(String password) async {
     try {
-      var url = Uri.parse(
+      final url = Uri.parse(
           'https://rayanzinotblans.000webhostapp.com/update_password.php');
-      var response = await http.post(url, body: {
+      final response = await http.post(url, body: {
         'id': '1',
         'password': password,
       });
       if (response.statusCode == 200) {
-        if (json.decode(response.body)['status']) {
+        if (json.decode(response.body)['status'] == true) {
           print('update Password with seccus');
           return true;
         } else {
@@ -106,15 +109,15 @@ class DatabaseMethods {
 
   Future editProfile(String email, String username) async {
     try {
-      var url = Uri.parse(
+      final url = Uri.parse(
           'https://rayanzinotblans.000webhostapp.com/update_profile.php');
-      var response = await http.post(url, body: {
+      final response = await http.post(url, body: {
         'id': '1',
         'email': email,
         'username': username,
       });
       if (response.statusCode == 200) {
-        if (json.decode(response.body)['status']) {
+        if (json.decode(response.body)['status'] == true) {
           print('update profile with seccus');
           return true;
         } else {
@@ -132,15 +135,15 @@ class DatabaseMethods {
 
   Future sendSuggestion(String message) async {
     try {
-      var url =
+      final url =
           Uri.parse('https://rayanzinotblans.000webhostapp.com/suggestion.php');
-      var response = await http.post(url, body: {
+      final response = await http.post(url, body: {
         'email': 'toubalzineddine77@gmail.com',
         'username': 'toubal zineddine',
         'message': message,
       });
       if (response.statusCode == 200) {
-        if (json.decode(response.body)['status']) {
+        if (json.decode(response.body)['status'] == true) {
           print('send suggestion with seccus');
           return true;
         } else {

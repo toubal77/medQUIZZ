@@ -4,7 +4,7 @@ import 'package:med_quizz/screens/quizz/quizz_screen.dart';
 
 class ModuleTileSearch extends StatelessWidget {
   final Modules? mod;
-  ModuleTileSearch(this.mod);
+  const ModuleTileSearch(this.mod);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -29,8 +29,7 @@ class ModuleTileSearch extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             image: DecorationImage(
               image: NetworkImage(
-                'https://rayanzinotblans.000webhostapp.com/images/' +
-                    mod!.image.toString(),
+                'https://rayanzinotblans.000webhostapp.com/images/${mod!.image}',
               ),
               fit: BoxFit.cover,
             ),

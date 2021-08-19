@@ -6,7 +6,7 @@ class QuizPlayTile extends StatefulWidget {
   final Questions? questionModel;
   final int index;
 
-  QuizPlayTile({required this.questionModel, required this.index});
+  const QuizPlayTile({required this.questionModel, required this.index});
 
   @override
   _QuizPlayTileState createState() => _QuizPlayTileState();
@@ -26,7 +26,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
   bool checkValue5 = false;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -65,8 +65,9 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             },
             child: OptionTile(
               option: "A",
-              answer: "${widget.questionModel!.rep1}",
+              answer: widget.questionModel!.rep1,
               correctAnswer:
+                  // ignore: avoid_bool_literals_in_conditional_expressions
                   widget.questionModel!.respo1 == 'true' ? true : false,
               optionSelected: optionSelected,
             ),
@@ -103,8 +104,9 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             },
             child: OptionTile(
               option: "B",
-              answer: "${widget.questionModel!.rep2}",
+              answer: widget.questionModel!.rep2,
               correctAnswer:
+                  // ignore: avoid_bool_literals_in_conditional_expressions
                   widget.questionModel!.respo2 == 'true' ? true : false,
               optionSelected: optionSelected,
             ),
@@ -141,8 +143,9 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             },
             child: OptionTile(
               option: "C",
-              answer: "${widget.questionModel!.rep3}",
+              answer: widget.questionModel!.rep3,
               correctAnswer:
+                  // ignore: avoid_bool_literals_in_conditional_expressions
                   widget.questionModel!.respo3 == 'true' ? true : false,
               optionSelected: optionSelected,
             ),
@@ -179,8 +182,9 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             },
             child: OptionTile(
               option: "D",
-              answer: "${widget.questionModel!.rep4}",
+              answer: widget.questionModel!.rep4,
               correctAnswer:
+                  // ignore: avoid_bool_literals_in_conditional_expressions
                   widget.questionModel!.respo4 == 'true' ? true : false,
               optionSelected: optionSelected,
             ),
@@ -218,8 +222,9 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
               },
               child: OptionTile(
                 option: "E",
-                answer: "${widget.questionModel!.rep5}",
+                answer: widget.questionModel!.rep5,
                 correctAnswer:
+                    // ignore: avoid_bool_literals_in_conditional_expressions
                     widget.questionModel!.respo5 == 'true' ? true : false,
                 optionSelected: optionSelected,
               ),

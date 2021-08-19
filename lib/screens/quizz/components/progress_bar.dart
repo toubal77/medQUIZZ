@@ -22,12 +22,11 @@ class ProgressBar extends StatelessWidget {
               LayoutBuilder(
                 builder: (context, constraints) => Container(
                   // from 0 to 1 it takes 60s
-                  width: constraints.maxWidth * controller.animation.value,
+                  width: constraints.maxWidth *
+                      int.parse(controller.animation.value.toString()),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [Color(0xFF46A0AE), Color(0xFF00FFCB)],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
                     ),
                     borderRadius: BorderRadius.circular(50),
                   ),

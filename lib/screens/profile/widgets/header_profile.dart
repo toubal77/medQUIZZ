@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class HeaderProfile extends StatelessWidget {
   final String? title;
-  HeaderProfile({required this.title});
+  const HeaderProfile({required this.title});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 30,
       child: Container(
         margin: EdgeInsets.only(left: 10, right: 10, top: 5),

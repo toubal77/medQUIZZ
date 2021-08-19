@@ -84,8 +84,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         controller: suggController,
                                         keyboardType: TextInputType.text,
                                         decoration: InputDecoration(
-                                          border: new OutlineInputBorder(
-                                            borderSide: new BorderSide(),
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide(),
                                             borderRadius:
                                                 const BorderRadius.all(
                                                     Radius.circular(30.0)),
@@ -97,7 +97,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                         validator: (value) {
                                           if (value!.trim().isEmpty) {
-                                            return 'Can\'t be empty';
+                                            return "Can't be empty";
                                           }
                                           return null;
                                         },
@@ -110,26 +110,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           width: 100,
                                           height: 45,
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: ElevatedButton(
-                                              child: Text("Annule"),
                                               onPressed: () {
                                                 Navigator.of(context).pop();
                                               },
+                                              child: Text('Annule'),
                                             ),
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           width: 100,
                                           height: 45,
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: ElevatedButton(
-                                              child: Text("send"),
                                               onPressed: () {
                                                 FocusScope.of(context)
                                                     .unfocus();
@@ -145,10 +144,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                               .trim())
                                                       .then(
                                                     (result) {
-                                                      if (result == true)
+                                                      if (result == true) {
                                                         Navigator.of(context)
                                                             .pop();
-                                                      else {
+                                                      } else {
                                                         ScaffoldMessenger.of(
                                                                 context)
                                                             .showSnackBar(
@@ -164,6 +163,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                   return print(e.toString());
                                                 }
                                               },
+                                              child: Text("send"),
                                             ),
                                           ),
                                         ),
@@ -180,12 +180,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   },
                 ),
                 ProfileMenu(
-                  'Note l\'applications',
+                  "Note l'applications",
                   Icons.low_priority_sharp,
                   () {},
                 ),
                 ProfileMenu(
-                  'Partage l\'applications',
+                  "Partage l'applications",
                   Icons.share,
                   () {},
                 ),

@@ -29,7 +29,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Container(
+                SizedBox(
                   height: 35,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,8 +73,8 @@ class _QuizzPlayState extends State<QuizzPlay> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.coronavirus),
         onPressed: () {},
+        child: Icon(Icons.coronavirus),
       ),
     );
   }

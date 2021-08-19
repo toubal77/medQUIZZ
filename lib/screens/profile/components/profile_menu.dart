@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class ProfileMenu extends StatelessWidget {
   final String title;
   final IconData icon;
-  final press;
-  ProfileMenu(this.title, this.icon, this.press);
+  final void Function()? press;
+  const ProfileMenu(this.title, this.icon, this.press);
   @override
   Widget build(BuildContext context) {
     return Padding(

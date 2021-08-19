@@ -24,7 +24,7 @@ class AllModules extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
+              SizedBox(
                 height: 70,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,7 +81,6 @@ class AllModules extends StatelessWidget {
                     if (snapshot.hasData) {
                       return ListView.builder(
                         shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
                           return ModuleTile(snapshot.data![index]!);

@@ -4,7 +4,7 @@ import 'package:med_quizz/screens/quizz/quizz_screen.dart';
 
 class ModuleTile extends StatelessWidget {
   final Modules mod;
-  ModuleTile(this.mod);
+  const ModuleTile(this.mod);
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +30,7 @@ class ModuleTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             image: DecorationImage(
               image: NetworkImage(
-                'https://rayanzinotblans.000webhostapp.com/images/' +
-                    mod.image.toString(),
+                'https://rayanzinotblans.000webhostapp.com/images/${mod.image}',
               ),
               fit: BoxFit.cover,
             ),

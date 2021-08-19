@@ -40,15 +40,15 @@ class Questions {
       question: json['question'].toString(),
       module: json['name'].toString(),
       rep1: json['answer1'].toString(),
-      respo1: json['resp1'],
+      respo1: json['resp1'].toString(),
       rep2: json['answer2'].toString(),
-      respo2: json['resp2'],
+      respo2: json['resp2'].toString(),
       rep3: json['answer3'].toString(),
-      respo3: json['resp3'],
+      respo3: json['resp3'].toString(),
       rep4: json['answer4'].toString(),
-      respo4: json['resp4'],
+      respo4: json['resp4'].toString(),
       rep5: json['answer5'].toString(),
-      respo5: json['resp5'],
+      respo5: json['resp5'].toString(),
     );
   }
 }

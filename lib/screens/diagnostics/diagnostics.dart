@@ -35,7 +35,7 @@ class Diagnostic extends StatelessWidget {
                       return ListView.builder(
                         shrinkWrap: true,
                         //    physics: NeverScrollableScrollPhysics(),
-                        scrollDirection: Axis.vertical,
+
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
                           return DiagTile(snapshot.data![index]!);

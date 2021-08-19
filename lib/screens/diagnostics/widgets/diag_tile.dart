@@ -4,7 +4,7 @@ import 'package:med_quizz/screens/diagnostics/detail_Diag/detail_diag.dart';
 
 class DiagTile extends StatelessWidget {
   final Diagnostics diag;
-  DiagTile(this.diag);
+  const DiagTile(this.diag);
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +47,7 @@ class DiagTile extends StatelessWidget {
                       topRight: Radius.circular(30)),
                   image: DecorationImage(
                     image: NetworkImage(
-                        'https://rayanzinotblans.000webhostapp.com/images/diagnostics/' +
-                            diag.image.toString()),
+                        'https://rayanzinotblans.000webhostapp.com/images/diagnostics/${diag.image}'),
                     fit: BoxFit.cover,
                   ),
                 ),

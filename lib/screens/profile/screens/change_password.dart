@@ -12,8 +12,8 @@ class ChangePassword extends StatefulWidget {
 class _ChangePasswordState extends State<ChangePassword> {
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController passwordController = new TextEditingController();
-  TextEditingController confPasswordController = new TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confPasswordController = TextEditingController();
   bool isLoading = false;
   Future _submitForm(String password) async {
     FocusScope.of(context).unfocus();
@@ -27,9 +27,9 @@ class _ChangePasswordState extends State<ChangePassword> {
     try {
       DatabaseMethods().updatePassword(password).then(
         (result) {
-          if (result == true)
+          if (result == true) {
             Navigator.of(context).pop();
-          else {
+          } else {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(result.toString()),
@@ -75,8 +75,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                         TextFormField(
                           controller: passwordController,
                           decoration: InputDecoration(
-                            border: new OutlineInputBorder(
-                              borderSide: new BorderSide(),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(),
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(30.0)),
                             ),
@@ -89,7 +89,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                           validator: (value) {
                             if (value!.trim().isEmpty &&
                                 value.trim().length < 8) {
-                              return 'Password Can\'t be last then 8 ';
+                              return "Password Can't be last then 8 ";
                             }
                             return null;
                           },
@@ -103,8 +103,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                         TextFormField(
                           controller: confPasswordController,
                           decoration: InputDecoration(
-                            border: new OutlineInputBorder(
-                              borderSide: new BorderSide(),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(),
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(30.0)),
                             ),
@@ -116,7 +116,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                           obscureText: true,
                           validator: (value) {
                             if (value!.trim().isEmpty) {
-                              return 'Can\'t be empty';
+                              return "Can't be empty";
                             } else if (passwordController.text.trim() !=
                                 value.trim()) {
                               return 'Passwords not match';
@@ -130,34 +130,35 @@ class _ChangePasswordState extends State<ChangePassword> {
                         SizedBox(
                           height: 20,
                         ),
-                        isLoading == false
-                            ? GestureDetector(
-                                onTap: () {
-                                  _submitForm(
-                                    passwordController.text.trim(),
-                                  );
-                                },
-                                child: Container(
-                                  width: 200,
-                                  padding: EdgeInsets.symmetric(vertical: 15),
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20)),
-                                    border: Border.all(color: Colors.grey),
-                                  ),
-                                  child: Text(
-                                    'Confirme',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            : Container(
-                                height: 20,
-                                child: CircularProgressIndicator(),
+                        if (isLoading == false)
+                          GestureDetector(
+                            onTap: () {
+                              _submitForm(
+                                passwordController.text.trim(),
+                              );
+                            },
+                            child: Container(
+                              width: 200,
+                              padding: EdgeInsets.symmetric(vertical: 15),
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                border: Border.all(color: Colors.grey),
                               ),
+                              child: Text(
+                                'Confirme',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          )
+                        else
+                          SizedBox(
+                            height: 20,
+                            child: CircularProgressIndicator(),
+                          ),
                       ],
                     ),
                   ),

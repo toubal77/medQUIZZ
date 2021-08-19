@@ -4,7 +4,7 @@ import 'package:med_quizz/screens/diagnostics/widgets/header_diag.dart';
 
 class DetailDiag extends StatelessWidget {
   final Diagnostics diag;
-  DetailDiag(this.diag);
+  const DetailDiag(this.diag);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +21,7 @@ class DetailDiag extends StatelessWidget {
             children: [
               HeaderDiag(
                   title: diag.title.length > 20
-                      ? diag.title.substring(0, 25) + ' ...'
+                      ? '${diag.title.substring(0, 25)} ...'
                       : diag.title),
               SizedBox(
                 height: 20,
@@ -33,8 +33,7 @@ class DetailDiag extends StatelessWidget {
                   color: Colors.blue,
                   image: DecorationImage(
                     image: NetworkImage(
-                        'https://rayanzinotblans.000webhostapp.com/images/diagnostics/' +
-                            diag.image.toString()),
+                        'https://rayanzinotblans.000webhostapp.com/images/diagnostics/${diag.image}'),
                     fit: BoxFit.cover,
                   ),
                   borderRadius: BorderRadius.only(

@@ -11,7 +11,6 @@ class ModuleTileShimmer extends StatelessWidget {
         margin: const EdgeInsets.only(right: 20, left: 20),
         child: ListView.builder(
           shrinkWrap: true,
-          scrollDirection: Axis.vertical,
           itemCount: 3,
           itemBuilder: (context, index) {
             return Shimmer.fromColors(

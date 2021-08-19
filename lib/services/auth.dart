@@ -6,19 +6,19 @@ import 'package:med_quizz/helper/api.dart';
 class AuthService {
   Future<String?> singIn(String email, String password) async {
     try {
-      var url =
+      final url =
           Uri.parse('https://rayanzinotblans.000webhostapp.com/login.php');
-      var response = await http.post(url, body: {
+      final response = await http.post(url, body: {
         "email": email,
         "password": password,
       });
       if (response.statusCode == 200) {
-        if (json.decode(response.body)['status']) {
+        if (json.decode(response.body)['status'] == true) {
           print('seccus to login');
           return 'Login';
         } else {
           print('fetch to login');
-          return json.decode(response.body)['message'];
+          return json.decode(response.body)['message'].toString();
         }
       }
     } on Exception catch (e) {
@@ -30,19 +30,19 @@ class AuthService {
 
   Future<String?> singUp(String email, String password, String name) async {
     try {
-      var url = Uri.parse(ApiHealper.singIn);
-      var response = await http.post(url, body: {
+      final url = Uri.parse(ApiHealper.singIn);
+      final response = await http.post(url, body: {
         'email': email,
         'password': password,
         'name': name,
       });
       if (response.statusCode == 200) {
-        if (json.decode(response.body)['status']) {
+        if (json.decode(response.body)['status'] == true) {
           print('seccus to login');
           return 'Login';
         } else {
           print('sfetch to login');
-          return json.decode(response.body)['message'];
+          return json.decode(response.body)['message'].toString();
         }
       }
     } catch (e) {

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class OptionTile extends StatefulWidget {
-  final String answer, option, optionSelected;
+  final String answer;
+  final String option;
+  final String optionSelected;
   final bool correctAnswer;
-  OptionTile({
+  const OptionTile({
     required this.option,
     required this.correctAnswer,
     required this.answer,
@@ -54,7 +56,7 @@ class _OptionTileState extends State<OptionTile> {
           SizedBox(
             width: 8,
           ),
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width * 0.8,
             child: Text(
               widget.answer,

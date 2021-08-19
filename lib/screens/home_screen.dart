@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
+                SizedBox(
                   height: 120,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                                 color: Colors.blue,
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               child: Row(
                                 children: [
                                   IconButton(
@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(
                               height: 5,
                             ),
-                            Container(
+                            SizedBox(
                               width: 220,
                               child: Text(
                                 'Doctor toubal zine eddine',
@@ -124,11 +124,10 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: 400,
                   child: GridView.count(
                     crossAxisCount: 2,
-                    childAspectRatio: 1.0,
                     padding: const EdgeInsets.all(15.0),
                     mainAxisSpacing: 4.0,
                     crossAxisSpacing: 4.0,
@@ -149,7 +148,6 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             SizedBox(
                               height: 20,
@@ -200,7 +198,6 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(
                                 height: 20,
@@ -252,7 +249,6 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(
                                 height: 20,
@@ -294,7 +290,6 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             SizedBox(
                               height: 20,
@@ -376,9 +371,7 @@ class _HomePageState extends State<HomePage> {
                                                 BorderRadius.circular(20),
                                             image: DecorationImage(
                                               image: NetworkImage(
-                                                'https://rayanzinotblans.000webhostapp.com/images/' +
-                                                    snapshot.data![index]!.image
-                                                        .toString(),
+                                                'https://rayanzinotblans.000webhostapp.com/images/${snapshot.data![index]!.image}',
                                               ),
                                               fit: BoxFit.cover,
                                             ),

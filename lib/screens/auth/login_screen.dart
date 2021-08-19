@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:med_quizz/screens/home_screen.dart';
 import 'package:med_quizz/services/auth.dart';
 
-enum AuthMode { Signup, Login }
+enum AuthMode { signup, login }
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -11,22 +11,22 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
-  TextEditingController emailController = new TextEditingController();
-  TextEditingController passwordController = new TextEditingController();
-  TextEditingController nameController = new TextEditingController();
-  AuthMode _authMode = AuthMode.Login;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  AuthMode _authMode = AuthMode.login;
   bool _isLoading = false;
 
   void _switchAuthMode() {
-    if (_authMode == AuthMode.Login) {
+    if (_authMode == AuthMode.login) {
       print('sinUp');
       setState(() {
-        _authMode = AuthMode.Signup;
+        _authMode = AuthMode.signup;
       });
     } else {
       print('singIn');
       setState(() {
-        _authMode = AuthMode.Login;
+        _authMode = AuthMode.login;
       });
     }
   }
@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
       _isLoading = true;
     });
     try {
-      _authMode == AuthMode.Login
+      _authMode == AuthMode.login
           ? AuthService()
               .singIn(
                   emailController.text.trim(), passwordController.text.trim())
@@ -111,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            if (_authMode == AuthMode.Signup)
+            if (_authMode == AuthMode.signup)
               TextFormField(
                 controller: nameController,
                 decoration: InputDecoration(
@@ -208,8 +208,6 @@ class _LoginScreenState extends State<LoginScreen> {
             )
           ],
           gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
             colors: [Color(0xffd1abbd), Color(0xffb5487e)],
           ),
         ),
@@ -237,8 +235,8 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              _authMode == AuthMode.Login
-                  ? 'vous n\'avez pas de compte ?'
+              _authMode == AuthMode.login
+                  ? "vous n'avez pas de compte ?"
                   : 'vous avez un compte ?',
               style: TextStyle(
                 fontSize: 15,
@@ -250,7 +248,7 @@ class _LoginScreenState extends State<LoginScreen> {
               width: 8,
             ),
             Text(
-              _authMode == AuthMode.Login ? 'cree un' : 'ce connecte',
+              _authMode == AuthMode.login ? 'cree un' : 'ce connecte',
               style: TextStyle(
                 color: Colors.green,
                 fontSize: 15,
@@ -307,7 +305,6 @@ class _LoginScreenState extends State<LoginScreen> {
             padding: const EdgeInsets.only(left: 30, right: 30),
             child: SingleChildScrollView(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox(height: height * .3),
@@ -315,11 +312,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 50),
                   _entryField(),
                   SizedBox(height: 20),
-                  _isLoading == true
-                      ? CircularProgressIndicator()
-                      : _submitButton(),
+                  if (_isLoading == true)
+                    CircularProgressIndicator()
+                  else
+                    _submitButton(),
                   SizedBox(height: 10),
-                  if (_authMode == AuthMode.Login)
+                  if (_authMode == AuthMode.login)
                     GestureDetector(
                       onTap: () {},
                       child: Container(
