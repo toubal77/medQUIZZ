@@ -22,8 +22,7 @@ class ProgressBar extends StatelessWidget {
               LayoutBuilder(
                 builder: (context, constraints) => Container(
                   // from 0 to 1 it takes 60s
-                  width: constraints.maxWidth *
-                      int.parse(controller.animation.value.toString()),
+                  width: constraints.maxWidth * controller.animation.value,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [Color(0xFF46A0AE), Color(0xFF00FFCB)],
