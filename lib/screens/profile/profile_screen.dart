@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:med_quizz/screens/auth/login_screen.dart';
 import 'package:med_quizz/screens/profile/components/profile_menu.dart';
 import 'package:med_quizz/screens/profile/screens/change_password.dart';
 import 'package:med_quizz/screens/profile/screens/settings.dart';
@@ -34,7 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Column(
                   children: [
                     HeaderProfile(title: 'Profile'),
-                    UserInfo(),
+                    InfoUser(),
                   ],
                 ),
                 ProfileMenu(
@@ -192,7 +194,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ProfileMenu(
                   'Log Out',
                   Icons.exit_to_app,
-                  () {},
+                  () {
+                    FirebaseAuth.instance.signOut();
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (ctx) {
+                        return LoginScreen();
+                      }),
+                    );
+                  },
                 ),
               ],
             ),
