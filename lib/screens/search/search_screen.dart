@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:med_quizz/models/modules.dart';
@@ -78,12 +78,12 @@ class _SearchScreenState extends State<SearchScreen> {
         child: Column(
           children: [
             Padding(
-              padding:
-                  EdgeInsets.only(left: 25, top: 10, right: 25, bottom: 20),
+              padding: EdgeInsets.only(
+                  left: 25.sp, top: 10.sp, right: 25.sp, bottom: 20.sp),
               child: Column(
                 children: [
                   SizedBox(
-                    height: 5,
+                    height: 5.h,
                   ),
                   Stack(
                     children: [
@@ -99,29 +99,29 @@ class _SearchScreenState extends State<SearchScreen> {
                         child: Text(
                           'Search',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 18.sp,
                           ),
                         ),
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 10.h,
                   ),
                   Row(
                     children: [
                       Icon(Icons.search),
                       SizedBox(
-                        width: 18,
+                        width: 18.w,
                       ),
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(
                             color: Colors.grey[300],
-                            borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(5.sp),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(3),
+                            padding: EdgeInsets.all(3.sp),
                             child: TextField(
                               controller: pickUpController,
                               decoration: InputDecoration(
@@ -131,7 +131,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 border: InputBorder.none,
                                 isDense: true,
                                 contentPadding: EdgeInsets.only(
-                                    left: 11, top: 8, bottom: 8),
+                                    left: 11.sp, top: 8.sp, bottom: 8.sp),
                               ),
                               onChanged: (value) {
                                 onSearch(value);

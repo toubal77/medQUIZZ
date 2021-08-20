@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_quizz/models/diagnostics.dart';
 import 'package:med_quizz/screens/diagnostics/widgets/header_diag.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DetailDiag extends StatelessWidget {
   final Diagnostics diag;
@@ -10,7 +11,7 @@ class DetailDiag extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height.h,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/background_page.jpeg'),
@@ -24,11 +25,11 @@ class DetailDiag extends StatelessWidget {
                       ? '${diag.title.substring(0, 25)} ...'
                       : diag.title),
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
               Container(
-                width: MediaQuery.of(context).size.width,
-                height: 330,
+                width: MediaQuery.of(context).size.width.w,
+                height: 300.h,
                 decoration: BoxDecoration(
                   color: Colors.blue,
                   image: DecorationImage(
@@ -37,39 +38,39 @@ class DetailDiag extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                   borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
+                    bottomLeft: Radius.circular(30.sp),
+                    bottomRight: Radius.circular(30.sp),
                   ),
                 ),
               ),
               SizedBox(
-                height: 15,
+                height: 15.h,
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(left: 15, right: 15),
+                  padding: EdgeInsets.only(left: 15.sp, right: 15.sp),
                   child: ListView(
                     //        crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         diag.title,
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 10.h,
                       ),
                       Text(
                         diag.description,
                         style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 15.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 20.h,
                       ),
                     ],
                   ),

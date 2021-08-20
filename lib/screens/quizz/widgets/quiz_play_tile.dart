@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_quizz/models/questions.dart';
 import 'package:med_quizz/screens/quizz/widgets/option_tile.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class QuizPlayTile extends StatefulWidget {
   final Questions? questionModel;
@@ -31,14 +32,14 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 20),
+            margin: EdgeInsets.symmetric(horizontal: 20.sp),
             child: Text(
               "Q${widget.index + 1}: ${widget.questionModel!.question}",
-              style: TextStyle(fontSize: 18, color: Colors.blue),
+              style: TextStyle(fontSize: 18.sp, color: Colors.blue),
             ),
           ),
           SizedBox(
-            height: 12,
+            height: 12.h,
           ),
           GestureDetector(
             onTap: () {
@@ -73,9 +74,9 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             ),
           ),
           SizedBox(
-            height: 4,
+            height: 4.h,
             child: Divider(
-              height: 3,
+              height: 3.h,
               color: Colors.grey,
             ),
           ),
@@ -112,9 +113,9 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             ),
           ),
           SizedBox(
-            height: 4,
+            height: 4.h,
             child: Divider(
-              height: 3,
+              height: 3.h,
               color: Colors.grey,
             ),
           ),
@@ -151,9 +152,9 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             ),
           ),
           SizedBox(
-            height: 4,
+            height: 4.h,
             child: Divider(
-              height: 3,
+              height: 3.h,
               color: Colors.grey,
             ),
           ),
@@ -191,9 +192,9 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
           ),
           if (widget.questionModel!.rep5 != 'null')
             SizedBox(
-              height: 4,
+              height: 4.h,
               child: Divider(
-                height: 3,
+                height: 3.h,
                 color: Colors.grey,
               ),
             ),
@@ -230,7 +231,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
               ),
             ),
           SizedBox(
-            height: 20,
+            height: 20.h,
           ),
         ],
       ),

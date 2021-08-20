@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_quizz/models/diagnostics.dart';
 import 'package:med_quizz/screens/diagnostics/detail_Diag/detail_diag.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DiagTile extends StatelessWidget {
   final Diagnostics diag;
@@ -19,19 +20,19 @@ class DiagTile extends StatelessWidget {
         );
       },
       child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 310,
-        margin: EdgeInsets.only(right: 20, left: 20, bottom: 20),
+        width: MediaQuery.of(context).size.width.w,
+        height: 310.h,
+        margin: EdgeInsets.only(right: 20.sp, left: 20.sp, bottom: 20.sp),
         // padding: const EdgeInsets.symmetric(vertical: 130),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(30.sp),
           boxShadow: [
             BoxShadow(
-              color: Colors.black45.withOpacity(0.2),
-              spreadRadius: 1,
-              blurRadius: 4,
-              offset: Offset(0.7, 0.7),
+              color: Colors.black45.withOpacity(0.2.sp),
+              spreadRadius: 1.sp,
+              blurRadius: 4.sp,
+              offset: Offset(0.7.sp, 0.7.sp),
             ),
           ],
         ),
@@ -39,12 +40,13 @@ class DiagTile extends StatelessWidget {
           children: [
             Expanded(
               child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 50,
+                width: MediaQuery.of(context).size.width.w,
+                height: 50.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30)),
+                    topLeft: Radius.circular(30.sp),
+                    topRight: Radius.circular(30.sp),
+                  ),
                   image: DecorationImage(
                     image: NetworkImage(
                         'https://rayanzinotblans.000webhostapp.com/images/diagnostics/${diag.image}'),
@@ -55,12 +57,12 @@ class DiagTile extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.all(10.sp),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
+                    bottomLeft: Radius.circular(30.sp),
+                    bottomRight: Radius.circular(30.sp),
                   ),
                 ),
                 child: Column(
@@ -71,19 +73,19 @@ class DiagTile extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                     SizedBox(
-                      height: 5,
+                      height: 5.h,
                     ),
                     Text(
                       diag.description,
                       maxLines: 5,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: 13,
+                        fontSize: 10.sp, // kanat   13 tlf mama 3liha badaltha
                         fontWeight: FontWeight.w500,
                       ),
                     ), // ReadMoreText(

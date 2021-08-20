@@ -7,6 +7,7 @@ import 'package:med_quizz/screens/profile/screens/settings.dart';
 import 'package:med_quizz/screens/profile/widgets/header_profile.dart';
 import 'package:med_quizz/screens/profile/widgets/user_info.dart';
 import 'package:med_quizz/services/database.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height.h,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/background_page.jpeg'),
@@ -81,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: <Widget>[
                                     Padding(
-                                      padding: EdgeInsets.all(8.0),
+                                      padding: EdgeInsets.all(8.0.sp),
                                       child: TextFormField(
                                         controller: suggController,
                                         keyboardType: TextInputType.text,
@@ -94,7 +95,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ),
                                           labelText: 'Votre Suggestion',
                                           labelStyle: TextStyle(
-                                            fontSize: 15.0,
+                                            fontSize: 15.0.sp,
                                           ),
                                         ),
                                         validator: (value) {
@@ -113,8 +114,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         SizedBox(
-                                          width: 100,
-                                          height: 45,
+                                          width: 100.w,
+                                          height: 45.h,
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: ElevatedButton(
@@ -126,8 +127,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 100,
-                                          height: 45,
+                                          width: 100.w,
+                                          height: 45.h,
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: ElevatedButton(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_quizz/screens/home_screen.dart';
 import 'package:med_quizz/services/auth.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 enum AuthMode { signup, login }
 
@@ -159,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _entryField() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: 10.sp),
       child: Form(
         key: _formKey,
         child: Column(
@@ -171,11 +172,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 decoration: InputDecoration(
                   labelText: 'Nom',
                   labelStyle: TextStyle(
-                    fontSize: 15.0,
+                    fontSize: 15.0.sp,
                     color: Colors.white,
                   ),
                   errorStyle: TextStyle(
-                    fontSize: 12.0,
+                    fontSize: 12.0.sp,
                     color: Colors.cyanAccent,
                   ),
                 ),
@@ -195,11 +196,11 @@ class _LoginScreenState extends State<LoginScreen> {
               decoration: InputDecoration(
                 labelText: 'E-mail',
                 labelStyle: TextStyle(
-                  fontSize: 15.0,
+                  fontSize: 15.0.sp,
                   color: Colors.white,
                 ),
                 errorStyle: TextStyle(
-                  fontSize: 12.0,
+                  fontSize: 12.0.sp,
                   color: Colors.cyanAccent,
                 ),
               ),
@@ -219,11 +220,11 @@ class _LoginScreenState extends State<LoginScreen> {
               decoration: InputDecoration(
                 labelText: 'Password',
                 labelStyle: TextStyle(
-                  fontSize: 15.0,
+                  fontSize: 15.0.sp,
                   color: Colors.white,
                 ),
                 errorStyle: TextStyle(
-                  fontSize: 12.0,
+                  fontSize: 12.0.sp,
                   color: Colors.cyanAccent,
                 ),
               ),
@@ -249,16 +250,16 @@ class _LoginScreenState extends State<LoginScreen> {
       onTap: _submitForm,
       child: Container(
         width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.symmetric(vertical: 15),
+        padding: EdgeInsets.symmetric(vertical: 15.sp),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
+          borderRadius: BorderRadius.all(Radius.circular(5.sp)),
           boxShadow: <BoxShadow>[
             BoxShadow(
               color: Colors.grey.shade200,
-              offset: Offset(2, 4),
-              blurRadius: 5,
-              spreadRadius: 2,
+              offset: Offset(2.sp, 4.sp),
+              blurRadius: 5.sp,
+              spreadRadius: 2.sp,
             )
           ],
           gradient: LinearGradient(
@@ -268,7 +269,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Text(
           'Connecte',
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 20.sp,
             color: Colors.white,
           ),
         ),
@@ -277,39 +278,52 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _createAccountLabel() {
-    return InkWell(
-      onTap: () {
-        _switchAuthMode();
-      },
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: 20),
-        padding: EdgeInsets.all(15),
-        alignment: Alignment.bottomCenter,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              _authMode == AuthMode.login
-                  ? "vous n'avez pas de compte ?"
-                  : 'vous avez un compte ?',
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
-              ),
+    return SizedBox(
+      width: 330.w,
+      child: InkWell(
+        onTap: () {
+          _switchAuthMode();
+        },
+        child: Container(
+          margin: EdgeInsets.symmetric(vertical: 20.sp),
+          //    padding: EdgeInsets.all(15.sp),
+          alignment: Alignment.bottomCenter,
+          child: Text(
+            _authMode == AuthMode.login
+                ? "vous n'avez pas de compte ? cree un"
+                : 'vous avez un compte ? ce connecte',
+            style: TextStyle(
+              fontSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
             ),
-            SizedBox(
-              width: 8,
-            ),
-            Text(
-              _authMode == AuthMode.login ? 'cree un' : 'ce connecte',
-              style: TextStyle(
-                color: Colors.green,
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
+          ), // child: Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: <Widget>[
+          //     Text(
+          //       _authMode == AuthMode.login
+          //           ? "vous n'avez pas de compte ? "
+          //           : 'vous avez un compte ? ',
+          //       overflow: TextOverflow.ellipsis,
+          //       style: TextStyle(
+          //         fontSize: 15.sp,
+          //         fontWeight: FontWeight.w600,
+          //         color: Colors.white,
+          //       ),
+          //     ),
+          //     SizedBox(
+          //       width: 8.w,
+          //     ),
+          //     Text(
+          //       _authMode == AuthMode.login ? ' cree un' : ' ce connecte',
+          //       style: TextStyle(
+          //         color: Colors.green,
+          //         fontSize: 15,
+          //         fontWeight: FontWeight.w600,
+          //       ),
+          //     ),
+          //   ],
+          // ),
         ),
       ),
     );
@@ -321,7 +335,7 @@ class _LoginScreenState extends State<LoginScreen> {
       text: TextSpan(
         text: 'MED',
         style: TextStyle(
-          fontSize: 28,
+          fontSize: 28.sp,
           fontWeight: FontWeight.bold,
           //color: Color(0xffb5487e),
           color: Colors.red,
@@ -332,7 +346,7 @@ class _LoginScreenState extends State<LoginScreen> {
             style: TextStyle(
               //color: Color(0xffb5487e),
               color: Colors.green,
-              fontSize: 28,
+              fontSize: 28.sp,
               fontWeight: FontWeight.w300,
             ),
           ),
@@ -343,7 +357,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
+    final height = MediaQuery.of(context).size.height.h;
     return Scaffold(
       body: Stack(
         children: [
@@ -361,34 +375,34 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(height: height * .3),
+                  SizedBox(height: 120.h),
                   _title(),
-                  SizedBox(height: 50),
+                  SizedBox(height: 50.h),
                   _entryField(),
-                  SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                   if (_isLoading == true)
                     CircularProgressIndicator()
                   else
                     _submitButton(),
-                  SizedBox(height: 10),
+                  SizedBox(height: 10.h),
                   if (_authMode == AuthMode.login)
                     GestureDetector(
                       onTap: () {},
                       child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 10),
+                        padding: EdgeInsets.symmetric(vertical: 10.sp),
                         alignment: Alignment.centerRight,
                         child: Text(
                           'mot de passe oublie ?',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 15,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
                     ),
                   SizedBox(
-                    height: height * .025,
+                    height: height.h * .025,
                   ),
                   _createAccountLabel(),
                 ],

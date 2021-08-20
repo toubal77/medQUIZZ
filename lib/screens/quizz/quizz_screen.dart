@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/models/questions.dart';
 import 'package:med_quizz/screens/quizz/components/progress_bar.dart';
 import 'package:med_quizz/screens/quizz/widgets/quiz_play_tile.dart';
@@ -18,7 +18,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
-        height: MediaQuery.of(context).size.height,
+        height: MediaQuery.of(context).size.height.h,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/background_page.jpeg'),
@@ -30,12 +30,12 @@ class _QuizzPlayState extends State<QuizzPlay> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 35,
+                  height: 35.h,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(left: 10, right: 10),
+                        margin: EdgeInsets.only(left: 10.sp, right: 10.sp),
                         child: Stack(
                           //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -52,7 +52,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                               child: Text(
                                 'QUIZZ',
                                 style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 20.sp,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.blue,
                                 ),
@@ -81,7 +81,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
 
   Widget quizList() {
     return Container(
-      margin: EdgeInsets.only(top: 10, bottom: 10),
+      margin: EdgeInsets.only(top: 10.sp, bottom: 10.sp),
       child: Column(
         children: [
           FutureBuilder<List<Questions?>?>(
@@ -92,11 +92,11 @@ class _QuizzPlayState extends State<QuizzPlay> {
                       child: Column(
                         children: [
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.4,
+                            height: MediaQuery.of(context).size.height.h * 0.4,
                           ),
                           CircularProgressIndicator(),
                           SizedBox(
-                            height: 20,
+                            height: 20.h,
                           ),
                           Text('Chargement...'),
                         ],
@@ -109,7 +109,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                           child: ProgressBar(),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 10.h,
                         ),
                         ListView.builder(
                           itemCount: snapshot.data!.length,

@@ -5,6 +5,7 @@ import 'package:med_quizz/screens/all_module/widgets/shimmer_module_tile.dart';
 import 'package:med_quizz/screens/home_screen.dart';
 import 'package:med_quizz/screens/search/search_screen.dart';
 import 'package:med_quizz/services/database.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AllModules extends StatelessWidget {
   const AllModules({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class AllModules extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height.h,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/background_page.jpeg'),
@@ -25,12 +26,13 @@ class AllModules extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: 70,
+                height: 60.h,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(left: 10, right: 10),
+                      margin: EdgeInsets.only(
+                          top: 10.sp, left: 10.sp, right: 10.sp),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -50,7 +52,7 @@ class AllModules extends StatelessWidget {
                           Text(
                             'All Modules',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 20.sp,
                               fontWeight: FontWeight.w500,
                               color: Colors.blue,
                             ),

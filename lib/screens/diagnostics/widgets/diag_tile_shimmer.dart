@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DiagTileShimmer extends StatelessWidget {
   const DiagTileShimmer({Key? key}) : super(key: key);
@@ -16,18 +17,18 @@ class DiagTileShimmer extends StatelessWidget {
             baseColor: Colors.white,
             highlightColor: Colors.grey.shade300,
             child: Container(
-              margin: EdgeInsets.only(bottom: 20),
-              width: MediaQuery.of(context).size.width,
-              height: 300,
+              margin: EdgeInsets.only(bottom: 20.sp),
+              width: MediaQuery.of(context).size.width.w,
+              height: 300.w,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(30.sp),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black45.withOpacity(0.2),
-                    spreadRadius: 1,
-                    blurRadius: 4,
-                    offset: Offset(0.7, 0.7),
+                    color: Colors.black45.withOpacity(0.2.sp),
+                    spreadRadius: 1.sp,
+                    blurRadius: 4.sp,
+                    offset: Offset(0.7.sp, 0.7.sp),
                   ),
                 ],
               ),

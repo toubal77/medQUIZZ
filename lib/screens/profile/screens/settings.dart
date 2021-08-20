@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_quizz/screens/profile/widgets/header_profile.dart';
 import 'package:med_quizz/services/database.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -50,7 +51,7 @@ class _SettingsState extends State<Settings> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height.h,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/background_page.jpeg'),
@@ -62,11 +63,11 @@ class _SettingsState extends State<Settings> {
             children: [
               HeaderProfile(title: 'Settings'),
               SizedBox(
-                height: 40,
+                height: 40.h,
               ),
               SingleChildScrollView(
                 child: Container(
-                  padding: EdgeInsets.only(left: 15, right: 15),
+                  padding: EdgeInsets.only(left: 15.sp, right: 15.sp),
                   child: Form(
                     key: _formKey,
                     child: Column(
@@ -82,7 +83,7 @@ class _SettingsState extends State<Settings> {
                             ),
                             labelText: 'Votre Nom',
                             labelStyle: TextStyle(
-                              fontSize: 15.0,
+                              fontSize: 15.0.sp,
                             ),
                           ),
                           validator: (value) {
@@ -96,7 +97,7 @@ class _SettingsState extends State<Settings> {
                           },
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 20.h,
                         ),
                         TextFormField(
                           controller: emailController,
@@ -109,7 +110,7 @@ class _SettingsState extends State<Settings> {
                             ),
                             labelText: 'Email',
                             labelStyle: TextStyle(
-                              fontSize: 15.0,
+                              fontSize: 15.0.sp,
                             ),
                           ),
                           validator: (value) {
@@ -123,7 +124,7 @@ class _SettingsState extends State<Settings> {
                           },
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 20.h,
                         ),
                         if (isLoading == false)
                           GestureDetector(
@@ -134,8 +135,8 @@ class _SettingsState extends State<Settings> {
                               );
                             },
                             child: Container(
-                              width: 200,
-                              padding: EdgeInsets.symmetric(vertical: 15),
+                              width: 200.w,
+                              padding: EdgeInsets.symmetric(vertical: 15.sp),
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                 borderRadius:
@@ -152,7 +153,7 @@ class _SettingsState extends State<Settings> {
                           )
                         else
                           SizedBox(
-                            height: 20,
+                            height: 20.h,
                             child: CircularProgressIndicator(),
                           ),
                       ],

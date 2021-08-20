@@ -4,6 +4,7 @@ import 'package:med_quizz/screens/diagnostics/widgets/diag_tile.dart';
 import 'package:med_quizz/screens/diagnostics/widgets/diag_tile_shimmer.dart';
 import 'package:med_quizz/screens/diagnostics/widgets/header_diag.dart';
 import 'package:med_quizz/services/database.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Diagnostic extends StatelessWidget {
   const Diagnostic({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class Diagnostic extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height.h,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/background_page.jpeg'),
@@ -24,10 +25,10 @@ class Diagnostic extends StatelessWidget {
             children: [
               HeaderDiag(title: 'Diagnostics'),
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 60),
+                margin: EdgeInsets.only(bottom: 60.sp),
                 child: FutureBuilder<List<Diagnostics?>?>(
                   future: DatabaseMethods().getDiag(),
                   builder: (context, snapshot) {

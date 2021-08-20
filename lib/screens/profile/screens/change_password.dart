@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_quizz/screens/profile/widgets/header_profile.dart';
 import 'package:med_quizz/services/database.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({Key? key}) : super(key: key);
@@ -64,13 +65,13 @@ class _ChangePasswordState extends State<ChangePassword> {
               HeaderProfile(title: 'Change Password'),
               SingleChildScrollView(
                 child: Container(
-                  padding: EdgeInsets.only(left: 15, right: 15),
+                  padding: EdgeInsets.only(left: 15.sp, right: 15.sp),
                   child: Form(
                     key: _formKey,
                     child: Column(
                       children: <Widget>[
                         SizedBox(
-                          height: 20,
+                          height: 20.h,
                         ),
                         TextFormField(
                           controller: passwordController,
@@ -78,11 +79,11 @@ class _ChangePasswordState extends State<ChangePassword> {
                             border: OutlineInputBorder(
                               borderSide: BorderSide(),
                               borderRadius:
-                                  const BorderRadius.all(Radius.circular(30.0)),
+                                  const BorderRadius.all(Radius.circular(30)),
                             ),
                             labelText: 'New Password',
                             labelStyle: TextStyle(
-                              fontSize: 15.0,
+                              fontSize: 15.0.sp,
                             ),
                           ),
                           obscureText: true,
@@ -98,7 +99,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                           },
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 20.h,
                         ),
                         TextFormField(
                           controller: confPasswordController,
@@ -106,11 +107,11 @@ class _ChangePasswordState extends State<ChangePassword> {
                             border: OutlineInputBorder(
                               borderSide: BorderSide(),
                               borderRadius:
-                                  const BorderRadius.all(Radius.circular(30.0)),
+                                  const BorderRadius.all(Radius.circular(30)),
                             ),
                             labelText: 'Confirme Password',
                             labelStyle: TextStyle(
-                              fontSize: 15.0,
+                              fontSize: 15.0.sp,
                             ),
                           ),
                           obscureText: true,
@@ -128,7 +129,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                           },
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 20.h,
                         ),
                         if (isLoading == false)
                           GestureDetector(
@@ -138,8 +139,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                               );
                             },
                             child: Container(
-                              width: 200,
-                              padding: EdgeInsets.symmetric(vertical: 15),
+                              width: 200.w,
+                              padding: EdgeInsets.symmetric(vertical: 15.sp),
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                 borderRadius:
@@ -156,7 +157,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                           )
                         else
                           SizedBox(
-                            height: 20,
+                            height: 20.h,
                             child: CircularProgressIndicator(),
                           ),
                       ],

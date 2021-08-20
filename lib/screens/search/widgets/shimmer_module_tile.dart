@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ShimmerModuleTileSearch extends StatelessWidget {
   const ShimmerModuleTileSearch({Key? key}) : super(key: key);
@@ -17,12 +18,12 @@ class ShimmerModuleTileSearch extends StatelessWidget {
               baseColor: Colors.white,
               highlightColor: Colors.grey.shade300,
               child: Container(
-                width: 315,
-                height: 220,
-                margin: EdgeInsets.only(bottom: 20),
+                width: 315.w,
+                height: 220.h,
+                margin: EdgeInsets.only(bottom: 20.sp),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20.sp),
                 ),
               ),
             );

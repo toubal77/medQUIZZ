@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OptionTile extends StatefulWidget {
   final String answer;
@@ -20,29 +21,29 @@ class _OptionTileState extends State<OptionTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 45,
-      padding: EdgeInsets.only(left: 20, right: 10),
-      margin: EdgeInsets.only(top: 3, bottom: 3),
+      height: 45.h,
+      padding: EdgeInsets.only(left: 20.sp, right: 10.sp),
+      margin: EdgeInsets.only(top: 3.sp, bottom: 3.sp),
       child: Row(
         children: [
           Container(
-            height: 28,
-            width: 28,
+            height: 28.h,
+            width: 28.w,
             alignment: Alignment.center,
             decoration: BoxDecoration(
                 border: Border.all(
                     color: widget.optionSelected == widget.answer
                         ? widget.optionSelected == widget.answer
-                            ? Colors.green.withOpacity(0.7)
-                            : Colors.red.withOpacity(0.7)
+                            ? Colors.green.withOpacity(0.7.sp)
+                            : Colors.red.withOpacity(0.7.sp)
                         : Colors.grey,
-                    width: 1.5),
+                    width: 1.5.w),
                 color: widget.optionSelected == widget.answer
                     ? widget.optionSelected == widget.answer
-                        ? Colors.green.withOpacity(0.7)
-                        : Colors.red.withOpacity(0.7)
+                        ? Colors.green.withOpacity(0.7.sp)
+                        : Colors.red.withOpacity(0.7.sp)
                     : Colors.white,
-                borderRadius: BorderRadius.circular(24)),
+                borderRadius: BorderRadius.circular(24.sp)),
             child: Text(
               widget.option,
               overflow: TextOverflow.ellipsis,
@@ -54,17 +55,15 @@ class _OptionTileState extends State<OptionTile> {
             ),
           ),
           SizedBox(
-            width: 8,
+            width: 8.w,
           ),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.8,
+            width: MediaQuery.of(context).size.width.w * 0.65,
             child: Text(
               widget.answer,
-              textDirection: TextDirection.ltr,
               style: TextStyle(
-                fontSize: 17,
+                fontSize: 17.sp,
                 color: Colors.blue,
-                letterSpacing: 0.36,
               ),
               maxLines: 2,
             ),
