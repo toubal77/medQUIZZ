@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/screens/auth/login_screen.dart';
 import 'package:med_quizz/screens/diagnostics/diagnostics.dart';
@@ -14,9 +15,14 @@ Future<void> backgroundHandler(RemoteMessage message) async {
 }
 
 void main() async {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
+
   runApp(MyApp());
 }
 
