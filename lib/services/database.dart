@@ -7,30 +7,36 @@ import 'package:med_quizz/models/questions.dart';
 import 'package:med_quizz/models/diagnostics.dart';
 
 class DatabaseMethods {
-  Future<void> addDocumentUser(User? user, String username) async {
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(user!.uid)
-        .set({
-          'id': user.uid,
-          'email': user.email,
-          'username': username,
-          'token': user.getIdToken(),
-        })
-        .then((value) => print("document user added : users : $user"))
-        .catchError((error) => print("Failed to add document : $error"));
+  Future addDocumentUser(User user, String username) async {
+    user.getIdToken().then((String token) async {
+      print('The user ID token is' + token);
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .set({
+            'id': user.uid,
+            'email': user.email,
+            'username': username,
+            'token': token,
+          })
+          .then((value) => print("document user added : users : $user"))
+          .catchError((error) => print("Failed to add document : $error"));
+    });
   }
 
-  Future<void> updateTokenUser(User? user) async {
-    return await FirebaseFirestore.instance
-        .collection("users")
-        .doc(user!.uid)
-        .update({
-          'token': user.getIdToken(),
-        })
-        .then((value) => print("update Token user"))
-        .catchError(
-            (error) => print("Failed to update token user info: $error"));
+  Future<void> updateTokenUser(User user) async {
+    user.getIdToken().then((String token) async {
+      print('The user ID token is ' + token);
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .update({
+            'token': token,
+          })
+          .then((value) => print("update Token user"))
+          .catchError(
+              (error) => print("Failed to update token user info: $error"));
+    });
   }
 
   Future<List<Modules?>?> getModules() async {

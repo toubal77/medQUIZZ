@@ -83,8 +83,8 @@ class AuthService {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       User? user = result.user;
-      DatabaseMethods().updateTokenUser(user);
-      return _userFromFirebaseUser(user!);
+      DatabaseMethods().updateTokenUser(user!);
+      return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
     }
@@ -97,7 +97,7 @@ class AuthService {
           email: email, password: password);
       User? user = result.user;
 
-      DatabaseMethods().addDocumentUser(user, username);
+      DatabaseMethods().addDocumentUser(user!, username);
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
