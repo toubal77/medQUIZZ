@@ -26,8 +26,8 @@ class _HomePageState extends State<HomePage> {
     //give the message on which user taps
     FirebaseMessaging.instance.getInitialMessage().then((message) {
       if (message != null) {
-        print(message.data["route"].toString());
-        //Navigator.of(context).pushNamed(routeName);
+        final routeFromMessage = message.data["route"];
+        Navigator.of(context).pushNamed(routeFromMessage);
       }
     });
     //forground
@@ -40,8 +40,9 @@ class _HomePageState extends State<HomePage> {
     });
     //background where user click in notification
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
-      print(message.data["route"].toString());
-      //Navigator.of(context).pushNamed(routeName);
+      final routeFromMessage = message.data["route"];
+
+      Navigator.of(context).pushNamed(routeFromMessage);
     });
   }
 
