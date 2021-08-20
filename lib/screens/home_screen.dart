@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/screens/all_module/all_modules.dart';
@@ -6,6 +7,7 @@ import 'package:med_quizz/screens/profile/profile_screen.dart';
 import 'package:med_quizz/screens/quizz/quizz_screen.dart';
 import 'package:med_quizz/screens/search/search_screen.dart';
 import 'package:med_quizz/services/database.dart';
+import 'package:med_quizz/services/local_notification.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,6 +17,33 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  @override
+  void initState() {
+    super.initState();
+    LocalNotificationService.initialize(context);
+
+    //give the message on which user taps
+    FirebaseMessaging.instance.getInitialMessage().then((message) {
+      if (message != null) {
+        print(message.data["route"].toString());
+        //Navigator.of(context).pushNamed(routeName);
+      }
+    });
+    //forground
+    FirebaseMessaging.onMessage.listen((message) {
+      if (message.notification != null) {
+        print(message.notification!.title);
+        print(message.notification!.body);
+      }
+      LocalNotificationService.display(message);
+    });
+    //background where user click in notification
+    FirebaseMessaging.onMessageOpenedApp.listen((message) {
+      print(message.data["route"].toString());
+      //Navigator.of(context).pushNamed(routeName);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
