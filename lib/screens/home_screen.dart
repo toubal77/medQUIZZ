@@ -11,6 +11,7 @@ import 'package:med_quizz/services/local_notification.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomePage extends StatefulWidget {
+  static final screenName = "\HomePage";
   @override
   _HomePageState createState() => _HomePageState();
 }

@@ -7,7 +7,7 @@ import 'package:med_quizz/services/database.dart';
 
 class Diagnostic extends StatelessWidget {
   const Diagnostic({Key? key}) : super(key: key);
-
+  static final screenName = "\Diagnostic";
   @override
   Widget build(BuildContext context) {
     return Scaffold(

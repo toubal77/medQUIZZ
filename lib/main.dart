@@ -3,6 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/screens/auth/login_screen.dart';
+import 'package:med_quizz/screens/diagnostics/diagnostics.dart';
 import 'package:med_quizz/screens/home_screen.dart';
 import 'package:med_quizz/services/auth.dart';
 
@@ -48,6 +49,10 @@ class MyApp extends StatelessWidget {
             }
           },
         ),
+        routes: {
+          Diagnostic.screenName: (context) => Diagnostic(),
+          HomePage.screenName: (context) => HomePage(),
+        },
       ),
       designSize: const Size(360, 640),
     );
