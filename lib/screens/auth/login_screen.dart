@@ -42,6 +42,59 @@ class _LoginScreenState extends State<LoginScreen> {
       _isLoading = true;
     });
     try {
+      if (_authMode == AuthMode.login) {
+        await AuthService()
+            .signInEmailPassword(emailController.text, emailController.text)
+            .then(
+          (result) async {
+            if (result != null) {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return HomePage();
+                    // return HomePage(
+                    //     'vous venez de cree un compte avec ${emailController.text}');
+                  },
+                ),
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  duration: Duration(seconds: 3),
+                  content: Text(result),
+                ),
+              );
+            }
+          },
+        );
+      } else {
+        await AuthService()
+            .signUpEmailPassword(emailController.text, emailController.text)
+            .then(
+          (result) async {
+            if (result != null) {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return HomePage();
+                    // return HomePage(
+                    //     'vous venez de cree un compte avec ${emailController.text}');
+                  },
+                ),
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  duration: Duration(seconds: 3),
+                  content: Text(result),
+                ),
+              );
+            }
+          },
+        );
+      }
       // _authMode == AuthMode.login
       //     ? AuthService()
       //         .singIn(
