@@ -42,59 +42,59 @@ class _LoginScreenState extends State<LoginScreen> {
       _isLoading = true;
     });
     try {
-      _authMode == AuthMode.login
-          ? AuthService()
-              .singIn(
-                  emailController.text.trim(), passwordController.text.trim())
-              .then(
-              (result) {
-                if (result! == 'Login') {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return HomePage();
-                        // return HomePage(
-                        //     'vous etes connecte avec ${emailController.text}');
-                      },
-                    ),
-                  );
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      duration: Duration(seconds: 3),
-                      content: Text(result),
-                    ),
-                  );
-                }
-              },
-            )
-          : AuthService()
-              .singUp(emailController.text.trim(),
-                  passwordController.text.trim(), nameController.text.trim())
-              .then(
-              (result) {
-                if (result! == 'Login') {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return HomePage();
-                        // return HomePage(
-                        //     'vous venez de cree un compte avec ${emailController.text}');
-                      },
-                    ),
-                  );
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      duration: Duration(seconds: 3),
-                      content: Text(result),
-                    ),
-                  );
-                }
-              },
-            );
+      // _authMode == AuthMode.login
+      //     ? AuthService()
+      //         .singIn(
+      //             emailController.text.trim(), passwordController.text.trim())
+      //         .then(
+      //         (result) {
+      //           if (result! == 'Login') {
+      //             Navigator.pushReplacement(
+      //               context,
+      //               MaterialPageRoute(
+      //                 builder: (context) {
+      //                   return HomePage();
+      //                   // return HomePage(
+      //                   //     'vous etes connecte avec ${emailController.text}');
+      //                 },
+      //               ),
+      //             );
+      //           } else {
+      //             ScaffoldMessenger.of(context).showSnackBar(
+      //               SnackBar(
+      //                 duration: Duration(seconds: 3),
+      //                 content: Text(result),
+      //               ),
+      //             );
+      //           }
+      //         },
+      //       )
+      //     : AuthService()
+      //         .singUp(emailController.text.trim(),
+      //             passwordController.text.trim(), nameController.text.trim())
+      //         .then(
+      //         (result) {
+      //           if (result! == 'Login') {
+      //             Navigator.pushReplacement(
+      //               context,
+      //               MaterialPageRoute(
+      //                 builder: (context) {
+      //                   return HomePage();
+      //                   // return HomePage(
+      //                   //     'vous venez de cree un compte avec ${emailController.text}');
+      //                 },
+      //               ),
+      //             );
+      //           } else {
+      //             ScaffoldMessenger.of(context).showSnackBar(
+      //               SnackBar(
+      //                 duration: Duration(seconds: 3),
+      //                 content: Text(result),
+      //               ),
+      //             );
+      //           }
+      //         },
+      //       );
     } catch (e) {
       print(e.toString());
     }
