@@ -70,7 +70,8 @@ class _LoginScreenState extends State<LoginScreen> {
         );
       } else {
         await AuthService()
-            .signUpEmailPassword(emailController.text, emailController.text)
+            .signUpEmailPassword(
+                emailController.text, emailController.text, nameController.text)
             .then(
           (result) async {
             if (result != null) {
