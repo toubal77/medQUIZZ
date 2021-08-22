@@ -139,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                       Container(
                         margin: EdgeInsets.only(left: 10.sp),
                         child: FutureBuilder<DocumentSnapshot?>(
-                          future: DatabaseMethods().getUserUsername(),
+                          future: DatabaseMethods().getUserInfo(),
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
                               return Column(
@@ -173,6 +173,7 @@ class _HomePageState extends State<HomePage> {
                             }
                             return Container(
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Shimmer.fromColors(
                                     baseColor: Colors.white,

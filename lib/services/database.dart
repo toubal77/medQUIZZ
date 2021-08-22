@@ -8,7 +8,7 @@ import 'package:med_quizz/models/diagnostics.dart';
 import 'package:med_quizz/services/auth.dart';
 
 class DatabaseMethods {
-  Future<DocumentSnapshot?> getUserUsername() async {
+  Future<DocumentSnapshot?> getUserInfo() async {
     try {
       DocumentSnapshot _userData = await FirebaseFirestore.instance
           .collection('users')
