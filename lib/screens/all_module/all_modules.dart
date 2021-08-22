@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/screens/all_module/widgets/module_tile.dart';
 import 'package:med_quizz/screens/all_module/widgets/shimmer_module_tile.dart';
 import 'package:med_quizz/screens/home_screen.dart';
 import 'package:med_quizz/screens/search/search_screen.dart';
+import 'package:med_quizz/services/ads_service.dart';
 import 'package:med_quizz/services/database.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,6 +15,14 @@ class AllModules extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Container(
+        height: 50.h,
+        padding: EdgeInsets.all(8.sp),
+        key: UniqueKey(),
+        child: AdWidget(
+          ad: AdManager.buildBannerAd()..load(),
+        ),
+      ),
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height.h,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:med_quizz/models/diagnostics.dart';
 import 'package:med_quizz/screens/diagnostics/widgets/diag_tile.dart';
 import 'package:med_quizz/screens/diagnostics/widgets/diag_tile_shimmer.dart';
 import 'package:med_quizz/screens/diagnostics/widgets/header_diag.dart';
+import 'package:med_quizz/services/ads_service.dart';
 import 'package:med_quizz/services/database.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -12,6 +14,14 @@ class Diagnostic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Container(
+        height: 50.h,
+        padding: EdgeInsets.all(8.sp),
+        key: UniqueKey(),
+        child: AdWidget(
+          ad: AdManager.buildBannerAd()..load(),
+        ),
+      ),
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height.h,

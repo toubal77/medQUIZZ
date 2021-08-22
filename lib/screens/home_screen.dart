@@ -1,5 +1,10 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:med_quizz/services/ads_service.dart';
+import 'package:shimmer/shimmer.dart';
+
 import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/screens/all_module/all_modules.dart';
 import 'package:med_quizz/screens/diagnostics/diagnostics.dart';
@@ -8,8 +13,6 @@ import 'package:med_quizz/screens/quizz/quizz_screen.dart';
 import 'package:med_quizz/screens/search/search_screen.dart';
 import 'package:med_quizz/services/database.dart';
 import 'package:med_quizz/services/local_notification.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomePage extends StatefulWidget {
   static final screenName = "\HomePage";
@@ -19,9 +22,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   void initState() {
     super.initState();
+
     LocalNotificationService.initialize(context);
 
     //give the message on which user taps
@@ -51,6 +56,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
+      bottomNavigationBar: Container(
+        height: 50.h,
+        padding: EdgeInsets.all(8.sp),
+        key: UniqueKey(),
+        child: AdWidget(
+          ad: AdManager.buildBannerAd()..load(),
+        ),
+      ),
       backgroundColor: Color(0xFFE5E5E5),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -65,7 +78,7 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 120.h,
+                  height: 100.h,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -157,7 +170,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(
-                  height: 350.h,
+                  height: 325.h,
                   child: GridView.count(
                     crossAxisCount: 2,
                     padding: const EdgeInsets.all(8),
