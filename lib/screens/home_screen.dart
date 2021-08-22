@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -137,33 +138,69 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Container(
                         margin: EdgeInsets.only(left: 10.sp),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Bonjour',
-                              style: TextStyle(
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.blue,
+                        child: FutureBuilder<DocumentSnapshot?>(
+                          future: DatabaseMethods().getUserUsername(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Bonjour',
+                                    style: TextStyle(
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.blue,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5.h,
+                                  ),
+                                  SizedBox(
+                                    width: 220.w,
+                                    child: Text(
+                                      "Doctor ${snapshot.data!['username']}",
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        fontSize: 18.sp,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            }
+                            return Container(
+                              child: Column(
+                                children: [
+                                  Shimmer.fromColors(
+                                    baseColor: Colors.white,
+                                    highlightColor: Colors.grey.shade300,
+                                    child: Container(
+                                      width: 120.w,
+                                      height: 20.h,
+                                      margin: const EdgeInsets.only(left: 3),
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5.h,
+                                  ),
+                                  Shimmer.fromColors(
+                                    baseColor: Colors.white,
+                                    highlightColor: Colors.grey.shade300,
+                                    child: Container(
+                                      width: 220.w,
+                                      height: 20.h,
+                                      margin: const EdgeInsets.only(left: 3),
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                            SizedBox(
-                              height: 5.h,
-                            ),
-                            SizedBox(
-                              width: 220.w,
-                              child: Text(
-                                'Doctor toubal zine eddine',
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontSize: 18.sp,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.blue,
-                                ),
-                              ),
-                            ),
-                          ],
+                            );
+                          },
                         ),
                       ),
                     ],

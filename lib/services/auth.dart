@@ -104,9 +104,9 @@ class AuthService {
     }
   }
 
-  String getIdUser() {
-    String userId = FirebaseAuth.instance.currentUser!.uid;
-    return userId;
+  String? get getUserId {
+    String? _userId = FirebaseAuth.instance.currentUser?.uid;
+    return _userId;
   }
 
   Future resetPass(String email) async {

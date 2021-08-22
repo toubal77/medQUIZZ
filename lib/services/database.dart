@@ -5,8 +5,21 @@ import 'package:http/http.dart' as http;
 import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/models/questions.dart';
 import 'package:med_quizz/models/diagnostics.dart';
+import 'package:med_quizz/services/auth.dart';
 
 class DatabaseMethods {
+  Future<DocumentSnapshot?> getUserUsername() async {
+    try {
+      DocumentSnapshot _userData = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(AuthService().getUserId)
+          .get();
+      return _userData;
+    } catch (err) {
+      print(err);
+    }
+  }
+
   Future addDocumentUser(User user, String username) async {
     user.getIdToken().then((String token) async {
       print('The user ID token is' + token);
