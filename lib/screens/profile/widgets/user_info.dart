@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:med_quizz/services/database.dart';
 import 'package:shimmer/shimmer.dart';
 
 class InfoUser extends StatelessWidget {
@@ -24,6 +25,7 @@ class InfoUser extends StatelessWidget {
           ),
         ),
         FutureBuilder<DocumentSnapshot?>(
+          future: DatabaseMethods().getUserInfo(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return Column(
