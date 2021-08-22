@@ -30,7 +30,7 @@ class HeaderDiag extends StatelessWidget {
                 title!, textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  fontSize: 20.sp,
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.w500,
                   color: Colors.blue,
                 ),

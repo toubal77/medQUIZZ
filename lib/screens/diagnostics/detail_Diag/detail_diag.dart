@@ -22,7 +22,7 @@ class DetailDiag extends StatelessWidget {
             children: [
               HeaderDiag(
                   title: diag.title.length > 20
-                      ? '${diag.title.substring(0, 25)} ...'
+                      ? '${diag.title.substring(0, 19)} ...'
                       : diag.title),
               SizedBox(
                 height: 20.h,
