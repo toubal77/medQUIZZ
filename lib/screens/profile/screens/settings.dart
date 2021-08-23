@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:med_quizz/screens/profile/widgets/header_profile.dart';
 import 'package:med_quizz/services/database.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -11,9 +12,14 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  Future usernameShared() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    emailController.text = prefs.getString('email')!;
+  }
+
   @override
   void initState() {
-    emailController.text = DatabaseMethods().usernameShared as String;
+    usernameShared();
     super.initState();
   }
 
