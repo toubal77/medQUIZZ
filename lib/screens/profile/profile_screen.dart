@@ -147,19 +147,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                               .trim())
                                                       .then(
                                                     (result) {
-                                                      if (result == true) {
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                      } else {
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                            content: Text(result
-                                                                .toString()),
-                                                          ),
-                                                        );
-                                                      }
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                  ).catchError(
+                                                    (result) {
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                              'field to send suggestion'),
+                                                        ),
+                                                      );
                                                     },
                                                   );
                                                 } catch (e) {

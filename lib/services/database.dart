@@ -24,11 +24,6 @@ class DatabaseMethods {
     }
   }
 
-  Future<String> get usernameShared async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString('username')!;
-  }
-
   Future updateSettings(String username) async {
     await FirebaseFirestore.instance
         .collection('users')
@@ -42,6 +37,46 @@ class DatabaseMethods {
         .catchError(
           (value) => print('update settings field'),
         );
+  }
+
+  Future sendSuggestion(String message) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? email = prefs.getString('email');
+      String? username = prefs.getString('username');
+      await FirebaseFirestore.instance
+          .collection('suggestion')
+          .add({
+            'time': DateTime.now(),
+            'email': email,
+            'username': username,
+            'message': message,
+          })
+          .then((value) => print('send suggestion with seccus'))
+          .catchError((value) => print('send suggestion field'));
+
+      // final url =
+      //     Uri.parse('https://rayanzinotblans.000webhostapp.com/suggestion.php');
+      // final response = await http.post(url, body: {
+      //   'email': 'toubalzineddine77@gmail.com',
+      //   'username': 'toubal zineddine',
+      //   'message': message,
+      // });
+      // if (response.statusCode == 200) {
+      //   if (json.decode(response.body)['status'] == true) {
+      //     print('send suggestion with seccus');
+      //     return true;
+      //   } else {
+      //     return json.decode(response.body)['message'];
+      //   }
+      // } else {
+      //   print('field to send sugestions');
+      //   print(response.statusCode);
+      //   return 'error to connecte';
+      // }
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   Future addDocumentUser(User user, String username) async {
@@ -204,29 +239,29 @@ class DatabaseMethods {
     }
   }
 
-  Future sendSuggestion(String message) async {
-    try {
-      final url =
-          Uri.parse('https://rayanzinotblans.000webhostapp.com/suggestion.php');
-      final response = await http.post(url, body: {
-        'email': 'toubalzineddine77@gmail.com',
-        'username': 'toubal zineddine',
-        'message': message,
-      });
-      if (response.statusCode == 200) {
-        if (json.decode(response.body)['status'] == true) {
-          print('send suggestion with seccus');
-          return true;
-        } else {
-          return json.decode(response.body)['message'];
-        }
-      } else {
-        print('field to send sugestions');
-        print(response.statusCode);
-        return 'error to connecte';
-      }
-    } catch (e) {
-      print(e.toString());
-    }
-  }
+  // Future sendSuggestion(String message) async {
+  //   try {
+  //     final url =
+  //         Uri.parse('https://rayanzinotblans.000webhostapp.com/suggestion.php');
+  //     final response = await http.post(url, body: {
+  //       'email': 'toubalzineddine77@gmail.com',
+  //       'username': 'toubal zineddine',
+  //       'message': message,
+  //     });
+  //     if (response.statusCode == 200) {
+  //       if (json.decode(response.body)['status'] == true) {
+  //         print('send suggestion with seccus');
+  //         return true;
+  //       } else {
+  //         return json.decode(response.body)['message'];
+  //       }
+  //     } else {
+  //       print('field to send sugestions');
+  //       print(response.statusCode);
+  //       return 'error to connecte';
+  //     }
+  //   } catch (e) {
+  //     print(e.toString());
+  //   }
+  // }
 }
