@@ -35,7 +35,7 @@ class DatabaseMethods {
           (value) => print('update settings seccus'),
         )
         .catchError(
-          (value) => print('update settings field'),
+          (value) => print('update settings field ' + value),
         );
   }
 
@@ -53,7 +53,7 @@ class DatabaseMethods {
             'message': message,
           })
           .then((value) => print('send suggestion with seccus'))
-          .catchError((value) => print('send suggestion field'));
+          .catchError((value) => print('send suggestion field ' + value));
 
       // final url =
       //     Uri.parse('https://rayanzinotblans.000webhostapp.com/suggestion.php');

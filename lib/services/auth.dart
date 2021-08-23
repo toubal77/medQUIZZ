@@ -109,12 +109,15 @@ class AuthService {
     return _userId;
   }
 
-  Future resetPass(String email) async {
-    try {
-      return await _auth.sendPasswordResetEmail(email: email);
-    } catch (e) {
-      print(e.toString());
-    }
+  Future resetPass(String password) async {
+    await _auth.currentUser!
+        .updatePassword(password)
+        .then(
+          (value) => print('update password seccus'),
+        )
+        .catchError(
+          (value) => print('update password field ' + value),
+        );
   }
 
   Future signOut() async {

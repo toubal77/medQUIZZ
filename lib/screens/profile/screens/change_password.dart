@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_quizz/screens/profile/widgets/header_profile.dart';
-import 'package:med_quizz/services/database.dart';
+import 'package:med_quizz/services/auth.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChangePassword extends StatefulWidget {
@@ -26,14 +26,15 @@ class _ChangePasswordState extends State<ChangePassword> {
       isLoading = true;
     });
     try {
-      DatabaseMethods().updatePassword(password).then(
+      AuthService().resetPass(password).then(
         (result) {
           if (result == true) {
+            passwordController.text = '';
             Navigator.of(context).pop();
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(result.toString()),
+                content: Text('field to update password'),
               ),
             );
           }
