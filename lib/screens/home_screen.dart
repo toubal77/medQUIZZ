@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       key: _scaffoldKey,
       bottomNavigationBar: Container(
-        height: 60.h,
+        height: AdManager.loading == false ? 60.h : 0.h,
         //  padding: EdgeInsets.all(8.sp),
         key: UniqueKey(),
         child: AdWidget(
