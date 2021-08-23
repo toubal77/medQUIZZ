@@ -1,7 +1,7 @@
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdManager {
-  static String get bannerAdUnitId => 'ca-app-pub-3940256099942544/6300978111';
+  static String get bannerAdUnitId => 'ca-app-pub-7410810465692328/1352017336';
 
   static BannerAd buildBannerAd() {
     BannerAd ad = new BannerAd(
@@ -12,6 +12,14 @@ class AdManager {
       listener: BannerAdListener(
         onAdLoaded: (Ad ad) => print('On Ad Loaded'),
         onAdFailedToLoad: (Ad ad, LoadAdError error) {
+          print('error ad load:' +
+              error.code.toString() +
+              ' ' +
+              error.message +
+              ' ' +
+              error.domain +
+              ' ' +
+              error.responseInfo.toString());
           ad.dispose();
         },
         onAdOpened: (Ad ad) => print('On Ad Opened'),

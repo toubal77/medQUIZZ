@@ -15,8 +15,8 @@ class Diagnostic extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Container(
-        height: 50.h,
-        padding: EdgeInsets.all(8.sp),
+        height: 60.h,
+        //  padding: EdgeInsets.all(8.sp),
         key: UniqueKey(),
         child: AdWidget(
           ad: AdManager.buildBannerAd()..load(),

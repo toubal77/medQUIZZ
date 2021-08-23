@@ -11,6 +11,12 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  @override
+  void initState() {
+    emailController.text = DatabaseMethods().usernameShared as String;
+    super.initState();
+  }
+
   final _formKey = GlobalKey<FormState>();
   bool isLoading = false;
   TextEditingController usernameController = TextEditingController();
@@ -25,19 +31,28 @@ class _SettingsState extends State<Settings> {
       isLoading = true;
     });
     try {
-      DatabaseMethods().editProfile(email, username).then(
-        (result) {
-          if (result == true) {
-            Navigator.of(context).pop();
-          } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(result.toString()),
-              ),
-            );
-          }
-        },
-      );
+      // DatabaseMethods().editProfile(email, username).then(
+      //   (result) {
+      //     if (result == true) {
+      //       Navigator.of(context).pop();
+      //     } else {
+      //       ScaffoldMessenger.of(context).showSnackBar(
+      //         SnackBar(
+      //           content: Text(result.toString()),
+      //         ),
+      //       );
+      //     }
+      //   },
+      // );
+      DatabaseMethods().updateSettings(username).then((value) {
+        Navigator.of(context).pop();
+      }).catchError((value) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('error to update profile'),
+          ),
+        );
+      });
     } catch (e) {
       print(e.toString());
     }
@@ -100,6 +115,7 @@ class _SettingsState extends State<Settings> {
                           height: 20.h,
                         ),
                         TextFormField(
+                          enabled: false,
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(

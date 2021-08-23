@@ -6,6 +6,7 @@ import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/models/questions.dart';
 import 'package:med_quizz/models/diagnostics.dart';
 import 'package:med_quizz/services/auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DatabaseMethods {
   Future<DocumentSnapshot?> getUserInfo() async {
@@ -14,10 +15,33 @@ class DatabaseMethods {
           .collection('users')
           .doc(AuthService().getUserId)
           .get();
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('email', _userData['email']);
+      prefs.setString('username', _userData['username']);
       return _userData;
     } catch (err) {
       print(err);
     }
+  }
+
+  Future<String> get usernameShared async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('username')!;
+  }
+
+  Future updateSettings(String username) async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(AuthService().getUserId)
+        .update({
+          'username': username,
+        })
+        .then(
+          (value) => print('update settings seccus'),
+        )
+        .catchError(
+          (value) => print('update settings field'),
+        );
   }
 
   Future addDocumentUser(User user, String username) async {
