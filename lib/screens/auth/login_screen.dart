@@ -45,10 +45,13 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       if (_authMode == AuthMode.login) {
         await AuthService()
-            .signInEmailPassword(emailController.text, emailController.text)
+            .signInEmailPassword(emailController.text, passwordController.text)
             .then(
           (result) async {
             if (result != null) {
+              emailController.text = '';
+              passwordController.text = '';
+              nameController.text = '';
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
@@ -71,11 +74,14 @@ class _LoginScreenState extends State<LoginScreen> {
         );
       } else {
         await AuthService()
-            .signUpEmailPassword(
-                emailController.text, emailController.text, nameController.text)
+            .signUpEmailPassword(emailController.text, passwordController.text,
+                nameController.text)
             .then(
           (result) async {
             if (result != null) {
+              emailController.text = '';
+              passwordController.text = '';
+              nameController.text = '';
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(

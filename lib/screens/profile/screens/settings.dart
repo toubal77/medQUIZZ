@@ -51,6 +51,8 @@ class _SettingsState extends State<Settings> {
       //   },
       // );
       DatabaseMethods().updateSettings(username).then((value) {
+        usernameController.text = '';
+        emailController.text = '';
         Navigator.of(context).pop();
       }).catchError((value) {
         ScaffoldMessenger.of(context).showSnackBar(

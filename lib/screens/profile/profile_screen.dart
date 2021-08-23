@@ -147,6 +147,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                               .trim())
                                                       .then(
                                                     (result) {
+                                                      suggController.text = '';
                                                       Navigator.of(context)
                                                           .pop();
                                                     },
