@@ -110,7 +110,7 @@ class AuthService {
   }
 
   Future resetPass(String password) async {
-    await _auth.currentUser!
+    _auth.currentUser!
         .updatePassword(password)
         .then(
           (value) => print('update password seccus'),

@@ -26,20 +26,18 @@ class _ChangePasswordState extends State<ChangePassword> {
       isLoading = true;
     });
     try {
-      AuthService().resetPass(password).then(
-        (result) {
-          if (result == true) {
-            passwordController.text = '';
-            Navigator.of(context).pop();
-          } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('field to update password'),
-              ),
-            );
-          }
-        },
-      );
+      AuthService().resetPass(password).then((result) {
+        passwordController.text = '';
+
+        Navigator.of(context).pop();
+      }).catchError((value) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content:
+                Text('vous devez ce reconnecte pour change votre mot de passe'),
+          ),
+        );
+      });
     } catch (e) {
       print(e.toString());
     }
