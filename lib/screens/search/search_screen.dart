@@ -1,10 +1,13 @@
+import 'dart:async';
 import 'dart:convert';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/screens/search/widgets/module_tile.dart';
 import 'package:med_quizz/screens/search/widgets/shimmer_module_tile.dart';
+import 'package:med_quizz/utils.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -14,6 +17,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  late StreamSubscription subscription;
   TextEditingController pickUpController = TextEditingController();
   final List<Modules?> _search = [];
   final List<Modules?> _list = [];
@@ -64,11 +68,26 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   void initState() {
+    subscription = Connectivity().onConnectivityChanged.listen(
+      (event) {
+        if (event == ConnectivityResult.none) {
+          Utils.checkConnexion(context);
+        } else {
+          setState(() {});
+        }
+      },
+    );
     getModules().then((value) => setState(() {
           isLoading = false;
         }));
 
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    subscription.cancel();
+    super.dispose();
   }
 
   @override

@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:med_quizz/models/modules.dart';
@@ -8,9 +11,36 @@ import 'package:med_quizz/screens/search/search_screen.dart';
 import 'package:med_quizz/services/ads_service.dart';
 import 'package:med_quizz/services/database.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:med_quizz/utils.dart';
 
-class AllModules extends StatelessWidget {
+class AllModules extends StatefulWidget {
   const AllModules({Key? key}) : super(key: key);
+
+  @override
+  _AllModulesState createState() => _AllModulesState();
+}
+
+class _AllModulesState extends State<AllModules> {
+  late StreamSubscription subscription;
+  @override
+  void initState() {
+    subscription = Connectivity().onConnectivityChanged.listen(
+      (event) {
+        if (event == ConnectivityResult.none) {
+          Utils.checkConnexion(context);
+        } else {
+          setState(() {});
+        }
+      },
+    );
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    subscription.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

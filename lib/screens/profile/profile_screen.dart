@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:med_quizz/screens/auth/login_screen.dart';
@@ -8,6 +11,7 @@ import 'package:med_quizz/screens/profile/widgets/header_profile.dart';
 import 'package:med_quizz/screens/profile/widgets/user_info.dart';
 import 'package:med_quizz/services/database.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:med_quizz/utils.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -19,6 +23,28 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   TextEditingController suggController = TextEditingController();
+  late StreamSubscription subscription;
+  @override
+  void initState() {
+    subscription = Connectivity().onConnectivityChanged.listen(
+      (event) {
+        if (event == ConnectivityResult.none) {
+          Utils.checkConnexion(context);
+        } else {
+          setState(() {});
+        }
+      },
+    );
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    subscription.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

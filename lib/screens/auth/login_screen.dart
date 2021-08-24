@@ -1,7 +1,11 @@
+import 'dart:async';
+
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:med_quizz/screens/home_screen.dart';
 import 'package:med_quizz/services/auth.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:med_quizz/utils.dart';
 
 enum AuthMode { signup, login }
 
@@ -17,6 +21,26 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController nameController = TextEditingController();
   AuthMode _authMode = AuthMode.login;
   bool _isLoading = false;
+  late StreamSubscription subscription;
+  @override
+  void initState() {
+    subscription = Connectivity().onConnectivityChanged.listen(
+      (event) {
+        if (event == ConnectivityResult.none) {
+          Utils.checkConnexion(context);
+        } else {
+          setState(() {});
+        }
+      },
+    );
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    subscription.cancel();
+    super.dispose();
+  }
 
   void _switchAuthMode() {
     if (_authMode == AuthMode.login) {

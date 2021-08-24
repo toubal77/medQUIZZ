@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:med_quizz/services/ads_service.dart';
+import 'package:med_quizz/utils.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'package:med_quizz/models/modules.dart';
@@ -23,11 +27,19 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
+  late StreamSubscription subscription;
   @override
   void initState() {
     super.initState();
-
+    subscription = Connectivity().onConnectivityChanged.listen(
+      (event) {
+        if (event == ConnectivityResult.none) {
+          Utils.checkConnexion(context);
+        } else {
+          setState(() {});
+        }
+      },
+    );
     LocalNotificationService.initialize(context);
 
     //give the message on which user taps
@@ -51,6 +63,12 @@ class _HomePageState extends State<HomePage> {
 
       Navigator.of(context).pushNamed(routeFromMessage);
     });
+  }
+
+  @override
+  void dispose() {
+    subscription.cancel();
+    super.dispose();
   }
 
   @override
