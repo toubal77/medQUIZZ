@@ -12,6 +12,8 @@ class QuizzPlay extends StatefulWidget {
   _QuizzPlayState createState() => _QuizzPlayState();
 }
 
+bool validate = false;
+
 class _QuizzPlayState extends State<QuizzPlay> {
   @override
   Widget build(BuildContext context) {
@@ -41,6 +43,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                           children: [
                             GestureDetector(
                               onTap: () {
+                                validate = false;
                                 Navigator.of(context).pop();
                               },
                               child: Icon(
@@ -73,7 +76,11 @@ class _QuizzPlayState extends State<QuizzPlay> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          setState(() {
+            validate = true;
+          });
+        },
         child: Icon(Icons.coronavirus),
       ),
     );
@@ -119,6 +126,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                             return QuizPlayTile(
                               questionModel: snapshot.data![index],
                               index: index,
+                              validate: validate,
                             );
                           },
                         ),

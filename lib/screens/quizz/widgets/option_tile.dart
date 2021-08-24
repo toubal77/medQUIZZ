@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OptionTile extends StatefulWidget {
-  final String answer;
-  final String option;
-  final String optionSelected;
-  final bool correctAnswer;
+  final String answer; // la question
+  final String option; // A B C D E
+  final String optionSelected; // est ce que ete selectione == LA QUestion
+  final bool correctAnswer; // la reponse
+  final bool validate;
   const OptionTile({
     required this.option,
     required this.correctAnswer,
     required this.answer,
     required this.optionSelected,
+    required this.validate,
   });
 
   @override
@@ -32,17 +34,30 @@ class _OptionTileState extends State<OptionTile> {
             alignment: Alignment.center,
             decoration: BoxDecoration(
                 border: Border.all(
-                    color: widget.optionSelected == widget.answer
-                        ? widget.optionSelected == widget.answer
+                  color: widget.optionSelected == ''
+                      ? widget.validate
+                          ? widget.correctAnswer
+                              ? Colors.green.withOpacity(0.7.sp)
+                              : Colors.red.withOpacity(0.7.sp)
+                          : Colors.white
+                      : widget.validate
+                          ? widget.correctAnswer
+                              ? Colors.green.withOpacity(0.7.sp)
+                              : Colors.red.withOpacity(0.7.sp)
+                          : Colors.grey.shade700,
+                  width: 1.5.w,
+                ),
+                color: widget.optionSelected == ''
+                    ? widget.validate
+                        ? widget.correctAnswer
                             ? Colors.green.withOpacity(0.7.sp)
                             : Colors.red.withOpacity(0.7.sp)
-                        : Colors.grey,
-                    width: 1.5.w),
-                color: widget.optionSelected == widget.answer
-                    ? widget.optionSelected == widget.answer
-                        ? Colors.green.withOpacity(0.7.sp)
-                        : Colors.red.withOpacity(0.7.sp)
-                    : Colors.white,
+                        : Colors.white
+                    : widget.validate
+                        ? widget.correctAnswer
+                            ? Colors.green.withOpacity(0.7.sp)
+                            : Colors.red.withOpacity(0.7.sp)
+                        : Colors.blueGrey,
                 borderRadius: BorderRadius.circular(24.sp)),
             child: Text(
               widget.option,
@@ -50,7 +65,7 @@ class _OptionTileState extends State<OptionTile> {
               style: TextStyle(
                 color: widget.optionSelected == widget.answer
                     ? Colors.white
-                    : Colors.grey,
+                    : Colors.black,
               ),
             ),
           ),
@@ -63,7 +78,17 @@ class _OptionTileState extends State<OptionTile> {
               widget.answer,
               style: TextStyle(
                 fontSize: 17.sp,
-                color: Colors.blue,
+                color: widget.optionSelected == ''
+                    ? widget.validate
+                        ? widget.correctAnswer
+                            ? Colors.green.withOpacity(0.7.sp)
+                            : Colors.red.withOpacity(0.7.sp)
+                        : Colors.blue
+                    : widget.validate
+                        ? widget.correctAnswer
+                            ? Colors.green.withOpacity(0.7.sp)
+                            : Colors.red.withOpacity(0.7.sp)
+                        : Colors.grey.shade700,
               ),
               maxLines: 2,
             ),

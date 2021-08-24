@@ -14,7 +14,7 @@ class InfoUser extends StatelessWidget {
         Container(
           width: 110.w,
           height: 110.h,
-          margin: EdgeInsets.only(top: 25.sp, bottom: 20.sp),
+          margin: EdgeInsets.only(top: 25.sp, bottom: 20),
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/profile_doctor.jpeg'),
