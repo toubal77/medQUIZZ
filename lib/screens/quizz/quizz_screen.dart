@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/models/questions.dart';
+import 'package:med_quizz/screens/home_screen.dart';
 import 'package:med_quizz/screens/quizz/components/progress_bar.dart';
 import 'package:med_quizz/screens/quizz/widgets/quiz_play_tile.dart';
 import 'package:med_quizz/services/database.dart';
@@ -15,8 +16,91 @@ class QuizzPlay extends StatefulWidget {
 bool validate = false;
 
 class _QuizzPlayState extends State<QuizzPlay> {
+  bool timeOver = false;
   @override
   Widget build(BuildContext context) {
+    if (timeOver == true) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: Container(
+              height: 80.h,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'TIME OVER',
+                        style: TextStyle(
+                          fontSize: 17.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Text(
+                        'voulez vous voir la corrections des questions ? ',
+                        style: TextStyle(
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: 100.w,
+                        height: 45.h,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return HomePage();
+                                  },
+                                ),
+                              );
+                            },
+                            child: Text('non'),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 100.w,
+                        height: 45.h,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                validate = true;
+                                Navigator.of(context).pop();
+                              });
+                            },
+                            child: Text("oui"),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      );
+    }
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
@@ -77,9 +161,78 @@ class _QuizzPlayState extends State<QuizzPlay> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          setState(() {
-            validate = true;
-          });
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                content: Container(
+                  height: 80.h,
+                  child: Column(
+                    children: <Widget>[
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'triste',
+                            style: TextStyle(
+                              fontSize: 17.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5.h,
+                          ),
+                          Text(
+                            'Êtes-vous sûr de valide le qcm avant que le temps se termine ?',
+                            style: TextStyle(
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: 100.w,
+                            height: 45.h,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('Annule'),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 100.w,
+                            height: 45.h,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  setState(() {
+                                    validate = true;
+                                  });
+                                },
+                                child: Text("confirmer"),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
         },
         child: Icon(Icons.coronavirus),
       ),
@@ -113,7 +266,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: ProgressBar(),
+                          child: ProgressBar(timeOver),
                         ),
                         SizedBox(
                           height: 10.h,

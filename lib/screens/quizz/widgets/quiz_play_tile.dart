@@ -41,6 +41,39 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          if (widget.validate == true)
+            Container(
+              margin: EdgeInsets.only(bottom: 10.sp, left: 5.sp, right: 5.sp),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    'correct : ' + _correct.toString(),
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontSize: 14.sp,
+                    ),
+                  ),
+                  Text(
+                    'incorrect : ' + _incorrect.toString(),
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 12.sp,
+                    ),
+                  ),
+                  Text(
+                    'total : ' + total.toString(),
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontSize: 12.sp,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20.sp),
             child: Text(

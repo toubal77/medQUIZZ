@@ -3,7 +3,16 @@ import 'package:get/get.dart';
 import 'package:med_quizz/helper/controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ProgressBar extends StatelessWidget {
+// ignore: must_be_immutable
+class ProgressBar extends StatefulWidget {
+  bool timeOver;
+  ProgressBar(this.timeOver);
+
+  @override
+  _ProgressBarState createState() => _ProgressBarState();
+}
+
+class _ProgressBarState extends State<ProgressBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,6 +25,9 @@ class ProgressBar extends StatelessWidget {
       child: GetBuilder<QuestionController>(
         init: QuestionController(),
         builder: (controller) {
+          if ((controller.animation.value * 60).round() == 60) {
+            widget.timeOver = true;
+          }
           return Stack(
             children: [
               // LayoutBuilder provide us the available space for the conatiner
