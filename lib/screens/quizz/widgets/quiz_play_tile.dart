@@ -41,51 +41,6 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (widget.validate == true)
-            Container(
-              width: MediaQuery.of(context).size.width.w,
-              margin: EdgeInsets.only(bottom: 13.sp, left: 5.sp, right: 5.sp),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.5),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'correct : ' + _correct.toString(),
-                    style: TextStyle(
-                      color: Colors.green,
-                      fontSize: 14.sp,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 4.h,
-                  ),
-                  Text(
-                    'incorrect : ' + _incorrect.toString(),
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 12.sp,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 4.h,
-                  ),
-                  Text(
-                    'total : ' + total.toString(),
-                    style: TextStyle(
-                      color: Colors.green,
-                      fontSize: 12.sp,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 4.h,
-                  ),
-                ],
-              ),
-            ),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20.sp),
             child: Text(
@@ -106,6 +61,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                     //  widget.questionModel!.respo1 = true;
                     _correct = _correct + 1;
                     _notAttempted = _notAttempted + 1;
+                    checkValue1 = true;
                   });
                 } else {
                   setState(() {
@@ -148,6 +104,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                     //  widget.questionModel!.respo1 = true;
                     _correct = _correct + 1;
                     _notAttempted = _notAttempted + 1;
+                    checkValue2 = true;
                   });
                 } else {
                   setState(() {
@@ -189,6 +146,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                     //  widget.questionModel!.respo1 = true;
                     _correct = _correct + 1;
                     _notAttempted = _notAttempted + 1;
+                    checkValue3 = true;
                   });
                 } else {
                   setState(() {
@@ -230,6 +188,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                     //  widget.questionModel!.respo1 = true;
                     _correct = _correct + 1;
                     _notAttempted = _notAttempted + 1;
+                    checkValue4 = true;
                   });
                 } else {
                   setState(() {
@@ -273,6 +232,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                       //  widget.questionModel!.respo1 = true;
                       _correct = _correct + 1;
                       _notAttempted = _notAttempted + 1;
+                      checkValue5 = true;
                     });
                   } else {
                     setState(() {
@@ -295,6 +255,41 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                     widget.questionModel!.respo5 == 'true' ? true : false,
                 optionSelected: optionSelected5,
                 validate: widget.validate,
+              ),
+            ),
+          if (widget.validate)
+            Container(
+              width: MediaQuery.of(context).size.width.w,
+              margin: EdgeInsets.only(bottom: 13.sp, left: 5.sp, right: 5.sp),
+              padding: EdgeInsets.only(
+                  top: 10.sp, left: 7.sp, right: 7.sp, bottom: 7.sp),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    checkValue4
+                        ? 'Votre reponse est correct'
+                        : 'Votre reponse est incorrect',
+                    style: TextStyle(
+                      color: checkValue5 ? Colors.green : Colors.red,
+                      fontSize: 14.sp,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Text(
+                    'Explication: roiehg oihroih voireh oihodhguh hroiguh orhgoh ohdogh uohhoirh ohoih ohoi hrgoih ohdsougho.',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 14.sp,
+                    ),
+                  ),
+                ],
               ),
             ),
           SizedBox(

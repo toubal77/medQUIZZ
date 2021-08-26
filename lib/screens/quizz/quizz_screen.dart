@@ -245,6 +245,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                                   setState(() {
                                     validate = true;
                                   });
+                                  Navigator.of(context).pop();
                                 },
                                 child: Text("confirmer"),
                               ),

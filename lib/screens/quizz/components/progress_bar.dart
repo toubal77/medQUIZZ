@@ -26,7 +26,9 @@ class _ProgressBarState extends State<ProgressBar> {
         init: QuestionController(),
         builder: (controller) {
           if ((controller.animation.value * 60).round() == 60) {
-            widget.timeOver = true;
+            setState(() {
+              widget.timeOver = true;
+            });
           }
           return Stack(
             children: [
