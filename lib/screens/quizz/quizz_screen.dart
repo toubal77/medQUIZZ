@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/models/questions.dart';
@@ -5,6 +8,7 @@ import 'package:med_quizz/screens/home_screen.dart';
 import 'package:med_quizz/screens/quizz/components/progress_bar.dart';
 import 'package:med_quizz/screens/quizz/widgets/quiz_play_tile.dart';
 import 'package:med_quizz/services/database.dart';
+import 'package:med_quizz/utils.dart';
 
 class QuizzPlay extends StatefulWidget {
   const QuizzPlay({Key? key}) : super(key: key);
@@ -17,6 +21,27 @@ bool validate = false;
 
 class _QuizzPlayState extends State<QuizzPlay> {
   bool timeOver = false;
+  late StreamSubscription subscription;
+  @override
+  void initState() {
+    subscription = Connectivity().onConnectivityChanged.listen(
+      (event) {
+        if (event == ConnectivityResult.none) {
+          Utils.checkConnexion(context);
+        } else {
+          setState(() {});
+        }
+      },
+    );
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    subscription.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     if (timeOver == true) {

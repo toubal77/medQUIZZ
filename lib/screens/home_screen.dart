@@ -40,6 +40,7 @@ class _HomePageState extends State<HomePage> {
         }
       },
     );
+
     LocalNotificationService.initialize(context);
 
     //give the message on which user taps
