@@ -141,6 +141,29 @@ class DatabaseMethods {
     }
   }
 
+  Future updateView(String idMod) async {
+    try {
+      final url = Uri.parse(
+          'https://rayanzinotblans.000webhostapp.com/updateViewModule.php');
+      final response = await http.post(url, body: {
+        'id_mod': idMod,
+      });
+      if (response.statusCode == 200) {
+        if (json.decode(response.body)['status']) {
+          print('seccus update View Module');
+        } else {
+          print(json.decode(response.body)['message']);
+        }
+      } else {
+        print('field update View Module');
+        print('Response status: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('field to try update View Module');
+      print(e.toString());
+    }
+  }
+
   Future<List<Questions?>?> getQuestions() async {
     List<Questions?>? list = [];
     try {
