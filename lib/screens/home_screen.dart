@@ -444,7 +444,7 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.only(left: 20.0),
                   height: 250.h,
                   child: FutureBuilder<List<Modules?>?>(
-                    future: DatabaseMethods().getModules(),
+                    future: DatabaseMethods().mostPopular(),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return ListView.builder(
