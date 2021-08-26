@@ -54,26 +54,6 @@ class DatabaseMethods {
           })
           .then((value) => print('send suggestion with seccus'))
           .catchError((value) => print('send suggestion field ' + value));
-
-      // final url =
-      //     Uri.parse('https://rayanzinotblans.000webhostapp.com/suggestion.php');
-      // final response = await http.post(url, body: {
-      //   'email': 'toubalzineddine77@gmail.com',
-      //   'username': 'toubal zineddine',
-      //   'message': message,
-      // });
-      // if (response.statusCode == 200) {
-      //   if (json.decode(response.body)['status'] == true) {
-      //     print('send suggestion with seccus');
-      //     return true;
-      //   } else {
-      //     return json.decode(response.body)['message'];
-      //   }
-      // } else {
-      //   print('field to send sugestions');
-      //   print(response.statusCode);
-      //   return 'error to connecte';
-      // }
     } catch (e) {
       print(e.toString());
     }
@@ -136,6 +116,31 @@ class DatabaseMethods {
     }
   }
 
+  Future<List<Modules?>?> mostPopular() async {
+    List<Modules?> list = [];
+    try {
+      final url = Uri.parse(
+          'https://rayanzinotblans.000webhostapp.com/get_most_popular.php');
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        print('seccus get module most popular');
+        final data = json.decode(response.body);
+        final rest = data["modules"] as List;
+
+        // ignore: join_return_with_assignment
+        list = rest.map<Modules>((json) => Modules.fromJson(json)).toList();
+
+        return list;
+      } else {
+        print('field get module most popular');
+        print('Response status: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('field to try get module most popular');
+      print(e.toString());
+    }
+  }
+
   Future<List<Questions?>?> getQuestions() async {
     List<Questions?>? list = [];
     try {
@@ -187,81 +192,4 @@ class DatabaseMethods {
       print(e.toString());
     }
   }
-
-  Future updatePassword(String password) async {
-    try {
-      final url = Uri.parse(
-          'https://rayanzinotblans.000webhostapp.com/update_password.php');
-      final response = await http.post(url, body: {
-        'id': '1',
-        'password': password,
-      });
-      if (response.statusCode == 200) {
-        if (json.decode(response.body)['status'] == true) {
-          print('update Password with seccus');
-          return true;
-        } else {
-          return json.decode(response.body)['message'];
-        }
-      } else {
-        print('field update Password');
-        print(response.statusCode);
-        return 'error to connecte';
-      }
-    } catch (e) {
-      print(e.toString());
-    }
-  }
-
-  Future editProfile(String email, String username) async {
-    try {
-      final url = Uri.parse(
-          'https://rayanzinotblans.000webhostapp.com/update_profile.php');
-      final response = await http.post(url, body: {
-        'id': '1',
-        'email': email,
-        'username': username,
-      });
-      if (response.statusCode == 200) {
-        if (json.decode(response.body)['status'] == true) {
-          print('update profile with seccus');
-          return true;
-        } else {
-          return json.decode(response.body)['message'];
-        }
-      } else {
-        print('field update Profile');
-        print(response.statusCode);
-        return 'error to connecte';
-      }
-    } catch (e) {
-      print(e.toString());
-    }
-  }
-
-  // Future sendSuggestion(String message) async {
-  //   try {
-  //     final url =
-  //         Uri.parse('https://rayanzinotblans.000webhostapp.com/suggestion.php');
-  //     final response = await http.post(url, body: {
-  //       'email': 'toubalzineddine77@gmail.com',
-  //       'username': 'toubal zineddine',
-  //       'message': message,
-  //     });
-  //     if (response.statusCode == 200) {
-  //       if (json.decode(response.body)['status'] == true) {
-  //         print('send suggestion with seccus');
-  //         return true;
-  //       } else {
-  //         return json.decode(response.body)['message'];
-  //       }
-  //     } else {
-  //       print('field to send sugestions');
-  //       print(response.statusCode);
-  //       return 'error to connecte';
-  //     }
-  //   } catch (e) {
-  //     print(e.toString());
-  //   }
-  // }
 }
