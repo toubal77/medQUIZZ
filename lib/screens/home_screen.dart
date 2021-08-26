@@ -6,6 +6,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:med_quizz/screens/Q&A/q_a.dart';
 import 'package:med_quizz/services/ads_service.dart';
 import 'package:med_quizz/utils.dart';
 import 'package:shimmer/shimmer.dart';
@@ -385,46 +386,60 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(
-                            top: 5.sp, bottom: 10.sp, left: 5.sp, right: 5.sp),
-                        decoration: BoxDecoration(
-                          color: Colors.purpleAccent,
-                          borderRadius: BorderRadius.circular(35),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.blueGrey,
-                              spreadRadius: 1.sp,
-                              blurRadius: 3.sp,
-                              offset: Offset(0.3.sp, 0.3.sp),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return QAScreen();
+                              },
                             ),
-                          ],
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                            Icon(
-                              Icons.file_copy,
-                              size: 70.sp,
-                              color: Colors.white,
-                            ),
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                            Text(
-                              'Cours & resumes',
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w600,
+                          );
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(
+                              top: 5.sp,
+                              bottom: 10.sp,
+                              left: 5.sp,
+                              right: 5.sp),
+                          decoration: BoxDecoration(
+                            color: Colors.purpleAccent,
+                            borderRadius: BorderRadius.circular(35),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.blueGrey,
+                                spreadRadius: 1.sp,
+                                blurRadius: 3.sp,
+                                offset: Offset(0.3.sp, 0.3.sp),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              Icon(
+                                Icons.question_answer_outlined,
+                                size: 70.sp,
                                 color: Colors.white,
                               ),
-                            ),
-                          ],
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              Text(
+                                'Q & A',
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
