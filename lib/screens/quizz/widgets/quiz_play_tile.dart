@@ -43,12 +43,15 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
         children: [
           if (widget.validate == true)
             Container(
-              margin: EdgeInsets.only(bottom: 10.sp, left: 5.sp, right: 5.sp),
+              width: MediaQuery.of(context).size.width.w,
+              margin: EdgeInsets.only(bottom: 13.sp, left: 5.sp, right: 5.sp),
               decoration: BoxDecoration(
                 color: Colors.white.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     'correct : ' + _correct.toString(),
@@ -57,6 +60,9 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                       fontSize: 14.sp,
                     ),
                   ),
+                  SizedBox(
+                    height: 4.h,
+                  ),
                   Text(
                     'incorrect : ' + _incorrect.toString(),
                     style: TextStyle(
@@ -64,12 +70,18 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                       fontSize: 12.sp,
                     ),
                   ),
+                  SizedBox(
+                    height: 4.h,
+                  ),
                   Text(
                     'total : ' + total.toString(),
                     style: TextStyle(
                       color: Colors.green,
                       fontSize: 12.sp,
                     ),
+                  ),
+                  SizedBox(
+                    height: 4.h,
                   ),
                 ],
               ),

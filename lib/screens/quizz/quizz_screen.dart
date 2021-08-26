@@ -166,7 +166,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
             builder: (BuildContext context) {
               return AlertDialog(
                 content: Container(
-                  height: 80.h,
+                  height: 115.h,
                   child: Column(
                     children: <Widget>[
                       Column(
