@@ -49,7 +49,7 @@ class DatabaseMethods {
       await FirebaseFirestore.instance
           .collection('suggestion')
           .add({
-            'time': DateTime.now(),
+            'time': DateTime.now().toIso8601String(),
             'email': email,
             'username': username,
             'message': message,
