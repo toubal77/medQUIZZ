@@ -109,6 +109,7 @@ class DatabaseMethods {
     await FirebaseFirestore.instance
         .collection('posts')
         .add({
+          'idUser': AuthService().getUserId,
           'time': DateTime.now(),
           'username': username,
           'message': message,
