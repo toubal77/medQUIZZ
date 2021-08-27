@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/screens/Q&A/posts/widget/header.dart';
+import 'package:med_quizz/screens/Q&A/posts/widget/info_user.dart';
 
 class AddPost extends StatefulWidget {
   const AddPost({Key? key}) : super(key: key);
@@ -22,42 +23,7 @@ class _AddPostState extends State<AddPost> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Header(),
-              Container(
-                margin: EdgeInsets.only(top: 7.sp, left: 7.sp),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 40.w,
-                      height: 40.h,
-                      margin: EdgeInsets.only(top: 10),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image:
-                              AssetImage('assets/images/profile_doctor.jpeg'),
-                          fit: BoxFit.cover,
-                        ),
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(60.sp),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 7.w,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 16.sp, bottom: 7.sp),
-                      child: Text(
-                        'toubal zineddine',
-                        style: TextStyle(
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              UserInfo(),
               Form(
                 key: _formKey,
                 child: Container(
@@ -129,6 +95,7 @@ class _AddPostState extends State<AddPost> {
                     ),
                     Text(
                       'aucun fichier',
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.black,
