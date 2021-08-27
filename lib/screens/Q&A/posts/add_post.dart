@@ -18,12 +18,13 @@ class _AddPostState extends State<AddPost> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   TextEditingController textController = TextEditingController();
   late File? _image;
-
+  bool okok = false;
   Future getImage() async {
     final ImagePicker _picker = ImagePicker();
     final image = await _picker.pickImage(source: ImageSource.camera);
     setState(() {
       _image = File(image!.path);
+      okok = true;
     });
   }
 
@@ -33,23 +34,21 @@ class _AddPostState extends State<AddPost> {
     if (!_formKey.currentState!.validate()) {
       return;
     }
-    DatabaseMethods().sendPost(textController.text, _image).then(
-      (result) async {
-        if (result != null) {
-          textController.text = '';
-          _image = null;
-          Navigator.of(context).pop();
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              duration: Duration(seconds: 3),
-              content: Text('error to send post message'),
-            ),
-          );
-        }
-      },
-    );
-    ;
+
+    DatabaseMethods()
+        .sendPost(textController.text, _image)
+        .then((result) async {
+      textController.text = '';
+      _image = null;
+      Navigator.of(context).pop();
+    }).catchError((error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          duration: Duration(seconds: 3),
+          content: Text('error to send post message' + error.toString()),
+        ),
+      );
+    });
   }
 
   @override
@@ -135,7 +134,7 @@ class _AddPostState extends State<AddPost> {
                     SizedBox(
                       width: 4.w,
                     ),
-                    _image == null
+                    okok == false
                         ? Text(
                             'aucun fichier',
                             overflow: TextOverflow.ellipsis,
@@ -152,11 +151,12 @@ class _AddPostState extends State<AddPost> {
                               color: Colors.black,
                             ),
                           ),
-                    if (_image == null)
+                    if (okok == true)
                       IconButton(
                         onPressed: () {
                           setState(() {
                             _image = null;
+                            okok = false;
                           });
                         },
                         icon: Icon(
