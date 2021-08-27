@@ -49,6 +49,7 @@ class DatabaseMethods {
       await FirebaseFirestore.instance
           .collection('suggestion')
           .add({
+            'idUser': AuthService().getUserId,
             'time': DateTime.now().toIso8601String(),
             'email': email,
             'username': username,
