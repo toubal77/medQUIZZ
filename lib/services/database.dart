@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/models/questions.dart';
@@ -89,6 +91,30 @@ class DatabaseMethods {
           .catchError(
               (error) => print("Failed to update token user info: $error"));
     });
+  }
+
+  Future sendPost(String message, File? urlImage) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? username = prefs.getString('username');
+    var url = '';
+    if (urlImage != null) {
+      final ref = FirebaseStorage.instance
+          .ref()
+          .child('Posts')
+          .child(urlImage.toString());
+      await ref.putFile(urlImage);
+      url = await ref.getDownloadURL();
+    }
+    await FirebaseFirestore.instance
+        .collection('posts')
+        .add({
+          'time': DateTime.now(),
+          'username': username,
+          'message': message,
+          'url': url,
+        })
+        .then((value) => print("send post"))
+        .catchError((error) => print("Failed to send post: $error"));
   }
 
   Future<List<Modules?>?> getModules() async {

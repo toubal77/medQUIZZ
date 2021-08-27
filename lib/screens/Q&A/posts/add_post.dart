@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/screens/Q&A/posts/widget/header.dart';
 import 'package:med_quizz/screens/Q&A/posts/widget/info_user.dart';
+import 'package:med_quizz/services/database.dart';
 
 class AddPost extends StatefulWidget {
   const AddPost({Key? key}) : super(key: key);
@@ -16,15 +17,39 @@ class AddPost extends StatefulWidget {
 class _AddPostState extends State<AddPost> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   TextEditingController textController = TextEditingController();
-  late XFile? _image;
-  bool okok = false;
+  late File? _image;
+
   Future getImage() async {
     final ImagePicker _picker = ImagePicker();
     final image = await _picker.pickImage(source: ImageSource.camera);
     setState(() {
-      _image = image;
-      okok = true;
+      _image = File(image!.path);
     });
+  }
+
+  Future _submitForm() async {
+    FocusScope.of(context).unfocus();
+    _formKey.currentState!.save();
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+    DatabaseMethods().sendPost(textController.text, _image).then(
+      (result) async {
+        if (result != null) {
+          textController.text = '';
+          _image = null;
+          Navigator.of(context).pop();
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              duration: Duration(seconds: 3),
+              content: Text('error to send post message'),
+            ),
+          );
+        }
+      },
+    );
+    ;
   }
 
   @override
@@ -110,7 +135,7 @@ class _AddPostState extends State<AddPost> {
                     SizedBox(
                       width: 4.w,
                     ),
-                    okok == false
+                    _image == null
                         ? Text(
                             'aucun fichier',
                             overflow: TextOverflow.ellipsis,
@@ -127,11 +152,10 @@ class _AddPostState extends State<AddPost> {
                               color: Colors.black,
                             ),
                           ),
-                    if (okok == true)
+                    if (_image == null)
                       IconButton(
                         onPressed: () {
                           setState(() {
-                            okok = false;
                             _image = null;
                           });
                         },
@@ -144,7 +168,7 @@ class _AddPostState extends State<AddPost> {
                 ),
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: _submitForm,
                 child: Container(
                   width: MediaQuery.of(context).size.width.w,
                   padding: EdgeInsets.symmetric(vertical: 15.sp),
