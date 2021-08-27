@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/screens/Q&A/detail_Q&A/widgets/header.dart';
+import 'package:med_quizz/screens/Q&A/widgets/build_image_user.dart';
+import 'package:med_quizz/screens/Q&A/widgets/time_name_pop.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 enum FilterOptions {
@@ -48,51 +50,16 @@ class _DetailQAState extends State<DetailQA> {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              width: 40.w,
-                              height: 40.h,
-                              margin: EdgeInsets.only(top: 10),
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/images/profile_doctor.jpeg'),
-                                  fit: BoxFit.cover,
-                                ),
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(60.sp),
-                              ),
-                            ),
+                            BuildImageUser(),
                             SizedBox(
                               width: 7.w,
                             ),
-                            Container(
-                              margin: EdgeInsets.only(top: 10.sp, bottom: 7.sp),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    widget.posts['username'],
-                                    style: TextStyle(
-                                      fontSize: 15.sp,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 3.h,
-                                  ),
-                                  Text(
-                                    timeago.format(
-                                      DateTime.parse(
-                                        widget.posts['time'].toString(),
-                                      ),
-                                    ),
-                                    style: TextStyle(
-                                      fontSize: 12.sp,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                ],
+                            TimeNamePost(
+                              widget.posts['username'],
+                              timeago.format(
+                                DateTime.parse(
+                                  widget.posts['time'].toString(),
+                                ),
                               ),
                             ),
                           ],
@@ -221,20 +188,7 @@ class _DetailQAState extends State<DetailQA> {
                       padding: EdgeInsets.all(7.sp),
                       child: Row(
                         children: [
-                          Container(
-                            width: 40.w,
-                            height: 40.h,
-                            margin: EdgeInsets.only(top: 10),
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage(
-                                    'assets/images/profile_doctor.jpeg'),
-                                fit: BoxFit.cover,
-                              ),
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(60.sp),
-                            ),
-                          ),
+                          BuildImageUser(),
                           SizedBox(
                             width: 7.w,
                           ),
@@ -279,20 +233,7 @@ class _DetailQAState extends State<DetailQA> {
                       padding: EdgeInsets.all(7.sp),
                       child: Row(
                         children: [
-                          Container(
-                            width: 40.w,
-                            height: 40.h,
-                            margin: EdgeInsets.only(top: 10),
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage(
-                                    'assets/images/profile_doctor.jpeg'),
-                                fit: BoxFit.cover,
-                              ),
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(60.sp),
-                            ),
-                          ),
+                          BuildImageUser(),
                           SizedBox(
                             width: 7.w,
                           ),
