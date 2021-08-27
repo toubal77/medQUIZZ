@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:med_quizz/screens/home_screen.dart';
 
 class HeaderDiag extends StatelessWidget {
   final String? title;
@@ -15,7 +16,13 @@ class HeaderDiag extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.of(context).pop();
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return HomePage();
+                    },
+                  ),
+                );
               },
               child: SizedBox(
                 child: Icon(
