@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/screens/Q&A/posts/widget/header.dart';
@@ -13,6 +16,17 @@ class AddPost extends StatefulWidget {
 class _AddPostState extends State<AddPost> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   TextEditingController textController = TextEditingController();
+  late XFile? _image;
+  bool okok = false;
+  Future getImage() async {
+    final ImagePicker _picker = ImagePicker();
+    final image = await _picker.pickImage(source: ImageSource.camera);
+    setState(() {
+      _image = image;
+      okok = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,31 +90,56 @@ class _AddPostState extends State<AddPost> {
                 padding: EdgeInsets.all(5),
                 child: Row(
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey.shade200,
-                      ),
-                      padding: EdgeInsets.all(5),
-                      child: Text(
-                        'selection un fichier',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.black,
+                    GestureDetector(
+                      onTap: getImage,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.grey.shade200,
+                        ),
+                        padding: EdgeInsets.all(5),
+                        child: Text(
+                          'selection un fichier',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ),
                     SizedBox(
                       width: 4.w,
                     ),
-                    Text(
-                      'aucun fichier',
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                      ),
-                    ),
+                    okok == false
+                        ? Text(
+                            'aucun fichier',
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                            ),
+                          )
+                        : Text(
+                            'fichier selectionne',
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                            ),
+                          ),
+                    if (okok == true)
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            okok = false;
+                            _image = null;
+                          });
+                        },
+                        icon: Icon(
+                          Icons.delete,
+                          color: Colors.red,
+                        ),
+                      )
                   ],
                 ),
               ),
