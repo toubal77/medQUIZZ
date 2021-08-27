@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/screens/Q&A/detail_Q&A/widgets/header.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 enum FilterOptions {
   reportthispost,
 }
 
 class DetailQA extends StatefulWidget {
-  const DetailQA({Key? key}) : super(key: key);
+  final posts;
+  DetailQA(this.posts);
 
   @override
   _DetailQAState createState() => _DetailQAState();
@@ -69,7 +71,7 @@ class _DetailQAState extends State<DetailQA> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'toubal zineddine',
+                                    widget.posts['username'],
                                     style: TextStyle(
                                       fontSize: 15.sp,
                                       fontWeight: FontWeight.w600,
@@ -80,7 +82,11 @@ class _DetailQAState extends State<DetailQA> {
                                     height: 3.h,
                                   ),
                                   Text(
-                                    '26/08/2021 18H30',
+                                    timeago.format(
+                                      DateTime.parse(
+                                        widget.posts['time'].toString(),
+                                      ),
+                                    ),
                                     style: TextStyle(
                                       fontSize: 12.sp,
                                       color: Colors.grey,
@@ -169,7 +175,7 @@ class _DetailQAState extends State<DetailQA> {
                       margin: EdgeInsets.only(
                           left: 10.sp, right: 10.sp, bottom: 12.sp),
                       child: Text(
-                        'fhg ijfoijhblj ijhrfjhgoij ldfkjjhlj flkjh lkjf ojfj jdsfj fdjhoij flkjhj flkjhij ldfkjhij foijhoih fdkjh oirj sdhguhuzidghiu ruhg shgou hgoi',
+                        widget.posts['message'],
                         style: TextStyle(
                           fontSize: 14.sp,
                           color: Colors.black,
@@ -183,7 +189,9 @@ class _DetailQAState extends State<DetailQA> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.sp),
                         image: DecorationImage(
-                          image: AssetImage('assets/app_logo.png'),
+                          image: NetworkImage(
+                            widget.posts['url'],
+                          ),
                           fit: BoxFit.cover,
                         ),
                       ),

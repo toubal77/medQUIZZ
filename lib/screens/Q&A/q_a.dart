@@ -50,7 +50,7 @@ class _QAScreenState extends State<QAScreen> {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return DetailQA();
+                                    return DetailQA(snapshot.data!.docs[index]);
                                   },
                                 ),
                               );
