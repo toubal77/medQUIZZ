@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/screens/Q&A/detail_Q&A/widgets/header.dart';
 import 'package:med_quizz/screens/Q&A/widgets/build_image_user.dart';
 import 'package:med_quizz/screens/Q&A/widgets/time_name_pop.dart';
+import 'package:med_quizz/services/database.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 enum FilterOptions {
@@ -19,6 +20,7 @@ class DetailQA extends StatefulWidget {
 }
 
 class _DetailQAState extends State<DetailQA> {
+  TextEditingController _messageComm = TextEditingController();
   late bool showPopMenu;
   @override
   Widget build(BuildContext context) {
@@ -247,26 +249,53 @@ class _DetailQAState extends State<DetailQA> {
                             Expanded(
                               child: TextField(
                                 autofocus: true,
+                                controller: _messageComm,
                                 maxLines: 4,
                                 decoration: InputDecoration(
                                   hintText: "Tapez votre commentaire...",
                                   hintStyle: TextStyle(color: Colors.black54),
                                   border: InputBorder.none,
                                 ),
-                                onChanged: (value) {},
+                                onChanged: (value) {
+                                  setState(() {
+                                    _messageComm.text = value;
+                                  });
+                                },
                               ),
                             ),
                             SizedBox(
                               width: 15,
                             ),
                             FloatingActionButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                if (_messageComm.text.trim().length != 0) {
+                                  DatabaseMethods()
+                                      .sendCommentaire(widget.idPost,
+                                          _messageComm.text.trim())
+                                      .then((result) async {
+                                    _messageComm.text = '';
+                                    Navigator.of(context).pop();
+                                  }).catchError((error) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        duration: Duration(seconds: 3),
+                                        content: Text(
+                                            'error to send post message commentaire' +
+                                                error.toString()),
+                                      ),
+                                    );
+                                  });
+                                }
+                              },
                               child: Icon(
                                 Icons.send,
                                 color: Colors.white,
                                 size: 18,
                               ),
-                              backgroundColor: Colors.blue,
+                              backgroundColor:
+                                  _messageComm.text.trim().length == 0
+                                      ? Colors.grey
+                                      : Colors.blue,
                               elevation: 0,
                             ),
                           ],
