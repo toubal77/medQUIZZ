@@ -228,129 +228,50 @@ class _DetailQAState extends State<DetailQA> {
                         ],
                       ),
                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width.w,
-                      padding: EdgeInsets.all(7.sp),
-                      child: Row(
-                        children: [
-                          BuildImageUser(),
-                          SizedBox(
-                            width: 7.w,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width.w * 0.6,
-                            margin: EdgeInsets.only(
-                                top: 7.sp, bottom: 7.sp, right: 7.sp),
-                            padding: EdgeInsets.all(7.sp),
-                            decoration: BoxDecoration(
-                              color: Colors.grey.shade500,
-                              borderRadius: BorderRadius.circular(20.sp),
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Container(
+                        padding: EdgeInsets.only(bottom: 10, top: 10),
+                        height: 60,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.white,
+                        ),
+                        width: double.infinity,
+                        child: Row(
+                          children: <Widget>[
+                            SizedBox(
+                              width: 7,
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'toubal zineddine',
-                                  style: TextStyle(
-                                    fontSize: 15.sp,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.white,
-                                  ),
+                            Expanded(
+                              child: TextField(
+                                autofocus: true,
+                                maxLines: 4,
+                                decoration: InputDecoration(
+                                  hintText: "Tapez votre commentaire...",
+                                  hintStyle: TextStyle(color: Colors.black54),
+                                  border: InputBorder.none,
                                 ),
-                                SizedBox(
-                                  height: 3,
-                                ),
-                                Text(
-                                  'ijhrfjhgoij ldfkjjhlj fhg ijfoijhblj ijhrfjhgoij ldfkjjhlj fhg ijfoijhblj ijhrfjhgoij ldfkjjhlj fhg ijfoijhblj ijhrfjhgoij ldfkjjhlj',
-                                  style: TextStyle(
-                                    fontSize: 14.sp,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
+                                onChanged: (value) {},
+                              ),
                             ),
-                          ),
-                        ],
+                            SizedBox(
+                              width: 15,
+                            ),
+                            FloatingActionButton(
+                              onPressed: () {},
+                              child: Icon(
+                                Icons.send,
+                                color: Colors.white,
+                                size: 18,
+                              ),
+                              backgroundColor: Colors.blue,
+                              elevation: 0,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    //   Expanded(
-                    //     child: ListView.builder(
-                    //       shrinkWrap: true,
-                    //       itemCount: 2,
-                    //       itemBuilder: (context, index) {
-                    //         return Container(
-                    //           margin: EdgeInsets.all(7.sp),
-                    //           padding: EdgeInsets.all(7.sp),
-                    //           child: Row(
-                    //             crossAxisAlignment: CrossAxisAlignment.start,
-                    //             children: [
-                    //               Container(
-                    //                 width: 40.w,
-                    //                 height: 40.h,
-                    //                 margin: EdgeInsets.only(top: 10),
-                    //                 decoration: BoxDecoration(
-                    //                   image: DecorationImage(
-                    //                     image: AssetImage(
-                    //                         'assets/images/profile_doctor.jpeg'),
-                    //                     fit: BoxFit.cover,
-                    //                   ),
-                    //                   color: Colors.white,
-                    //                   borderRadius: BorderRadius.circular(60.sp),
-                    //                 ),
-                    //               ),
-                    //               SizedBox(
-                    //                 width: 7.w,
-                    //               ),
-                    //               Container(
-                    //                 margin:
-                    //                     EdgeInsets.only(top: 7.sp, bottom: 7.sp),
-                    //                 padding: EdgeInsets.all(7.sp),
-                    //                 decoration: BoxDecoration(
-                    //                   color: Colors.grey.shade500,
-                    //                   borderRadius: BorderRadius.circular(20.sp),
-                    //                 ),
-                    //                 child: Column(
-                    //                   crossAxisAlignment:
-                    //                       CrossAxisAlignment.start,
-                    //                   children: [
-                    //                     Text(
-                    //                       'toubal zineddine',
-                    //                       style: TextStyle(
-                    //                         fontSize: 15.sp,
-                    //                         fontWeight: FontWeight.w600,
-                    //                         color: Colors.black,
-                    //                       ),
-                    //                     ),
-                    //                     SizedBox(
-                    //                       height: 3.h,
-                    //                     ),
-                    //                     Text(
-                    //                       '26/08/2021 18H30',
-                    //                       style: TextStyle(
-                    //                         fontSize: 12.sp,
-                    //                         color: Colors.grey,
-                    //                       ),
-                    //                     ),
-                    //                     SizedBox(
-                    //                       height: 7.h,
-                    //                     ),
-                    //                     Text(
-                    //                       'fhg ijfoijhblj ijhrfjhgoij ldfkjjhlj flkjh lkjf ojfj jdsfj fdjhoij flkjhj flkjhij ldfkjhij foijhoih fdkjh oirj sdhguhuzidghiu ruhg shgou hgoi',
-                    //                       style: TextStyle(
-                    //                         fontSize: 14.sp,
-                    //                         color: Colors.black,
-                    //                       ),
-                    //                     ),
-                    //                   ],
-                    //                 ),
-                    //               ),
-                    //             ],
-                    //           ),
-                    //         );
-                    //       },
-                    //     ),
-                    //   ),
-                    // ],
                   ],
                 ),
               ),
