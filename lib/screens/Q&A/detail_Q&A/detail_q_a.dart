@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/screens/Q&A/detail_Q&A/widgets/header.dart';
@@ -186,50 +187,74 @@ class _DetailQAState extends State<DetailQA> {
                       height: 2.h,
                       color: Colors.black.withOpacity(0.85),
                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width.w,
-                      padding: EdgeInsets.all(7.sp),
-                      child: Row(
-                        children: [
-                          BuildImageUser(),
-                          SizedBox(
-                            width: 7.w,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width.w * 0.6,
-                            margin: EdgeInsets.only(
-                                top: 7.sp, bottom: 7.sp, right: 7.sp),
-                            padding: EdgeInsets.all(7.sp),
-                            decoration: BoxDecoration(
-                              color: Colors.grey.shade500,
-                              borderRadius: BorderRadius.circular(20.sp),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'toubal zineddine',
-                                  style: TextStyle(
-                                    fontSize: 15.sp,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.white,
-                                  ),
+                    StreamBuilder<QuerySnapshot>(
+                      stream: FirebaseFirestore.instance
+                          .collection('posts')
+                          .doc(widget.idPost)
+                          .collection('commentaires')
+                          .orderBy('time', descending: true)
+                          .snapshots(),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        if (snapshot.hasData)
+                          return ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: snapshot.data!.docs.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                width: MediaQuery.of(context).size.width.w,
+                                padding: EdgeInsets.all(7.sp),
+                                child: Row(
+                                  children: [
+                                    BuildImageUser(),
+                                    SizedBox(
+                                      width: 7.w,
+                                    ),
+                                    Container(
+                                      width:
+                                          MediaQuery.of(context).size.width.w *
+                                              0.6,
+                                      margin: EdgeInsets.only(
+                                          top: 7.sp, bottom: 7.sp, right: 7.sp),
+                                      padding: EdgeInsets.all(7.sp),
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey.shade500,
+                                        borderRadius:
+                                            BorderRadius.circular(20.sp),
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            snapshot.data!.docs[index]
+                                                ['username'],
+                                            style: TextStyle(
+                                              fontSize: 15.sp,
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 3,
+                                          ),
+                                          Text(
+                                            snapshot.data!.docs[index]
+                                                ['message'],
+                                            style: TextStyle(
+                                              fontSize: 14.sp,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                SizedBox(
-                                  height: 3,
-                                ),
-                                Text(
-                                  'ijhrfjhgoij ldfkjjhlj fhg ijfoijhblj ijhrfjhgoij ldfkjjhlj fhg ijfoijhblj ijhrfjhgoij ldfkjjhlj fhg ijfoijhblj ijhrfjhgoij ldfkjjhlj',
-                                  style: TextStyle(
-                                    fontSize: 14.sp,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                              );
+                            },
+                          );
+                        return CircularProgressIndicator();
+                      },
                     ),
                     Align(
                       alignment: Alignment.bottomLeft,
