@@ -299,7 +299,7 @@ class _DetailQAState extends State<DetailQA> {
                                           _messageComm.text.trim())
                                       .then((result) async {
                                     _messageComm.text = '';
-                                    Navigator.of(context).pop();
+                                    print('send message');
                                   }).catchError((error) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
