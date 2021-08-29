@@ -1,8 +1,13 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/screens/Q&A/widgets/build_card_posts.dart';
 import 'package:med_quizz/screens/Q&A/widgets/header.dart';
+import 'package:med_quizz/screens/Q&A/widgets/shimmer_card_post.dart';
+import 'package:med_quizz/utils.dart';
 
 enum FilterOptions {
   reportthispost,
@@ -17,6 +22,27 @@ class QAScreen extends StatefulWidget {
 
 class _QAScreenState extends State<QAScreen> {
   final DateTime? currentTime = new DateTime.now();
+  late StreamSubscription subscription;
+  @override
+  void initState() {
+    super.initState();
+    subscription = Connectivity().onConnectivityChanged.listen(
+      (event) {
+        if (event == ConnectivityResult.none) {
+          Utils.checkConnexion(context);
+        } else {
+          setState(() {});
+        }
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    subscription.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +73,7 @@ class _QAScreenState extends State<QAScreen> {
                           return BuildCardPosts(snapshot.data!.docs[index]);
                         },
                       );
-                    return CircularProgressIndicator();
+                    return ShimmerCardPost();
                   },
                 ),
               ),
