@@ -7,7 +7,8 @@ import 'package:timeago/timeago.dart' as timeago;
 
 class BuildCardPosts extends StatefulWidget {
   final posts;
-  BuildCardPosts(this.posts);
+  final idPost;
+  BuildCardPosts(this.posts, this.idPost);
 
   @override
   _BuildCardPostsState createState() => _BuildCardPostsState();
@@ -23,7 +24,7 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return DetailQA(widget.posts);
+              return DetailQA(widget.posts, widget.idPost);
             },
           ),
         );

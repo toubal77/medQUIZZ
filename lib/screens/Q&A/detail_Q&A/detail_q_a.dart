@@ -11,7 +11,8 @@ enum FilterOptions {
 
 class DetailQA extends StatefulWidget {
   final posts;
-  DetailQA(this.posts);
+  final idPost;
+  DetailQA(this.posts, this.idPost);
 
   @override
   _DetailQAState createState() => _DetailQAState();

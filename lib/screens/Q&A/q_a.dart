@@ -70,7 +70,8 @@ class _QAScreenState extends State<QAScreen> {
                         shrinkWrap: true,
                         itemCount: snapshot.data!.docs.length,
                         itemBuilder: (context, index) {
-                          return BuildCardPosts(snapshot.data!.docs[index]);
+                          return BuildCardPosts(snapshot.data!.docs[index],
+                              snapshot.data!.docs[index].id);
                         },
                       );
                     return ShimmerCardPost();

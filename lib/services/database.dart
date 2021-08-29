@@ -119,6 +119,24 @@ class DatabaseMethods {
         .catchError((error) => print("Failed to send post: $error"));
   }
 
+  Future sendCommentaire(String idPost, String message) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? username = prefs.getString('username');
+
+    await FirebaseFirestore.instance
+        .collection('posts')
+        .doc(idPost)
+        .collection('commentaires')
+        .add({
+          'idUser': AuthService().getUserId,
+          'time': DateTime.now(),
+          'username': username,
+          'message': message,
+        })
+        .then((value) => print("send commentaire post"))
+        .catchError((error) => print("Failed to commentaire post: $error"));
+  }
+
   Future<List<Modules?>?> getModules() async {
     List<Modules?> list = [];
     try {
