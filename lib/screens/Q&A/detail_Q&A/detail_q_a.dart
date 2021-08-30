@@ -4,12 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/screens/Q&A/detail_Q&A/widgets/header.dart';
 import 'package:med_quizz/screens/Q&A/widgets/build_image_user.dart';
 import 'package:med_quizz/screens/Q&A/widgets/time_name_pop.dart';
+import 'package:med_quizz/services/auth.dart';
 import 'package:med_quizz/services/database.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-enum FilterOptions {
-  reportthispost,
-}
+enum FilterOptions { supprime, signale, modifie }
 
 class DetailQA extends StatefulWidget {
   final posts;
@@ -22,9 +21,9 @@ class DetailQA extends StatefulWidget {
 
 class _DetailQAState extends State<DetailQA> {
   TextEditingController _messageComm = TextEditingController();
-  late bool showPopMenu;
   @override
   Widget build(BuildContext context) {
+    String? idUser = AuthService().getUserId;
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -79,12 +78,34 @@ class _DetailQAState extends State<DetailQA> {
                               bottomRight: Radius.circular(10.sp),
                             )),
                             onSelected: (FilterOptions selectedValue) {
-                              setState(() {
-                                if (selectedValue ==
-                                    FilterOptions.reportthispost) {
-                                  showPopMenu = true;
-                                } else {
-                                  showPopMenu = false;
+                              setState(() async {
+                                if (selectedValue == FilterOptions.supprime) {
+                                  if (widget.posts['idUser'] == idUser) {
+                                    DatabaseMethods()
+                                        .deletePost(widget.idPost)
+                                        .then((value) =>
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                duration: Duration(seconds: 3),
+                                                content: Text('post deleted'),
+                                              ),
+                                            ));
+                                  }
+                                }
+                                if (selectedValue == FilterOptions.signale) {
+                                  DatabaseMethods()
+                                      .sendSignale(widget.idPost, 'posts')
+                                      .then(
+                                        (value) => ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            duration: Duration(seconds: 3),
+                                            content: Text(
+                                                'Merci d\'avoir signale le post, il vas etre traite dans les bref delais'),
+                                          ),
+                                        ),
+                                      );
                                 }
                               });
                             },
@@ -96,47 +117,36 @@ class _DetailQAState extends State<DetailQA> {
                             ),
                             itemBuilder: (_) => [
                               PopupMenuItem(
-                                value: FilterOptions.reportthispost,
+                                value: FilterOptions.signale,
                                 child: SizedBox(
                                   width: 70.w,
-                                  height: 60.h,
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      SizedBox(
-                                        height: 3.h,
-                                      ),
-                                      Text(
-                                        'Singaler',
-                                        style: TextStyle(
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w700,
-                                          color: Colors.black.withOpacity(0.85),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 3.h,
-                                        child: Divider(
-                                          height: 2.h,
-                                          color: Colors.black.withOpacity(0.85),
-                                        ),
-                                      ),
-                                      Text(
-                                        'Supprimer',
-                                        style: TextStyle(
-                                          fontSize: 14.sp,
-                                          fontWeight: FontWeight.w700,
-                                          color: Colors.black.withOpacity(0.85),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 3.h,
-                                      ),
-                                    ],
+                                  // height: 60.h,
+                                  child: Text(
+                                    'Singaler',
+                                    style: TextStyle(
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.black.withOpacity(0.85),
+                                    ),
                                   ),
                                 ),
                               ),
+                              if (widget.posts['idUser'] == idUser)
+                                PopupMenuItem(
+                                  value: FilterOptions.supprime,
+                                  child: SizedBox(
+                                    width: 70.w,
+                                    //    height: 60.h,
+                                    child: Text(
+                                      'Supprimer',
+                                      style: TextStyle(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black.withOpacity(0.85),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                             ],
                           ),
                         ],

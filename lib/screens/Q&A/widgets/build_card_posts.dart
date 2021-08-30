@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/screens/Q&A/detail_Q&A/detail_q_a.dart';
@@ -8,10 +7,7 @@ import 'package:med_quizz/services/auth.dart';
 import 'package:med_quizz/services/database.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-enum FilterOptions {
-  supprime,
-  signale,
-}
+enum FilterOptions { supprime, signale, modifie }
 
 class BuildCardPosts extends StatefulWidget {
   final posts;
