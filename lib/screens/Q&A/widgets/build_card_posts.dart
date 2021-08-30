@@ -23,10 +23,9 @@ class BuildCardPosts extends StatefulWidget {
 }
 
 class _BuildCardPostsState extends State<BuildCardPosts> {
-  // late bool showPopMenu;
-
   @override
   Widget build(BuildContext context) {
+    String? idUser = AuthService().getUserId;
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(
@@ -88,7 +87,6 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                   onSelected: (FilterOptions selectedValue) {
                     setState(() async {
                       if (selectedValue == FilterOptions.supprime) {
-                        String? idUser = AuthService().getUserId;
                         if (widget.posts['idUser'] == idUser) {
                           DatabaseMethods().deletePost(widget.idPost).then(
                               (value) =>
@@ -99,8 +97,8 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                                     ),
                                   ));
                         }
-                        //          showPopMenu = true;
-                      } else if (selectedValue == FilterOptions.supprime) {
+                      }
+                      if (selectedValue == FilterOptions.signale) {
                         DatabaseMethods()
                             .sendSignale(widget.idPost, 'posts')
                             .then(
@@ -113,7 +111,6 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                                 ),
                               ),
                             );
-                        //              showPopMenu = false;
                       }
                     });
                   },
@@ -129,57 +126,32 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                       child: SizedBox(
                         width: 70.w,
                         // height: 60.h,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              height: 3.h,
-                            ),
-                            Text(
-                              'Singaler',
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.black.withOpacity(0.85),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 3.h,
-                              child: Divider(
-                                height: 2.h,
-                                color: Colors.black.withOpacity(0.85),
-                              ),
-                            ),
-                          ],
+                        child: Text(
+                          'Singaler',
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black.withOpacity(0.85),
+                          ),
                         ),
                       ),
                     ),
-                    PopupMenuItem(
-                      value: FilterOptions.supprime,
-                      child: SizedBox(
-                        width: 70.w,
-                        //    height: 60.h,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              height: 3.h,
+                    if (widget.posts['idUser'] == idUser)
+                      PopupMenuItem(
+                        value: FilterOptions.supprime,
+                        child: SizedBox(
+                          width: 70.w,
+                          //    height: 60.h,
+                          child: Text(
+                            'Supprimer',
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.black.withOpacity(0.85),
                             ),
-                            Text(
-                              'Supprimer',
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.black.withOpacity(0.85),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 3.h,
-                            ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
                   ],
                 ),
               ],

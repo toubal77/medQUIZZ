@@ -19,6 +19,7 @@ class _AddPostState extends State<AddPost> {
   TextEditingController textController = TextEditingController();
   late File? _image;
   bool okok = false;
+  bool isLoading = false;
   Future getImage() async {
     final ImagePicker _picker = ImagePicker();
     final image = await _picker.pickImage(source: ImageSource.camera);
@@ -34,12 +35,15 @@ class _AddPostState extends State<AddPost> {
     if (!_formKey.currentState!.validate()) {
       return;
     }
-
+    setState(() {
+      isLoading = true;
+    });
     DatabaseMethods()
         .sendPost(textController.text, _image)
         .then((result) async {
       textController.text = '';
       _image = null;
+
       Navigator.of(context).pop();
     }).catchError((error) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -167,38 +171,42 @@ class _AddPostState extends State<AddPost> {
                   ],
                 ),
               ),
-              GestureDetector(
-                onTap: _submitForm,
-                child: Container(
-                  width: MediaQuery.of(context).size.width.w,
-                  padding: EdgeInsets.symmetric(vertical: 15.sp),
-                  margin: EdgeInsets.only(
-                    top: 15.sp,
-                    left: 40.sp,
-                    right: 40.sp,
-                  ),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Colors.blueAccent,
-                    borderRadius: BorderRadius.all(Radius.circular(5.sp)),
-                    boxShadow: <BoxShadow>[
-                      BoxShadow(
-                        color: Colors.grey.shade200,
-                        offset: Offset(2.sp, 4.sp),
-                        blurRadius: 5.sp,
-                        spreadRadius: 2.sp,
-                      )
-                    ],
-                  ),
-                  child: Text(
-                    'publier',
-                    style: TextStyle(
-                      fontSize: 20.sp,
-                      color: Colors.white,
+              isLoading == false
+                  ? GestureDetector(
+                      onTap: _submitForm,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width.w,
+                        padding: EdgeInsets.symmetric(vertical: 15.sp),
+                        margin: EdgeInsets.only(
+                          top: 15.sp,
+                          left: 40.sp,
+                          right: 40.sp,
+                        ),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.blueAccent,
+                          borderRadius: BorderRadius.all(Radius.circular(5.sp)),
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                              color: Colors.grey.shade200,
+                              offset: Offset(2.sp, 4.sp),
+                              blurRadius: 5.sp,
+                              spreadRadius: 2.sp,
+                            )
+                          ],
+                        ),
+                        child: Text(
+                          'publier',
+                          style: TextStyle(
+                            fontSize: 20.sp,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    )
+                  : Center(
+                      child: CircularProgressIndicator(),
                     ),
-                  ),
-                ),
-              ),
             ],
           ),
         ),
