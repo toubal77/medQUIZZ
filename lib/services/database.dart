@@ -110,7 +110,7 @@ class DatabaseMethods {
         .collection('posts')
         .add({
           'idUser': AuthService().getUserId,
-          'time': DateTime.now(),
+          'time': DateTime.now().toIso8601String(),
           'username': username,
           'message': message,
           'url': url,
@@ -129,7 +129,7 @@ class DatabaseMethods {
         .collection('commentaires')
         .add({
           'idUser': AuthService().getUserId,
-          'time': DateTime.now(),
+          'time': DateTime.now().toIso8601String(),
           'username': username,
           'message': message,
         })
@@ -153,7 +153,7 @@ class DatabaseMethods {
           'idPost': idPost,
           'type': type,
           'idUser': AuthService().getUserId,
-          'time': DateTime.now(),
+          'time': DateTime.now().toIso8601String(),
         })
         .then((value) => print("delete posts"))
         .catchError((error) => print("Failed to delete posts: $error"));
