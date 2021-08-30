@@ -11,10 +11,6 @@ import 'package:med_quizz/screens/Q&A/widgets/shimmer_card_post.dart';
 import 'package:med_quizz/services/ads_service.dart';
 import 'package:med_quizz/utils.dart';
 
-enum FilterOptions {
-  reportthispost,
-}
-
 class QAScreen extends StatefulWidget {
   const QAScreen({Key? key}) : super(key: key);
 

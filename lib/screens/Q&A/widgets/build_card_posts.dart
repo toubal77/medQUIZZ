@@ -1,9 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/screens/Q&A/detail_Q&A/detail_q_a.dart';
 import 'package:med_quizz/screens/Q&A/widgets/build_image_user.dart';
 import 'package:med_quizz/screens/Q&A/widgets/time_name_pop.dart';
+import 'package:med_quizz/services/auth.dart';
+import 'package:med_quizz/services/database.dart';
 import 'package:timeago/timeago.dart' as timeago;
+
+enum FilterOptions {
+  supprime,
+  signale,
+}
 
 class BuildCardPosts extends StatefulWidget {
   final posts;
@@ -15,7 +23,7 @@ class BuildCardPosts extends StatefulWidget {
 }
 
 class _BuildCardPostsState extends State<BuildCardPosts> {
-  late bool showPopMenu;
+  // late bool showPopMenu;
 
   @override
   Widget build(BuildContext context) {
@@ -78,11 +86,34 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                     bottomRight: Radius.circular(10.sp),
                   )),
                   onSelected: (FilterOptions selectedValue) {
-                    setState(() {
-                      if (selectedValue == FilterOptions.reportthispost) {
-                        showPopMenu = true;
-                      } else {
-                        showPopMenu = false;
+                    setState(() async {
+                      if (selectedValue == FilterOptions.supprime) {
+                        String? idUser = AuthService().getUserId;
+                        if (widget.posts['idUser'] == idUser) {
+                          DatabaseMethods().deletePost(widget.idPost).then(
+                              (value) =>
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      duration: Duration(seconds: 3),
+                                      content: Text('post deleted'),
+                                    ),
+                                  ));
+                        }
+                        //          showPopMenu = true;
+                      } else if (selectedValue == FilterOptions.supprime) {
+                        DatabaseMethods()
+                            .sendSignale(widget.idPost, 'posts')
+                            .then(
+                              (value) =>
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  duration: Duration(seconds: 3),
+                                  content: Text(
+                                      'Merci d\'avoir signale le post, il vas etre traite dans les bref delais'),
+                                ),
+                              ),
+                            );
+                        //              showPopMenu = false;
                       }
                     });
                   },
@@ -94,10 +125,10 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                   ),
                   itemBuilder: (_) => [
                     PopupMenuItem(
-                      value: FilterOptions.reportthispost,
+                      value: FilterOptions.signale,
                       child: SizedBox(
                         width: 70.w,
-                        height: 60.h,
+                        // height: 60.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -118,6 +149,21 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                                 height: 2.h,
                                 color: Colors.black.withOpacity(0.85),
                               ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    PopupMenuItem(
+                      value: FilterOptions.supprime,
+                      child: SizedBox(
+                        width: 70.w,
+                        //    height: 60.h,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              height: 3.h,
                             ),
                             Text(
                               'Supprimer',
