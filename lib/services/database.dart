@@ -159,6 +159,18 @@ class DatabaseMethods {
         .catchError((error) => print("Failed to delete posts: $error"));
   }
 
+  Future updatePost(String message, String idPost) async {
+    await FirebaseFirestore.instance
+        .collection('posts')
+        .doc(idPost)
+        .update({
+          'time': DateTime.now().toIso8601String(),
+          'message': message,
+        })
+        .then((value) => print("update post"))
+        .catchError((error) => print("Failed to update post: $error"));
+  }
+
   Future<List<Modules?>?> getModules() async {
     List<Modules?> list = [];
     try {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/screens/Q&A/detail_Q&A/detail_q_a.dart';
+import 'package:med_quizz/screens/Q&A/posts/add_post.dart';
 import 'package:med_quizz/screens/Q&A/widgets/build_image_user.dart';
 import 'package:med_quizz/screens/Q&A/widgets/time_name_pop.dart';
 import 'package:med_quizz/services/auth.dart';
@@ -108,6 +109,10 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                               ),
                             );
                       }
+                      if (selectedValue == FilterOptions.modifie) {
+                        Navigator.of(context).pushNamed(AddPost.screenName,
+                            arguments: widget.idPost);
+                      }
                     });
                   },
                   icon: Container(
@@ -140,6 +145,22 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                           //    height: 60.h,
                           child: Text(
                             'Supprimer',
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.black.withOpacity(0.85),
+                            ),
+                          ),
+                        ),
+                      ),
+                    if (widget.posts['idUser'] == idUser)
+                      PopupMenuItem(
+                        value: FilterOptions.modifie,
+                        child: SizedBox(
+                          width: 70.w,
+                          //    height: 60.h,
+                          child: Text(
+                            'modifie',
                             style: TextStyle(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.w700,

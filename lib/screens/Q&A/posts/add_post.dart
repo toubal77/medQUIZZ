@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,7 +10,7 @@ import 'package:med_quizz/services/database.dart';
 
 class AddPost extends StatefulWidget {
   const AddPost({Key? key}) : super(key: key);
-
+  static final screenName = "\AddPost";
   @override
   _AddPostState createState() => _AddPostState();
 }
@@ -20,6 +21,7 @@ class _AddPostState extends State<AddPost> {
   late File? _image;
   bool okok = false;
   bool isLoading = false;
+  String? postId = '';
   Future getImage() async {
     final ImagePicker _picker = ImagePicker();
     final image = await _picker.pickImage(source: ImageSource.camera);
@@ -27,6 +29,19 @@ class _AddPostState extends State<AddPost> {
       _image = File(image!.path);
       okok = true;
     });
+  }
+
+  void didChangeDependencies() async {
+    postId = ModalRoute.of(context)!.settings.arguments as String?;
+    if (postId != null) {
+      var snapshot = await FirebaseFirestore.instance
+          .collection('posts')
+          .doc(postId)
+          .get();
+      textController.text = snapshot['message'];
+    }
+
+    super.didChangeDependencies();
   }
 
   Future _submitForm() async {
@@ -38,21 +53,38 @@ class _AddPostState extends State<AddPost> {
     setState(() {
       isLoading = true;
     });
-    DatabaseMethods()
-        .sendPost(textController.text, _image)
-        .then((result) async {
-      textController.text = '';
-      _image = null;
+    if (postId == '') {
+      DatabaseMethods()
+          .sendPost(textController.text, _image)
+          .then((result) async {
+        textController.text = '';
+        _image = null;
 
-      Navigator.of(context).pop();
-    }).catchError((error) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          duration: Duration(seconds: 3),
-          content: Text('error to send post message' + error.toString()),
-        ),
-      );
-    });
+        Navigator.of(context).pop();
+      }).catchError((error) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            duration: Duration(seconds: 3),
+            content: Text('error to send post message' + error.toString()),
+          ),
+        );
+      });
+    } else {
+      DatabaseMethods()
+          .updatePost(textController.text, postId!)
+          .then((result) async {
+        textController.text = '';
+
+        Navigator.of(context).pop();
+      }).catchError((error) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            duration: Duration(seconds: 3),
+            content: Text('error to update post message' + error.toString()),
+          ),
+        );
+      });
+    }
   }
 
   @override
@@ -112,65 +144,67 @@ class _AddPostState extends State<AddPost> {
                   ),
                 ),
               ),
-              Container(
-                width: MediaQuery.of(context).size.width.w,
-                margin: EdgeInsets.only(left: 7.sp, right: 7.sp, bottom: 7.sp),
-                padding: EdgeInsets.all(5),
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: getImage,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey.shade200,
-                        ),
-                        padding: EdgeInsets.all(5),
-                        child: Text(
-                          'selection un fichier',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
+              if (postId == '')
+                Container(
+                  width: MediaQuery.of(context).size.width.w,
+                  margin:
+                      EdgeInsets.only(left: 7.sp, right: 7.sp, bottom: 7.sp),
+                  padding: EdgeInsets.all(5),
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: getImage,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.grey.shade200,
+                          ),
+                          padding: EdgeInsets.all(5),
+                          child: Text(
+                            'selection un fichier',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 4.w,
-                    ),
-                    okok == false
-                        ? Text(
-                            'aucun fichier',
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.black,
+                      SizedBox(
+                        width: 4.w,
+                      ),
+                      okok == false
+                          ? Text(
+                              'aucun fichier',
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.black,
+                              ),
+                            )
+                          : Text(
+                              'fichier selectionne',
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.black,
+                              ),
                             ),
-                          )
-                        : Text(
-                            'fichier selectionne',
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.black,
-                            ),
+                      if (okok == true)
+                        IconButton(
+                          onPressed: () {
+                            setState(() {
+                              _image = null;
+                              okok = false;
+                            });
+                          },
+                          icon: Icon(
+                            Icons.delete,
+                            color: Colors.red,
                           ),
-                    if (okok == true)
-                      IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _image = null;
-                            okok = false;
-                          });
-                        },
-                        icon: Icon(
-                          Icons.delete,
-                          color: Colors.red,
-                        ),
-                      )
-                  ],
+                        )
+                    ],
+                  ),
                 ),
-              ),
               isLoading == false
                   ? GestureDetector(
                       onTap: _submitForm,
