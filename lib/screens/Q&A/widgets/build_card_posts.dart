@@ -6,6 +6,7 @@ import 'package:med_quizz/screens/Q&A/widgets/build_image_user.dart';
 import 'package:med_quizz/screens/Q&A/widgets/time_name_pop.dart';
 import 'package:med_quizz/services/auth.dart';
 import 'package:med_quizz/services/database.dart';
+import 'package:readmore/readmore.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 enum FilterOptions { supprime, signale, modifie }
@@ -179,13 +180,30 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
             Container(
               width: MediaQuery.of(context).size.width.w,
               margin: EdgeInsets.only(left: 10.sp, right: 10.sp, bottom: 12.sp),
-              child: Text(
-                widget.posts['message'],
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  color: Colors.black,
-                ),
-              ),
+              child: widget.posts['message'].length < 200
+                  ? Text(
+                      widget.posts['message'],
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        color: Colors.black,
+                      ),
+                    )
+                  : ReadMoreText(
+                      widget.posts['message'],
+                      //       trimLength: 201,
+                      colorClickableText: Colors.blueAccent,
+                      trimMode: TrimMode.Length,
+                      trimCollapsedText: 'Show more',
+                      trimExpandedText: 'Show less',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        color: Colors.black,
+                      ),
+                      moreStyle: TextStyle(
+                        fontSize: 14.sp,
+                        color: Colors.blueAccent,
+                      ),
+                    ),
             ),
             if (widget.posts['url'] != '')
               Container(
