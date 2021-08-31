@@ -53,10 +53,14 @@ class _AddPostState extends State<AddPost> {
     setState(() {
       isLoading = true;
     });
-    if (postId == '') {
+    if (postId == null) {
+      if (okok == false) {
+        _image = null;
+      }
       DatabaseMethods()
           .sendPost(textController.text, _image)
           .then((result) async {
+        print('eoihgreuhriuh grughh roeihg ohg url is :' + _image.toString());
         textController.text = '';
         _image = null;
 

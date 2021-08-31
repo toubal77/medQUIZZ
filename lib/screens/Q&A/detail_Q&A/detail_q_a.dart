@@ -188,20 +188,21 @@ class _DetailQAState extends State<DetailQA> {
                           ),
                         ),
                       ),
-                      Container(
-                        width: MediaQuery.of(context).size.width.w,
-                        height: 200,
-                        margin: EdgeInsets.only(top: 5.sp, bottom: 12.sp),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.sp),
-                          image: DecorationImage(
-                            image: NetworkImage(
-                              widget.posts['url'],
+                      if (widget.posts['url'] != '')
+                        Container(
+                          width: MediaQuery.of(context).size.width.w,
+                          height: 200,
+                          margin: EdgeInsets.only(top: 5.sp, bottom: 12.sp),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.sp),
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                widget.posts['url'],
+                              ),
+                              fit: BoxFit.cover,
                             ),
-                            fit: BoxFit.cover,
                           ),
                         ),
-                      ),
                       Divider(
                         height: 2.h,
                         color: Colors.black.withOpacity(0.85),
