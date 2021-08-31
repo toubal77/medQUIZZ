@@ -21,7 +21,7 @@ class _AddPostState extends State<AddPost> {
   late File? _image;
   bool okok = false;
   bool isLoading = false;
-  String? postId = '';
+  String? postId;
   Future getImage() async {
     final ImagePicker _picker = ImagePicker();
     final image = await _picker.pickImage(source: ImageSource.camera);
@@ -144,7 +144,7 @@ class _AddPostState extends State<AddPost> {
                   ),
                 ),
               ),
-              if (postId == '')
+              if (postId == null)
                 Container(
                   width: MediaQuery.of(context).size.width.w,
                   margin:
