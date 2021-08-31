@@ -12,6 +12,7 @@ import 'package:med_quizz/screens/profile/widgets/user_info.dart';
 import 'package:med_quizz/services/database.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -222,8 +223,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ProfileMenu(
                   'Log Out',
                   Icons.exit_to_app,
-                  () {
+                  () async {
                     FirebaseAuth.instance.signOut();
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    prefs.clear();
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(builder: (ctx) {
                         return LoginScreen();
