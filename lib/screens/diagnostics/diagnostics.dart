@@ -62,30 +62,32 @@ class _DiagnosticState extends State<Diagnostic> {
               fit: BoxFit.cover,
             ),
           ),
-          child: ListView(
+          child: Column(
             children: [
               HeaderDiag(title: 'Diagnostics'),
               SizedBox(
                 height: 20.h,
               ),
-              Container(
-                margin: EdgeInsets.only(bottom: 60.sp),
-                child: FutureBuilder<List<Diagnostics?>?>(
-                  future: DatabaseMethods().getDiag(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return ListView.builder(
-                        shrinkWrap: true,
-                        //    physics: NeverScrollableScrollPhysics(),
+              Expanded(
+                child: Container(
+                  //  margin: EdgeInsets.only(bottom: 10.sp),
+                  child: FutureBuilder<List<Diagnostics?>?>(
+                    future: DatabaseMethods().getDiag(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          //    physics: NeverScrollableScrollPhysics(),
 
-                        itemCount: snapshot.data!.length,
-                        itemBuilder: (context, index) {
-                          return DiagTile(snapshot.data![index]!);
-                        },
-                      );
-                    }
-                    return DiagTileShimmer();
-                  },
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (context, index) {
+                            return DiagTile(snapshot.data![index]!);
+                          },
+                        );
+                      }
+                      return DiagTileShimmer();
+                    },
+                  ),
                 ),
               ),
             ],

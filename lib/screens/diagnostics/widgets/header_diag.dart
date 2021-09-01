@@ -16,13 +16,7 @@ class HeaderDiag extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return HomePage();
-                    },
-                  ),
-                );
+                Navigator.of(context).pop();
               },
               child: SizedBox(
                 child: Icon(
