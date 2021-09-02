@@ -4,10 +4,9 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:med_quizz/models/modules.dart';
+import 'package:med_quizz/screens/all_module/widgets/header_all_module.dart';
 import 'package:med_quizz/screens/all_module/widgets/module_tile.dart';
 import 'package:med_quizz/screens/all_module/widgets/shimmer_module_tile.dart';
-import 'package:med_quizz/screens/home_screen.dart';
-import 'package:med_quizz/screens/search/search_screen.dart';
 import 'package:med_quizz/services/ads_service.dart';
 import 'package:med_quizz/services/database.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -65,57 +64,7 @@ class _AllModulesState extends State<AllModules> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 55.h,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(
-                          top: 10.sp, left: 10.sp, right: 10.sp),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return HomePage();
-                                  },
-                                ),
-                              );
-                            },
-                            icon: Icon(Icons.arrow_back),
-                            color: Colors.blue,
-                          ),
-                          Text(
-                            'All Modules',
-                            style: TextStyle(
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.blue,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return SearchScreen();
-                                  },
-                                ),
-                              );
-                            },
-                            icon: Icon(Icons.search),
-                            color: Colors.blue,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              HeaderAllModule(),
               Expanded(
                 child: FutureBuilder<List<Modules?>?>(
                   future: DatabaseMethods().getModules(),

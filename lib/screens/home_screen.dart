@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:med_quizz/screens/Q&A/q_a.dart';
+import 'package:med_quizz/screens/all_module/module_screen.dart';
 import 'package:med_quizz/services/ads_service.dart';
 import 'package:med_quizz/utils.dart';
 import 'package:shimmer/shimmer.dart';
@@ -473,7 +474,8 @@ class _HomePageState extends State<HomePage> {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return QuizzPlay();
+                                      return ModuleScreen(
+                                          snapshot.data![index]!.nom);
                                     },
                                   ),
                                 );
