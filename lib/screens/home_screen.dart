@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -11,12 +10,10 @@ import 'package:med_quizz/screens/all_module/module_screen.dart';
 import 'package:med_quizz/services/ads_service.dart';
 import 'package:med_quizz/utils.dart';
 import 'package:shimmer/shimmer.dart';
-
 import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/screens/all_module/all_modules.dart';
 import 'package:med_quizz/screens/diagnostics/diagnostics.dart';
 import 'package:med_quizz/screens/profile/profile_screen.dart';
-import 'package:med_quizz/screens/quizz/quizz_screen.dart';
 import 'package:med_quizz/screens/search/search_screen.dart';
 import 'package:med_quizz/services/database.dart';
 import 'package:med_quizz/services/local_notification.dart';
@@ -66,6 +63,7 @@ class _HomePageState extends State<HomePage> {
 
       Navigator.of(context).pushNamed(routeFromMessage);
     });
+    AdManager.buildInterAd(2);
   }
 
   @override

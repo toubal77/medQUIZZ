@@ -1,8 +1,26 @@
+import 'dart:async';
+
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdManager {
   static String get bannerAdUnitId => 'ca-app-pub-7410810465692328/1352017336';
+  static String get interstitialId => 'ca-app-pub-7410810465692328/1853400580';
   static bool loading = false;
+  static buildInterAd(int minDure) {
+    return InterstitialAd.load(
+        adUnitId: AdManager.interstitialId,
+        request: AdRequest(),
+        adLoadCallback: InterstitialAdLoadCallback(
+          onAdLoaded: (InterstitialAd ad) {
+            // Keep a reference to the ad so you can show it later.
+            Timer(Duration(minutes: minDure), () => ad.show());
+          },
+          onAdFailedToLoad: (LoadAdError error) {
+            print('InterstitialAd failed to load: $error');
+          },
+        ));
+  }
+
   static BannerAd buildBannerAd() {
     BannerAd ad = new BannerAd(
       // adUnitId: 'ca-app-pub-7410810465692328/1352017336',
