@@ -1,13 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:med_quizz/screens/Q&A/detail_Q&A/widgets/build_comnt_post.dart';
 import 'package:med_quizz/screens/Q&A/detail_Q&A/widgets/header.dart';
+import 'package:med_quizz/screens/Q&A/detail_Q&A/widgets/header_post.dart';
 import 'package:med_quizz/screens/Q&A/posts/add_post.dart';
-import 'package:med_quizz/screens/Q&A/widgets/build_image_user.dart';
-import 'package:med_quizz/screens/Q&A/widgets/time_name_pop.dart';
 import 'package:med_quizz/services/auth.dart';
 import 'package:med_quizz/services/database.dart';
-import 'package:timeago/timeago.dart' as timeago;
 
 enum FilterOptions { supprime, signale, modifie }
 
@@ -54,23 +53,7 @@ class _DetailQAState extends State<DetailQA> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BuildImageUser(),
-                              SizedBox(
-                                width: 7.w,
-                              ),
-                              TimeNamePost(
-                                widget.posts['username'],
-                                timeago.format(
-                                  DateTime.parse(
-                                    widget.posts['time'].toString(),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                          HeaderPostDetail(widget.posts),
                           PopupMenuButton(
                             shape: OutlineInputBorder(
                                 borderRadius: BorderRadius.only(
@@ -238,61 +221,8 @@ class _DetailQAState extends State<DetailQA> {
                                 shrinkWrap: true,
                                 itemCount: snapshot.data!.docs.length,
                                 itemBuilder: (context, index) {
-                                  return Container(
-                                    width: MediaQuery.of(context).size.width.w,
-                                    padding: EdgeInsets.all(7.sp),
-                                    child: Row(
-                                      children: [
-                                        BuildImageUser(),
-                                        SizedBox(
-                                          width: 7.w,
-                                        ),
-                                        Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width
-                                                  .w *
-                                              0.6,
-                                          margin: EdgeInsets.only(
-                                              top: 7.sp,
-                                              bottom: 7.sp,
-                                              right: 7.sp),
-                                          padding: EdgeInsets.all(7.sp),
-                                          decoration: BoxDecoration(
-                                            color: Colors.grey.shade500,
-                                            borderRadius:
-                                                BorderRadius.circular(20.sp),
-                                          ),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                snapshot.data!.docs[index]
-                                                    ['username'],
-                                                style: TextStyle(
-                                                  fontSize: 15.sp,
-                                                  fontWeight: FontWeight.w700,
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 3,
-                                              ),
-                                              Text(
-                                                snapshot.data!.docs[index]
-                                                    ['message'],
-                                                style: TextStyle(
-                                                  fontSize: 14.sp,
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
+                                  return BuildCommentePost(
+                                      snapshot.data!.docs[index]);
                                 },
                               );
                             return CircularProgressIndicator();
