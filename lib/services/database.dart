@@ -137,6 +137,17 @@ class DatabaseMethods {
         .catchError((error) => print("Failed to commentaire post: $error"));
   }
 
+  Future deleteComnt(String idPost, String idComnt) async {
+    await FirebaseFirestore.instance
+        .collection('posts')
+        .doc(idPost)
+        .collection('commentaires')
+        .doc(idComnt)
+        .delete()
+        .then((value) => print("delete commentaire"))
+        .catchError((error) => print("Failed to delete commentaire: $error"));
+  }
+
   Future deletePost(String idPost) async {
     await FirebaseFirestore.instance
         .collection('posts')

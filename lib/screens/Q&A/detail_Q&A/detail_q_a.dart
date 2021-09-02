@@ -222,7 +222,10 @@ class _DetailQAState extends State<DetailQA> {
                                 itemCount: snapshot.data!.docs.length,
                                 itemBuilder: (context, index) {
                                   return BuildCommentePost(
-                                      snapshot.data!.docs[index]);
+                                    snapshot.data!.docs[index],
+                                    snapshot.data!.docs[index].id,
+                                    widget.idPost,
+                                  );
                                 },
                               );
                             return CircularProgressIndicator();
