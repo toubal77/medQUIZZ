@@ -32,7 +32,7 @@ class _BuildCommentePostState extends State<BuildCommentePost> {
           Container(
             width: MediaQuery.of(context).size.width.w * 0.6,
             margin: EdgeInsets.only(top: 7.sp, bottom: 7.sp, right: 7.sp),
-            padding: EdgeInsets.all(7.sp),
+            padding: EdgeInsets.only(left: 7.sp, right: 7.sp, bottom: 7.sp),
             decoration: BoxDecoration(
               color: Colors.grey.shade500,
               borderRadius: BorderRadius.circular(20.sp),
@@ -43,12 +43,16 @@ class _BuildCommentePostState extends State<BuildCommentePost> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      widget.comnt['username'],
-                      style: TextStyle(
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
+                    Container(
+                      width: MediaQuery.of(context).size.width.w * 0.4,
+                      child: Text(
+                        widget.comnt['username'],
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                     PopupMenuButton(
@@ -93,11 +97,9 @@ class _BuildCommentePostState extends State<BuildCommentePost> {
                           },
                         );
                       },
-                      icon: Container(
-                        height: 15.h,
-                        child: Icon(
-                          Icons.more_horiz,
-                        ),
+                      icon: Icon(
+                        Icons.more_horiz,
+                        color: Colors.white,
                       ),
                       itemBuilder: (_) => [
                         PopupMenuItem(
@@ -135,15 +137,15 @@ class _BuildCommentePostState extends State<BuildCommentePost> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 3,
-                ),
                 Text(
                   widget.comnt['message'],
                   style: TextStyle(
                     fontSize: 14.sp,
                     color: Colors.white,
                   ),
+                ),
+                SizedBox(
+                  height: 2,
                 ),
               ],
             ),

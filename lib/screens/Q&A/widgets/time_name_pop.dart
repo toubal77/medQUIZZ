@@ -13,12 +13,15 @@ class TimeNamePost extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            username,
-            style: TextStyle(
-              fontSize: 15.sp,
-              fontWeight: FontWeight.w600,
-              color: Colors.black,
+          Container(
+            width: MediaQuery.of(context).size.width.w * 0.4,
+            child: Text(
+              username,
+              style: TextStyle(
+                fontSize: 15.sp,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+              ),
             ),
           ),
           SizedBox(

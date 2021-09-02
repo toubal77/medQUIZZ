@@ -67,14 +67,18 @@ class _DetailQAState extends State<DetailQA> {
                                   if (widget.posts['idUser'] == idUser) {
                                     DatabaseMethods()
                                         .deletePost(widget.idPost)
-                                        .then((value) =>
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                              SnackBar(
-                                                duration: Duration(seconds: 3),
-                                                content: Text('post deleted'),
-                                              ),
-                                            ));
+                                        .then(
+                                      (value) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            duration: Duration(seconds: 3),
+                                            content: Text('post deleted'),
+                                          ),
+                                        );
+                                        Navigator.of(context).pop();
+                                      },
+                                    );
                                   }
                                 }
                                 if (selectedValue == FilterOptions.signale) {
