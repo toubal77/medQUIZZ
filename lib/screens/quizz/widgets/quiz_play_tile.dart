@@ -283,7 +283,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                     height: 5.h,
                   ),
                   Text(
-                    'Explication: roiehg oihroih voireh oihodhguh hroiguh orhgoh ohdogh uohhoirh ohoih ohoi hrgoih ohdsougho.',
+                    'Explication: ' + widget.questionModel!.explication,
                     style: TextStyle(
                       color: Colors.blue,
                       fontSize: 14.sp,
