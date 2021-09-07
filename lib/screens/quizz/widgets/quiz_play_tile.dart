@@ -24,6 +24,26 @@ int _notAttempted = 0;
 int total = 0;
 
 class _QuizPlayTileState extends State<QuizPlayTile> {
+  @override
+  void initState() {
+    correctAnswer1 = widget.questionModel!.respo1 == 'true' ? true : false;
+    correctAnswer2 = widget.questionModel!.respo2 == 'true' ? true : false;
+    correctAnswer3 = widget.questionModel!.respo3 == 'true' ? true : false;
+    correctAnswer4 = widget.questionModel!.respo4 == 'true' ? true : false;
+    correctAnswer5 = widget.questionModel!.respo5 == 'true' ? true : false;
+    _correct = 0;
+    _incorrect = 0;
+    _notAttempted = 0;
+    total = 0;
+    super.initState();
+  }
+
+  late bool correctAnswer1;
+  late bool correctAnswer2;
+  late bool correctAnswer3;
+  late bool correctAnswer4;
+  late bool correctAnswer5;
+
   String optionSelected1 = "";
   String optionSelected2 = "";
   String optionSelected3 = "";
@@ -55,7 +75,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             onTap: () {
               if (optionSelected1 == '') {
                 ///correct
-                if (widget.questionModel!.respo1 == 'true') {
+                if (correctAnswer1) {
                   setState(() {
                     optionSelected1 = widget.questionModel!.rep1;
                     //  widget.questionModel!.respo1 = true;
@@ -80,9 +100,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             child: OptionTile(
               option: "A",
               answer: widget.questionModel!.rep1, // la question
-              correctAnswer: widget.questionModel!.respo1 == 'true'
-                  ? true
-                  : false, // la reponse
+              correctAnswer: correctAnswer1, // la reponse
               optionSelected: optionSelected1, //est ce que ca ete selectione
               validate: widget.validate,
             ),
@@ -98,7 +116,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             onTap: () {
               if (optionSelected2 == '') {
                 ///correct
-                if (widget.questionModel!.respo2 == 'true') {
+                if (correctAnswer2) {
                   setState(() {
                     optionSelected2 = widget.questionModel!.rep2;
                     //  widget.questionModel!.respo1 = true;
@@ -123,8 +141,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             child: OptionTile(
               option: "B",
               answer: widget.questionModel!.rep2,
-              correctAnswer:
-                  widget.questionModel!.respo2 == 'true' ? true : false,
+              correctAnswer: correctAnswer2,
               optionSelected: optionSelected2,
               validate: widget.validate,
             ),
@@ -140,7 +157,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             onTap: () {
               if (optionSelected3 == '') {
                 ///correct
-                if (widget.questionModel!.respo3 == 'true') {
+                if (correctAnswer3) {
                   setState(() {
                     optionSelected3 = widget.questionModel!.rep3;
                     //  widget.questionModel!.respo1 = true;
@@ -165,8 +182,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             child: OptionTile(
               option: "C",
               answer: widget.questionModel!.rep3,
-              correctAnswer:
-                  widget.questionModel!.respo3 == 'true' ? true : false,
+              correctAnswer: correctAnswer3,
               optionSelected: optionSelected3,
               validate: widget.validate,
             ),
@@ -182,7 +198,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             onTap: () {
               if (optionSelected4 == '') {
                 ///correct
-                if (widget.questionModel!.respo4 == 'true') {
+                if (correctAnswer4) {
                   setState(() {
                     optionSelected4 = widget.questionModel!.rep4;
                     //  widget.questionModel!.respo1 = true;
@@ -207,8 +223,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             child: OptionTile(
               option: "D",
               answer: widget.questionModel!.rep4,
-              correctAnswer:
-                  widget.questionModel!.respo4 == 'true' ? true : false,
+              correctAnswer: correctAnswer4,
               optionSelected: optionSelected4,
               validate: widget.validate,
             ),
@@ -226,7 +241,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
               onTap: () {
                 if (optionSelected5 == '') {
                   ///correct
-                  if (widget.questionModel!.respo5 == 'true') {
+                  if (correctAnswer5) {
                     setState(() {
                       optionSelected5 = widget.questionModel!.rep5;
                       //  widget.questionModel!.respo1 = true;
@@ -251,8 +266,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
               child: OptionTile(
                 option: "E",
                 answer: widget.questionModel!.rep5,
-                correctAnswer:
-                    widget.questionModel!.respo5 == 'true' ? true : false,
+                correctAnswer: correctAnswer5,
                 optionSelected: optionSelected5,
                 validate: widget.validate,
               ),
@@ -271,11 +285,35 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    checkValue4
-                        ? 'Votre reponse est correct'
-                        : 'Votre reponse est incorrect',
+                    widget.questionModel!.rep5 != 'null'
+                        ? checkValue1 == correctAnswer1 &&
+                                checkValue2 == correctAnswer2 &&
+                                checkValue3 == correctAnswer3 &&
+                                checkValue4 == correctAnswer4 &&
+                                checkValue5 == correctAnswer5
+                            ? 'Votre reponse est correct'
+                            : 'Votre reponse est incorrect'
+                        : checkValue1 == correctAnswer1 &&
+                                checkValue2 == correctAnswer2 &&
+                                checkValue3 == correctAnswer3 &&
+                                checkValue4 == correctAnswer4
+                            ? 'Votre reponse est correct'
+                            : 'Votre reponse est incorrect',
                     style: TextStyle(
-                      color: checkValue5 ? Colors.green : Colors.red,
+                      color: widget.questionModel!.rep5 != 'null'
+                          ? checkValue1 == correctAnswer1 &&
+                                  checkValue2 == correctAnswer2 &&
+                                  checkValue3 == correctAnswer3 &&
+                                  checkValue4 == correctAnswer4 &&
+                                  checkValue5 == correctAnswer5
+                              ? Colors.green
+                              : Colors.red
+                          : checkValue1 == correctAnswer1 &&
+                                  checkValue2 == correctAnswer2 &&
+                                  checkValue3 == correctAnswer3 &&
+                                  checkValue4 == correctAnswer4
+                              ? Colors.green
+                              : Colors.red,
                       fontSize: 14.sp,
                     ),
                   ),
