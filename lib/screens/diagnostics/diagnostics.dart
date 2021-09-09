@@ -33,7 +33,7 @@ class _DiagnosticState extends State<Diagnostic> {
         }
       },
     );
-    AdManager.buildInterAd(2);
+    AdManager.buildInterAd(1);
     super.initState();
   }
 

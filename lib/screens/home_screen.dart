@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
 
       Navigator.of(context).pushNamed(routeFromMessage);
     });
-    AdManager.buildInterAd(2);
+    AdManager.buildInterAd(1);
   }
 
   @override

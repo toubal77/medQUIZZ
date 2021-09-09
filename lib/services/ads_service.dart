@@ -13,7 +13,7 @@ class AdManager {
         adLoadCallback: InterstitialAdLoadCallback(
           onAdLoaded: (InterstitialAd ad) {
             // Keep a reference to the ad so you can show it later.
-            Timer(Duration(minutes: minDure), () => ad.show());
+            Timer(Duration(seconds: minDure), () => ad.show());
           },
           onAdFailedToLoad: (LoadAdError error) {
             print('InterstitialAd failed to load: $error');
