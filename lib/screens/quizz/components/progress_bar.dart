@@ -25,11 +25,6 @@ class _ProgressBarState extends State<ProgressBar> {
       child: GetBuilder<QuestionController>(
         init: QuestionController(),
         builder: (controller) {
-          if ((controller.animation.value * 60).round() == 60) {
-            setState(() {
-              widget.timeOver = true;
-            });
-          }
           return Stack(
             children: [
               // LayoutBuilder provide us the available space for the conatiner
