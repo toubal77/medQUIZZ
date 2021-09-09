@@ -89,6 +89,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                     //  widget.questionModel!.respo1 = true;
                     _incorrect = _incorrect + 1;
                     _notAttempted = _notAttempted - 1;
+                    checkValue1 = false;
                   });
                 }
               } else {
@@ -130,6 +131,8 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                     //  widget.questionModel!.respo1 = true;
                     _incorrect = _incorrect + 1;
                     _notAttempted = _notAttempted - 1;
+
+                    checkValue2 = false;
                   });
                 }
               } else {
@@ -171,6 +174,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                     //  widget.questionModel!.respo1 = true;
                     _incorrect = _incorrect + 1;
                     _notAttempted = _notAttempted - 1;
+                    checkValue3 = false;
                   });
                 }
               } else {
@@ -212,6 +216,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                     //  widget.questionModel!.respo1 = true;
                     _incorrect = _incorrect + 1;
                     _notAttempted = _notAttempted - 1;
+                    checkValue4 = false;
                   });
                 }
               } else {
@@ -255,6 +260,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                       //  widget.questionModel!.respo1 = true;
                       _incorrect = _incorrect + 1;
                       _notAttempted = _notAttempted - 1;
+                      checkValue5 = false;
                     });
                   }
                 } else {
