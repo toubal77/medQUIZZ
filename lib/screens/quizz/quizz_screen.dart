@@ -132,8 +132,8 @@ class _QuizzPlayState extends State<QuizzPlay> {
         height: MediaQuery.of(context).size.height.h,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/background_page.jpeg'),
-            fit: BoxFit.cover,
+            image: AssetImage('assets/login-background.png'),
+            fit: BoxFit.fill,
           ),
         ),
         child: SafeArea(

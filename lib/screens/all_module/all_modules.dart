@@ -57,8 +57,8 @@ class _AllModulesState extends State<AllModules> {
           height: MediaQuery.of(context).size.height.h,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/background_page.jpeg'),
-              fit: BoxFit.cover,
+              image: AssetImage('assets/login-background.png'),
+              fit: BoxFit.fill,
             ),
           ),
           child: Column(
