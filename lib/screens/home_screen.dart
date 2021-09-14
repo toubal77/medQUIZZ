@@ -6,11 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:med_quizz/screens/Q&A/q_a.dart';
-import 'package:med_quizz/screens/all_module/module_screen.dart';
 import 'package:med_quizz/services/ads_service.dart';
 import 'package:med_quizz/utils.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/screens/all_module/all_modules.dart';
 import 'package:med_quizz/screens/diagnostics/diagnostics.dart';
 import 'package:med_quizz/screens/profile/profile_screen.dart';
@@ -88,17 +86,26 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
+            height: MediaQuery.of(context).size.height.h,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/background_page.jpeg'),
-                fit: BoxFit.cover,
+                image: AssetImage('assets/login-background.png'),
+                fit: BoxFit.fill,
               ),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: 100.h,
+                Container(
+                  height: MediaQuery.of(context).size.height.h * 0.23,
+                  width: MediaQuery.of(context).size.width.w,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.3),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(190),
+                      bottomRight: Radius.circular(190),
+                    ),
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -118,14 +125,14 @@ class _HomePageState extends State<HomePage> {
                                 );
                               },
                               icon: Icon(Icons.search),
-                              color: Colors.blue,
+                              color: Colors.white,
                             ),
                             Text(
                               'Med QUIZZ',
                               style: TextStyle(
                                 fontSize: 20.sp,
                                 fontWeight: FontWeight.w500,
-                                color: Colors.blue,
+                                color: Colors.white,
                               ),
                             ),
                             SizedBox(
@@ -143,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                                     },
                                     icon: Icon(
                                       Icons.account_circle,
-                                      color: Colors.blue,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ],
@@ -152,184 +159,80 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 10.h,
+                      Divider(
+                        height: 6,
+                        color: Colors.white,
                       ),
-                      Container(
-                        margin: EdgeInsets.only(left: 10.sp),
-                        child: FutureBuilder<DocumentSnapshot?>(
-                          future: DatabaseMethods().getUserInfo(),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Bonjour',
-                                    style: TextStyle(
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.blue,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5.h,
-                                  ),
-                                  SizedBox(
-                                    width: 220.w,
-                                    child: Text(
-                                      "Doctor ${snapshot.data!['username']}",
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        fontSize: 18.sp,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.blue,
+                      Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Container(
+                              width: 70.w,
+                              height: 70.h,
+                              //margin: EdgeInsets.only(top: 25.sp, bottom: 20),
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      'assets/images/profile_doctor.jpeg'),
+                                  fit: BoxFit.cover,
+                                ),
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(60.sp),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(top: 7.sp),
+                              child: FutureBuilder<DocumentSnapshot?>(
+                                future: DatabaseMethods().getUserInfo(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    return SizedBox(
+                                      width: 120.w,
+                                      child: Text(
+                                        "Doctor ${snapshot.data!['username']}",
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontSize: 18.sp,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return SizedBox(
+                                    child: Shimmer.fromColors(
+                                      baseColor: Colors.white,
+                                      highlightColor: Colors.grey.shade300,
+                                      child: Container(
+                                        width: 120.w,
+                                        height: 20.h,
+                                        margin: const EdgeInsets.only(left: 3),
+                                        color: Colors.white,
                                       ),
                                     ),
-                                  ),
-                                ],
-                              );
-                            }
-                            return Container(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Shimmer.fromColors(
-                                    baseColor: Colors.white,
-                                    highlightColor: Colors.grey.shade300,
-                                    child: Container(
-                                      width: 120.w,
-                                      height: 20.h,
-                                      margin: const EdgeInsets.only(left: 3),
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5.h,
-                                  ),
-                                  Shimmer.fromColors(
-                                    baseColor: Colors.white,
-                                    highlightColor: Colors.grey.shade300,
-                                    child: Container(
-                                      width: 220.w,
-                                      height: 20.h,
-                                      margin: const EdgeInsets.only(left: 3),
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
+                                  );
+                                },
                               ),
-                            );
-                          },
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: 325.h,
+                  height: MediaQuery.of(context).size.height.h * 0.76,
                   child: GridView.count(
                     crossAxisCount: 2,
                     padding: const EdgeInsets.all(8),
-                    mainAxisSpacing: 4.0,
-                    crossAxisSpacing: 4.0,
+                    mainAxisSpacing: 10.0,
+                    crossAxisSpacing: 10.0,
                     children: [
-                      Container(
-                        margin: EdgeInsets.only(
-                            top: 5.sp, bottom: 10.sp, left: 5.sp, right: 5.sp),
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(35.sp),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.blueGrey,
-                              spreadRadius: 1.sp,
-                              blurRadius: 3.sp,
-                              offset: Offset(0.3.sp, 0.3.sp),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                            Icon(
-                              Icons.sports_score,
-                              size: 70.sp,
-                              color: Colors.white,
-                            ),
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                            Text(
-                              'Mes scores',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return Diagnostic();
-                              },
-                            ),
-                          );
-                        },
-                        child: Container(
-                          margin: EdgeInsets.only(
-                              top: 5.sp,
-                              bottom: 10.sp,
-                              left: 5.sp,
-                              right: 5.sp),
-                          decoration: BoxDecoration(
-                            color: Colors.deepPurpleAccent,
-                            borderRadius: BorderRadius.circular(35.sp),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.blueGrey,
-                                spreadRadius: 1.sp,
-                                blurRadius: 3.sp,
-                                offset: Offset(0.3.sp, 0.3.sp),
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                height: 10.h,
-                              ),
-                              Icon(
-                                Icons.sick,
-                                size: 70.sp,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                height: 10.h,
-                              ),
-                              Text(
-                                'Diagnostics',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
                       GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(
@@ -340,49 +243,19 @@ class _HomePageState extends State<HomePage> {
                             ),
                           );
                         },
-                        child: Container(
-                          margin: EdgeInsets.only(
-                              top: 5.sp,
-                              bottom: 10.sp,
-                              left: 5.sp,
-                              right: 5.sp),
-                          decoration: BoxDecoration(
-                            color: Colors.pinkAccent,
-                            borderRadius: BorderRadius.circular(35.sp),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.blueGrey,
-                                spreadRadius: 1.sp,
-                                blurRadius: 3.sp,
-                                offset: Offset(0.3.sp, 0.3.sp),
-                              ),
-                            ],
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50.0),
+                          child: Image.asset(
+                            'assets/images/modules.jpeg',
+                            fit: BoxFit.cover,
                           ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                height: 10.h,
-                              ),
-                              Icon(
-                                Icons.school,
-                                size: 70.sp,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                height: 10.h,
-                              ),
-                              Text(
-                                'Modules',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
+                        ),
+                      ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(50.0),
+                        child: Image.asset(
+                          'assets/images/mesPoints.jpeg',
+                          fit: BoxFit.cover,
                         ),
                       ),
                       GestureDetector(
@@ -395,174 +268,33 @@ class _HomePageState extends State<HomePage> {
                             ),
                           );
                         },
-                        child: Container(
-                          margin: EdgeInsets.only(
-                              top: 5.sp,
-                              bottom: 10.sp,
-                              left: 5.sp,
-                              right: 5.sp),
-                          decoration: BoxDecoration(
-                            color: Colors.purpleAccent,
-                            borderRadius: BorderRadius.circular(35),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.blueGrey,
-                                spreadRadius: 1.sp,
-                                blurRadius: 3.sp,
-                                offset: Offset(0.3.sp, 0.3.sp),
-                              ),
-                            ],
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50.0),
+                          child: Image.asset(
+                            'assets/images/questions.jpeg',
+                            fit: BoxFit.cover,
                           ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                height: 10.h,
-                              ),
-                              Icon(
-                                Icons.question_answer_outlined,
-                                size: 70.sp,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                height: 10.h,
-                              ),
-                              Text(
-                                'Q & A',
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return Diagnostic();
+                              },
+                            ),
+                          );
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50.0),
+                          child: Image.asset(
+                            'assets/images/diagnostics.jpeg',
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
                     ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, bottom: 10),
-                  child: Text(
-                    'Module Populare',
-                    style: TextStyle(
-                      fontSize: 20.sp,
-                      color: Colors.blue,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  height: 250.h,
-                  child: FutureBuilder<List<Modules?>?>(
-                    future: DatabaseMethods().mostPopular(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return ListView.builder(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: snapshot.data!.length,
-                          itemBuilder: (contex, index) {
-                            return GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return ModuleScreen(
-                                          snapshot.data![index]!.nom);
-                                    },
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                margin:
-                                    const EdgeInsets.only(top: 4, right: 23),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20.sp),
-                                ),
-                                height: 235.h,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Stack(
-                                      alignment: Alignment.bottomCenter,
-                                      children: [
-                                        Container(
-                                          width: 315.w,
-                                          height: 220.h,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20.sp),
-                                            image: DecorationImage(
-                                              image: NetworkImage(
-                                                'https://rayanzinotblans.000webhostapp.com/images/${snapshot.data![index]!.image}',
-                                              ),
-                                              fit: BoxFit.cover,
-                                            ),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.grey,
-                                                offset: Offset(0.sp, 2.sp),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        // Positioned(
-                                        //   bottom: 10,
-                                        //   child: Text(
-                                        //     snapshot.data![index]!.nom.toString(),
-                                        //     style: TextStyle(
-                                        //       fontSize: 23,
-                                        //       fontWeight: FontWeight.w800,
-                                        //       letterSpacing: -0.33,
-                                        //       color: Colors.white,
-                                        //     ),
-                                        //     textAlign: TextAlign.center,
-                                        //   ),
-                                        // ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        );
-                      } else {
-                        return Container(
-                          margin: const EdgeInsets.only(top: 4, right: 23),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20.sp),
-                          ),
-                          height: 235.h,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 3,
-                            itemBuilder: (context, index) {
-                              return Shimmer.fromColors(
-                                baseColor: Colors.white,
-                                highlightColor: Colors.grey.shade300,
-                                child: Container(
-                                  width: 315.w,
-                                  height: 220.h,
-                                  margin: const EdgeInsets.only(
-                                      top: 4, right: 23, bottom: 40),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(20.sp),
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                        );
-                      }
-                    },
                   ),
                 ),
               ],
