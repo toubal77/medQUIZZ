@@ -127,12 +127,32 @@ class _HomePageState extends State<HomePage> {
                               icon: Icon(Icons.search),
                               color: Colors.white,
                             ),
-                            Text(
-                              'Med QUIZZ',
-                              style: TextStyle(
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white,
+                            // Text(
+                            //   'Med QUIZZ',
+                            //   style: TextStyle(
+                            //     fontSize: 20.sp,
+                            //     fontWeight: FontWeight.w500,
+                            //     color: Colors.white,
+                            //   ),
+                            // ),
+                            RichText(
+                              text: TextSpan(
+                                text: 'MED',
+                                style: TextStyle(
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.red,
+                                ),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: ' QUIZZ',
+                                    style: TextStyle(
+                                      fontSize: 20.sp,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.green,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             SizedBox(
