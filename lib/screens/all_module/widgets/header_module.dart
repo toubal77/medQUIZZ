@@ -19,7 +19,7 @@ class Header extends StatelessWidget {
               },
               child: Icon(
                 Icons.arrow_back,
-                color: Colors.blue,
+                color: Colors.white,
               ),
             ),
             Center(
@@ -29,7 +29,7 @@ class Header extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w500,
-                  color: Colors.blue,
+                  color: Colors.white,
                 ),
               ),
             ),

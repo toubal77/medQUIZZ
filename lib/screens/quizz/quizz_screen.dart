@@ -157,7 +157,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                               },
                               child: Icon(
                                 Icons.arrow_back,
-                                color: Colors.blue,
+                                color: Colors.white,
                               ),
                             ),
                             Center(
@@ -166,7 +166,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                                 style: TextStyle(
                                   fontSize: 20.sp,
                                   fontWeight: FontWeight.w500,
-                                  color: Colors.blue,
+                                  color: Colors.white,
                                 ),
                               ),
                             ),

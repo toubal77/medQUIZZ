@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/screens/search/search_screen.dart';
+
 class HeaderAllModule extends StatelessWidget {
   const HeaderAllModule({
     Key? key,
@@ -23,14 +24,14 @@ class HeaderAllModule extends StatelessWidget {
                     Navigator.of(context).pop();
                   },
                   icon: Icon(Icons.arrow_back),
-                  color: Colors.blue,
+                  color: Colors.white,
                 ),
                 Text(
                   'All Modules',
                   style: TextStyle(
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w500,
-                    color: Colors.blue,
+                    color: Colors.white,
                   ),
                 ),
                 IconButton(
@@ -44,7 +45,7 @@ class HeaderAllModule extends StatelessWidget {
                     );
                   },
                   icon: Icon(Icons.search),
-                  color: Colors.blue,
+                  color: Colors.white,
                 ),
               ],
             ),

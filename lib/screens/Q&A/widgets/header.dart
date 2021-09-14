@@ -22,14 +22,14 @@ class Header extends StatelessWidget {
                     Navigator.of(context).pop();
                   },
                   icon: Icon(Icons.arrow_back),
-                  color: Colors.blue,
+                  color: Colors.white,
                 ),
                 Text(
                   'Q & A',
                   style: TextStyle(
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w500,
-                    color: Colors.blue,
+                    color: Colors.white,
                   ),
                 ),
                 IconButton(
@@ -43,7 +43,7 @@ class Header extends StatelessWidget {
                     );
                   },
                   icon: Icon(Icons.add),
-                  color: Colors.blue,
+                  color: Colors.white,
                 ),
               ],
             ),

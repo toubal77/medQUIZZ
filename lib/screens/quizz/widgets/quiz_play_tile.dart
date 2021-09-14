@@ -65,7 +65,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             margin: EdgeInsets.symmetric(horizontal: 20.sp),
             child: Text(
               "Q${widget.index + 1}: ${widget.questionModel!.question}",
-              style: TextStyle(fontSize: 18.sp, color: Colors.blue),
+              style: TextStyle(fontSize: 18.sp, color: Colors.white),
             ),
           ),
           SizedBox(
@@ -329,7 +329,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                   Text(
                     'Explication: ' + widget.questionModel!.explication,
                     style: TextStyle(
-                      color: Colors.blue,
+                      color: Colors.white,
                       fontSize: 14.sp,
                     ),
                   ),

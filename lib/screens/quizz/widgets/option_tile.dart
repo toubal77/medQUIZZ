@@ -37,26 +37,26 @@ class _OptionTileState extends State<OptionTile> {
                   color: widget.optionSelected == ''
                       ? widget.validate
                           ? widget.correctAnswer
-                              ? Colors.green.withOpacity(0.7.sp)
-                              : Colors.red.withOpacity(0.7.sp)
+                              ? Colors.green
+                              : Colors.red
                           : Colors.white
                       : widget.validate
                           ? widget.correctAnswer
-                              ? Colors.green.withOpacity(0.7.sp)
-                              : Colors.red.withOpacity(0.7.sp)
+                              ? Colors.green
+                              : Colors.red
                           : Colors.grey.shade700,
                   width: 1.5.w,
                 ),
                 color: widget.optionSelected == ''
                     ? widget.validate
                         ? widget.correctAnswer
-                            ? Colors.green.withOpacity(0.7.sp)
-                            : Colors.red.withOpacity(0.7.sp)
+                            ? Colors.green
+                            : Colors.red
                         : Colors.white
                     : widget.validate
                         ? widget.correctAnswer
-                            ? Colors.green.withOpacity(0.7.sp)
-                            : Colors.red.withOpacity(0.7.sp)
+                            ? Colors.green
+                            : Colors.red
                         : Colors.blueGrey,
                 borderRadius: BorderRadius.circular(24.sp)),
             child: Text(
@@ -81,14 +81,14 @@ class _OptionTileState extends State<OptionTile> {
                 color: widget.optionSelected == ''
                     ? widget.validate
                         ? widget.correctAnswer
-                            ? Colors.green.withOpacity(0.7.sp)
-                            : Colors.red.withOpacity(0.7.sp)
-                        : Colors.blue
+                            ? Colors.green
+                            : Colors.red
+                        : Colors.white
                     : widget.validate
                         ? widget.correctAnswer
-                            ? Colors.green.withOpacity(0.7.sp)
-                            : Colors.red.withOpacity(0.7.sp)
-                        : Colors.grey.shade700,
+                            ? Colors.green
+                            : Colors.red
+                        : Colors.grey.shade400,
               ),
               maxLines: 2,
             ),

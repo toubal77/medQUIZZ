@@ -20,7 +20,7 @@ class HeaderDiag extends StatelessWidget {
               child: SizedBox(
                 child: Icon(
                   Icons.arrow_back,
-                  color: Colors.blue,
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -32,7 +32,7 @@ class HeaderDiag extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w500,
-                  color: Colors.blue,
+                  color: Colors.white,
                 ),
               ),
             ),
