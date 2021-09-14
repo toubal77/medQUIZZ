@@ -25,6 +25,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   TextEditingController suggController = TextEditingController();
   late StreamSubscription subscription;
+  String dropdownValue = '1';
   @override
   void initState() {
     subscription = Connectivity().onConnectivityChanged.listen(
@@ -77,6 +78,122 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           return Settings();
                         },
                       ),
+                    );
+                  },
+                ),
+                ProfileMenu(
+                  'Votre annee',
+                  Icons.settings,
+                  () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Center(
+                                child: Text(
+                                  'Selectionne votre annee:',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                              DropdownButton<String>(
+                                value: dropdownValue,
+                                icon: const Icon(
+                                  Icons.arrow_downward,
+                                  color: Colors.black,
+                                ),
+                                iconSize: 24,
+                                elevation: 16,
+                                style: const TextStyle(color: Colors.black),
+                                underline: Container(
+                                  height: 2,
+                                  color: Colors.black,
+                                ),
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    dropdownValue = newValue!;
+                                  });
+                                },
+                                items: <String>[
+                                  '1',
+                                  '2',
+                                  '3',
+                                  '4',
+                                  '5',
+                                  '6'
+                                ].map<DropdownMenuItem<String>>((String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(
+                                      value,
+                                      style: TextStyle(fontSize: 15),
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                    width: 100.w,
+                                    height: 45.h,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text('Annule'),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 100.w,
+                                    height: 45.h,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          try {
+                                            DatabaseMethods()
+                                                .choiseYears(dropdownValue)
+                                                .then(
+                                              (result) {
+                                                suggController.text = '';
+                                                Navigator.of(context).pop();
+                                              },
+                                            ).catchError(
+                                              (result) {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                        'field to send years select'),
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          } catch (e) {
+                                            return print(e.toString());
+                                          }
+                                        },
+                                        child: Text("send"),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        );
+                      },
                     );
                   },
                 ),

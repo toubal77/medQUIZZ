@@ -62,6 +62,23 @@ class DatabaseMethods {
     }
   }
 
+  Future choiseYears(String years) async {
+    try {
+      String? userId = AuthService().getUserId;
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .update({
+            'time': DateTime.now().toIso8601String(),
+            'years': years,
+          })
+          .then((value) => print('send suggestion with seccus'))
+          .catchError((value) => print('send suggestion field ' + value));
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   Future addDocumentUser(User user, String username) async {
     user.getIdToken().then((String token) async {
       print('The user ID token is' + token);
