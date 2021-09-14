@@ -11,31 +11,22 @@ class InfoUser extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          width: 110.w,
-          height: 110.h,
-          margin: EdgeInsets.only(top: 25.sp, bottom: 20),
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/profile_doctor.jpeg'),
-              fit: BoxFit.cover,
-            ),
-            color: Colors.blue,
-            borderRadius: BorderRadius.circular(60.sp),
-          ),
+        SizedBox(
+          height: 15.h,
         ),
         FutureBuilder<DocumentSnapshot?>(
           future: DatabaseMethods().getUserInfo(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     snapshot.data!['username'],
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w500,
-                      color: Colors.blue,
+                      color: Colors.white,
                     ),
                   ),
                   SizedBox(
@@ -46,9 +37,21 @@ class InfoUser extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w500,
-                      color: Colors.blue,
+                      color: Colors.white,
                     ),
                   ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  if (snapshot.data!['years'] != 'null')
+                    Text(
+                      "annee: ${snapshot.data!['years']} éme année",
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
+                    ),
                 ],
               );
             }
@@ -82,7 +85,7 @@ class InfoUser extends StatelessWidget {
           },
         ),
         SizedBox(
-          height: 5.h,
+          height: 15.h,
         ),
       ],
     );

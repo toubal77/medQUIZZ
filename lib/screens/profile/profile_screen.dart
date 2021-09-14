@@ -82,8 +82,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   },
                 ),
                 ProfileMenu(
-                  'Votre annee',
-                  Icons.settings,
+                  'Année universitaire',
+                  Icons.cabin,
                   () {
                     showDialog(
                       context: context,

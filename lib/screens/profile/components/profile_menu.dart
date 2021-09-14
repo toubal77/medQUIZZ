@@ -26,7 +26,7 @@ class ProfileMenu extends StatelessWidget {
           children: <Widget>[
             Icon(
               icon,
-              color: Colors.blue,
+              color: Colors.white,
             ),
             SizedBox(
               width: 20.0.w,
@@ -35,13 +35,13 @@ class ProfileMenu extends StatelessWidget {
               child: Text(
                 title,
                 style: const TextStyle(
-                  color: Colors.blue,
+                  color: Colors.white,
                 ),
               ),
             ),
             Icon(
               Icons.arrow_forward_ios,
-              color: Colors.blue,
+              color: Colors.white,
             ),
           ],
         ),

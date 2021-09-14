@@ -90,6 +90,7 @@ class DatabaseMethods {
             'email': user.email,
             'username': username,
             'token': token,
+            'years': 'null',
           })
           .then((value) => print("document user added : users : $user"))
           .catchError((error) => print("Failed to add document : $error"));
