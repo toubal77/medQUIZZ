@@ -65,6 +65,23 @@ class _AllModulesState extends State<AllModules> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               HeaderAllModule(),
+              Container(
+                height: 30.h,
+                margin: const EdgeInsets.only(right: 20, left: 20, bottom: 20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white,
+                ),
+                child: Center(
+                  child: Text(
+                    '1ere annee medecine',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
               Expanded(
                 child: FutureBuilder<List<Modules?>?>(
                   future: DatabaseMethods().getModules(),
