@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:med_quizz/screens/Q&A/detail_Q&A/widgets/time_name.dart';
 import 'package:med_quizz/screens/Q&A/widgets/build_image_user.dart';
-import 'package:med_quizz/screens/Q&A/widgets/time_name_pop.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class HeaderPostDetail extends StatelessWidget {
@@ -16,7 +16,7 @@ class HeaderPostDetail extends StatelessWidget {
         SizedBox(
           width: 7.w,
         ),
-        TimeNamePost(
+        TimeNamePostDetail(
           post['username'],
           timeago.format(
             DateTime.parse(

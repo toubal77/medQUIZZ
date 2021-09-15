@@ -171,14 +171,14 @@ class _DetailQAState extends State<DetailQA> {
                           widget.posts['message'],
                           style: TextStyle(
                             fontSize: 14.sp,
-                            color: Colors.black,
+                            color: Colors.white,
                           ),
                         ),
                       ),
                       if (widget.posts['url'] != '')
                         Container(
                           width: MediaQuery.of(context).size.width.w,
-                          height: 200,
+                          height: 400,
                           margin: EdgeInsets.only(top: 5.sp, bottom: 12.sp),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.sp),
