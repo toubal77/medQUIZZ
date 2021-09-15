@@ -41,7 +41,7 @@ class ModuleScreen extends StatelessWidget {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) {
-                        return QuizzPlay();
+                        return QuizzPlay(title);
                       },
                     ),
                   );

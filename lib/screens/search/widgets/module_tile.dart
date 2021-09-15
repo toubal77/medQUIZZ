@@ -13,7 +13,7 @@ class ModuleTileSearch extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return QuizzPlay();
+              return QuizzPlay(mod!.nom);
             },
           ),
         );

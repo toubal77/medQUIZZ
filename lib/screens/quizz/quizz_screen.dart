@@ -11,7 +11,8 @@ import 'package:med_quizz/services/database.dart';
 import 'package:med_quizz/utils.dart';
 
 class QuizzPlay extends StatefulWidget {
-  const QuizzPlay({Key? key}) : super(key: key);
+  final String title;
+  QuizzPlay(this.title);
 
   @override
   _QuizzPlayState createState() => _QuizzPlayState();
@@ -294,7 +295,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: ProgressBar(timeOver),
+                          child: ProgressBar(timeOver, widget.title),
                         ),
                         SizedBox(
                           height: 10.h,
