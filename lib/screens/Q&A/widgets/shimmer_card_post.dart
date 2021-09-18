@@ -13,9 +13,9 @@ class ShimmerCardPost extends StatelessWidget {
         margin: const EdgeInsets.only(right: 20, left: 20),
         child: ListView.builder(
           shrinkWrap: true,
-          itemCount: 3,
+          itemCount: 8,
           itemBuilder: (context, index) {
-            int numm = Random().nextInt(3);
+            int numm = Random().nextInt(8);
             return Shimmer.fromColors(
               baseColor: Colors.white,
               highlightColor: Colors.grey.shade300,
