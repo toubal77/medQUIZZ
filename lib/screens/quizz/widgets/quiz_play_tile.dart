@@ -102,7 +102,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
               option: "A",
               answer: widget.questionModel!.rep1, // la question
               correctAnswer: correctAnswer1, // la reponse
-              optionSelected: optionSelected1, //est ce que ca ete selectione
+              optionSelected: optionSelected1, //est ce que ca ete selectionne
               validate: widget.validate,
             ),
           ),
