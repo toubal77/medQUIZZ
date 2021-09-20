@@ -62,8 +62,15 @@ class DatabaseMethods {
     }
   }
 
+  Future<String?> getYearsUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('years')!;
+  }
+
   Future choiseYears(String years) async {
     try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('years', years);
       String? userId = AuthService().getUserId;
       await FirebaseFirestore.instance
           .collection('users')
@@ -202,10 +209,15 @@ class DatabaseMethods {
 
   Future<List<Modules?>?> getModules() async {
     List<Modules?> list = [];
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? years = prefs.getString('years');
     try {
+      print(years);
       final url =
           Uri.parse('https://rayanzinotblans.000webhostapp.com/get_module.php');
-      final response = await http.get(url);
+      final response = await http.post(url, body: {
+        'years': years,
+      });
       if (response.statusCode == 200) {
         print('seccus get module');
         final data = json.decode(response.body);

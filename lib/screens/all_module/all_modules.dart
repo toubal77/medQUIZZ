@@ -73,12 +73,21 @@ class _AllModulesState extends State<AllModules> {
                   color: Colors.white,
                 ),
                 child: Center(
-                  child: Text(
-                    '1ere annee medecine',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  child: FutureBuilder<String?>(
+                    future: DatabaseMethods().getYearsUser(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData)
+                        return Text(
+                          snapshot.data.toString() == '1'
+                              ? 'première année'
+                              : '${snapshot.data.toString()} ere année medecine',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        );
+                      return CircularProgressIndicator();
+                    },
                   ),
                 ),
               ),
