@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_quizz/models/questions.dart';
+import 'package:med_quizz/screens/quizz/quizz_screen.dart';
 import 'package:med_quizz/screens/quizz/widgets/option_tile.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,11 +19,6 @@ class QuizPlayTile extends StatefulWidget {
   _QuizPlayTileState createState() => _QuizPlayTileState();
 }
 
-int _correct = 0;
-int _incorrect = 0;
-int _notAttempted = 0;
-int total = 0;
-
 class _QuizPlayTileState extends State<QuizPlayTile> {
   @override
   void initState() {
@@ -31,10 +27,6 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
     correctAnswer3 = widget.questionModel!.respo3 == 'true' ? true : false;
     correctAnswer4 = widget.questionModel!.respo4 == 'true' ? true : false;
     correctAnswer5 = widget.questionModel!.respo5 == 'true' ? true : false;
-    _correct = 0;
-    _incorrect = 0;
-    _notAttempted = 0;
-    total = 0;
     super.initState();
   }
 
@@ -55,6 +47,33 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
   bool checkValue3 = false;
   bool checkValue4 = false;
   bool checkValue5 = false;
+  bool checkQuestion5() {
+    if (checkValue1 == correctAnswer1 &&
+        checkValue2 == correctAnswer2 &&
+        checkValue3 == correctAnswer3 &&
+        checkValue4 == correctAnswer4 &&
+        checkValue5 == correctAnswer5) {
+      Calculate.onChnageCorrect();
+      return true;
+    } else {
+      Calculate.onChnageIncorrect();
+      return false;
+    }
+  }
+
+  bool checkQuestion4() {
+    if (checkValue1 == correctAnswer1 &&
+        checkValue2 == correctAnswer2 &&
+        checkValue3 == correctAnswer3 &&
+        checkValue4 == correctAnswer4) {
+      Calculate.onChnageCorrect();
+      return true;
+    } else {
+      Calculate.onChnageIncorrect();
+      return false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -79,16 +98,12 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                   setState(() {
                     optionSelected1 = widget.questionModel!.rep1;
                     //  widget.questionModel!.respo1 = true;
-                    _correct = _correct + 1;
-                    _notAttempted = _notAttempted + 1;
                     checkValue1 = true;
                   });
                 } else {
                   setState(() {
                     optionSelected1 = widget.questionModel!.rep1;
                     //  widget.questionModel!.respo1 = true;
-                    _incorrect = _incorrect + 1;
-                    _notAttempted = _notAttempted - 1;
                     checkValue1 = false;
                   });
                 }
@@ -121,17 +136,12 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                   setState(() {
                     optionSelected2 = widget.questionModel!.rep2;
                     //  widget.questionModel!.respo1 = true;
-                    _correct = _correct + 1;
-                    _notAttempted = _notAttempted + 1;
                     checkValue2 = true;
                   });
                 } else {
                   setState(() {
                     optionSelected2 = widget.questionModel!.rep2;
                     //  widget.questionModel!.respo1 = true;
-                    _incorrect = _incorrect + 1;
-                    _notAttempted = _notAttempted - 1;
-
                     checkValue2 = false;
                   });
                 }
@@ -164,16 +174,12 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                   setState(() {
                     optionSelected3 = widget.questionModel!.rep3;
                     //  widget.questionModel!.respo1 = true;
-                    _correct = _correct + 1;
-                    _notAttempted = _notAttempted + 1;
                     checkValue3 = true;
                   });
                 } else {
                   setState(() {
                     optionSelected3 = widget.questionModel!.rep3;
                     //  widget.questionModel!.respo1 = true;
-                    _incorrect = _incorrect + 1;
-                    _notAttempted = _notAttempted - 1;
                     checkValue3 = false;
                   });
                 }
@@ -206,16 +212,12 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                   setState(() {
                     optionSelected4 = widget.questionModel!.rep4;
                     //  widget.questionModel!.respo1 = true;
-                    _correct = _correct + 1;
-                    _notAttempted = _notAttempted + 1;
                     checkValue4 = true;
                   });
                 } else {
                   setState(() {
                     optionSelected4 = widget.questionModel!.rep4;
                     //  widget.questionModel!.respo1 = true;
-                    _incorrect = _incorrect + 1;
-                    _notAttempted = _notAttempted - 1;
                     checkValue4 = false;
                   });
                 }
@@ -250,16 +252,12 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                     setState(() {
                       optionSelected5 = widget.questionModel!.rep5;
                       //  widget.questionModel!.respo1 = true;
-                      _correct = _correct + 1;
-                      _notAttempted = _notAttempted + 1;
                       checkValue5 = true;
                     });
                   } else {
                     setState(() {
                       optionSelected5 = widget.questionModel!.rep5;
                       //  widget.questionModel!.respo1 = true;
-                      _incorrect = _incorrect + 1;
-                      _notAttempted = _notAttempted - 1;
                       checkValue5 = false;
                     });
                   }
@@ -292,17 +290,10 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                 children: [
                   Text(
                     widget.questionModel!.rep5 != 'null'
-                        ? checkValue1 == correctAnswer1 &&
-                                checkValue2 == correctAnswer2 &&
-                                checkValue3 == correctAnswer3 &&
-                                checkValue4 == correctAnswer4 &&
-                                checkValue5 == correctAnswer5
+                        ? checkQuestion5()
                             ? 'Votre reponse est correct'
                             : 'Votre reponse est incorrect'
-                        : checkValue1 == correctAnswer1 &&
-                                checkValue2 == correctAnswer2 &&
-                                checkValue3 == correctAnswer3 &&
-                                checkValue4 == correctAnswer4
+                        : checkQuestion4()
                             ? 'Votre reponse est correct'
                             : 'Votre reponse est incorrect',
                     style: TextStyle(

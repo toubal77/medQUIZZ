@@ -6,9 +6,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/models/questions.dart';
 import 'package:med_quizz/screens/home_screen.dart';
 import 'package:med_quizz/screens/quizz/components/progress_bar.dart';
+import 'package:med_quizz/screens/quizz/score_quizz_screen.dart';
 import 'package:med_quizz/screens/quizz/widgets/quiz_play_tile.dart';
 import 'package:med_quizz/services/database.dart';
 import 'package:med_quizz/utils.dart';
+
+int correct = 0;
+int incorrect = 0;
 
 class QuizzPlay extends StatefulWidget {
   final String title;
@@ -25,6 +29,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
   late StreamSubscription subscription;
   @override
   void initState() {
+    Calculate.restart();
     subscription = Connectivity().onConnectivityChanged.listen(
       (event) {
         if (event == ConnectivityResult.none) {
@@ -248,6 +253,13 @@ class _QuizzPlayState extends State<QuizzPlay> {
                                           validate = true;
                                         });
                                         Navigator.of(context).pop();
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (context) {
+                                              return ScoreQuizzScreen();
+                                            },
+                                          ),
+                                        );
                                       },
                                       child: Text("confirmer"),
                                     ),
@@ -319,5 +331,32 @@ class _QuizzPlayState extends State<QuizzPlay> {
         ],
       ),
     );
+  }
+}
+
+class Calculate {
+  static onChnageCorrect() {
+    correct += 1;
+    print('correct ${correct.toString()}');
+  }
+
+  static onChnageIncorrect() {
+    incorrect += 1;
+    print('incorrect ${incorrect.toString()}');
+  }
+
+  static restart() {
+    correct = 0;
+    incorrect = 0;
+  }
+
+  static get correctTotal {
+    print('correct total ${correct.toString()}');
+    return correct;
+  }
+
+  static get incorrectTotal {
+    print('incorrect total ${correct.toString()}');
+    return incorrect;
   }
 }

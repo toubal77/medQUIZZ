@@ -1,28 +1,47 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:med_quizz/screens/quizz/quizz_screen.dart';
 
-class ScoreQuizzScreen extends StatelessWidget {
-  final int correct;
-  final int incorrect;
-  final int total;
-  ScoreQuizzScreen(this.correct, this.incorrect, this.total);
+class ScoreQuizzScreen extends StatefulWidget {
+  @override
+  State<ScoreQuizzScreen> createState() => _ScoreQuizzScreenState();
+}
+
+class _ScoreQuizzScreenState extends State<ScoreQuizzScreen> {
+  bool loading = true;
+  @override
+  void initState() {
+    Timer(
+      Duration(milliseconds: 700),
+      () {
+        setState(() => loading = false);
+      },
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('sCORE'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text('coucoucouc'),
-            Text('correct: ${correct.toString()}'),
-            Text('incorrect: ${incorrect.toString()}'),
-            Text('total: ${total.toString()}'),
-          ],
-        ),
-      ),
+      body: !loading
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text('coucoucouc'),
+                  Text('correct: ${Calculate.correctTotal.toString()}'),
+                  Text('incorrect: ${Calculate.incorrectTotal.toString()}'),
+                  Text('total: 20'),
+                ],
+              ),
+            )
+          : Center(
+              child: CircularProgressIndicator(),
+            ),
     );
   }
 }
