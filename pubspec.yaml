@@ -74,7 +74,8 @@ flutter:
     - assets/images/diagnostics.jpeg
     - assets/images/mesPoints.jpeg
     - assets/images/modules.jpeg
-    - assets/images/questions.jpeg
+    - assets/images/modules.jpeg
+    - assets/images/trophe.jpeg
     - assets/images/background_page.jpeg
   #   - images/a_dot_ham.jpeg
 

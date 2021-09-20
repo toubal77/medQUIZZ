@@ -1,5 +1,8 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/screens/quizz/quizz_screen.dart';
 
 class ScoreQuizzScreen extends StatefulWidget {
@@ -23,20 +26,202 @@ class _ScoreQuizzScreenState extends State<ScoreQuizzScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('sCORE'),
-      ),
+      // appBar: AppBar(
+      //   title: Text('sCORE'),
+      // ),
       body: !loading
-          ? Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text('coucoucouc'),
-                  Text('correct: ${Calculate.correctTotal.toString()}'),
-                  Text('incorrect: ${Calculate.incorrectTotal.toString()}'),
-                  Text('total: 20'),
-                ],
+          ? SingleChildScrollView(
+              child: SafeArea(
+                child: Container(
+                  height: MediaQuery.of(context).size.height.h * 0.76,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/login-background.png'),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        right: 10, left: 10, top: 4, bottom: 8),
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(top: 15, bottom: 15),
+                          alignment: Alignment.topCenter,
+                          child: Text(
+                            'Résultats de mon quizz',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width.w,
+                          margin: const EdgeInsets.only(bottom: 20),
+                          height: 230.h,
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            image: DecorationImage(
+                              image: AssetImage('assets/images/trophe.jpeg'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  height: 140.h,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.white,
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Icon(
+                                        Icons.home_repair_service_rounded,
+                                        color: Colors.red,
+                                        size: 70,
+                                      ),
+                                      Text(
+                                        '${Calculate.correctTotal.toString()}/10',
+                                        style: TextStyle(
+                                          fontSize: 20.sp,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 20.w,
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: 140.h,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.white,
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Icon(
+                                        Icons.timelapse,
+                                        size: 70,
+                                        color: Colors.red,
+                                      ),
+                                      Text(
+                                        '45 S',
+                                        style: TextStyle(
+                                          fontSize: 20.sp,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(
+                              left: 10, right: 10, top: 7, bottom: 7),
+                          decoration: BoxDecoration(
+                            color: Colors.greenAccent,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Correct',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                '${Calculate.correctTotal.toString()}/10',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(
+                              left: 10, right: 10, top: 7, bottom: 7),
+                          decoration: BoxDecoration(
+                            color: Colors.redAccent,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Incorrect',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                '${Calculate.incorrectTotal.toString()}/10',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width.w * 0.5,
+                          height: 40.h,
+                          margin: const EdgeInsets.only(top: 15),
+                          color: Colors.white,
+                          alignment: Alignment.center,
+                          child: ElevatedButton(
+                              onPressed: () {
+                                Calculate.restart();
+                                Navigator.of(context).pop();
+                              },
+                              child: Center(
+                                  child: Text(
+                                'Retour',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ))),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             )
           : Center(
