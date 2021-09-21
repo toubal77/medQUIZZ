@@ -107,6 +107,7 @@ class DatabaseMethods {
   Future<void> updateTokenUser(User user) async {
     user.getIdToken().then((String token) async {
       print('The user ID token is ' + token);
+      getYearsFromDatabase(user);
       await FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)
@@ -117,6 +118,17 @@ class DatabaseMethods {
           .catchError(
               (error) => print("Failed to update token user info: $error"));
     });
+  }
+
+  Future<void> getYearsFromDatabase(User user) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final snapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .get();
+    String yearsUser = snapshot.data()!['years'];
+
+    prefs.setString('years', yearsUser);
   }
 
   Future sendPost(String message, File? urlImage) async {
