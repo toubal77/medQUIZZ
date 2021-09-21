@@ -24,7 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   TextEditingController suggController = TextEditingController();
   late StreamSubscription subscription;
-  String dropdownValue = '1';
+  String? dropdownValue = '1';
   @override
   void initState() {
     subscription = Connectivity().onConnectivityChanged.listen(
@@ -105,40 +105,56 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                               ),
-                              DropdownButton<String>(
-                                value: dropdownValue,
-                                icon: const Icon(
-                                  Icons.arrow_downward,
-                                  color: Colors.black,
-                                ),
-                                iconSize: 24,
-                                elevation: 16,
-                                style: const TextStyle(color: Colors.black),
-                                underline: Container(
-                                  height: 2,
-                                  color: Colors.black,
-                                ),
-                                onChanged: (String? newValue) {
-                                  setState(() {
-                                    dropdownValue = newValue!;
-                                  });
+                              FutureBuilder<String?>(
+                                future: DatabaseMethods().getYearsUser(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    if (snapshot.data == null) {
+                                      dropdownValue = '1';
+                                    } else {
+                                      dropdownValue = snapshot.data!;
+                                    }
+                                    DropdownButton<String?>(
+                                      value: dropdownValue,
+                                      icon: const Icon(
+                                        Icons.arrow_downward,
+                                        color: Colors.black,
+                                      ),
+                                      iconSize: 24,
+                                      elevation: 16,
+                                      style:
+                                          const TextStyle(color: Colors.black),
+                                      underline: Container(
+                                        height: 2,
+                                        color: Colors.black,
+                                      ),
+                                      onChanged: (String? newValue) {
+                                        setState(() {
+                                          dropdownValue = newValue!;
+                                        });
+                                      },
+                                      items: <String?>[
+                                        '1',
+                                        '2',
+                                        '3',
+                                        '4',
+                                        '5',
+                                        '6'
+                                      ].map<DropdownMenuItem<String?>>(
+                                        (String? value) {
+                                          return DropdownMenuItem<String?>(
+                                            value: value,
+                                            child: Text(
+                                              value!,
+                                              style: TextStyle(fontSize: 15),
+                                            ),
+                                          );
+                                        },
+                                      ).toList(),
+                                    );
+                                  }
+                                  return CircularProgressIndicator();
                                 },
-                                items: <String>[
-                                  '1',
-                                  '2',
-                                  '3',
-                                  '4',
-                                  '5',
-                                  '6'
-                                ].map<DropdownMenuItem<String>>((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(
-                                      value,
-                                      style: TextStyle(fontSize: 15),
-                                    ),
-                                  );
-                                }).toList(),
                               ),
                               Row(
                                 mainAxisAlignment:
@@ -166,7 +182,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         onPressed: () {
                                           try {
                                             DatabaseMethods()
-                                                .choiseYears(dropdownValue)
+                                                .choiseYears(dropdownValue!)
                                                 .then(
                                               (result) {
                                                 suggController.text = '';
