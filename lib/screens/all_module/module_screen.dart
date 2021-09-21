@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:med_quizz/screens/all_module/widgets/header_module.dart';
 import 'package:med_quizz/screens/quizz/quizz_screen.dart';
 import 'package:med_quizz/services/ads_service.dart';
+import 'package:med_quizz/services/auth.dart';
 
 class ModuleScreen extends StatelessWidget {
   final String title;
@@ -88,6 +90,34 @@ class ModuleScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+              ),
+              StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection('scores')
+                    .doc(AuthService().getUserId)
+                    .collection('module')
+                    .where('module', isEqualTo: title.toString())
+                    .snapshots(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData)
+                    return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: snapshot.data.docs.length,
+                        itemBuilder: (context, index) {
+                          return snapshot.data.docs.length > 0
+                              ? Container(
+                                  height: 30,
+                                  child: Center(child: Text('cou cou')),
+                                )
+                              : Container(
+                                  height: 30,
+                                  child: Center(child: Text('empty')),
+                                );
+                        });
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
               ),
             ],
           ),

@@ -280,7 +280,8 @@ class DatabaseMethods {
     await FirebaseFirestore.instance
         .collection('scores')
         .doc(AuthService().getUserId)
-        .set({
+        .collection('modules')
+        .add({
           'correct': correct,
           'incorrect': incorrect,
           'module': module,
