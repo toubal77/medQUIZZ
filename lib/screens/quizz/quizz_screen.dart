@@ -256,7 +256,8 @@ class _QuizzPlayState extends State<QuizzPlay> {
                                         Navigator.of(context).push(
                                           MaterialPageRoute(
                                             builder: (context) {
-                                              return ScoreQuizzScreen();
+                                              return ScoreQuizzScreen(
+                                                  widget.title);
                                             },
                                           ),
                                         );

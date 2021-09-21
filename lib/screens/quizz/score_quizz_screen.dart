@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/screens/quizz/quizz_screen.dart';
+import 'package:med_quizz/services/database.dart';
 
 class ScoreQuizzScreen extends StatefulWidget {
+  final String title;
+  ScoreQuizzScreen(this.title);
   @override
   State<ScoreQuizzScreen> createState() => _ScoreQuizzScreenState();
 }
@@ -17,7 +20,11 @@ class _ScoreQuizzScreenState extends State<ScoreQuizzScreen> {
     Timer(
       Duration(milliseconds: 700),
       () {
-        setState(() => loading = false);
+        setState(() {
+          loading = false;
+          DatabaseMethods().sendScore(Calculate.correctTotal.toString(),
+              Calculate.incorrectTotal.toString(), widget.title);
+        });
       },
     );
     super.initState();

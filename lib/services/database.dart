@@ -274,6 +274,23 @@ class DatabaseMethods {
     }
   }
 
+  Future sendScore(String correct, String incorrect, String module) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? annee = prefs.getString('years');
+    await FirebaseFirestore.instance
+        .collection('scores')
+        .doc(AuthService().getUserId)
+        .set({
+          'correct': correct,
+          'incorrect': incorrect,
+          'module': module,
+          'annee': annee,
+          'time': DateTime.now().toIso8601String(),
+        })
+        .then((value) => print("Score Data added with seccus"))
+        .catchError((error) => print("Failed score Data"));
+  }
+
   Future updateView(String idMod) async {
     try {
       final url = Uri.parse(
