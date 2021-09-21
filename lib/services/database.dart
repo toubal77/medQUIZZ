@@ -86,7 +86,7 @@ class DatabaseMethods {
     }
   }
 
-  Future addDocumentUser(User user, String username) async {
+  Future addDocumentUser(User user, String username, String years) async {
     user.getIdToken().then((String token) async {
       print('The user ID token is' + token);
       await FirebaseFirestore.instance
@@ -97,7 +97,7 @@ class DatabaseMethods {
             'email': user.email,
             'username': username,
             'token': token,
-            'years': 'null',
+            'years': years,
           })
           .then((value) => print("document user added : users : $user"))
           .catchError((error) => print("Failed to add document : $error"));

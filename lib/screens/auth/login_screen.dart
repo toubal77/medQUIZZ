@@ -21,6 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController nameController = TextEditingController();
   AuthMode _authMode = AuthMode.login;
   bool _isLoading = false;
+  String dropdownValue = '1';
   late StreamSubscription subscription;
   @override
   void initState() {
@@ -99,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
       } else {
         await AuthService()
             .signUpEmailPassword(emailController.text, passwordController.text,
-                nameController.text)
+                nameController.text, dropdownValue)
             .then(
           (result) async {
             if (result != null) {
@@ -220,6 +221,41 @@ class _LoginScreenState extends State<LoginScreen> {
                 onSaved: (value) {
                   nameController.text = value!;
                 },
+              ),
+            if (_authMode == AuthMode.signup)
+              SizedBox(
+                width: MediaQuery.of(context).size.width.h,
+                child: DropdownButton<String>(
+                  value: dropdownValue,
+                  alignment: AlignmentDirectional.center,
+                  icon: const Icon(
+                    Icons.arrow_downward,
+                    color: Colors.black,
+                  ),
+                  iconSize: 24,
+                  elevation: 16,
+                  style: const TextStyle(color: Colors.black),
+                  underline: Container(
+                    height: 2,
+                    color: Colors.grey,
+                  ),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownValue = newValue!;
+                    });
+                  },
+                  items: <String>['1', '2', '3', '4', '5', '6']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      alignment: AlignmentDirectional.center,
+                      child: Text(
+                        value,
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    );
+                  }).toList(),
+                ),
               ),
             TextFormField(
               controller: emailController,

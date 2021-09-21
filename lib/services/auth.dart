@@ -54,6 +54,7 @@
 // }
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:med_quizz/services/database.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthUser {
   const AuthUser({
@@ -91,13 +92,14 @@ class AuthService {
   }
 
   Future signUpEmailPassword(
-      String email, String password, String username) async {
+      String email, String password, String username, String years) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User? user = result.user;
-
-      DatabaseMethods().addDocumentUser(user!, username);
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('years', years);
+      DatabaseMethods().addDocumentUser(user!, username, years);
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
