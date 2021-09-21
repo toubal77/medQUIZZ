@@ -8,6 +8,7 @@ import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/screens/search/widgets/module_tile.dart';
 import 'package:med_quizz/screens/search/widgets/shimmer_module_tile.dart';
 import 'package:med_quizz/utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -27,10 +28,14 @@ class _SearchScreenState extends State<SearchScreen> {
       isLoading = true;
     });
     _list.clear();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? years = prefs.getString('years');
     try {
       final url =
           Uri.parse('https://rayanzinotblans.000webhostapp.com/get_module.php');
-      final response = await http.get(url);
+      final response = await http.post(url, body: {
+        'years': years,
+      });
       if (response.statusCode == 200) {
         print('seccus get module');
         final data = json.decode(response.body);
@@ -169,7 +174,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 shrinkWrap: true,
                 itemCount: _search.length,
                 itemBuilder: (context, index) {
-                  return _search.isEmpty
+                  return _search.length != 0
                       ? ModuleTileSearch(_search[index])
                       : ShimmerModuleTileSearch();
                 },
