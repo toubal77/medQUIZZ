@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_quizz/models/modules.dart';
+import 'package:med_quizz/screens/all_module/module_screen.dart';
 import 'package:med_quizz/screens/quizz/quizz_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,7 +14,7 @@ class ModuleTileSearch extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return QuizzPlay(mod!.nom);
+              return ModuleScreen(mod!.nom);
             },
           ),
         );
