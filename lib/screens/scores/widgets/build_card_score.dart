@@ -4,7 +4,8 @@ import 'package:timeago/timeago.dart' as timeago;
 
 class BuildCardScore extends StatelessWidget {
   final score;
-  BuildCardScore(this.score);
+  final bool show;
+  BuildCardScore(this.score, this.show);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,11 +16,13 @@ class BuildCardScore extends StatelessWidget {
       ),
       child: ListTile(
         title: Text(
-          score['correct'] <= 5
-              ? 'insuffisant'
-              : score['correct'] <= 7
-                  ? 'acceptable'
-                  : 'excellent',
+          !show
+              ? score['correct'] <= 5
+                  ? 'insuffisant'
+                  : score['correct'] <= 7
+                      ? 'acceptable'
+                      : 'excellent'
+              : score['module'],
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w700,
@@ -27,11 +30,17 @@ class BuildCardScore extends StatelessWidget {
           ),
         ),
         subtitle: Text(
-          timeago.format(
-            DateTime.parse(
-              score['time'].toString(),
-            ),
-          ),
+          !show
+              ? timeago.format(
+                  DateTime.parse(
+                    score['time'].toString(),
+                  ),
+                )
+              : score['correct'] <= 5
+                  ? 'insuffisant'
+                  : score['correct'] <= 7
+                      ? 'acceptable'
+                      : 'excellent',
           style: TextStyle(
             fontSize: 15,
             color: Colors.grey,

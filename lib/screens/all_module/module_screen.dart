@@ -4,9 +4,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:med_quizz/screens/all_module/widgets/header_module.dart';
-import 'package:med_quizz/screens/all_module/widgets/shimmer_card_score.dart';
+import 'package:med_quizz/screens/scores/widgets/shimmer_card_score.dart';
 import 'package:med_quizz/screens/quizz/quizz_screen.dart';
-import 'package:med_quizz/screens/all_module/widgets/build_card_score.dart';
+import 'package:med_quizz/screens/scores/widgets/build_card_score.dart';
 import 'package:med_quizz/services/ads_service.dart';
 import 'package:med_quizz/services/auth.dart';
 
@@ -110,7 +110,8 @@ class ModuleScreen extends StatelessWidget {
                           itemCount: snapshot.data.docs.length,
                           itemBuilder: (context, index) {
                             return snapshot.data.docs.length > 0
-                                ? BuildCardScore(snapshot.data.docs[index])
+                                ? BuildCardScore(
+                                    snapshot.data.docs[index], false)
                                 : Container(
                                     height: 30,
                                     child: Center(child: Text('empty')),
