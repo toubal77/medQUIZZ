@@ -4,11 +4,11 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:med_quizz/screens/all_module/widgets/header_module.dart';
+import 'package:med_quizz/screens/all_module/widgets/shimmer_card_score.dart';
 import 'package:med_quizz/screens/quizz/quizz_screen.dart';
+import 'package:med_quizz/screens/all_module/widgets/build_card_score.dart';
 import 'package:med_quizz/services/ads_service.dart';
 import 'package:med_quizz/services/auth.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:timeago/timeago.dart' as timeago;
 
 class ModuleScreen extends StatelessWidget {
   final String title;
@@ -110,88 +110,13 @@ class ModuleScreen extends StatelessWidget {
                           itemCount: snapshot.data.docs.length,
                           itemBuilder: (context, index) {
                             return snapshot.data.docs.length > 0
-                                ? Container(
-                                    margin: EdgeInsets.all(8.sp),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius:
-                                          BorderRadius.circular(25.sp),
-                                    ),
-                                    child: ListTile(
-                                      title: Text(
-                                        snapshot.data.docs[index]['correct'] <=
-                                                5
-                                            ? 'insuffisant'
-                                            : snapshot.data.docs[index]
-                                                        ['correct'] <=
-                                                    7
-                                                ? 'acceptable'
-                                                : 'excellent',
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w700,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                      subtitle: Text(
-                                        timeago.format(
-                                          DateTime.parse(
-                                            snapshot.data.docs[index]['time']
-                                                .toString(),
-                                          ),
-                                        ),
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                      trailing: Text(
-                                        "${snapshot.data.docs[index]['correct']}/10",
-                                        style: TextStyle(
-                                          color: snapshot.data.docs[index]
-                                                      ['correct'] <=
-                                                  5
-                                              ? Colors.red
-                                              : snapshot.data.docs[index]
-                                                          ['correct'] <=
-                                                      7
-                                                  ? Colors.orange
-                                                  : Colors.green,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  )
+                                ? BuildCardScore(snapshot.data.docs[index])
                                 : Container(
                                     height: 30,
                                     child: Center(child: Text('empty')),
                                   );
                           });
-                    return SingleChildScrollView(
-                      child: Container(
-                        margin: EdgeInsets.all(8.sp),
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: 13,
-                          itemBuilder: (context, index) {
-                            return Shimmer.fromColors(
-                              baseColor: Colors.white,
-                              highlightColor: Colors.grey.shade300,
-                              child: Container(
-                                width: MediaQuery.of(context).size.width.w,
-                                height: 45.h,
-                                margin: EdgeInsets.only(bottom: 15.sp),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(25.sp),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    );
+                    return BuildShimmerCardScore();
                   },
                 ),
               ),
