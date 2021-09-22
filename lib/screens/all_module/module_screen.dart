@@ -95,7 +95,7 @@ class ModuleScreen extends StatelessWidget {
                 stream: FirebaseFirestore.instance
                     .collection('scores')
                     .doc(AuthService().getUserId)
-                    .collection('module')
+                    .collection('modules')
                     .where('module', isEqualTo: title.toString())
                     .snapshots(),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
