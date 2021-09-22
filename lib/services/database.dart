@@ -282,8 +282,8 @@ class DatabaseMethods {
         .doc(AuthService().getUserId)
         .collection('modules')
         .add({
-          'correct': correct,
-          'incorrect': incorrect,
+          'correct': int.parse(correct),
+          'incorrect': int.parse(incorrect),
           'module': module,
           'annee': annee,
           'time': DateTime.now().toIso8601String(),
@@ -336,7 +336,6 @@ class DatabaseMethods {
       }
     } catch (e) {
       print('field to try get question');
-      print(e.toString());
     }
   }
 
