@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
 import 'package:med_quizz/helper/controller.dart';
 
 class ProgressBar extends StatefulWidget {
   final bool timeOver;
   final String title;
-  const ProgressBar(this.timeOver, this.title);
+  const ProgressBar({
+    Key? key,
+    required this.timeOver,
+    required this.title,
+  }) : super(key: key);
 
   @override
   _ProgressBarState createState() => _ProgressBarState();
@@ -49,7 +54,7 @@ class _ProgressBarState extends State<ProgressBar> {
           width: double.infinity,
           height: 35,
           decoration: BoxDecoration(
-            border: Border.all(color: Color(0xFF3F4768), width: 3.w),
+            border: Border.all(color: const Color(0xFF3F4768), width: 3.w),
             borderRadius: BorderRadius.circular(50.sp),
           ),
           child: GetBuilder<QuestionController>(
@@ -65,7 +70,7 @@ class _ProgressBarState extends State<ProgressBar> {
                       width: constraints.maxWidth.sp *
                           int.parse(controller.animation.value.toString()),
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
+                        gradient: const LinearGradient(
                           colors: [Color(0xFF46A0AE), Color(0xFF00FFCB)],
                         ),
                         borderRadius: BorderRadius.circular(50.sp),
@@ -81,7 +86,7 @@ class _ProgressBarState extends State<ProgressBar> {
                           Text(
                             "${(controller.animation.value * 60).round()} sec",
                           ),
-                          Icon(Icons.lock_clock),
+                          const Icon(Icons.lock_clock),
                         ],
                       ),
                     ),

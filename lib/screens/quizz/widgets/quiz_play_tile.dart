@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:med_quizz/models/questions.dart';
 import 'package:med_quizz/screens/quizz/quizz_screen.dart';
 import 'package:med_quizz/screens/quizz/widgets/option_tile.dart';
@@ -10,10 +11,11 @@ class QuizPlayTile extends StatefulWidget {
   final bool validate;
 
   const QuizPlayTile({
+    Key? key,
     required this.questionModel,
     required this.index,
     required this.validate,
-  });
+  }) : super(key: key);
 
   @override
   _QuizPlayTileState createState() => _QuizPlayTileState();

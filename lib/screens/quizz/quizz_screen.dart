@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:med_quizz/models/questions.dart';
 import 'package:med_quizz/screens/home_screen.dart';
 import 'package:med_quizz/screens/quizz/components/progress_bar.dart';
@@ -16,7 +17,10 @@ int incorrect = 0;
 
 class QuizzPlay extends StatefulWidget {
   final String title;
-  const QuizzPlay(this.title);
+  const QuizzPlay({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
 
   @override
   _QuizzPlayState createState() => _QuizzPlayState();
@@ -103,7 +107,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                                 ),
                               );
                             },
-                            child: Text('non'),
+                            child: const Text('non'),
                           ),
                         ),
                       ),
@@ -119,7 +123,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                                 Navigator.of(context).pop();
                               });
                             },
-                            child: Text("oui"),
+                            child: const Text("oui"),
                           ),
                         ),
                       ),
@@ -136,7 +140,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
       backgroundColor: Colors.white,
       body: Container(
         height: MediaQuery.of(context).size.height.h,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/login-background.png'),
             fit: BoxFit.fill,
@@ -161,7 +165,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                                 validate = false;
                                 Navigator.of(context).pop();
                               },
-                              child: Icon(
+                              child: const Icon(
                                 Icons.arrow_back,
                                 color: Colors.white,
                               ),
@@ -238,7 +242,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
-                                      child: Text('Annule'),
+                                      child: const Text('Annule'),
                                     ),
                                   ),
                                 ),
@@ -257,13 +261,13 @@ class _QuizzPlayState extends State<QuizzPlay> {
                                           MaterialPageRoute(
                                             builder: (context) {
                                               return ScoreQuizzScreen(
-                                                widget.title,
+                                                title: widget.title,
                                               );
                                             },
                                           ),
                                         );
                                       },
-                                      child: Text("confirmer"),
+                                      child: const Text("confirmer"),
                                     ),
                                   ),
                                 ),
@@ -276,7 +280,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                   },
                 );
               },
-              child: Icon(Icons.coronavirus),
+              child: const Icon(Icons.coronavirus),
             )
           : Container(),
     );
@@ -297,11 +301,11 @@ class _QuizzPlayState extends State<QuizzPlay> {
                           SizedBox(
                             height: MediaQuery.of(context).size.height.h * 0.4,
                           ),
-                          CircularProgressIndicator(),
+                          const CircularProgressIndicator(),
                           SizedBox(
                             height: 20.h,
                           ),
-                          Text('Chargement...'),
+                          const Text('Chargement...'),
                         ],
                       ),
                     )
@@ -309,7 +313,8 @@ class _QuizzPlayState extends State<QuizzPlay> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: ProgressBar(timeOver, widget.title),
+                          child: ProgressBar(
+                              timeOver: timeOver, title: widget.title),
                         ),
                         SizedBox(
                           height: 10.h,
@@ -317,7 +322,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                         ListView.builder(
                           itemCount: snapshot.data!.length,
                           shrinkWrap: true,
-                          physics: ClampingScrollPhysics(),
+                          physics: const ClampingScrollPhysics(),
                           itemBuilder: (context, index) {
                             return QuizPlayTile(
                               questionModel: snapshot.data![index],
@@ -339,11 +344,13 @@ class _QuizzPlayState extends State<QuizzPlay> {
 class Calculate {
   static void onChnageCorrect() {
     correct += 1;
+    // ignore: avoid_print
     print('correct ${correct.toString()}');
   }
 
   static void onChnageIncorrect() {
     incorrect += 1;
+    // ignore: avoid_print
     print('incorrect ${incorrect.toString()}');
   }
 
@@ -353,11 +360,13 @@ class Calculate {
   }
 
   static int get correctTotal {
+    // ignore: avoid_print
     print('correct total ${correct.toString()}');
     return correct;
   }
 
   static int get incorrectTotal {
+    // ignore: avoid_print
     print('incorrect total ${correct.toString()}');
     return incorrect;
   }

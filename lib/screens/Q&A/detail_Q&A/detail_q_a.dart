@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:med_quizz/screens/Q&A/detail_Q&A/widgets/build_comnt_post.dart';
 import 'package:med_quizz/screens/Q&A/detail_Q&A/widgets/header.dart';
 import 'package:med_quizz/screens/Q&A/detail_Q&A/widgets/header_post.dart';
@@ -13,7 +14,11 @@ enum FilterOptions { supprime, signale, modifie }
 class DetailQA extends StatefulWidget {
   final dynamic posts;
   final String idPost;
-  const DetailQA(this.posts, this.idPost);
+  const DetailQA({
+    Key? key,
+    required this.posts,
+    required this.idPost,
+  }) : super(key: key);
 
   @override
   _DetailQAState createState() => _DetailQAState();
@@ -28,7 +33,7 @@ class _DetailQAState extends State<DetailQA> {
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height.h,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/login-background.png'),
               fit: BoxFit.fill,
@@ -37,7 +42,7 @@ class _DetailQAState extends State<DetailQA> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Header(),
+                const Header(),
                 Container(
                   margin:
                       EdgeInsets.only(left: 7.sp, right: 7.sp, bottom: 10.sp),
@@ -53,7 +58,7 @@ class _DetailQAState extends State<DetailQA> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          HeaderPostDetail(widget.posts),
+                          HeaderPostDetail(post: widget.posts),
                           PopupMenuButton(
                             shape: OutlineInputBorder(
                               borderRadius: BorderRadius.only(
@@ -72,7 +77,7 @@ class _DetailQAState extends State<DetailQA> {
                                       (value) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
-                                          SnackBar(
+                                          const SnackBar(
                                             duration: Duration(seconds: 3),
                                             content: Text('post deleted'),
                                           ),
@@ -88,7 +93,7 @@ class _DetailQAState extends State<DetailQA> {
                                       .then(
                                         (value) => ScaffoldMessenger.of(context)
                                             .showSnackBar(
-                                          SnackBar(
+                                          const SnackBar(
                                             duration: Duration(seconds: 3),
                                             content: Text(
                                               "Merci d'avoir signale le post, il vas etre traite dans les bref delais",
@@ -107,7 +112,7 @@ class _DetailQAState extends State<DetailQA> {
                             },
                             icon: SizedBox(
                               height: 15.h,
-                              child: Icon(
+                              child: const Icon(
                                 Icons.more_horiz,
                               ),
                             ),
@@ -201,7 +206,7 @@ class _DetailQAState extends State<DetailQA> {
                         color: Colors.black.withOpacity(0.85),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 3, bottom: 3),
+                        margin: const EdgeInsets.only(top: 3, bottom: 3),
                         alignment: Alignment.center,
                         child: Text(
                           'Les commentaires',
@@ -234,14 +239,15 @@ class _DetailQAState extends State<DetailQA> {
                                 ),
                                 itemBuilder: (context, index) {
                                   return BuildCommentePost(
-                                    snapshot.data!.docs[index],
-                                    snapshot.data!.docs[index].id.toString(),
-                                    widget.idPost,
+                                    comnt: snapshot.data!.docs[index],
+                                    idComnt: snapshot.data!.docs[index].id
+                                        .toString(),
+                                    idPost: widget.idPost,
                                   );
                                 },
                               );
                             }
-                            return CircularProgressIndicator();
+                            return const CircularProgressIndicator();
                           },
                         ),
                       ),
@@ -251,7 +257,7 @@ class _DetailQAState extends State<DetailQA> {
                 Align(
                   alignment: Alignment.bottomLeft,
                   child: Container(
-                    padding: EdgeInsets.only(bottom: 10, top: 10),
+                    padding: const EdgeInsets.only(bottom: 10, top: 10),
                     height: 60,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
@@ -260,14 +266,14 @@ class _DetailQAState extends State<DetailQA> {
                     width: double.infinity,
                     child: Row(
                       children: <Widget>[
-                        SizedBox(
+                        const SizedBox(
                           width: 7,
                         ),
                         Expanded(
                           child: TextField(
                             controller: _messageComm,
                             maxLines: 4,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               hintText: "Tapez votre commentaire...",
                               hintStyle: TextStyle(color: Colors.black54),
                               border: InputBorder.none,
@@ -279,7 +285,7 @@ class _DetailQAState extends State<DetailQA> {
                             },
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 15,
                         ),
                         FloatingActionButton(
@@ -292,11 +298,12 @@ class _DetailQAState extends State<DetailQA> {
                               )
                                   .then((result) async {
                                 _messageComm.text = '';
+                                // ignore: avoid_print
                                 print('send message');
                               }).catchError((error) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    duration: Duration(seconds: 3),
+                                    duration: const Duration(seconds: 3),
                                     content: Text(
                                       'error to send post message commentaire$error',
                                     ),
@@ -309,7 +316,7 @@ class _DetailQAState extends State<DetailQA> {
                               ? Colors.grey
                               : Colors.blue,
                           elevation: 0,
-                          child: Icon(
+                          child: const Icon(
                             Icons.send,
                             color: Colors.white,
                             size: 18,

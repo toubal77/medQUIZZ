@@ -8,12 +8,13 @@ class OptionTile extends StatefulWidget {
   final bool correctAnswer; // la reponse
   final bool validate;
   const OptionTile({
+    Key? key,
+    required this.answer,
     required this.option,
     required this.correctAnswer,
-    required this.answer,
-    required this.optionSelected,
     required this.validate,
-  });
+    required this.optionSelected,
+  }) : super(key: key);
 
   @override
   _OptionTileState createState() => _OptionTileState();

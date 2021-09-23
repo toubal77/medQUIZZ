@@ -21,7 +21,7 @@ class Header extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  icon: Icon(Icons.arrow_back),
+                  icon: const Icon(Icons.arrow_back),
                   color: Colors.white,
                 ),
                 Text(
@@ -37,12 +37,12 @@ class Header extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
-                          return AddPost();
+                          return const AddPost();
                         },
                       ),
                     );
                   },
-                  icon: Icon(Icons.add),
+                  icon: const Icon(Icons.add),
                   color: Colors.white,
                 ),
               ],

@@ -68,7 +68,7 @@ class _AddPostState extends State<AddPost> {
       }).catchError((error) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            duration: Duration(seconds: 3),
+            duration: const Duration(seconds: 3),
             content: Text('error to send post message$error'),
           ),
         );
@@ -83,7 +83,7 @@ class _AddPostState extends State<AddPost> {
       }).catchError((error) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            duration: Duration(seconds: 3),
+            duration: const Duration(seconds: 3),
             content: Text('error to update post message $error'),
           ),
         );
@@ -100,8 +100,8 @@ class _AddPostState extends State<AddPost> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Header(),
-              UserInfo(),
+              const Header(),
+              const UserInfo(),
               Form(
                 key: _formKey,
                 child: Container(
@@ -157,7 +157,7 @@ class _AddPostState extends State<AddPost> {
                   width: MediaQuery.of(context).size.width.w,
                   margin:
                       EdgeInsets.only(left: 7.sp, right: 7.sp, bottom: 7.sp),
-                  padding: EdgeInsets.all(5),
+                  padding: const EdgeInsets.all(5),
                   child: Row(
                     children: [
                       GestureDetector(
@@ -167,8 +167,8 @@ class _AddPostState extends State<AddPost> {
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.grey.shade200,
                           ),
-                          padding: EdgeInsets.all(5),
-                          child: Text(
+                          padding: const EdgeInsets.all(5),
+                          child: const Text(
                             'selection un fichier',
                             style: TextStyle(
                               fontSize: 14,
@@ -181,7 +181,7 @@ class _AddPostState extends State<AddPost> {
                         width: 4.w,
                       ),
                       if (okok == false)
-                        Text(
+                        const Text(
                           'aucun fichier',
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -190,7 +190,7 @@ class _AddPostState extends State<AddPost> {
                           ),
                         )
                       else
-                        Text(
+                        const Text(
                           'fichier selectionne',
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -206,7 +206,7 @@ class _AddPostState extends State<AddPost> {
                               okok = false;
                             });
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.delete,
                             color: Colors.red,
                           ),
@@ -248,7 +248,7 @@ class _AddPostState extends State<AddPost> {
                   ),
                 )
               else
-                Center(
+                const Center(
                   child: CircularProgressIndicator(),
                 ),
             ],

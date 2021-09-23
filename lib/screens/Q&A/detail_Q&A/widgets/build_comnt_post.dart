@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:med_quizz/screens/Q&A/widgets/build_image_user.dart';
 import 'package:med_quizz/services/auth.dart';
 import 'package:med_quizz/services/database.dart';
@@ -10,7 +11,12 @@ class BuildCommentePost extends StatefulWidget {
   final dynamic comnt;
   final String idComnt;
   final String idPost;
-  const BuildCommentePost(this.comnt, this.idComnt, this.idPost);
+  const BuildCommentePost({
+    Key? key,
+    required this.comnt,
+    required this.idComnt,
+    required this.idPost,
+  }) : super(key: key);
 
   @override
   _BuildCommentePostState createState() => _BuildCommentePostState();
@@ -25,7 +31,7 @@ class _BuildCommentePostState extends State<BuildCommentePost> {
       padding: EdgeInsets.all(7.sp),
       child: Row(
         children: [
-          BuildImageUser(),
+          const BuildImageUser(),
           SizedBox(
             width: 7.w,
           ),
@@ -76,7 +82,7 @@ class _BuildCommentePostState extends State<BuildCommentePost> {
                                     .then(
                                       (value) => ScaffoldMessenger.of(context)
                                           .showSnackBar(
-                                        SnackBar(
+                                        const SnackBar(
                                           duration: Duration(seconds: 3),
                                           content: Text('commentaire deleted'),
                                         ),
@@ -93,7 +99,7 @@ class _BuildCommentePostState extends State<BuildCommentePost> {
                                   .then(
                                     (value) => ScaffoldMessenger.of(context)
                                         .showSnackBar(
-                                      SnackBar(
+                                      const SnackBar(
                                         duration: Duration(seconds: 3),
                                         content: Text(
                                           "Merci d'avoir signale le le commentaire, il vas etre traite dans les bref delais",
@@ -105,7 +111,7 @@ class _BuildCommentePostState extends State<BuildCommentePost> {
                           },
                         );
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.more_horiz,
                         color: Colors.white,
                       ),
@@ -152,7 +158,7 @@ class _BuildCommentePostState extends State<BuildCommentePost> {
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 2,
                 ),
               ],

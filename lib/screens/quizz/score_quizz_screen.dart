@@ -1,14 +1,19 @@
 import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:med_quizz/screens/quizz/quizz_screen.dart';
 import 'package:med_quizz/services/database.dart';
 
 class ScoreQuizzScreen extends StatefulWidget {
   final String title;
-  const ScoreQuizzScreen(this.title);
+  const ScoreQuizzScreen({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
   @override
   State<ScoreQuizzScreen> createState() => _ScoreQuizzScreenState();
 }
@@ -18,7 +23,7 @@ class _ScoreQuizzScreenState extends State<ScoreQuizzScreen> {
   @override
   void initState() {
     Timer(
-      Duration(milliseconds: 700),
+      const Duration(milliseconds: 700),
       () {
         setState(() {
           loading = false;
@@ -44,7 +49,7 @@ class _ScoreQuizzScreenState extends State<ScoreQuizzScreen> {
               child: SafeArea(
                 child: Container(
                   height: MediaQuery.of(context).size.height.h * 0.76,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/login-background.png'),
                       fit: BoxFit.fill,
@@ -62,7 +67,7 @@ class _ScoreQuizzScreenState extends State<ScoreQuizzScreen> {
                         Container(
                           margin: const EdgeInsets.only(top: 15, bottom: 15),
                           alignment: Alignment.topCenter,
-                          child: Text(
+                          child: const Text(
                             'Résultats de mon quizz',
                             style: TextStyle(
                               color: Colors.white,
@@ -75,7 +80,7 @@ class _ScoreQuizzScreenState extends State<ScoreQuizzScreen> {
                           width: MediaQuery.of(context).size.width.w,
                           margin: const EdgeInsets.only(bottom: 20),
                           height: 230.h,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Colors.transparent,
                             image: DecorationImage(
                               image: AssetImage('assets/images/trophe.jpeg'),
@@ -99,7 +104,7 @@ class _ScoreQuizzScreenState extends State<ScoreQuizzScreen> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.home_repair_service_rounded,
                                         color: Colors.red,
                                         size: 70,
@@ -130,7 +135,7 @@ class _ScoreQuizzScreenState extends State<ScoreQuizzScreen> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.timelapse,
                                         size: 70,
                                         color: Colors.red,
@@ -248,7 +253,7 @@ class _ScoreQuizzScreenState extends State<ScoreQuizzScreen> {
                 ),
               ),
             )
-          : Center(
+          : const Center(
               child: CircularProgressIndicator(),
             ),
     );

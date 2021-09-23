@@ -5,7 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class TimeNamePost extends StatelessWidget {
   String username;
   String time;
-  TimeNamePost(this.username, this.time);
+  TimeNamePost({Key? key, required this.username, required this.time})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(

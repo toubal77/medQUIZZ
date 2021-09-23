@@ -14,9 +14,9 @@ class UserInfo extends StatelessWidget {
           Container(
             width: 40.w,
             height: 40.h,
-            margin: EdgeInsets.only(top: 10),
+            margin: const EdgeInsets.only(top: 10),
             decoration: BoxDecoration(
-              image: DecorationImage(
+              image: const DecorationImage(
                 image: AssetImage('assets/images/profile_doctor.jpeg'),
                 fit: BoxFit.cover,
               ),

@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:readmore/readmore.dart';
+import 'package:timeago/timeago.dart' as timeago;
+
 import 'package:med_quizz/screens/Q&A/detail_Q&A/detail_q_a.dart';
 import 'package:med_quizz/screens/Q&A/posts/add_post.dart';
 import 'package:med_quizz/screens/Q&A/widgets/build_image_user.dart';
 import 'package:med_quizz/screens/Q&A/widgets/time_name_pop.dart';
 import 'package:med_quizz/services/auth.dart';
 import 'package:med_quizz/services/database.dart';
-import 'package:readmore/readmore.dart';
-import 'package:timeago/timeago.dart' as timeago;
 
 enum FilterOptions { supprime, signale, modifie }
 
 class BuildCardPosts extends StatefulWidget {
   final dynamic posts;
   final String idPost;
-  const BuildCardPosts(this.posts, this.idPost);
+  const BuildCardPosts({
+    Key? key,
+    required this.posts,
+    required this.idPost,
+  }) : super(key: key);
 
   @override
   _BuildCardPostsState createState() => _BuildCardPostsState();
@@ -29,7 +34,7 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return DetailQA(widget.posts, widget.idPost);
+              return DetailQA(posts: widget.posts, idPost: widget.idPost);
             },
           ),
         );
@@ -48,7 +53,7 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
               color: Colors.grey.shade500,
               spreadRadius: 3,
               blurRadius: 3,
-              offset: Offset(0.7, 0.7),
+              offset: const Offset(0.7, 0.7),
             ),
           ],
         ),
@@ -61,13 +66,13 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    BuildImageUser(),
+                    const BuildImageUser(),
                     SizedBox(
                       width: 7.w,
                     ),
                     TimeNamePost(
-                      widget.posts['username'].toString(),
-                      timeago.format(
+                      username: widget.posts['username'].toString(),
+                      time: timeago.format(
                         DateTime.parse(
                           widget.posts['time'].toString(),
                         ),
@@ -90,7 +95,7 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                           DatabaseMethods().deletePost(widget.idPost).then(
                                 (value) =>
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
+                                  const SnackBar(
                                     duration: Duration(seconds: 3),
                                     content: Text('post deleted'),
                                   ),
@@ -104,7 +109,7 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                             .then(
                               (value) =>
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
+                                const SnackBar(
                                   duration: Duration(seconds: 3),
                                   content: Text(
                                     "Merci d'avoir signale le post, il vas etre traite dans les bref delais",
@@ -123,7 +128,7 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                   },
                   icon: SizedBox(
                     height: 15.h,
-                    child: Icon(
+                    child: const Icon(
                       Icons.more_horiz,
                     ),
                   ),
@@ -227,7 +232,7 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
               color: Colors.black.withOpacity(0.85),
             ),
             Container(
-              margin: EdgeInsets.only(top: 3, bottom: 3),
+              margin: const EdgeInsets.only(top: 3, bottom: 3),
               alignment: Alignment.center,
               child: Text(
                 'Laissez un commentaire',

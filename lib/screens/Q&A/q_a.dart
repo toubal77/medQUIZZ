@@ -54,7 +54,7 @@ class _QAScreenState extends State<QAScreen> {
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height.h,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/login-background.png'),
               fit: BoxFit.fill,
@@ -62,7 +62,7 @@ class _QAScreenState extends State<QAScreen> {
           ),
           child: Column(
             children: [
-              Header(),
+              const Header(),
               Expanded(
                 child: StreamBuilder<QuerySnapshot>(
                   stream: FirebaseFirestore.instance
@@ -77,13 +77,13 @@ class _QAScreenState extends State<QAScreen> {
                             int.parse(snapshot.data!.docs.length.toString()),
                         itemBuilder: (context, index) {
                           return BuildCardPosts(
-                            snapshot.data!.docs[index],
-                            snapshot.data!.docs[index].id.toString(),
+                            posts: snapshot.data!.docs[index],
+                            idPost: snapshot.data!.docs[index].id.toString(),
                           );
                         },
                       );
                     }
-                    return ShimmerCardPost();
+                    return const ShimmerCardPost();
                   },
                 ),
               ),
