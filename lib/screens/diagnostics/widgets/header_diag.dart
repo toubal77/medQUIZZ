@@ -3,7 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HeaderDiag extends StatelessWidget {
   final String? title;
-  const HeaderDiag({required this.title});
+  const HeaderDiag({
+    Key? key,
+    this.title,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,7 @@ class HeaderDiag extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).pop();
               },
-              child: SizedBox(
+              child: const SizedBox(
                 child: Icon(
                   Icons.arrow_back,
                   color: Colors.white,

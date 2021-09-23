@@ -57,7 +57,7 @@ class _DiagnosticState extends State<Diagnostic> {
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height.h,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/login-background.png'),
               fit: BoxFit.fill,
@@ -65,7 +65,7 @@ class _DiagnosticState extends State<Diagnostic> {
           ),
           child: Column(
             children: [
-              HeaderDiag(title: 'Diagnostics'),
+              const HeaderDiag(title: 'Diagnostics'),
               SizedBox(
                 height: 20.h,
               ),
@@ -82,11 +82,11 @@ class _DiagnosticState extends State<Diagnostic> {
 
                           itemCount: snapshot.data!.length,
                           itemBuilder: (context, index) {
-                            return DiagTile(snapshot.data![index]!);
+                            return DiagTile(diag: snapshot.data![index]!);
                           },
                         );
                       }
-                      return DiagTileShimmer();
+                      return const DiagTileShimmer();
                     },
                   ),
                 ),

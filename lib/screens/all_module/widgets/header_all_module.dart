@@ -23,7 +23,7 @@ class HeaderAllModule extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  icon: Icon(Icons.arrow_back),
+                  icon: const Icon(Icons.arrow_back),
                   color: Colors.white,
                 ),
                 Text(
@@ -39,12 +39,12 @@ class HeaderAllModule extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
-                          return SearchScreen();
+                          return const SearchScreen();
                         },
                       ),
                     );
                   },
-                  icon: Icon(Icons.search),
+                  icon: const Icon(Icons.search),
                   color: Colors.white,
                 ),
               ],

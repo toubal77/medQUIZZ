@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/screens/all_module/module_screen.dart';
 
 class ModuleTile extends StatelessWidget {
-  final Modules mod;
-  const ModuleTile(this.mod);
+  final Modules? mod;
+  const ModuleTile({
+    Key? key,
+    required this.mod,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +18,7 @@ class ModuleTile extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return ModuleScreen(mod.nom);
+              return ModuleScreen(title: mod!.nom);
             },
           ),
         );
@@ -31,7 +35,7 @@ class ModuleTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.sp),
             image: DecorationImage(
               image: NetworkImage(
-                'https://rayanzinotblans.000webhostapp.com/images/${mod.image}',
+                'https://rayanzinotblans.000webhostapp.com/images/${mod!.image}',
               ),
               fit: BoxFit.cover,
             ),

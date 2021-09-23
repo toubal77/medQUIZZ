@@ -52,7 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height.h,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/login-background.png'),
               fit: BoxFit.fill,
@@ -70,24 +70,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 SizedBox(
                   height: 4.h,
                 ),
-                HeaderProfile(title: 'Profile'),
+                const HeaderProfile(title: 'Profile'),
                 ProfileMenu(
-                  'Settings',
-                  Icons.settings,
-                  () {
+                  title: 'Settings',
+                  icon: Icons.settings,
+                  press: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
-                          return Settings();
+                          return const Settings();
                         },
                       ),
                     );
                   },
                 ),
                 ProfileMenu(
-                  'Année universitaire',
-                  Icons.cabin,
-                  () {
+                  title: 'Année universitaire',
+                  icon: Icons.cabin,
+                  press: () {
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
@@ -95,7 +95,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
-                              Center(
+                              const Center(
                                 child: Text(
                                   'Selectionne votre annee:',
                                   style: TextStyle(
@@ -146,14 +146,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             value: value,
                                             child: Text(
                                               value!,
-                                              style: TextStyle(fontSize: 15),
+                                              style:
+                                                  const TextStyle(fontSize: 15),
                                             ),
                                           );
                                         },
                                       ).toList(),
                                     );
                                   }
-                                  return CircularProgressIndicator();
+                                  return const CircularProgressIndicator();
                                 },
                               ),
                               Row(
@@ -169,7 +170,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
-                                        child: Text('Annule'),
+                                        child: const Text('Annule'),
                                       ),
                                     ),
                                   ),
@@ -192,7 +193,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               (result) {
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(
-                                                  SnackBar(
+                                                  const SnackBar(
                                                     content: Text(
                                                       'field to send years select',
                                                     ),
@@ -201,10 +202,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               },
                                             );
                                           } catch (e) {
+                                            // ignore: avoid_print
                                             return print(e.toString());
                                           }
                                         },
-                                        child: Text("send"),
+                                        child: const Text("send"),
                                       ),
                                     ),
                                   ),
@@ -218,22 +220,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   },
                 ),
                 ProfileMenu(
-                  'Change Password',
-                  Icons.lock,
-                  () {
+                  title: 'Change Password',
+                  icon: Icons.lock,
+                  press: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
-                          return ChangePassword();
+                          return const ChangePassword();
                         },
                       ),
                     );
                   },
                 ),
                 ProfileMenu(
-                  'Suggections',
-                  Icons.help,
-                  () {
+                  title: 'Suggections',
+                  icon: Icons.help,
+                  press: () {
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
@@ -251,10 +253,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         controller: suggController,
                                         keyboardType: TextInputType.text,
                                         decoration: InputDecoration(
-                                          border: OutlineInputBorder(
+                                          border: const OutlineInputBorder(
                                             borderSide: BorderSide(),
-                                            borderRadius:
-                                                const BorderRadius.all(
+                                            borderRadius: BorderRadius.all(
                                               Radius.circular(30.0),
                                             ),
                                           ),
@@ -287,7 +288,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                               onPressed: () {
                                                 Navigator.of(context).pop();
                                               },
-                                              child: Text('Annule'),
+                                              child: const Text('Annule'),
                                             ),
                                           ),
                                         ),
@@ -321,7 +322,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                       ScaffoldMessenger.of(
                                                         context,
                                                       ).showSnackBar(
-                                                        SnackBar(
+                                                        const SnackBar(
                                                           content: Text(
                                                             'field to send suggestion',
                                                           ),
@@ -333,7 +334,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                   return print(e.toString());
                                                 }
                                               },
-                                              child: Text("send"),
+                                              child: const Text("send"),
                                             ),
                                           ),
                                         ),
@@ -350,19 +351,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   },
                 ),
                 ProfileMenu(
-                  "Note l'applications",
-                  Icons.low_priority_sharp,
-                  () {},
+                  title: "Note l'applications",
+                  icon: Icons.low_priority_sharp,
+                  press: () {},
                 ),
                 ProfileMenu(
-                  "Partage l'applications",
-                  Icons.share,
-                  () {},
+                  title: "Partage l'applications",
+                  icon: Icons.share,
+                  press: () {},
                 ),
                 ProfileMenu(
-                  'Log Out',
-                  Icons.exit_to_app,
-                  () async {
+                  title: 'Log Out',
+                  icon: Icons.exit_to_app,
+                  press: () async {
                     FirebaseAuth.instance.signOut();
                     final SharedPreferences prefs =
                         await SharedPreferences.getInstance();
@@ -370,7 +371,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
                         builder: (ctx) {
-                          return LoginScreen();
+                          return const LoginScreen();
                         },
                       ),
                     );

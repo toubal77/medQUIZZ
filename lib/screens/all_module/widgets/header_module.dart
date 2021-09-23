@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Header extends StatelessWidget {
   final String? title;
-  const Header({required this.title});
+  const Header({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class Header extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).pop();
               },
-              child: Icon(
+              child: const Icon(
                 Icons.arrow_back,
                 color: Colors.white,
               ),

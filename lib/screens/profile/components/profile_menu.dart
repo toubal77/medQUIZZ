@@ -5,7 +5,12 @@ class ProfileMenu extends StatelessWidget {
   final String title;
   final IconData icon;
   final void Function()? press;
-  const ProfileMenu(this.title, this.icon, this.press);
+  const ProfileMenu({
+    Key? key,
+    required this.title,
+    required this.icon,
+    this.press,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,7 +44,7 @@ class ProfileMenu extends StatelessWidget {
                 ),
               ),
             ),
-            Icon(
+            const Icon(
               Icons.arrow_forward_ios,
               color: Colors.white,
             ),

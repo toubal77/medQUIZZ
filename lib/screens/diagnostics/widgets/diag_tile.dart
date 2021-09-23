@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:med_quizz/models/diagnostics.dart';
 import 'package:med_quizz/screens/diagnostics/detail_Diag/detail_diag.dart';
 
 class DiagTile extends StatelessWidget {
   final Diagnostics diag;
-  const DiagTile(this.diag);
+  const DiagTile({
+    Key? key,
+    required this.diag,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

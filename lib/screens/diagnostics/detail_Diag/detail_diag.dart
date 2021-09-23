@@ -12,7 +12,7 @@ class DetailDiag extends StatelessWidget {
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height.h,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/login-background.png'),
               fit: BoxFit.fill,

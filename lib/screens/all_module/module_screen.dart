@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+
 import 'package:med_quizz/screens/all_module/widgets/header_module.dart';
 import 'package:med_quizz/screens/quizz/quizz_screen.dart';
 import 'package:med_quizz/screens/scores/widgets/build_card_score.dart';
@@ -12,7 +13,10 @@ import 'package:med_quizz/services/auth.dart';
 
 class ModuleScreen extends StatelessWidget {
   final String title;
-  const ModuleScreen(this.title);
+  const ModuleScreen({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +31,7 @@ class ModuleScreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height.h,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/login-background.png'),
               fit: BoxFit.fill,
@@ -62,7 +66,7 @@ class ModuleScreen extends StatelessWidget {
                         color: Colors.grey.shade500,
                         spreadRadius: 2,
                         blurRadius: 2,
-                        offset: Offset(0.2, 0.2),
+                        offset: const Offset(0.2, 0.2),
                       ),
                     ],
                   ),
@@ -85,7 +89,7 @@ class ModuleScreen extends StatelessWidget {
                 height: 14.h,
                 width: MediaQuery.of(context).size.width.w,
                 color: Colors.grey.shade500,
-                child: Center(
+                child: const Center(
                   child: Text(
                     'Mes scores',
                     style: TextStyle(
@@ -119,14 +123,14 @@ class ModuleScreen extends StatelessWidget {
                                   snapshot.data.docs[index],
                                   false,
                                 )
-                              : SizedBox(
+                              : const SizedBox(
                                   height: 30,
                                   child: Center(child: Text('empty')),
                                 );
                         },
                       );
                     }
-                    return BuildShimmerCardScore();
+                    return const BuildShimmerCardScore();
                   },
                 ),
               ),

@@ -10,6 +10,8 @@ import 'package:med_quizz/utils.dart';
 enum AuthMode { signup, login }
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -45,11 +47,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _switchAuthMode() {
     if (_authMode == AuthMode.login) {
+      // ignore: avoid_print
       print('sinUp');
       setState(() {
         _authMode = AuthMode.signup;
       });
     } else {
+      // ignore: avoid_print
       print('singIn');
       setState(() {
         _authMode = AuthMode.login;
@@ -58,6 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future _submitForm() async {
+    // ignore: avoid_print
     print('submit form');
     FocusScope.of(context).unfocus();
     _formKey.currentState!.save();
@@ -124,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  duration: Duration(seconds: 3),
+                  duration: const Duration(seconds: 3),
                   content: Text(result.toString()),
                 ),
               );
@@ -186,6 +191,7 @@ class _LoginScreenState extends State<LoginScreen> {
       //         },
       //       );
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
     }
     setState(() {
@@ -263,7 +269,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         alignment: AlignmentDirectional.center,
                         child: Text(
                           value,
-                          style: TextStyle(fontSize: 15),
+                          style: const TextStyle(fontSize: 15),
                         ),
                       );
                     }).toList(),
@@ -341,7 +347,7 @@ class _LoginScreenState extends State<LoginScreen> {
               spreadRadius: 2.sp,
             )
           ],
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
             colors: [Color(0xffd1abbd), Color(0xffb5487e)],
           ),
         ),
@@ -442,7 +448,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/login-background.png'),
                 fit: BoxFit.fill,
@@ -461,7 +467,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   _entryField(),
                   SizedBox(height: 20.h),
                   if (_isLoading == true)
-                    CircularProgressIndicator()
+                    const CircularProgressIndicator()
                   else
                     _submitButton(),
                   SizedBox(height: 10.h),

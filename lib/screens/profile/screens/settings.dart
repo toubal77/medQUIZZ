@@ -56,12 +56,13 @@ class _SettingsState extends State<Settings> {
         Navigator.of(context).pop();
       }).catchError((value) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text('error to update profile'),
           ),
         );
       });
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
     }
     setState(() {
@@ -76,7 +77,7 @@ class _SettingsState extends State<Settings> {
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height.h,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/login-background.png'),
               fit: BoxFit.fill,
@@ -85,7 +86,7 @@ class _SettingsState extends State<Settings> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              HeaderProfile(title: 'Settings'),
+              const HeaderProfile(title: 'Settings'),
               SizedBox(
                 height: 40.h,
               ),
@@ -100,10 +101,10 @@ class _SettingsState extends State<Settings> {
                           controller: usernameController,
                           keyboardType: TextInputType.name,
                           decoration: InputDecoration(
-                            border: OutlineInputBorder(
+                            border: const OutlineInputBorder(
                               borderSide: BorderSide(),
                               borderRadius:
-                                  const BorderRadius.all(Radius.circular(30.0)),
+                                  BorderRadius.all(Radius.circular(30.0)),
                             ),
                             labelText: 'Votre Nom',
                             labelStyle: TextStyle(
@@ -128,10 +129,10 @@ class _SettingsState extends State<Settings> {
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
-                            border: OutlineInputBorder(
+                            border: const OutlineInputBorder(
                               borderSide: BorderSide(),
                               borderRadius:
-                                  const BorderRadius.all(Radius.circular(30.0)),
+                                  BorderRadius.all(Radius.circular(30.0)),
                             ),
                             labelText: 'Email',
                             labelStyle: TextStyle(
@@ -165,10 +166,10 @@ class _SettingsState extends State<Settings> {
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
+                                    const BorderRadius.all(Radius.circular(20)),
                                 border: Border.all(color: Colors.grey),
                               ),
-                              child: Text(
+                              child: const Text(
                                 'Confirme',
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
@@ -179,7 +180,7 @@ class _SettingsState extends State<Settings> {
                         else
                           SizedBox(
                             height: 20.h,
-                            child: CircularProgressIndicator(),
+                            child: const CircularProgressIndicator(),
                           ),
                       ],
                     ),

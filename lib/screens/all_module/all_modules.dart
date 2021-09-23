@@ -55,7 +55,7 @@ class _AllModulesState extends State<AllModules> {
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height.h,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/login-background.png'),
               fit: BoxFit.fill,
@@ -64,7 +64,7 @@ class _AllModulesState extends State<AllModules> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              HeaderAllModule(),
+              const HeaderAllModule(),
               Container(
                 height: 30.h,
                 margin: const EdgeInsets.only(right: 20, left: 20, bottom: 20),
@@ -81,13 +81,13 @@ class _AllModulesState extends State<AllModules> {
                           snapshot.data.toString() == '1'
                               ? 'première année'
                               : '${snapshot.data.toString()} ere année medecine',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
                         );
                       }
-                      return CircularProgressIndicator();
+                      return const CircularProgressIndicator();
                     },
                   ),
                 ),
@@ -101,11 +101,11 @@ class _AllModulesState extends State<AllModules> {
                         shrinkWrap: true,
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
-                          return ModuleTile(snapshot.data![index]!);
+                          return ModuleTile(mod: snapshot.data![index]);
                         },
                       );
                     }
-                    return ModuleTileShimmer();
+                    return const ModuleTileShimmer();
                   },
                 ),
               ),

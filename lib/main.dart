@@ -12,7 +12,9 @@ import 'package:overlay_support/overlay_support.dart';
 
 //receive message <hen app is in background
 Future<void> backgroundHandler(RemoteMessage message) async {
+  // ignore: avoid_print
   print(message.data.toString());
+  // ignore: avoid_print
   print(message.notification!.title);
 }
 
@@ -22,10 +24,12 @@ Future<void> main() async {
   MobileAds.instance.initialize();
 
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -48,7 +52,7 @@ class MyApp extends StatelessWidget {
                   return HomePage();
                 }
               } else {
-                return Scaffold(
+                return const Scaffold(
                   body: Center(
                     child: CircularProgressIndicator(),
                   ),
@@ -57,9 +61,9 @@ class MyApp extends StatelessWidget {
             },
           ),
           routes: {
-            Diagnostic.screenName: (context) => Diagnostic(),
+            Diagnostic.screenName: (context) => const Diagnostic(),
             HomePage.screenName: (context) => HomePage(),
-            AddPost.screenName: (context) => AddPost(),
+            AddPost.screenName: (context) => const AddPost(),
           },
         ),
       ),

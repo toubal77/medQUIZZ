@@ -32,13 +32,14 @@ class _ChangePasswordState extends State<ChangePassword> {
         Navigator.of(context).pop();
       }).catchError((value) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content:
                 Text('vous devez ce reconnecte pour change votre mot de passe'),
           ),
         );
       });
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
     }
     setState(() {
@@ -53,7 +54,7 @@ class _ChangePasswordState extends State<ChangePassword> {
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/login-background.png'),
               fit: BoxFit.fill,
@@ -62,7 +63,7 @@ class _ChangePasswordState extends State<ChangePassword> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              HeaderProfile(title: 'Change Password'),
+              const HeaderProfile(title: 'Change Password'),
               SingleChildScrollView(
                 child: Container(
                   padding: EdgeInsets.only(left: 15.sp, right: 15.sp),
@@ -76,10 +77,10 @@ class _ChangePasswordState extends State<ChangePassword> {
                         TextFormField(
                           controller: passwordController,
                           decoration: InputDecoration(
-                            border: OutlineInputBorder(
+                            border: const OutlineInputBorder(
                               borderSide: BorderSide(),
                               borderRadius:
-                                  const BorderRadius.all(Radius.circular(30)),
+                                  BorderRadius.all(Radius.circular(30)),
                             ),
                             labelText: 'New Password',
                             labelStyle: TextStyle(
@@ -104,10 +105,10 @@ class _ChangePasswordState extends State<ChangePassword> {
                         TextFormField(
                           controller: confPasswordController,
                           decoration: InputDecoration(
-                            border: OutlineInputBorder(
+                            border: const OutlineInputBorder(
                               borderSide: BorderSide(),
                               borderRadius:
-                                  const BorderRadius.all(Radius.circular(30)),
+                                  BorderRadius.all(Radius.circular(30)),
                             ),
                             labelText: 'Confirme Password',
                             labelStyle: TextStyle(
@@ -144,10 +145,10 @@ class _ChangePasswordState extends State<ChangePassword> {
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
+                                    const BorderRadius.all(Radius.circular(20)),
                                 border: Border.all(color: Colors.grey),
                               ),
-                              child: Text(
+                              child: const Text(
                                 'Confirme',
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
@@ -158,7 +159,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         else
                           SizedBox(
                             height: 20.h,
-                            child: CircularProgressIndicator(),
+                            child: const CircularProgressIndicator(),
                           ),
                       ],
                     ),
