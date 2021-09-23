@@ -67,8 +67,8 @@ class _ProgressBarState extends State<ProgressBar> {
                   LayoutBuilder(
                     builder: (context, constraints) => Container(
                       // from 0 to 1 it takes 60s
-                      width: constraints.maxWidth.sp *
-                          int.parse(controller.animation.value.toString()),
+                      width:
+                          constraints.maxWidth.sp * controller.animation.value,
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
                           colors: [Color(0xFF46A0AE), Color(0xFF00FFCB)],
