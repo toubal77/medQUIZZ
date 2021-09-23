@@ -1,25 +1,26 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:med_quizz/models/diagnostics.dart';
 import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/models/questions.dart';
-import 'package:med_quizz/models/diagnostics.dart';
 import 'package:med_quizz/services/auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DatabaseMethods {
   Future<DocumentSnapshot?> getUserInfo() async {
     try {
-      DocumentSnapshot _userData = await FirebaseFirestore.instance
+      final DocumentSnapshot _userData = await FirebaseFirestore.instance
           .collection('users')
           .doc(AuthService().getUserId)
           .get();
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('email', _userData['email']);
-      prefs.setString('username', _userData['username']);
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('email', _userData['email'].toString());
+      prefs.setString('username', _userData['username'].toString());
       return _userData;
     } catch (err) {
       print(err);
@@ -37,15 +38,15 @@ class DatabaseMethods {
           (value) => print('update settings seccus'),
         )
         .catchError(
-          (value) => print('update settings field ' + value),
+          (value) => print('update settings field $value'),
         );
   }
 
   Future sendSuggestion(String message) async {
     try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      String? email = prefs.getString('email');
-      String? username = prefs.getString('username');
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      final String? email = prefs.getString('email');
+      final String? username = prefs.getString('username');
       await FirebaseFirestore.instance
           .collection('suggestion')
           .add({
@@ -56,22 +57,22 @@ class DatabaseMethods {
             'message': message,
           })
           .then((value) => print('send suggestion with seccus'))
-          .catchError((value) => print('send suggestion field ' + value));
+          .catchError((value) => print('send suggestion field $value'));
     } catch (e) {
       print(e.toString());
     }
   }
 
   Future<String?> getYearsUser() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString('years')!;
   }
 
   Future choiseYears(String years) async {
     try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('years', years);
-      String? userId = AuthService().getUserId;
+      final String? userId = AuthService().getUserId;
       await FirebaseFirestore.instance
           .collection('users')
           .doc(userId)
@@ -80,7 +81,7 @@ class DatabaseMethods {
             'years': years,
           })
           .then((value) => print('send suggestion with seccus'))
-          .catchError((value) => print('send suggestion field ' + value));
+          .catchError((value) => print('send suggestion field $value'));
     } catch (e) {
       print(e.toString());
     }
@@ -88,7 +89,6 @@ class DatabaseMethods {
 
   Future addDocumentUser(User user, String username, String years) async {
     user.getIdToken().then((String token) async {
-      print('The user ID token is' + token);
       await FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)
@@ -106,7 +106,6 @@ class DatabaseMethods {
 
   Future<void> updateTokenUser(User user) async {
     user.getIdToken().then((String token) async {
-      print('The user ID token is ' + token);
       getYearsFromDatabase(user);
       await FirebaseFirestore.instance
           .collection('users')
@@ -116,24 +115,25 @@ class DatabaseMethods {
           })
           .then((value) => print("update Token user"))
           .catchError(
-              (error) => print("Failed to update token user info: $error"));
+            (error) => print("Failed to update token user info: $error"),
+          );
     });
   }
 
   Future<void> getYearsFromDatabase(User user) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
     final snapshot = await FirebaseFirestore.instance
         .collection('users')
         .doc(user.uid)
         .get();
-    String yearsUser = snapshot.data()!['years'];
+    final String yearsUser = snapshot.data()!['years'].toString();
 
     prefs.setString('years', yearsUser);
   }
 
   Future sendPost(String message, File? urlImage) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? username = prefs.getString('username');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? username = prefs.getString('username');
     var url = '';
     if (urlImage != null) {
       final ref = FirebaseStorage.instance
@@ -157,8 +157,8 @@ class DatabaseMethods {
   }
 
   Future sendCommentaire(String idPost, String message) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? username = prefs.getString('username');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? username = prefs.getString('username');
 
     await FirebaseFirestore.instance
         .collection('posts')
@@ -221,8 +221,8 @@ class DatabaseMethods {
 
   Future<List<Modules?>?> getModules() async {
     List<Modules?> list = [];
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? years = prefs.getString('years');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? years = prefs.getString('years');
     try {
       print(years);
       final url =
@@ -275,8 +275,8 @@ class DatabaseMethods {
   }
 
   Future sendScore(String correct, String incorrect, String module) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? annee = prefs.getString('years');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? annee = prefs.getString('years');
     await FirebaseFirestore.instance
         .collection('scores')
         .doc(AuthService().getUserId)

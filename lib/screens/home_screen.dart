@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
     FirebaseMessaging.instance.getInitialMessage().then((message) {
       if (message != null) {
         final routeFromMessage = message.data["route"];
-        Navigator.of(context).pushNamed(routeFromMessage);
+        Navigator.of(context).pushNamed(routeFromMessage.toString());
       }
     });
     //forground
@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
       final routeFromMessage = message.data["route"];
 
-      Navigator.of(context).pushNamed(routeFromMessage);
+      Navigator.of(context).pushNamed(routeFromMessage.toString());
     });
     AdManager.buildInterAd(1);
   }

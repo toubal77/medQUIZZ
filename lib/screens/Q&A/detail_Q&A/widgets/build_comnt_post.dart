@@ -10,7 +10,7 @@ class BuildCommentePost extends StatefulWidget {
   final comnt;
   final idComnt;
   final idPost;
-  BuildCommentePost(this.comnt, this.idComnt, this.idPost);
+  const BuildCommentePost(this.comnt, this.idComnt, this.idPost);
 
   @override
   _BuildCommentePostState createState() => _BuildCommentePostState();
@@ -19,7 +19,7 @@ class BuildCommentePost extends StatefulWidget {
 class _BuildCommentePostState extends State<BuildCommentePost> {
   @override
   Widget build(BuildContext context) {
-    String? idUser = AuthService().getUserId;
+    final String? idUser = AuthService().getUserId;
     return Container(
       width: MediaQuery.of(context).size.width.w,
       padding: EdgeInsets.all(7.sp),
@@ -43,10 +43,10 @@ class _BuildCommentePostState extends State<BuildCommentePost> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width.w * 0.4,
                       child: Text(
-                        widget.comnt['username'],
+                        widget.comnt['username'].toString(),
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: 15.sp,
@@ -68,7 +68,8 @@ class _BuildCommentePostState extends State<BuildCommentePost> {
                             if (selectedValue == FilterOptions.supprime) {
                               if (widget.comnt['idUser'] == idUser) {
                                 DatabaseMethods()
-                                    .deleteComnt(widget.idPost, widget.idComnt)
+                                    .deleteComnt(widget.idPost.toString(),
+                                        widget.idComnt.toString())
                                     .then(
                                       (value) => ScaffoldMessenger.of(context)
                                           .showSnackBar(
@@ -82,14 +83,18 @@ class _BuildCommentePostState extends State<BuildCommentePost> {
                             }
                             if (selectedValue == FilterOptions.signale) {
                               DatabaseMethods()
-                                  .sendSignale(widget.idComnt, 'commentaire')
+                                  .sendSignale(
+                                    widget.idComnt.toString(),
+                                    'commentaire',
+                                  )
                                   .then(
                                     (value) => ScaffoldMessenger.of(context)
                                         .showSnackBar(
                                       SnackBar(
                                         duration: Duration(seconds: 3),
                                         content: Text(
-                                            'Merci d\'avoir signale le le commentaire, il vas etre traite dans les bref delais'),
+                                          "Merci d'avoir signale le le commentaire, il vas etre traite dans les bref delais",
+                                        ),
                                       ),
                                     ),
                                   );
@@ -138,7 +143,7 @@ class _BuildCommentePostState extends State<BuildCommentePost> {
                   ],
                 ),
                 Text(
-                  widget.comnt['message'],
+                  widget.comnt['message'].toString(),
                   style: TextStyle(
                     fontSize: 14.sp,
                     color: Colors.white,

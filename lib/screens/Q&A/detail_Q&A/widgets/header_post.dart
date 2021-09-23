@@ -6,7 +6,7 @@ import 'package:timeago/timeago.dart' as timeago;
 
 class HeaderPostDetail extends StatelessWidget {
   final post;
-  HeaderPostDetail(this.post);
+  const HeaderPostDetail(this.post);
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -17,7 +17,7 @@ class HeaderPostDetail extends StatelessWidget {
           width: 7.w,
         ),
         TimeNamePostDetail(
-          post['username'],
+          post['username'].toString(),
           timeago.format(
             DateTime.parse(
               post['time'].toString(),

@@ -81,9 +81,9 @@ class AuthService {
 
   Future signInEmailPassword(String email, String password) async {
     try {
-      UserCredential result = await _auth.signInWithEmailAndPassword(
+      final UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      User? user = result.user;
+      final User? user = result.user;
       DatabaseMethods().updateTokenUser(user!);
       return _userFromFirebaseUser(user);
     } catch (e) {
@@ -94,10 +94,10 @@ class AuthService {
   Future signUpEmailPassword(
       String email, String password, String username, String years) async {
     try {
-      UserCredential result = await _auth.createUserWithEmailAndPassword(
+      final UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      User? user = result.user;
-      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final User? user = result.user;
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('years', years);
       DatabaseMethods().addDocumentUser(user!, username, years);
       return _userFromFirebaseUser(user);
@@ -107,7 +107,7 @@ class AuthService {
   }
 
   String? get getUserId {
-    String? _userId = FirebaseAuth.instance.currentUser?.uid;
+    final String? _userId = FirebaseAuth.instance.currentUser?.uid;
     return _userId;
   }
 
@@ -118,7 +118,7 @@ class AuthService {
           (value) => print('update password seccus'),
         )
         .catchError(
-          (value) => print('update password field ' + value),
+          (value) => print('update password field $value'),
         );
   }
 

@@ -100,23 +100,27 @@ class ModuleScreen extends StatelessWidget {
                       .collection('scores')
                       .doc(AuthService().getUserId)
                       .collection('modules')
-                      .where('module', isEqualTo: title.toString())
+                      .where('module', isEqualTo: title)
                       .orderBy('time', descending: true)
                       .snapshots(),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    if (snapshot.hasData)
+                    if (snapshot.hasData) {
                       return ListView.builder(
                           shrinkWrap: true,
-                          itemCount: snapshot.data.docs.length,
+                          itemCount:
+                              int.parse(snapshot.data.docs.length.toString()),
                           itemBuilder: (context, index) {
-                            return snapshot.data.docs.length > 0
+                            return int.parse(
+                                        snapshot.data.docs.length.toString()) >
+                                    0
                                 ? BuildCardScore(
                                     snapshot.data.docs[index], false)
-                                : Container(
+                                : SizedBox(
                                     height: 30,
                                     child: Center(child: Text('empty')),
                                   );
                           });
+                    }
                     return BuildShimmerCardScore();
                   },
                 ),

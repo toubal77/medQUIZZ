@@ -22,7 +22,7 @@ class InfoUser extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    snapshot.data!['username'],
+                    snapshot.data!['username'].toString(),
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w500,
@@ -33,7 +33,7 @@ class InfoUser extends StatelessWidget {
                     height: 5.h,
                   ),
                   Text(
-                    snapshot.data!['email'],
+                    snapshot.data!['email'].toString(),
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w500,

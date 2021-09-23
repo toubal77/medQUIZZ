@@ -13,17 +13,17 @@ enum FilterOptions { supprime, signale, modifie }
 class DetailQA extends StatefulWidget {
   final posts;
   final idPost;
-  DetailQA(this.posts, this.idPost);
+  const DetailQA(this.posts, this.idPost);
 
   @override
   _DetailQAState createState() => _DetailQAState();
 }
 
 class _DetailQAState extends State<DetailQA> {
-  TextEditingController _messageComm = TextEditingController();
+  final TextEditingController _messageComm = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    String? idUser = AuthService().getUserId;
+    final String? idUser = AuthService().getUserId;
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -66,7 +66,7 @@ class _DetailQAState extends State<DetailQA> {
                                 if (selectedValue == FilterOptions.supprime) {
                                   if (widget.posts['idUser'] == idUser) {
                                     DatabaseMethods()
-                                        .deletePost(widget.idPost)
+                                        .deletePost(widget.idPost.toString())
                                         .then(
                                       (value) {
                                         ScaffoldMessenger.of(context)
@@ -83,26 +83,29 @@ class _DetailQAState extends State<DetailQA> {
                                 }
                                 if (selectedValue == FilterOptions.signale) {
                                   DatabaseMethods()
-                                      .sendSignale(widget.idPost, 'posts')
+                                      .sendSignale(
+                                          widget.idPost.toString(), 'posts')
                                       .then(
                                         (value) => ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           SnackBar(
                                             duration: Duration(seconds: 3),
                                             content: Text(
-                                                'Merci d\'avoir signale le post, il vas etre traite dans les bref delais'),
+                                              "Merci d'avoir signale le post, il vas etre traite dans les bref delais",
+                                            ),
                                           ),
                                         ),
                                       );
                                 }
                                 if (selectedValue == FilterOptions.modifie) {
                                   Navigator.of(context).pushNamed(
-                                      AddPost.screenName,
-                                      arguments: widget.idPost);
+                                    AddPost.screenName,
+                                    arguments: widget.idPost,
+                                  );
                                 }
                               });
                             },
-                            icon: Container(
+                            icon: SizedBox(
                               height: 15.h,
                               child: Icon(
                                 Icons.more_horiz,
@@ -168,7 +171,7 @@ class _DetailQAState extends State<DetailQA> {
                         margin: EdgeInsets.only(
                             left: 10.sp, right: 10.sp, bottom: 12.sp),
                         child: Text(
-                          widget.posts['message'],
+                          widget.posts['message'].toString(),
                           style: TextStyle(
                             fontSize: 14.sp,
                             color: Colors.white,
@@ -184,7 +187,7 @@ class _DetailQAState extends State<DetailQA> {
                             borderRadius: BorderRadius.circular(10.sp),
                             image: DecorationImage(
                               image: NetworkImage(
-                                widget.posts['url'],
+                                widget.posts['url'].toString(),
                               ),
                               fit: BoxFit.cover,
                             ),
@@ -214,16 +217,18 @@ class _DetailQAState extends State<DetailQA> {
                         child: StreamBuilder<QuerySnapshot>(
                           stream: FirebaseFirestore.instance
                               .collection('posts')
-                              .doc(widget.idPost)
+                              .doc(widget.idPost.toString())
                               .collection('commentaires')
                               .orderBy('time', descending: false)
                               .snapshots(),
                           builder:
                               (BuildContext context, AsyncSnapshot snapshot) {
-                            if (snapshot.hasData)
+                            if (snapshot.hasData) {
                               return ListView.builder(
                                 shrinkWrap: true,
-                                itemCount: snapshot.data!.docs.length,
+                                itemCount: int.parse(
+                                  snapshot.data!.docs.length.toString(),
+                                ),
                                 itemBuilder: (context, index) {
                                   return BuildCommentePost(
                                     snapshot.data!.docs[index],
@@ -232,6 +237,7 @@ class _DetailQAState extends State<DetailQA> {
                                   );
                                 },
                               );
+                            }
                             return CircularProgressIndicator();
                           },
                         ),
@@ -275,10 +281,12 @@ class _DetailQAState extends State<DetailQA> {
                         ),
                         FloatingActionButton(
                           onPressed: () {
-                            if (_messageComm.text.trim().length != 0) {
+                            if (_messageComm.text.trim().isNotEmpty) {
                               DatabaseMethods()
                                   .sendCommentaire(
-                                      widget.idPost, _messageComm.text.trim())
+                                widget.idPost.toString(),
+                                _messageComm.text.trim(),
+                              )
                                   .then((result) async {
                                 _messageComm.text = '';
                                 print('send message');
@@ -287,22 +295,22 @@ class _DetailQAState extends State<DetailQA> {
                                   SnackBar(
                                     duration: Duration(seconds: 3),
                                     content: Text(
-                                        'error to send post message commentaire' +
-                                            error.toString()),
+                                      'error to send post message commentaire$error',
+                                    ),
                                   ),
                                 );
                               });
                             }
                           },
+                          backgroundColor: _messageComm.text.trim().isEmpty
+                              ? Colors.grey
+                              : Colors.blue,
+                          elevation: 0,
                           child: Icon(
                             Icons.send,
                             color: Colors.white,
                             size: 18,
                           ),
-                          backgroundColor: _messageComm.text.trim().length == 0
-                              ? Colors.grey
-                              : Colors.blue,
-                          elevation: 0,
                         ),
                       ],
                     ),

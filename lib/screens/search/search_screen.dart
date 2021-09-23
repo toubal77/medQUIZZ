@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:connectivity/connectivity.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
 import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/screens/search/widgets/module_tile.dart';
 import 'package:med_quizz/screens/search/widgets/shimmer_module_tile.dart';
@@ -28,8 +29,8 @@ class _SearchScreenState extends State<SearchScreen> {
       isLoading = true;
     });
     _list.clear();
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? years = prefs.getString('years');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? years = prefs.getString('years');
     try {
       final url =
           Uri.parse('https://rayanzinotblans.000webhostapp.com/get_module.php');

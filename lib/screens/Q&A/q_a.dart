@@ -44,7 +44,7 @@ class _QAScreenState extends State<QAScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: AdManager.loading == false ? 60.h : 0.h,
         key: UniqueKey(),
         child: AdWidget(
@@ -70,15 +70,19 @@ class _QAScreenState extends State<QAScreen> {
                       .orderBy('time', descending: true)
                       .snapshots(),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    if (snapshot.hasData)
+                    if (snapshot.hasData) {
                       return ListView.builder(
                         shrinkWrap: true,
-                        itemCount: snapshot.data!.docs.length,
+                        itemCount:
+                            int.parse(snapshot.data!.docs.length.toString()),
                         itemBuilder: (context, index) {
-                          return BuildCardPosts(snapshot.data!.docs[index],
-                              snapshot.data!.docs[index].id);
+                          return BuildCardPosts(
+                            snapshot.data!.docs[index],
+                            snapshot.data!.docs[index].id,
+                          );
                         },
                       );
+                    }
                     return ShimmerCardPost();
                   },
                 ),

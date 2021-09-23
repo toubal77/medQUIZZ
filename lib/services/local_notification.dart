@@ -37,7 +37,7 @@ class LocalNotificationService {
         message.notification!.title,
         message.notification!.body,
         notificationDetails,
-        payload: message.data["route"],
+        payload: message.data["route"].toString(),
       );
     } on Exception catch (e) {
       print(e);

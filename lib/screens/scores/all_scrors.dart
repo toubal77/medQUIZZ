@@ -20,7 +20,7 @@ class AllScores extends StatefulWidget {
 }
 
 class _AllScoresState extends State<AllScores> {
-  final DateTime? currentTime = new DateTime.now();
+  final DateTime? currentTime = DateTime.now();
   late StreamSubscription subscription;
   @override
   void initState() {
@@ -73,19 +73,27 @@ class _AllScoresState extends State<AllScores> {
                       .orderBy('time', descending: true)
                       .snapshots(),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    if (snapshot.hasData)
+                    if (snapshot.hasData) {
                       return ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: snapshot.data.docs.length,
-                          itemBuilder: (context, index) {
-                            return snapshot.data.docs.length > 0
-                                ? BuildCardScore(
-                                    snapshot.data.docs[index], true)
-                                : Container(
-                                    height: 30,
-                                    child: Center(child: Text('empty')),
-                                  );
-                          });
+                        shrinkWrap: true,
+                        itemCount:
+                            int.parse(snapshot.data.docs.length.toString()),
+                        itemBuilder: (context, index) {
+                          return int.parse(
+                                    snapshot.data.docs.length.toString(),
+                                  ) >
+                                  0
+                              ? BuildCardScore(
+                                  snapshot.data.docs[index],
+                                  true,
+                                )
+                              : SizedBox(
+                                  height: 30,
+                                  child: Center(child: Text('empty')),
+                                );
+                        },
+                      );
+                    }
                     return BuildShimmerCardScore();
                   },
                 ),

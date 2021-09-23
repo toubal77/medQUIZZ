@@ -14,7 +14,7 @@ enum FilterOptions { supprime, signale, modifie }
 class BuildCardPosts extends StatefulWidget {
   final posts;
   final idPost;
-  BuildCardPosts(this.posts, this.idPost);
+  const BuildCardPosts(this.posts, this.idPost);
 
   @override
   _BuildCardPostsState createState() => _BuildCardPostsState();
@@ -23,7 +23,7 @@ class BuildCardPosts extends StatefulWidget {
 class _BuildCardPostsState extends State<BuildCardPosts> {
   @override
   Widget build(BuildContext context) {
-    String? idUser = AuthService().getUserId;
+    final String? idUser = AuthService().getUserId;
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(
@@ -66,7 +66,7 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                       width: 7.w,
                     ),
                     TimeNamePost(
-                      widget.posts['username'],
+                      widget.posts['username'].toString(),
                       timeago.format(
                         DateTime.parse(
                           widget.posts['time'].toString(),
@@ -86,37 +86,43 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                     setState(() async {
                       if (selectedValue == FilterOptions.supprime) {
                         if (widget.posts['idUser'] == idUser) {
-                          DatabaseMethods().deletePost(widget.idPost).then(
-                              (value) =>
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      duration: Duration(seconds: 3),
-                                      content: Text('post deleted'),
-                                    ),
-                                  ));
+                          DatabaseMethods()
+                              .deletePost(widget.idPost.toString())
+                              .then(
+                                (value) =>
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    duration: Duration(seconds: 3),
+                                    content: Text('post deleted'),
+                                  ),
+                                ),
+                              );
                         }
                       }
                       if (selectedValue == FilterOptions.signale) {
                         DatabaseMethods()
-                            .sendSignale(widget.idPost, 'posts')
+                            .sendSignale(widget.idPost.toString(), 'posts')
                             .then(
                               (value) =>
                                   ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   duration: Duration(seconds: 3),
                                   content: Text(
-                                      'Merci d\'avoir signale le post, il vas etre traite dans les bref delais'),
+                                    "Merci d'avoir signale le post, il vas etre traite dans les bref delais",
+                                  ),
                                 ),
                               ),
                             );
                       }
                       if (selectedValue == FilterOptions.modifie) {
-                        Navigator.of(context).pushNamed(AddPost.screenName,
-                            arguments: widget.idPost);
+                        Navigator.of(context).pushNamed(
+                          AddPost.screenName,
+                          arguments: widget.idPost,
+                        );
                       }
                     });
                   },
-                  icon: Container(
+                  icon: SizedBox(
                     height: 15.h,
                     child: Icon(
                       Icons.more_horiz,
@@ -182,17 +188,16 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
               margin: EdgeInsets.only(left: 10.sp, right: 10.sp, bottom: 12.sp),
               child: widget.posts['message'].length < 200
                   ? Text(
-                      widget.posts['message'],
+                      widget.posts['message'].toString(),
                       style: TextStyle(
                         fontSize: 14.sp,
                         color: Colors.black,
                       ),
                     )
                   : ReadMoreText(
-                      widget.posts['message'],
+                      widget.posts['message'].toString(),
                       //       trimLength: 201,
                       colorClickableText: Colors.blueAccent,
-                      trimMode: TrimMode.Length,
                       trimCollapsedText: 'Show more',
                       trimExpandedText: 'Show less',
                       style: TextStyle(
@@ -213,7 +218,7 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.sp),
                   image: DecorationImage(
-                    image: NetworkImage(widget.posts['url']),
+                    image: NetworkImage(widget.posts['url'].toString()),
                     fit: BoxFit.cover,
                   ),
                 ),

@@ -1,16 +1,16 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:med_quizz/screens/Q&A/posts/widget/header.dart';
 import 'package:med_quizz/screens/Q&A/posts/widget/info_user.dart';
 import 'package:med_quizz/services/database.dart';
 
 class AddPost extends StatefulWidget {
   const AddPost({Key? key}) : super(key: key);
-  static final screenName = "\AddPost";
+  static const screenName = "AddPost";
   @override
   _AddPostState createState() => _AddPostState();
 }
@@ -31,14 +31,15 @@ class _AddPostState extends State<AddPost> {
     });
   }
 
-  void didChangeDependencies() async {
+  @override
+  Future<void> didChangeDependencies() async {
     postId = ModalRoute.of(context)!.settings.arguments as String?;
     if (postId != null) {
-      var snapshot = await FirebaseFirestore.instance
+      final snapshot = await FirebaseFirestore.instance
           .collection('posts')
           .doc(postId)
           .get();
-      textController.text = snapshot['message'];
+      textController.text = snapshot['message'].toString();
     }
 
     super.didChangeDependencies();
@@ -60,7 +61,6 @@ class _AddPostState extends State<AddPost> {
       DatabaseMethods()
           .sendPost(textController.text, _image)
           .then((result) async {
-        print('eoihgreuhriuh grughh roeihg ohg url is :' + _image.toString());
         textController.text = '';
         _image = null;
 
@@ -69,7 +69,7 @@ class _AddPostState extends State<AddPost> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             duration: Duration(seconds: 3),
-            content: Text('error to send post message' + error.toString()),
+            content: Text('error to send post message$error'),
           ),
         );
       });
