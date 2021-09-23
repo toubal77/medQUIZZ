@@ -21,10 +21,10 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   late StreamSubscription subscription;
   TextEditingController pickUpController = TextEditingController();
-  final List<Modules?> _search = [];
-  final List<Modules?> _list = [];
+  final List<Modules> _search = [];
+  final List<Modules> _list = [];
   bool isLoading = false;
-  Future<List<Modules?>?> getModules() async {
+  Future<List<Modules>?> getModules() async {
     setState(() {
       isLoading = true;
     });
@@ -75,7 +75,7 @@ class _SearchScreenState extends State<SearchScreen> {
     }
     // ignore: avoid_function_literals_in_foreach_calls
     _list.forEach((f) {
-      if (f!.nom.contains(title)) _search.add(f);
+      if (f.nom.contains(title)) _search.add(f);
     });
     setState(() {});
   }
@@ -193,7 +193,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 itemCount: _search.length,
                 itemBuilder: (context, index) {
                   return _search.isNotEmpty
-                      ? ModuleTileSearch(_search[index])
+                      ? ModuleTileSearch(mod: _search[index])
                       : const ShimmerModuleTileSearch();
                 },
               ),

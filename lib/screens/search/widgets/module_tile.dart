@@ -5,12 +5,10 @@ import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/screens/all_module/module_screen.dart';
 
 class ModuleTileSearch extends StatelessWidget {
-  final Modules? mod;
-  const ModuleTileSearch(
-    Modules? search, {
-    Key? key,
-    this.mod,
-  }) : super(key: key);
+  final Modules mod;
+  const ModuleTileSearch({
+    required this.mod,
+  });
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -18,7 +16,7 @@ class ModuleTileSearch extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return ModuleScreen(title: mod!.nom);
+              return ModuleScreen(title: mod.nom);
             },
           ),
         );
@@ -35,7 +33,7 @@ class ModuleTileSearch extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.sp),
             image: DecorationImage(
               image: NetworkImage(
-                'https://rayanzinotblans.000webhostapp.com/images/${mod!.image}',
+                'https://rayanzinotblans.000webhostapp.com/images/${mod.image}',
               ),
               fit: BoxFit.cover,
             ),
