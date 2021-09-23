@@ -227,9 +227,12 @@ class DatabaseMethods {
       print(years);
       final url =
           Uri.parse('https://rayanzinotblans.000webhostapp.com/get_module.php');
-      final response = await http.post(url, body: {
-        'years': years,
-      });
+      final response = await http.post(
+        url,
+        body: {
+          'years': years,
+        },
+      );
       if (response.statusCode == 200) {
         print('seccus get module');
         final data = json.decode(response.body);
@@ -253,7 +256,8 @@ class DatabaseMethods {
     List<Modules?> list = [];
     try {
       final url = Uri.parse(
-          'https://rayanzinotblans.000webhostapp.com/get_most_popular.php');
+        'https://rayanzinotblans.000webhostapp.com/get_most_popular.php',
+      );
       final response = await http.get(url);
       if (response.statusCode == 200) {
         print('seccus get module most popular');
@@ -295,10 +299,14 @@ class DatabaseMethods {
   Future updateView(String idMod) async {
     try {
       final url = Uri.parse(
-          'https://rayanzinotblans.000webhostapp.com/updateViewModule.php');
-      final response = await http.post(url, body: {
-        'id_mod': idMod,
-      });
+        'https://rayanzinotblans.000webhostapp.com/updateViewModule.php',
+      );
+      final response = await http.post(
+        url,
+        body: {
+          'id_mod': idMod,
+        },
+      );
       if (response.statusCode == 200) {
         if (json.decode(response.body)['status']) {
           print('seccus update View Module');
@@ -319,7 +327,8 @@ class DatabaseMethods {
     List<Questions?>? list = [];
     try {
       final url = Uri.parse(
-          'https://rayanzinotblans.000webhostapp.com/get_question.php');
+        'https://rayanzinotblans.000webhostapp.com/get_question.php',
+      );
       final response = await http.get(url);
       if (response.statusCode == 200) {
         print('seccus get question');

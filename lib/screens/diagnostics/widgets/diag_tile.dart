@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/models/diagnostics.dart';
 import 'package:med_quizz/screens/diagnostics/detail_Diag/detail_diag.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DiagTile extends StatelessWidget {
   final Diagnostics diag;
@@ -49,7 +49,8 @@ class DiagTile extends StatelessWidget {
                   ),
                   image: DecorationImage(
                     image: NetworkImage(
-                        'https://rayanzinotblans.000webhostapp.com/images/diagnostics/${diag.image}'),
+                      'https://rayanzinotblans.000webhostapp.com/images/diagnostics/${diag.image}',
+                    ),
                     fit: BoxFit.cover,
                   ),
                 ),

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class BuildCardScore extends StatelessWidget {
-  final score;
+  final dynamic score;
   final bool show;
   const BuildCardScore(this.score, this.show);
   @override
@@ -17,9 +17,9 @@ class BuildCardScore extends StatelessWidget {
       child: ListTile(
         title: Text(
           !show
-              ? score['correct'] <= 5
+              ? int.parse(score['correct'].toString()) <= 5
                   ? 'insuffisant'
-                  : score['correct'] <= 7
+                  : int.parse(score['correct'].toString()) <= 7
                       ? 'acceptable'
                       : 'excellent'
               : score['module'].toString(),
@@ -36,9 +36,9 @@ class BuildCardScore extends StatelessWidget {
                     score['time'].toString(),
                   ),
                 )
-              : score['correct'] <= 5
+              : int.parse(score['correct'].toString()) <= 5
                   ? 'insuffisant'
-                  : score['correct'] <= 7
+                  : int.parse(score['correct'].toString()) <= 7
                       ? 'acceptable'
                       : 'excellent',
           style: TextStyle(
@@ -49,9 +49,9 @@ class BuildCardScore extends StatelessWidget {
         trailing: Text(
           "${score['correct']}/10",
           style: TextStyle(
-            color: score['correct'] <= 5
+            color: int.parse(score['correct'].toString()) <= 5
                 ? Colors.red
-                : score['correct'] <= 7
+                : int.parse(score['correct'].toString()) <= 7
                     ? Colors.orange
                     : Colors.green,
             fontSize: 20,

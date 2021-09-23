@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/models/diagnostics.dart';
 import 'package:med_quizz/screens/diagnostics/widgets/header_diag.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DetailDiag extends StatelessWidget {
   final Diagnostics diag;
@@ -21,9 +21,10 @@ class DetailDiag extends StatelessWidget {
           child: Column(
             children: [
               HeaderDiag(
-                  title: diag.title.length > 20
-                      ? '${diag.title.substring(0, 19)} ...'
-                      : diag.title),
+                title: diag.title.length > 20
+                    ? '${diag.title.substring(0, 19)} ...'
+                    : diag.title,
+              ),
               SizedBox(
                 height: 20.h,
               ),
@@ -34,7 +35,8 @@ class DetailDiag extends StatelessWidget {
                   color: Colors.blue,
                   image: DecorationImage(
                     image: NetworkImage(
-                        'https://rayanzinotblans.000webhostapp.com/images/diagnostics/${diag.image}'),
+                      'https://rayanzinotblans.000webhostapp.com/images/diagnostics/${diag.image}',
+                    ),
                     fit: BoxFit.cover,
                   ),
                   borderRadius: BorderRadius.only(

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/screens/all_module/widgets/header_all_module.dart';
@@ -9,7 +10,6 @@ import 'package:med_quizz/screens/all_module/widgets/module_tile.dart';
 import 'package:med_quizz/screens/all_module/widgets/shimmer_module_tile.dart';
 import 'package:med_quizz/services/ads_service.dart';
 import 'package:med_quizz/services/database.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/utils.dart';
 
 class AllModules extends StatefulWidget {
@@ -44,7 +44,7 @@ class _AllModulesState extends State<AllModules> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: AdManager.loading == false ? 60.h : 0.h,
         //  padding: EdgeInsets.all(8.sp),
         key: UniqueKey(),
@@ -76,7 +76,7 @@ class _AllModulesState extends State<AllModules> {
                   child: FutureBuilder<String?>(
                     future: DatabaseMethods().getYearsUser(),
                     builder: (context, snapshot) {
-                      if (snapshot.hasData)
+                      if (snapshot.hasData) {
                         return Text(
                           snapshot.data.toString() == '1'
                               ? 'première année'
@@ -86,6 +86,7 @@ class _AllModulesState extends State<AllModules> {
                             fontWeight: FontWeight.w600,
                           ),
                         );
+                      }
                       return CircularProgressIndicator();
                     },
                   ),

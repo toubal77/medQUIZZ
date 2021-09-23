@@ -34,9 +34,12 @@ class _SearchScreenState extends State<SearchScreen> {
     try {
       final url =
           Uri.parse('https://rayanzinotblans.000webhostapp.com/get_module.php');
-      final response = await http.post(url, body: {
-        'years': years,
-      });
+      final response = await http.post(
+        url,
+        body: {
+          'years': years,
+        },
+      );
       if (response.statusCode == 200) {
         print('seccus get module');
         final data = json.decode(response.body);
@@ -83,9 +86,11 @@ class _SearchScreenState extends State<SearchScreen> {
         }
       },
     );
-    getModules().then((value) => setState(() {
-          isLoading = false;
-        }));
+    getModules().then(
+      (value) => setState(() {
+        isLoading = false;
+      }),
+    );
 
     super.initState();
   }
@@ -104,7 +109,11 @@ class _SearchScreenState extends State<SearchScreen> {
           children: [
             Padding(
               padding: EdgeInsets.only(
-                  left: 25.sp, top: 10.sp, right: 25.sp, bottom: 20.sp),
+                left: 25.sp,
+                top: 10.sp,
+                right: 25.sp,
+                bottom: 20.sp,
+              ),
               child: Column(
                 children: [
                   SizedBox(
@@ -156,7 +165,10 @@ class _SearchScreenState extends State<SearchScreen> {
                                 border: InputBorder.none,
                                 isDense: true,
                                 contentPadding: EdgeInsets.only(
-                                    left: 11.sp, top: 8.sp, bottom: 8.sp),
+                                  left: 11.sp,
+                                  top: 8.sp,
+                                  bottom: 8.sp,
+                                ),
                               ),
                               onChanged: (value) {
                                 onSearch(value);
@@ -175,7 +187,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 shrinkWrap: true,
                 itemCount: _search.length,
                 itemBuilder: (context, index) {
-                  return _search.length != 0
+                  return _search.isNotEmpty
                       ? ModuleTileSearch(_search[index])
                       : ShimmerModuleTileSearch();
                 },

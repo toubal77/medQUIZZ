@@ -19,7 +19,7 @@ class QAScreen extends StatefulWidget {
 }
 
 class _QAScreenState extends State<QAScreen> {
-  final DateTime? currentTime = new DateTime.now();
+  final DateTime? currentTime = DateTime.now();
   late StreamSubscription subscription;
   @override
   void initState() {
@@ -78,7 +78,7 @@ class _QAScreenState extends State<QAScreen> {
                         itemBuilder: (context, index) {
                           return BuildCardPosts(
                             snapshot.data!.docs[index],
-                            snapshot.data!.docs[index].id,
+                            snapshot.data!.docs[index].id.toString(),
                           );
                         },
                       );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/screens/all_module/module_screen.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ModuleTile extends StatelessWidget {
   final Modules mod;

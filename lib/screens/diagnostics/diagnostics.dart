@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:med_quizz/models/diagnostics.dart';
 import 'package:med_quizz/screens/diagnostics/widgets/diag_tile.dart';
@@ -9,12 +10,11 @@ import 'package:med_quizz/screens/diagnostics/widgets/diag_tile_shimmer.dart';
 import 'package:med_quizz/screens/diagnostics/widgets/header_diag.dart';
 import 'package:med_quizz/services/ads_service.dart';
 import 'package:med_quizz/services/database.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/utils.dart';
 
 class Diagnostic extends StatefulWidget {
   const Diagnostic({Key? key}) : super(key: key);
-  static final screenName = "\Diagnostic";
+  static const screenName = "Diagnostic";
 
   @override
   _DiagnosticState createState() => _DiagnosticState();
@@ -46,7 +46,7 @@ class _DiagnosticState extends State<Diagnostic> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: AdManager.loading == false ? 60.h : 0.h,
         //  padding: EdgeInsets.all(8.sp),
         key: UniqueKey(),
@@ -70,7 +70,7 @@ class _DiagnosticState extends State<Diagnostic> {
                 height: 20.h,
               ),
               Expanded(
-                child: Container(
+                child: SizedBox(
                   //  margin: EdgeInsets.only(bottom: 10.sp),
                   child: FutureBuilder<List<Diagnostics?>?>(
                     future: DatabaseMethods().getDiag(),

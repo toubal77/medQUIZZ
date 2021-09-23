@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/screens/auth/login_screen.dart';
 import 'package:med_quizz/screens/profile/components/profile_menu.dart';
 import 'package:med_quizz/screens/profile/screens/change_password.dart';
 import 'package:med_quizz/screens/profile/screens/settings.dart';
 import 'package:med_quizz/screens/profile/widgets/header_profile.dart';
 import 'package:med_quizz/services/database.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -112,7 +112,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     if (snapshot.data == null) {
                                       dropdownValue = '1';
                                     } else {
-                                      dropdownValue = snapshot.data!;
+                                      dropdownValue = snapshot.data;
                                     }
                                     DropdownButton<String?>(
                                       value: dropdownValue,
@@ -120,7 +120,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         Icons.arrow_downward,
                                         color: Colors.black,
                                       ),
-                                      iconSize: 24,
+                                      iconSize: 24.sp,
                                       elevation: 16,
                                       style:
                                           const TextStyle(color: Colors.black),
@@ -130,7 +130,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       ),
                                       onChanged: (String? newValue) {
                                         setState(() {
-                                          dropdownValue = newValue!;
+                                          dropdownValue = newValue;
                                         });
                                       },
                                       items: <String?>[
@@ -194,7 +194,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                     .showSnackBar(
                                                   SnackBar(
                                                     content: Text(
-                                                        'field to send years select'),
+                                                      'field to send years select',
+                                                    ),
                                                   ),
                                                 );
                                               },
@@ -254,7 +255,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             borderSide: BorderSide(),
                                             borderRadius:
                                                 const BorderRadius.all(
-                                                    Radius.circular(30.0)),
+                                              Radius.circular(30.0),
+                                            ),
                                           ),
                                           labelText: 'Votre Suggestion',
                                           labelStyle: TextStyle(
@@ -306,8 +308,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 try {
                                                   DatabaseMethods()
                                                       .sendSuggestion(
-                                                          suggController.text
-                                                              .trim())
+                                                    suggController.text.trim(),
+                                                  )
                                                       .then(
                                                     (result) {
                                                       suggController.text = '';
@@ -317,11 +319,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                   ).catchError(
                                                     (result) {
                                                       ScaffoldMessenger.of(
-                                                              context)
-                                                          .showSnackBar(
+                                                        context,
+                                                      ).showSnackBar(
                                                         SnackBar(
                                                           content: Text(
-                                                              'field to send suggestion'),
+                                                            'field to send suggestion',
+                                                          ),
                                                         ),
                                                       );
                                                     },
@@ -361,13 +364,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Icons.exit_to_app,
                   () async {
                     FirebaseAuth.instance.signOut();
-                    SharedPreferences prefs =
+                    final SharedPreferences prefs =
                         await SharedPreferences.getInstance();
                     prefs.clear();
                     Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (ctx) {
-                        return LoginScreen();
-                      }),
+                      MaterialPageRoute(
+                        builder: (ctx) {
+                          return LoginScreen();
+                        },
+                      ),
                     );
                   },
                 ),

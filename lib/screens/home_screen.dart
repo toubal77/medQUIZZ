@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -6,19 +7,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:med_quizz/screens/Q&A/q_a.dart';
-import 'package:med_quizz/screens/scores/all_scrors.dart';
-import 'package:med_quizz/services/ads_service.dart';
-import 'package:med_quizz/utils.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:med_quizz/screens/all_module/all_modules.dart';
 import 'package:med_quizz/screens/diagnostics/diagnostics.dart';
 import 'package:med_quizz/screens/profile/profile_screen.dart';
+import 'package:med_quizz/screens/scores/all_scrors.dart';
 import 'package:med_quizz/screens/search/search_screen.dart';
+import 'package:med_quizz/services/ads_service.dart';
 import 'package:med_quizz/services/database.dart';
 import 'package:med_quizz/services/local_notification.dart';
+import 'package:med_quizz/utils.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomePage extends StatefulWidget {
-  static final screenName = "\HomePage";
+  static const screenName = "HomePage";
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -75,7 +76,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: AdManager.loading == false ? 60.h : 0.h,
         //  padding: EdgeInsets.all(8.sp),
         key: UniqueKey(),
@@ -187,7 +188,6 @@ class _HomePageState extends State<HomePage> {
                       Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             SizedBox(
                               height: 10.h,
@@ -199,7 +199,8 @@ class _HomePageState extends State<HomePage> {
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                   image: AssetImage(
-                                      'assets/images/profile_doctor.jpeg'),
+                                    'assets/images/profile_doctor.jpeg',
+                                  ),
                                   fit: BoxFit.cover,
                                 ),
                                 color: Colors.blue,

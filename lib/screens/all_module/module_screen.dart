@@ -4,19 +4,19 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:med_quizz/screens/all_module/widgets/header_module.dart';
-import 'package:med_quizz/screens/scores/widgets/shimmer_card_score.dart';
 import 'package:med_quizz/screens/quizz/quizz_screen.dart';
 import 'package:med_quizz/screens/scores/widgets/build_card_score.dart';
+import 'package:med_quizz/screens/scores/widgets/shimmer_card_score.dart';
 import 'package:med_quizz/services/ads_service.dart';
 import 'package:med_quizz/services/auth.dart';
 
 class ModuleScreen extends StatelessWidget {
   final String title;
-  ModuleScreen(this.title);
+  const ModuleScreen(this.title);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: AdManager.loading == false ? 60.h : 0.h,
         //  padding: EdgeInsets.all(8.sp),
         key: UniqueKey(),
@@ -55,16 +55,17 @@ class ModuleScreen extends StatelessWidget {
                   height: 50.h,
                   width: MediaQuery.of(context).size.width.h * 0.5,
                   decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(30),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.shade500,
-                          spreadRadius: 2,
-                          blurRadius: 2,
-                          offset: Offset(0.2, 0.2),
-                        ),
-                      ]),
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(30),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade500,
+                        spreadRadius: 2,
+                        blurRadius: 2,
+                        offset: Offset(0.2, 0.2),
+                      ),
+                    ],
+                  ),
                   child: Center(
                     child: Text(
                       'Play',
@@ -106,20 +107,24 @@ class ModuleScreen extends StatelessWidget {
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
                       return ListView.builder(
-                          shrinkWrap: true,
-                          itemCount:
-                              int.parse(snapshot.data.docs.length.toString()),
-                          itemBuilder: (context, index) {
-                            return int.parse(
-                                        snapshot.data.docs.length.toString()) >
-                                    0
-                                ? BuildCardScore(
-                                    snapshot.data.docs[index], false)
-                                : SizedBox(
-                                    height: 30,
-                                    child: Center(child: Text('empty')),
-                                  );
-                          });
+                        shrinkWrap: true,
+                        itemCount:
+                            int.parse(snapshot.data.docs.length.toString()),
+                        itemBuilder: (context, index) {
+                          return int.parse(
+                                    snapshot.data.docs.length.toString(),
+                                  ) >
+                                  0
+                              ? BuildCardScore(
+                                  snapshot.data.docs[index],
+                                  false,
+                                )
+                              : SizedBox(
+                                  height: 30,
+                                  child: Center(child: Text('empty')),
+                                );
+                        },
+                      );
                     }
                     return BuildShimmerCardScore();
                   },

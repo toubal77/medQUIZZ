@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/screens/home_screen.dart';
 import 'package:med_quizz/services/auth.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/utils.dart';
 
 enum AuthMode { signup, login }
@@ -99,8 +99,12 @@ class _LoginScreenState extends State<LoginScreen> {
         );
       } else {
         await AuthService()
-            .signUpEmailPassword(emailController.text, passwordController.text,
-                nameController.text, dropdownValue)
+            .signUpEmailPassword(
+          emailController.text,
+          passwordController.text,
+          nameController.text,
+          dropdownValue,
+        )
             .then(
           (result) async {
             if (result != null) {
@@ -233,7 +237,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Icons.arrow_downward,
                       color: Colors.black,
                     ),
-                    iconSize: 24,
+                    iconSize: 24.sp,
                     elevation: 16,
                     style: const TextStyle(color: Colors.black),
                     underline: Container(

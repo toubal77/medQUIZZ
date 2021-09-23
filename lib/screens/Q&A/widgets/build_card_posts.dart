@@ -12,8 +12,8 @@ import 'package:timeago/timeago.dart' as timeago;
 enum FilterOptions { supprime, signale, modifie }
 
 class BuildCardPosts extends StatefulWidget {
-  final posts;
-  final idPost;
+  final dynamic posts;
+  final String idPost;
   const BuildCardPosts(this.posts, this.idPost);
 
   @override
@@ -86,9 +86,7 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                     setState(() async {
                       if (selectedValue == FilterOptions.supprime) {
                         if (widget.posts['idUser'] == idUser) {
-                          DatabaseMethods()
-                              .deletePost(widget.idPost.toString())
-                              .then(
+                          DatabaseMethods().deletePost(widget.idPost).then(
                                 (value) =>
                                     ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
@@ -101,7 +99,7 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                       }
                       if (selectedValue == FilterOptions.signale) {
                         DatabaseMethods()
-                            .sendSignale(widget.idPost.toString(), 'posts')
+                            .sendSignale(widget.idPost, 'posts')
                             .then(
                               (value) =>
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -186,7 +184,7 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
             Container(
               width: MediaQuery.of(context).size.width.w,
               margin: EdgeInsets.only(left: 10.sp, right: 10.sp, bottom: 12.sp),
-              child: widget.posts['message'].length < 200
+              child: int.parse(widget.posts['message'].length.toString()) < 200
                   ? Text(
                       widget.posts['message'].toString(),
                       style: TextStyle(
