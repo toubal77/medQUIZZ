@@ -12,7 +12,7 @@ class Utils {
       hasInternet = true;
     }
     if (hasInternet == false) {
-      final message = 'You have no internet check your connexion';
+      const message = 'You have no internet check your connexion';
       final color = Colors.red;
       Utils.showTopSnackBar(context, message, color);
     }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ShimmerModuleTileSearch extends StatelessWidget {
   const ShimmerModuleTileSearch({Key? key}) : super(key: key);

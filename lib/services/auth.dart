@@ -82,7 +82,9 @@ class AuthService {
   Future signInEmailPassword(String email, String password) async {
     try {
       final UserCredential result = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
+        email: email,
+        password: password,
+      );
       final User? user = result.user;
       DatabaseMethods().updateTokenUser(user!);
       return _userFromFirebaseUser(user);
@@ -92,10 +94,16 @@ class AuthService {
   }
 
   Future signUpEmailPassword(
-      String email, String password, String username, String years) async {
+    String email,
+    String password,
+    String username,
+    String years,
+  ) async {
     try {
       final UserCredential result = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+        email: email,
+        password: password,
+      );
       final User? user = result.user;
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('years', years);

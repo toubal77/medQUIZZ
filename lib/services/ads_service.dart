@@ -6,23 +6,24 @@ class AdManager {
   static String get bannerAdUnitId => 'ca-app-pub-7410810465692328/1352017336';
   static String get interstitialId => 'ca-app-pub-7410810465692328/1853400580';
   static bool loading = false;
-  static buildInterAd(int minDure) {
+  static Future<void> buildInterAd(int minDure) {
     return InterstitialAd.load(
-        adUnitId: AdManager.interstitialId,
-        request: AdRequest(),
-        adLoadCallback: InterstitialAdLoadCallback(
-          onAdLoaded: (InterstitialAd ad) {
-            // Keep a reference to the ad so you can show it later.
-            Timer(Duration(seconds: minDure), () => ad.show());
-          },
-          onAdFailedToLoad: (LoadAdError error) {
-            print('InterstitialAd failed to load: $error');
-          },
-        ));
+      adUnitId: AdManager.interstitialId,
+      request: AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (InterstitialAd ad) {
+          // Keep a reference to the ad so you can show it later.
+          Timer(Duration(seconds: minDure), () => ad.show());
+        },
+        onAdFailedToLoad: (LoadAdError error) {
+          print('InterstitialAd failed to load: $error');
+        },
+      ),
+    );
   }
 
   static BannerAd buildBannerAd() {
-    BannerAd ad = new BannerAd(
+    final BannerAd ad = BannerAd(
       // adUnitId: 'ca-app-pub-7410810465692328/1352017336',
       size: AdSize.fullBanner,
       adUnitId: bannerAdUnitId,
@@ -33,14 +34,9 @@ class AdManager {
         },
         onAdFailedToLoad: (Ad ad, LoadAdError error) {
           loading = true;
-          print('error ad load:' +
-              error.code.toString() +
-              ' ' +
-              error.message +
-              ' ' +
-              error.domain +
-              ' ' +
-              error.responseInfo.toString());
+          print(
+            'error ad load:${error.code} ${error.message} ${error.domain} ${error.responseInfo}',
+          );
           ad.dispose();
         },
         onAdClosed: (Ad ad) {
