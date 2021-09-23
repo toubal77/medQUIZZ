@@ -8,7 +8,7 @@ import 'package:med_quizz/services/database.dart';
 
 class ScoreQuizzScreen extends StatefulWidget {
   final String title;
-  ScoreQuizzScreen(this.title);
+  const ScoreQuizzScreen(this.title);
   @override
   State<ScoreQuizzScreen> createState() => _ScoreQuizzScreenState();
 }
@@ -22,8 +22,11 @@ class _ScoreQuizzScreenState extends State<ScoreQuizzScreen> {
       () {
         setState(() {
           loading = false;
-          DatabaseMethods().sendScore(Calculate.correctTotal.toString(),
-              Calculate.incorrectTotal.toString(), widget.title);
+          DatabaseMethods().sendScore(
+            Calculate.correctTotal.toString(),
+            Calculate.incorrectTotal.toString(),
+            widget.title,
+          );
         });
       },
     );
@@ -49,7 +52,11 @@ class _ScoreQuizzScreenState extends State<ScoreQuizzScreen> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        right: 10, left: 10, top: 4, bottom: 8),
+                      right: 10,
+                      left: 10,
+                      top: 4,
+                      bottom: 8,
+                    ),
                     child: Column(
                       children: [
                         Container(
@@ -145,7 +152,11 @@ class _ScoreQuizzScreenState extends State<ScoreQuizzScreen> {
                         ),
                         Container(
                           padding: const EdgeInsets.only(
-                              left: 10, right: 10, top: 7, bottom: 7),
+                            left: 10,
+                            right: 10,
+                            top: 7,
+                            bottom: 7,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.greenAccent,
                             borderRadius: BorderRadius.circular(20),
@@ -177,7 +188,11 @@ class _ScoreQuizzScreenState extends State<ScoreQuizzScreen> {
                         ),
                         Container(
                           padding: const EdgeInsets.only(
-                              left: 10, right: 10, top: 7, bottom: 7),
+                            left: 10,
+                            right: 10,
+                            top: 7,
+                            bottom: 7,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.redAccent,
                             borderRadius: BorderRadius.circular(20),
@@ -211,19 +226,21 @@ class _ScoreQuizzScreenState extends State<ScoreQuizzScreen> {
                           color: Colors.white,
                           alignment: Alignment.center,
                           child: ElevatedButton(
-                              onPressed: () {
-                                Calculate.restart();
-                                Navigator.of(context).pop();
-                              },
-                              child: Center(
-                                  child: Text(
+                            onPressed: () {
+                              Calculate.restart();
+                              Navigator.of(context).pop();
+                            },
+                            child: Center(
+                              child: Text(
                                 'Retour',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20.sp,
                                   fontWeight: FontWeight.bold,
                                 ),
-                              ))),
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),

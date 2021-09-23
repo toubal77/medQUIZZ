@@ -16,7 +16,7 @@ int incorrect = 0;
 
 class QuizzPlay extends StatefulWidget {
   final String title;
-  QuizzPlay(this.title);
+  const QuizzPlay(this.title);
 
   @override
   _QuizzPlayState createState() => _QuizzPlayState();
@@ -55,7 +55,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            content: Container(
+            content: SizedBox(
               height: 80.h,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -197,7 +197,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      content: Container(
+                      content: SizedBox(
                         height: 115.h,
                         child: Column(
                           children: <Widget>[
@@ -257,7 +257,8 @@ class _QuizzPlayState extends State<QuizzPlay> {
                                           MaterialPageRoute(
                                             builder: (context) {
                                               return ScoreQuizzScreen(
-                                                  widget.title);
+                                                widget.title,
+                                              );
                                             },
                                           ),
                                         );
@@ -336,27 +337,27 @@ class _QuizzPlayState extends State<QuizzPlay> {
 }
 
 class Calculate {
-  static onChnageCorrect() {
+  static void onChnageCorrect() {
     correct += 1;
     print('correct ${correct.toString()}');
   }
 
-  static onChnageIncorrect() {
+  static void onChnageIncorrect() {
     incorrect += 1;
     print('incorrect ${incorrect.toString()}');
   }
 
-  static restart() {
+  static void restart() {
     correct = 0;
     incorrect = 0;
   }
 
-  static get correctTotal {
+  static int get correctTotal {
     print('correct total ${correct.toString()}');
     return correct;
   }
 
-  static get incorrectTotal {
+  static int get incorrectTotal {
     print('incorrect total ${correct.toString()}');
     return incorrect;
   }

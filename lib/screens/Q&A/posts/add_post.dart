@@ -84,7 +84,7 @@ class _AddPostState extends State<AddPost> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             duration: Duration(seconds: 3),
-            content: Text('error to update post message' + error.toString()),
+            content: Text('error to update post message $error'),
           ),
         );
       });
@@ -96,7 +96,7 @@ class _AddPostState extends State<AddPost> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Container(
+        child: SizedBox(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -106,7 +106,11 @@ class _AddPostState extends State<AddPost> {
                 key: _formKey,
                 child: Container(
                   margin: EdgeInsets.only(
-                      top: 8.sp, left: 12.sp, right: 12.sp, bottom: 8.sp),
+                    top: 8.sp,
+                    left: 12.sp,
+                    right: 12.sp,
+                    bottom: 8.sp,
+                  ),
                   //    padding: EdgeInsets.all(12.sp),
 
                   child: TextFormField(
@@ -114,7 +118,7 @@ class _AddPostState extends State<AddPost> {
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderSide: BorderSide(
-                          width: 1,
+                          width: 1.w,
                           color: Colors.grey.shade600,
                         ),
                         borderRadius: const BorderRadius.all(
@@ -176,23 +180,24 @@ class _AddPostState extends State<AddPost> {
                       SizedBox(
                         width: 4.w,
                       ),
-                      okok == false
-                          ? Text(
-                              'aucun fichier',
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.black,
-                              ),
-                            )
-                          : Text(
-                              'fichier selectionne',
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.black,
-                              ),
-                            ),
+                      if (okok == false)
+                        Text(
+                          'aucun fichier',
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        )
+                      else
+                        Text(
+                          'fichier selectionne',
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        ),
                       if (okok == true)
                         IconButton(
                           onPressed: () {
@@ -209,42 +214,43 @@ class _AddPostState extends State<AddPost> {
                     ],
                   ),
                 ),
-              isLoading == false
-                  ? GestureDetector(
-                      onTap: _submitForm,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width.w,
-                        padding: EdgeInsets.symmetric(vertical: 15.sp),
-                        margin: EdgeInsets.only(
-                          top: 15.sp,
-                          left: 40.sp,
-                          right: 40.sp,
-                        ),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: Colors.blueAccent,
-                          borderRadius: BorderRadius.all(Radius.circular(5.sp)),
-                          boxShadow: <BoxShadow>[
-                            BoxShadow(
-                              color: Colors.grey.shade200,
-                              offset: Offset(2.sp, 4.sp),
-                              blurRadius: 5.sp,
-                              spreadRadius: 2.sp,
-                            )
-                          ],
-                        ),
-                        child: Text(
-                          'publier',
-                          style: TextStyle(
-                            fontSize: 20.sp,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    )
-                  : Center(
-                      child: CircularProgressIndicator(),
+              if (isLoading == false)
+                GestureDetector(
+                  onTap: _submitForm,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width.w,
+                    padding: EdgeInsets.symmetric(vertical: 15.sp),
+                    margin: EdgeInsets.only(
+                      top: 15.sp,
+                      left: 40.sp,
+                      right: 40.sp,
                     ),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.blueAccent,
+                      borderRadius: BorderRadius.all(Radius.circular(5.sp)),
+                      boxShadow: <BoxShadow>[
+                        BoxShadow(
+                          color: Colors.grey.shade200,
+                          offset: Offset(2.sp, 4.sp),
+                          blurRadius: 5.sp,
+                          spreadRadius: 2.sp,
+                        )
+                      ],
+                    ),
+                    child: Text(
+                      'publier',
+                      style: TextStyle(
+                        fontSize: 20.sp,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                )
+              else
+                Center(
+                  child: CircularProgressIndicator(),
+                ),
             ],
           ),
         ),

@@ -77,11 +77,12 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                 ),
                 PopupMenuButton(
                   shape: OutlineInputBorder(
-                      borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10.sp),
-                    bottomLeft: Radius.circular(10.sp),
-                    bottomRight: Radius.circular(10.sp),
-                  )),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10.sp),
+                      bottomLeft: Radius.circular(10.sp),
+                      bottomRight: Radius.circular(10.sp),
+                    ),
+                  ),
                   onSelected: (FilterOptions selectedValue) {
                     setState(() async {
                       if (selectedValue == FilterOptions.supprime) {

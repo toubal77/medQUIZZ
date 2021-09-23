@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/models/questions.dart';
 import 'package:med_quizz/screens/quizz/quizz_screen.dart';
 import 'package:med_quizz/screens/quizz/widgets/option_tile.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class QuizPlayTile extends StatefulWidget {
   final Questions? questionModel;
@@ -280,7 +280,11 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
               width: MediaQuery.of(context).size.width.w,
               margin: EdgeInsets.only(bottom: 13.sp, left: 5.sp, right: 5.sp),
               padding: EdgeInsets.only(
-                  top: 10.sp, left: 7.sp, right: 7.sp, bottom: 7.sp),
+                top: 10.sp,
+                left: 7.sp,
+                right: 7.sp,
+                bottom: 7.sp,
+              ),
               decoration: BoxDecoration(
                 color: Colors.white.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(20),
@@ -318,7 +322,7 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                     height: 5.h,
                   ),
                   Text(
-                    'Explication: ' + widget.questionModel!.explication,
+                    'Explication: ${widget.questionModel!.explication}',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 14.sp,

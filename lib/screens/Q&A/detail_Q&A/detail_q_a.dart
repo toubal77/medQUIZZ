@@ -11,8 +11,8 @@ import 'package:med_quizz/services/database.dart';
 enum FilterOptions { supprime, signale, modifie }
 
 class DetailQA extends StatefulWidget {
-  final posts;
-  final idPost;
+  final dynamic posts;
+  final String idPost;
   const DetailQA(this.posts, this.idPost);
 
   @override
@@ -56,17 +56,18 @@ class _DetailQAState extends State<DetailQA> {
                           HeaderPostDetail(widget.posts),
                           PopupMenuButton(
                             shape: OutlineInputBorder(
-                                borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(10.sp),
-                              bottomLeft: Radius.circular(10.sp),
-                              bottomRight: Radius.circular(10.sp),
-                            )),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10.sp),
+                                bottomLeft: Radius.circular(10.sp),
+                                bottomRight: Radius.circular(10.sp),
+                              ),
+                            ),
                             onSelected: (FilterOptions selectedValue) {
                               setState(() async {
                                 if (selectedValue == FilterOptions.supprime) {
                                   if (widget.posts['idUser'] == idUser) {
                                     DatabaseMethods()
-                                        .deletePost(widget.idPost.toString())
+                                        .deletePost(widget.idPost)
                                         .then(
                                       (value) {
                                         ScaffoldMessenger.of(context)
@@ -83,8 +84,7 @@ class _DetailQAState extends State<DetailQA> {
                                 }
                                 if (selectedValue == FilterOptions.signale) {
                                   DatabaseMethods()
-                                      .sendSignale(
-                                          widget.idPost.toString(), 'posts')
+                                      .sendSignale(widget.idPost, 'posts')
                                       .then(
                                         (value) => ScaffoldMessenger.of(context)
                                             .showSnackBar(
@@ -169,7 +169,10 @@ class _DetailQAState extends State<DetailQA> {
                       Container(
                         width: MediaQuery.of(context).size.width.w,
                         margin: EdgeInsets.only(
-                            left: 10.sp, right: 10.sp, bottom: 12.sp),
+                          left: 10.sp,
+                          right: 10.sp,
+                          bottom: 12.sp,
+                        ),
                         child: Text(
                           widget.posts['message'].toString(),
                           style: TextStyle(
@@ -217,7 +220,7 @@ class _DetailQAState extends State<DetailQA> {
                         child: StreamBuilder<QuerySnapshot>(
                           stream: FirebaseFirestore.instance
                               .collection('posts')
-                              .doc(widget.idPost.toString())
+                              .doc(widget.idPost)
                               .collection('commentaires')
                               .orderBy('time', descending: false)
                               .snapshots(),
@@ -232,7 +235,7 @@ class _DetailQAState extends State<DetailQA> {
                                 itemBuilder: (context, index) {
                                   return BuildCommentePost(
                                     snapshot.data!.docs[index],
-                                    snapshot.data!.docs[index].id,
+                                    snapshot.data!.docs[index].id.toString(),
                                     widget.idPost,
                                   );
                                 },
@@ -284,7 +287,7 @@ class _DetailQAState extends State<DetailQA> {
                             if (_messageComm.text.trim().isNotEmpty) {
                               DatabaseMethods()
                                   .sendCommentaire(
-                                widget.idPost.toString(),
+                                widget.idPost,
                                 _messageComm.text.trim(),
                               )
                                   .then((result) async {

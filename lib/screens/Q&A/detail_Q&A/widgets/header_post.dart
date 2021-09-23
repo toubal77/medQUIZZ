@@ -5,7 +5,7 @@ import 'package:med_quizz/screens/Q&A/widgets/build_image_user.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class HeaderPostDetail extends StatelessWidget {
-  final post;
+  final dynamic post;
   const HeaderPostDetail(this.post);
   @override
   Widget build(BuildContext context) {

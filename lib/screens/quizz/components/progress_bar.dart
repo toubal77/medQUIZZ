@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:med_quizz/helper/controller.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// ignore: must_be_immutable
 class ProgressBar extends StatefulWidget {
-  bool timeOver;
+  final bool timeOver;
   final String title;
-  ProgressBar(this.timeOver, this.title);
+  const ProgressBar(this.timeOver, this.title);
 
   @override
   _ProgressBarState createState() => _ProgressBarState();
@@ -80,7 +79,8 @@ class _ProgressBarState extends State<ProgressBar> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                              "${(controller.animation.value * 60).round()} sec"),
+                            "${(controller.animation.value * 60).round()} sec",
+                          ),
                           Icon(Icons.lock_clock),
                         ],
                       ),

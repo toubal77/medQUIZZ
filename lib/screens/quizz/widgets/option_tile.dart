@@ -33,20 +33,7 @@ class _OptionTileState extends State<OptionTile> {
             width: 28.w,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-                border: Border.all(
-                  color: widget.optionSelected == ''
-                      ? widget.validate
-                          ? widget.correctAnswer
-                              ? Colors.green
-                              : Colors.red
-                          : Colors.white
-                      : widget.validate
-                          ? widget.correctAnswer
-                              ? Colors.green
-                              : Colors.red
-                          : Colors.grey.shade700,
-                  width: 1.5.w,
-                ),
+              border: Border.all(
                 color: widget.optionSelected == ''
                     ? widget.validate
                         ? widget.correctAnswer
@@ -57,8 +44,22 @@ class _OptionTileState extends State<OptionTile> {
                         ? widget.correctAnswer
                             ? Colors.green
                             : Colors.red
-                        : Colors.blueGrey,
-                borderRadius: BorderRadius.circular(24.sp)),
+                        : Colors.grey.shade700,
+                width: 1.5.w,
+              ),
+              color: widget.optionSelected == ''
+                  ? widget.validate
+                      ? widget.correctAnswer
+                          ? Colors.green
+                          : Colors.red
+                      : Colors.white
+                  : widget.validate
+                      ? widget.correctAnswer
+                          ? Colors.green
+                          : Colors.red
+                      : Colors.blueGrey,
+              borderRadius: BorderRadius.circular(24.sp),
+            ),
             child: Text(
               widget.option,
               overflow: TextOverflow.ellipsis,

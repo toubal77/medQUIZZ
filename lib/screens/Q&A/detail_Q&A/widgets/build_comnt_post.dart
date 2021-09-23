@@ -7,9 +7,9 @@ import 'package:med_quizz/services/database.dart';
 enum FilterOptions { supprime, signale }
 
 class BuildCommentePost extends StatefulWidget {
-  final comnt;
-  final idComnt;
-  final idPost;
+  final dynamic comnt;
+  final String idComnt;
+  final String idPost;
   const BuildCommentePost(this.comnt, this.idComnt, this.idPost);
 
   @override
@@ -57,19 +57,22 @@ class _BuildCommentePostState extends State<BuildCommentePost> {
                     ),
                     PopupMenuButton(
                       shape: OutlineInputBorder(
-                          borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10.sp),
-                        bottomLeft: Radius.circular(10.sp),
-                        bottomRight: Radius.circular(10.sp),
-                      )),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10.sp),
+                          bottomLeft: Radius.circular(10.sp),
+                          bottomRight: Radius.circular(10.sp),
+                        ),
+                      ),
                       onSelected: (FilterOptions selectedValue) {
                         setState(
                           () async {
                             if (selectedValue == FilterOptions.supprime) {
                               if (widget.comnt['idUser'] == idUser) {
                                 DatabaseMethods()
-                                    .deleteComnt(widget.idPost.toString(),
-                                        widget.idComnt.toString())
+                                    .deleteComnt(
+                                      widget.idPost,
+                                      widget.idComnt,
+                                    )
                                     .then(
                                       (value) => ScaffoldMessenger.of(context)
                                           .showSnackBar(
@@ -84,7 +87,7 @@ class _BuildCommentePostState extends State<BuildCommentePost> {
                             if (selectedValue == FilterOptions.signale) {
                               DatabaseMethods()
                                   .sendSignale(
-                                    widget.idComnt.toString(),
+                                    widget.idComnt,
                                     'commentaire',
                                   )
                                   .then(

@@ -15,7 +15,7 @@ class ShimmerCardPost extends StatelessWidget {
           shrinkWrap: true,
           itemCount: 8,
           itemBuilder: (context, index) {
-            int numm = Random().nextInt(8);
+            final int numm = Random().nextInt(8);
             return Shimmer.fromColors(
               baseColor: Colors.white,
               highlightColor: Colors.grey.shade300,

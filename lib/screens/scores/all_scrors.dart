@@ -45,7 +45,7 @@ class _AllScoresState extends State<AllScores> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: AdManager.loading == false ? 60.h : 0.h,
         key: UniqueKey(),
         child: AdWidget(
