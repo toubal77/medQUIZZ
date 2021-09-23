@@ -20,6 +20,8 @@ import 'package:shimmer/shimmer.dart';
 
 class HomePage extends StatefulWidget {
   static const screenName = "HomePage";
+
+  const HomePage({Key? key}) : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -52,7 +54,9 @@ class _HomePageState extends State<HomePage> {
     //forground
     FirebaseMessaging.onMessage.listen((message) {
       if (message.notification != null) {
+        // ignore: avoid_print
         print(message.notification!.title);
+        // ignore: avoid_print
         print(message.notification!.body);
       }
       LocalNotificationService.display(message);
@@ -84,12 +88,12 @@ class _HomePageState extends State<HomePage> {
           ad: AdManager.buildBannerAd()..load(),
         ),
       ),
-      backgroundColor: Color(0xFFE5E5E5),
+      backgroundColor: const Color(0xFFE5E5E5),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
             height: MediaQuery.of(context).size.height.h,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/login-background.png'),
                 fit: BoxFit.fill,
@@ -103,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                   width: MediaQuery.of(context).size.width.w,
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.3),
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(190),
                       bottomRight: Radius.circular(190),
                     ),
@@ -121,12 +125,12 @@ class _HomePageState extends State<HomePage> {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return SearchScreen();
+                                      return const SearchScreen();
                                     },
                                   ),
                                 );
                               },
-                              icon: Icon(Icons.search),
+                              icon: const Icon(Icons.search),
                               color: Colors.white,
                             ),
                             // Text(
@@ -165,12 +169,12 @@ class _HomePageState extends State<HomePage> {
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
                                           builder: (context) {
-                                            return ProfileScreen();
+                                            return const ProfileScreen();
                                           },
                                         ),
                                       );
                                     },
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.account_circle,
                                       color: Colors.white,
                                     ),
@@ -181,7 +185,7 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-                      Divider(
+                      const Divider(
                         height: 6,
                         color: Colors.white,
                       ),
@@ -197,7 +201,7 @@ class _HomePageState extends State<HomePage> {
                               height: 70.h,
                               //margin: EdgeInsets.only(top: 25.sp, bottom: 20),
                               decoration: BoxDecoration(
-                                image: DecorationImage(
+                                image: const DecorationImage(
                                   image: AssetImage(
                                     'assets/images/profile_doctor.jpeg',
                                   ),
@@ -260,7 +264,7 @@ class _HomePageState extends State<HomePage> {
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) {
-                                return AllModules();
+                                return const AllModules();
                               },
                             ),
                           );
@@ -278,7 +282,7 @@ class _HomePageState extends State<HomePage> {
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) {
-                                return AllScores();
+                                return const AllScores();
                               },
                             ),
                           );
@@ -296,7 +300,7 @@ class _HomePageState extends State<HomePage> {
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) {
-                                return QAScreen();
+                                return const QAScreen();
                               },
                             ),
                           );
@@ -314,7 +318,7 @@ class _HomePageState extends State<HomePage> {
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) {
-                                return Diagnostic();
+                                return const Diagnostic();
                               },
                             ),
                           );

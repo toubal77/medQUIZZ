@@ -7,7 +7,7 @@ class LocalNotificationService {
       FlutterLocalNotificationsPlugin();
 
   static void initialize(BuildContext context) {
-    final InitializationSettings initializationSettings =
+    const InitializationSettings initializationSettings =
         InitializationSettings(
       android: AndroidInitializationSettings("@mipmap/ic_launcher"),
     );
@@ -26,7 +26,7 @@ class LocalNotificationService {
     try {
       final id = DateTime.now().millisecondsSinceEpoch ~/ 1000;
 
-      final NotificationDetails notificationDetails = NotificationDetails(
+      const NotificationDetails notificationDetails = NotificationDetails(
         android: AndroidNotificationDetails(
           "med-quizz",
           "med-quizz channel",
@@ -44,6 +44,7 @@ class LocalNotificationService {
         payload: message.data["route"].toString(),
       );
     } on Exception catch (e) {
+      // ignore: avoid_print
       print(e);
     }
   }

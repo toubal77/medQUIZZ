@@ -55,7 +55,7 @@ class _AllScoresState extends State<AllScores> {
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height.h,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/login-background.png'),
               fit: BoxFit.fill,
@@ -63,7 +63,7 @@ class _AllScoresState extends State<AllScores> {
           ),
           child: Column(
             children: [
-              Header(),
+              const Header(),
               Expanded(
                 child: StreamBuilder(
                   stream: FirebaseFirestore.instance
@@ -84,17 +84,17 @@ class _AllScoresState extends State<AllScores> {
                                   ) >
                                   0
                               ? BuildCardScore(
-                                  snapshot.data.docs[index],
-                                  true,
+                                  score: snapshot.data.docs[index],
+                                  show: true,
                                 )
-                              : SizedBox(
+                              : const SizedBox(
                                   height: 30,
                                   child: Center(child: Text('empty')),
                                 );
                         },
                       );
                     }
-                    return BuildShimmerCardScore();
+                    return const BuildShimmerCardScore();
                   },
                 ),
               ),

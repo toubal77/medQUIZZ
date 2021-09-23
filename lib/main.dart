@@ -47,9 +47,9 @@ class MyApp extends StatelessWidget {
                 final user = snapshot.data;
 
                 if (user == null) {
-                  return LoginScreen();
+                  return const LoginScreen();
                 } else {
-                  return HomePage();
+                  return const HomePage();
                 }
               } else {
                 return const Scaffold(
@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
           ),
           routes: {
             Diagnostic.screenName: (context) => const Diagnostic(),
-            HomePage.screenName: (context) => HomePage(),
+            HomePage.screenName: (context) => const HomePage(),
             AddPost.screenName: (context) => const AddPost(),
           },
         ),

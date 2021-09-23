@@ -89,6 +89,7 @@ class AuthService {
       DatabaseMethods().updateTokenUser(user!);
       return _userFromFirebaseUser(user);
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
     }
   }
@@ -110,6 +111,7 @@ class AuthService {
       DatabaseMethods().addDocumentUser(user!, username, years);
       return _userFromFirebaseUser(user);
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
     }
   }
@@ -123,9 +125,11 @@ class AuthService {
     _auth.currentUser!
         .updatePassword(password)
         .then(
+          // ignore: avoid_print
           (value) => print('update password seccus'),
         )
         .catchError(
+          // ignore: avoid_print
           (value) => print('update password field $value'),
         );
   }
@@ -134,6 +138,7 @@ class AuthService {
     try {
       return await _auth.signOut();
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
     }
   }

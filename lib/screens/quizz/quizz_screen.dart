@@ -102,7 +102,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return HomePage();
+                                    return const HomePage();
                                   },
                                 ),
                               );

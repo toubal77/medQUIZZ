@@ -331,6 +331,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                     },
                                                   );
                                                 } catch (e) {
+                                                  // ignore: avoid_print
                                                   return print(e.toString());
                                                 }
                                               },

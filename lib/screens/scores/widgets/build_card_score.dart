@@ -5,7 +5,11 @@ import 'package:timeago/timeago.dart' as timeago;
 class BuildCardScore extends StatelessWidget {
   final dynamic score;
   final bool show;
-  const BuildCardScore(this.score, this.show);
+  const BuildCardScore({
+    Key? key,
+    required this.score,
+    required this.show,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,7 +27,7 @@ class BuildCardScore extends StatelessWidget {
                       ? 'acceptable'
                       : 'excellent'
               : score['module'].toString(),
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w700,
             color: Colors.black,
@@ -41,7 +45,7 @@ class BuildCardScore extends StatelessWidget {
                   : int.parse(score['correct'].toString()) <= 7
                       ? 'acceptable'
                       : 'excellent',
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 15,
             color: Colors.grey,
           ),

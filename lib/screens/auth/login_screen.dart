@@ -86,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return HomePage();
+                    return const HomePage();
                     // return HomePage(
                     //     'vous venez de cree un compte avec ${emailController.text}');
                   },
@@ -95,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  duration: Duration(seconds: 3),
+                  duration: const Duration(seconds: 3),
                   content: Text(result.toString()),
                 ),
               );
@@ -120,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return HomePage();
+                    return const HomePage();
                     // return HomePage(
                     //     'vous venez de cree un compte avec ${emailController.text}');
                   },

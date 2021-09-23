@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:med_quizz/models/modules.dart';
 import 'package:med_quizz/screens/all_module/module_screen.dart';
 
 class ModuleTileSearch extends StatelessWidget {
   final Modules? mod;
-  const ModuleTileSearch(this.mod);
+  const ModuleTileSearch(
+    Modules? search, {
+    Key? key,
+    this.mod,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -13,7 +18,7 @@ class ModuleTileSearch extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return ModuleScreen(mod!.nom);
+              return ModuleScreen(title: mod!.nom);
             },
           ),
         );

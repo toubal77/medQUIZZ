@@ -23,6 +23,7 @@ class DatabaseMethods {
       prefs.setString('username', _userData['username'].toString());
       return _userData;
     } catch (err) {
+      // ignore: avoid_print
       print(err);
     }
   }
@@ -35,9 +36,11 @@ class DatabaseMethods {
           'username': username,
         })
         .then(
+          // ignore: avoid_print
           (value) => print('update settings seccus'),
         )
         .catchError(
+          // ignore: avoid_print
           (value) => print('update settings field $value'),
         );
   }
@@ -56,9 +59,12 @@ class DatabaseMethods {
             'username': username,
             'message': message,
           })
+          // ignore: avoid_print
           .then((value) => print('send suggestion with seccus'))
+          // ignore: avoid_print
           .catchError((value) => print('send suggestion field $value'));
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
     }
   }
@@ -80,9 +86,12 @@ class DatabaseMethods {
             'time': DateTime.now().toIso8601String(),
             'years': years,
           })
+          // ignore: avoid_print
           .then((value) => print('send suggestion with seccus'))
+          // ignore: avoid_print
           .catchError((value) => print('send suggestion field $value'));
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
     }
   }
@@ -99,7 +108,9 @@ class DatabaseMethods {
             'token': token,
             'years': years,
           })
+          // ignore: avoid_print
           .then((value) => print("document user added : users : $user"))
+          // ignore: avoid_print
           .catchError((error) => print("Failed to add document : $error"));
     });
   }
@@ -113,8 +124,10 @@ class DatabaseMethods {
           .update({
             'token': token,
           })
+          // ignore: avoid_print
           .then((value) => print("update Token user"))
           .catchError(
+            // ignore: avoid_print
             (error) => print("Failed to update token user info: $error"),
           );
     });
@@ -152,7 +165,9 @@ class DatabaseMethods {
           'message': message,
           'url': url,
         })
+        // ignore: avoid_print
         .then((value) => print("send post"))
+        // ignore: avoid_print
         .catchError((error) => print("Failed to send post: $error"));
   }
 
@@ -170,7 +185,9 @@ class DatabaseMethods {
           'username': username,
           'message': message,
         })
+        // ignore: avoid_print
         .then((value) => print("send commentaire post"))
+        // ignore: avoid_print
         .catchError((error) => print("Failed to commentaire post: $error"));
   }
 
@@ -181,7 +198,9 @@ class DatabaseMethods {
         .collection('commentaires')
         .doc(idComnt)
         .delete()
+        // ignore: avoid_print
         .then((value) => print("delete commentaire"))
+        // ignore: avoid_print
         .catchError((error) => print("Failed to delete commentaire: $error"));
   }
 
@@ -190,7 +209,9 @@ class DatabaseMethods {
         .collection('posts')
         .doc(idPost)
         .delete()
+        // ignore: avoid_print
         .then((value) => print("delete posts"))
+        // ignore: avoid_print
         .catchError((error) => print("Failed to delete posts: $error"));
   }
 
@@ -203,7 +224,9 @@ class DatabaseMethods {
           'idUser': AuthService().getUserId,
           'time': DateTime.now().toIso8601String(),
         })
+        // ignore: avoid_print
         .then((value) => print("delete posts"))
+        // ignore: avoid_print
         .catchError((error) => print("Failed to delete posts: $error"));
   }
 
@@ -215,7 +238,9 @@ class DatabaseMethods {
           'time': DateTime.now().toIso8601String(),
           'message': message,
         })
+        // ignore: avoid_print
         .then((value) => print("update post"))
+        // ignore: avoid_print
         .catchError((error) => print("Failed to update post: $error"));
   }
 
@@ -224,6 +249,7 @@ class DatabaseMethods {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? years = prefs.getString('years');
     try {
+      // ignore: avoid_print
       print(years);
       final url =
           Uri.parse('https://rayanzinotblans.000webhostapp.com/get_module.php');
@@ -234,6 +260,7 @@ class DatabaseMethods {
         },
       );
       if (response.statusCode == 200) {
+        // ignore: avoid_print
         print('seccus get module');
         final data = json.decode(response.body);
         final rest = data["modules"] as List;
@@ -243,11 +270,15 @@ class DatabaseMethods {
 
         return list;
       } else {
+        // ignore: avoid_print
         print('field get module');
+        // ignore: avoid_print
         print('Response status: ${response.statusCode}');
       }
     } catch (e) {
+      // ignore: avoid_print
       print('field to try get module');
+      // ignore: avoid_print
       print(e.toString());
     }
   }
@@ -260,6 +291,7 @@ class DatabaseMethods {
       );
       final response = await http.get(url);
       if (response.statusCode == 200) {
+        // ignore: avoid_print
         print('seccus get module most popular');
         final data = json.decode(response.body);
         final rest = data["modules"] as List;
@@ -269,11 +301,15 @@ class DatabaseMethods {
 
         return list;
       } else {
+        // ignore: avoid_print
         print('field get module most popular');
+        // ignore: avoid_print
         print('Response status: ${response.statusCode}');
       }
     } catch (e) {
+      // ignore: avoid_print
       print('field to try get module most popular');
+      // ignore: avoid_print
       print(e.toString());
     }
   }
@@ -292,7 +328,9 @@ class DatabaseMethods {
           'annee': annee,
           'time': DateTime.now().toIso8601String(),
         })
+        // ignore: avoid_print
         .then((value) => print("Score Data added with seccus"))
+        // ignore: avoid_print
         .catchError((error) => print("Failed score Data"));
   }
 
@@ -309,16 +347,22 @@ class DatabaseMethods {
       );
       if (response.statusCode == 200) {
         if (json.decode(response.body)['status']) {
+          // ignore: avoid_print
           print('seccus update View Module');
         } else {
+          // ignore: avoid_print
           print(json.decode(response.body)['message']);
         }
       } else {
+        // ignore: avoid_print
         print('field update View Module');
+        // ignore: avoid_print
         print('Response status: ${response.statusCode}');
       }
     } catch (e) {
+      // ignore: avoid_print
       print('field to try update View Module');
+      // ignore: avoid_print
       print(e.toString());
     }
   }
@@ -331,6 +375,7 @@ class DatabaseMethods {
       );
       final response = await http.get(url);
       if (response.statusCode == 200) {
+        // ignore: avoid_print
         print('seccus get question');
         final data = json.decode(response.body);
         final rest = data["questions"] as List;
@@ -340,10 +385,13 @@ class DatabaseMethods {
 
         return list;
       } else {
+        // ignore: avoid_print
         print('field get question');
+        // ignore: avoid_print
         print('Response status: ${response.statusCode}');
       }
     } catch (e) {
+      // ignore: avoid_print
       print('field to try get question');
     }
   }
@@ -355,6 +403,7 @@ class DatabaseMethods {
           Uri.parse('https://rayanzinotblans.000webhostapp.com/get_diag.php');
       final response = await http.get(url);
       if (response.statusCode == 200) {
+        // ignore: avoid_print
         print('seccus get diagnostics');
         final data = json.decode(response.body);
         final rest = data["diag"] as List;
@@ -366,11 +415,15 @@ class DatabaseMethods {
 
         return list;
       } else {
+        // ignore: avoid_print
         print('field get diangostics');
+        // ignore: avoid_print
         print('Response status: ${response.statusCode}');
       }
     } catch (e) {
+      // ignore: avoid_print
       print('field to try get diangostics');
+      // ignore: avoid_print
       print(e.toString());
     }
   }

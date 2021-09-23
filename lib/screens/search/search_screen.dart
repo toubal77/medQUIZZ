@@ -41,6 +41,7 @@ class _SearchScreenState extends State<SearchScreen> {
         },
       );
       if (response.statusCode == 200) {
+        // ignore: avoid_print
         print('seccus get module');
         final data = json.decode(response.body);
         final rest = data["modules"] as List;
@@ -50,11 +51,15 @@ class _SearchScreenState extends State<SearchScreen> {
           }
         });
       } else {
+        // ignore: avoid_print
         print('field get module');
+        // ignore: avoid_print
         print('Response status: ${response.statusCode}');
       }
     } catch (e) {
+      // ignore: avoid_print
       print('field to try get module');
+      // ignore: avoid_print
       print(e.toString());
     }
     setState(() {
@@ -127,7 +132,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           _search.clear();
                           Navigator.of(context).pop();
                         },
-                        child: Icon(Icons.arrow_back),
+                        child: const Icon(Icons.arrow_back),
                       ),
                       Center(
                         child: Text(
@@ -144,7 +149,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),
                   Row(
                     children: [
-                      Icon(Icons.search),
+                      const Icon(Icons.search),
                       SizedBox(
                         width: 18.w,
                       ),
@@ -189,7 +194,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 itemBuilder: (context, index) {
                   return _search.isNotEmpty
                       ? ModuleTileSearch(_search[index])
-                      : ShimmerModuleTileSearch();
+                      : const ShimmerModuleTileSearch();
                 },
               ),
             ),

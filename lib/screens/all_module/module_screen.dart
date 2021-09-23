@@ -120,8 +120,8 @@ class ModuleScreen extends StatelessWidget {
                                   ) >
                                   0
                               ? BuildCardScore(
-                                  snapshot.data.docs[index],
-                                  false,
+                                  score: snapshot.data.docs[index],
+                                  show: false,
                                 )
                               : const SizedBox(
                                   height: 30,

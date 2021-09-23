@@ -9,13 +9,14 @@ class AdManager {
   static Future<void> buildInterAd(int minDure) {
     return InterstitialAd.load(
       adUnitId: AdManager.interstitialId,
-      request: AdRequest(),
+      request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (InterstitialAd ad) {
           // Keep a reference to the ad so you can show it later.
           Timer(Duration(seconds: minDure), () => ad.show());
         },
         onAdFailedToLoad: (LoadAdError error) {
+          // ignore: avoid_print
           print('InterstitialAd failed to load: $error');
         },
       ),
@@ -30,10 +31,12 @@ class AdManager {
 
       listener: BannerAdListener(
         onAdLoaded: (Ad ad) {
+          // ignore: avoid_print
           print('On Ad Loaded');
         },
         onAdFailedToLoad: (Ad ad, LoadAdError error) {
           loading = true;
+          // ignore: avoid_print
           print(
             'error ad load:${error.code} ${error.message} ${error.domain} ${error.responseInfo}',
           );
@@ -41,10 +44,11 @@ class AdManager {
         },
         onAdClosed: (Ad ad) {
           loading = true;
+          // ignore: avoid_print
           print('On Ad Closed');
         },
       ),
-      request: AdRequest(),
+      request: const AdRequest(),
     );
     return ad;
   }
