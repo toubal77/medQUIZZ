@@ -7,8 +7,9 @@ import 'package:med_quizz/screens/all_module/module_screen.dart';
 class ModuleTileSearch extends StatelessWidget {
   final Modules mod;
   const ModuleTileSearch({
+    Key? key,
     required this.mod,
-  });
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
