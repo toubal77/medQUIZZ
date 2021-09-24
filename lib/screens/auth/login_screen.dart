@@ -221,6 +221,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: Colors.cyanAccent,
                   ),
                 ),
+                style: const TextStyle(color: Colors.white),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value!.isEmpty || value.length < 6) {
@@ -289,6 +290,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   color: Colors.cyanAccent,
                 ),
               ),
+              style: const TextStyle(color: Colors.white),
               keyboardType: TextInputType.emailAddress,
               validator: (value) {
                 if (value!.isEmpty || !value.contains('@')) {
@@ -313,6 +315,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   color: Colors.cyanAccent,
                 ),
               ),
+              style: const TextStyle(color: Colors.white),
               obscureText: true,
               validator: (value) {
                 if (value!.isEmpty || value.length < 6) {
@@ -373,16 +376,40 @@ class _LoginScreenState extends State<LoginScreen> {
           margin: EdgeInsets.symmetric(vertical: 20.sp),
           //    padding: EdgeInsets.all(15.sp),
           alignment: Alignment.bottomCenter,
-          child: Text(
-            _authMode == AuthMode.login
-                ? "vous n'avez pas de compte ? cree un"
-                : 'vous avez un compte ? ce connecte',
-            style: TextStyle(
-              fontSize: 15.sp,
-              fontWeight: FontWeight.w600,
-              color: Colors.white,
+          child: RichText(
+            text: TextSpan(
+              text: _authMode == AuthMode.login
+                  ? "vous n'avez pas de compte ? "
+                  : "vous avez un compte ? ",
+              style: TextStyle(
+                fontSize: 15.sp,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: _authMode == AuthMode.login ? 'cree un' : 'ce connecte',
+                  style: TextStyle(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.cyanAccent,
+                  ),
+                ),
+              ],
             ),
-          ), // child: Row(
+          ),
+
+          // Text(
+          //   _authMode == AuthMode.login
+          //       ? "vous n'avez pas de compte ? cree un"
+          //       : 'vous avez un compte ? ce connecte',
+          //   style: TextStyle(
+          //     fontSize: 15.sp,
+          //     fontWeight: FontWeight.w600,
+          //     color: Colors.white,
+          //   ),
+          // ),
+          // child: Row(
           //   mainAxisAlignment: MainAxisAlignment.center,
           //   children: <Widget>[
           //     Text(

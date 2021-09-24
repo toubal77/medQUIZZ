@@ -84,9 +84,13 @@ class _ChangePasswordState extends State<ChangePassword> {
                             ),
                             labelText: 'New Password',
                             labelStyle: TextStyle(
-                              fontSize: 15.0.sp,
+                                fontSize: 15.0.sp, color: Colors.white),
+                            errorStyle: TextStyle(
+                              fontSize: 12.0.sp,
+                              color: Colors.cyanAccent,
                             ),
                           ),
+                          style: const TextStyle(color: Colors.white),
                           obscureText: true,
                           validator: (value) {
                             if (value!.trim().isEmpty &&
@@ -112,9 +116,13 @@ class _ChangePasswordState extends State<ChangePassword> {
                             ),
                             labelText: 'Confirme Password',
                             labelStyle: TextStyle(
-                              fontSize: 15.0.sp,
+                                fontSize: 15.0.sp, color: Colors.white),
+                            errorStyle: TextStyle(
+                              fontSize: 12.0.sp,
+                              color: Colors.cyanAccent,
                             ),
                           ),
+                          style: const TextStyle(color: Colors.white),
                           obscureText: true,
                           validator: (value) {
                             if (value!.trim().isEmpty) {
@@ -152,6 +160,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                 'Confirme',
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
+                                  color: Colors.white,
                                 ),
                               ),
                             ),

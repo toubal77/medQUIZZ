@@ -114,6 +114,7 @@ class _DetailQAState extends State<DetailQA> {
                               height: 15.h,
                               child: const Icon(
                                 Icons.more_horiz,
+                                color: Colors.white,
                               ),
                             ),
                             itemBuilder: (_) => [
@@ -214,6 +215,7 @@ class _DetailQAState extends State<DetailQA> {
                           style: TextStyle(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w600,
+                            color: Colors.white,
                           ),
                         ),
                       ),

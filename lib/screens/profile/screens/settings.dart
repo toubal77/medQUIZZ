@@ -102,15 +102,23 @@ class _SettingsState extends State<Settings> {
                           keyboardType: TextInputType.name,
                           decoration: InputDecoration(
                             border: const OutlineInputBorder(
-                              borderSide: BorderSide(),
+                              borderSide: BorderSide(
+                                color: Colors.white,
+                              ),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(30.0)),
                             ),
                             labelText: 'Votre Nom',
                             labelStyle: TextStyle(
                               fontSize: 15.0.sp,
+                              color: Colors.white,
+                            ),
+                            errorStyle: TextStyle(
+                              fontSize: 12.0.sp,
+                              color: Colors.cyanAccent,
                             ),
                           ),
+                          style: const TextStyle(color: Colors.white),
                           validator: (value) {
                             if (value!.trim().isEmpty) {
                               return "Can't be empty";
@@ -130,15 +138,23 @@ class _SettingsState extends State<Settings> {
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                             border: const OutlineInputBorder(
-                              borderSide: BorderSide(),
+                              borderSide: BorderSide(
+                                color: Colors.white,
+                              ),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(30.0)),
                             ),
                             labelText: 'Email',
                             labelStyle: TextStyle(
                               fontSize: 15.0.sp,
+                              color: Colors.white,
+                            ),
+                            errorStyle: TextStyle(
+                              fontSize: 12.0.sp,
+                              color: Colors.cyanAccent,
                             ),
                           ),
+                          style: const TextStyle(color: Colors.white),
                           validator: (value) {
                             if (value!.isEmpty || !value.contains('@')) {
                               return 'veuillez entrer un email valide';
@@ -173,6 +189,7 @@ class _SettingsState extends State<Settings> {
                                 'Confirme',
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
+                                  color: Colors.white,
                                 ),
                               ),
                             ),
