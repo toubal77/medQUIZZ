@@ -111,8 +111,6 @@ class _AddPostState extends State<AddPost> {
                     right: 12.sp,
                     bottom: 8.sp,
                   ),
-                  //    padding: EdgeInsets.all(12.sp),
-
                   child: TextFormField(
                     controller: textController,
                     decoration: InputDecoration(

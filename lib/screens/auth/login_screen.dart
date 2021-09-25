@@ -87,8 +87,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 MaterialPageRoute(
                   builder: (context) {
                     return const HomePage();
-                    // return HomePage(
-                    //     'vous venez de cree un compte avec ${emailController.text}');
                   },
                 ),
               );
@@ -121,8 +119,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 MaterialPageRoute(
                   builder: (context) {
                     return const HomePage();
-                    // return HomePage(
-                    //     'vous venez de cree un compte avec ${emailController.text}');
                   },
                 ),
               );
@@ -137,59 +133,6 @@ class _LoginScreenState extends State<LoginScreen> {
           },
         );
       }
-      // _authMode == AuthMode.login
-      //     ? AuthService()
-      //         .singIn(
-      //             emailController.text.trim(), passwordController.text.trim())
-      //         .then(
-      //         (result) {
-      //           if (result! == 'Login') {
-      //             Navigator.pushReplacement(
-      //               context,
-      //               MaterialPageRoute(
-      //                 builder: (context) {
-      //                   return HomePage();
-      //                   // return HomePage(
-      //                   //     'vous etes connecte avec ${emailController.text}');
-      //                 },
-      //               ),
-      //             );
-      //           } else {
-      //             ScaffoldMessenger.of(context).showSnackBar(
-      //               SnackBar(
-      //                 duration: Duration(seconds: 3),
-      //                 content: Text(result),
-      //               ),
-      //             );
-      //           }
-      //         },
-      //       )
-      //     : AuthService()
-      //         .singUp(emailController.text.trim(),
-      //             passwordController.text.trim(), nameController.text.trim())
-      //         .then(
-      //         (result) {
-      //           if (result! == 'Login') {
-      //             Navigator.pushReplacement(
-      //               context,
-      //               MaterialPageRoute(
-      //                 builder: (context) {
-      //                   return HomePage();
-      //                   // return HomePage(
-      //                   //     'vous venez de cree un compte avec ${emailController.text}');
-      //                 },
-      //               ),
-      //             );
-      //           } else {
-      //             ScaffoldMessenger.of(context).showSnackBar(
-      //               SnackBar(
-      //                 duration: Duration(seconds: 3),
-      //                 content: Text(result),
-      //               ),
-      //             );
-      //           }
-      //         },
-      //       );
     } catch (e) {
       // ignore: avoid_print
       print(e.toString());
@@ -398,44 +341,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
           ),
-
-          // Text(
-          //   _authMode == AuthMode.login
-          //       ? "vous n'avez pas de compte ? cree un"
-          //       : 'vous avez un compte ? ce connecte',
-          //   style: TextStyle(
-          //     fontSize: 15.sp,
-          //     fontWeight: FontWeight.w600,
-          //     color: Colors.white,
-          //   ),
-          // ),
-          // child: Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: <Widget>[
-          //     Text(
-          //       _authMode == AuthMode.login
-          //           ? "vous n'avez pas de compte ? "
-          //           : 'vous avez un compte ? ',
-          //       overflow: TextOverflow.ellipsis,
-          //       style: TextStyle(
-          //         fontSize: 15.sp,
-          //         fontWeight: FontWeight.w600,
-          //         color: Colors.white,
-          //       ),
-          //     ),
-          //     SizedBox(
-          //       width: 8.w,
-          //     ),
-          //     Text(
-          //       _authMode == AuthMode.login ? ' cree un' : ' ce connecte',
-          //       style: TextStyle(
-          //         color: Colors.green,
-          //         fontSize: 15,
-          //         fontWeight: FontWeight.w600,
-          //       ),
-          //     ),
-          //   ],
-          // ),
         ),
       ),
     );
@@ -449,14 +354,12 @@ class _LoginScreenState extends State<LoginScreen> {
         style: TextStyle(
           fontSize: 28.sp,
           fontWeight: FontWeight.bold,
-          //color: Color(0xffb5487e),
           color: Colors.red,
         ),
         children: [
           TextSpan(
             text: 'QUIZZ',
             style: TextStyle(
-              //color: Color(0xffb5487e),
               color: Colors.green,
               fontSize: 28.sp,
               fontWeight: FontWeight.w300,

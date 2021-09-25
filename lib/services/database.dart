@@ -283,37 +283,6 @@ class DatabaseMethods {
     }
   }
 
-  Future<List<Modules?>?> mostPopular() async {
-    List<Modules?> list = [];
-    try {
-      final url = Uri.parse(
-        'https://rayanzinotblans.000webhostapp.com/get_most_popular.php',
-      );
-      final response = await http.get(url);
-      if (response.statusCode == 200) {
-        // ignore: avoid_print
-        print('seccus get module most popular');
-        final data = json.decode(response.body);
-        final rest = data["modules"] as List;
-
-        // ignore: join_return_with_assignment
-        list = rest.map<Modules>((json) => Modules.fromJson(json)).toList();
-
-        return list;
-      } else {
-        // ignore: avoid_print
-        print('field get module most popular');
-        // ignore: avoid_print
-        print('Response status: ${response.statusCode}');
-      }
-    } catch (e) {
-      // ignore: avoid_print
-      print('field to try get module most popular');
-      // ignore: avoid_print
-      print(e.toString());
-    }
-  }
-
   Future sendScore(String correct, String incorrect, String module) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? annee = prefs.getString('years');
@@ -332,39 +301,6 @@ class DatabaseMethods {
         .then((value) => print("Score Data added with seccus"))
         // ignore: avoid_print
         .catchError((error) => print("Failed score Data"));
-  }
-
-  Future updateView(String idMod) async {
-    try {
-      final url = Uri.parse(
-        'https://rayanzinotblans.000webhostapp.com/updateViewModule.php',
-      );
-      final response = await http.post(
-        url,
-        body: {
-          'id_mod': idMod,
-        },
-      );
-      if (response.statusCode == 200) {
-        if (json.decode(response.body)['status']) {
-          // ignore: avoid_print
-          print('seccus update View Module');
-        } else {
-          // ignore: avoid_print
-          print(json.decode(response.body)['message']);
-        }
-      } else {
-        // ignore: avoid_print
-        print('field update View Module');
-        // ignore: avoid_print
-        print('Response status: ${response.statusCode}');
-      }
-    } catch (e) {
-      // ignore: avoid_print
-      print('field to try update View Module');
-      // ignore: avoid_print
-      print(e.toString());
-    }
   }
 
   Future<List<Questions?>?> getQuestions() async {

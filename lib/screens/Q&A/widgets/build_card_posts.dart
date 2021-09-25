@@ -137,7 +137,6 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                       value: FilterOptions.signale,
                       child: SizedBox(
                         width: 70.w,
-                        // height: 60.h,
                         child: Text(
                           'Singaler',
                           style: TextStyle(
@@ -153,7 +152,6 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                         value: FilterOptions.supprime,
                         child: SizedBox(
                           width: 70.w,
-                          //    height: 60.h,
                           child: Text(
                             'Supprimer',
                             style: TextStyle(
@@ -169,7 +167,6 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                         value: FilterOptions.modifie,
                         child: SizedBox(
                           width: 70.w,
-                          //    height: 60.h,
                           child: Text(
                             'modifie',
                             style: TextStyle(
@@ -200,7 +197,6 @@ class _BuildCardPostsState extends State<BuildCardPosts> {
                     )
                   : ReadMoreText(
                       widget.posts['message'].toString(),
-                      //       trimLength: 201,
                       colorClickableText: Colors.blueAccent,
                       trimCollapsedText: 'Show more',
                       trimExpandedText: 'Show less',

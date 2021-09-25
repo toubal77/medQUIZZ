@@ -120,7 +120,6 @@ class _BuildCommentePostState extends State<BuildCommentePost> {
                           value: FilterOptions.signale,
                           child: SizedBox(
                             width: 70.w,
-                            // height: 60.h,
                             child: Text(
                               'Singaler',
                               style: TextStyle(
@@ -136,7 +135,6 @@ class _BuildCommentePostState extends State<BuildCommentePost> {
                             value: FilterOptions.supprime,
                             child: SizedBox(
                               width: 70.w,
-                              //    height: 60.h,
                               child: Text(
                                 'Supprimer',
                                 style: TextStyle(

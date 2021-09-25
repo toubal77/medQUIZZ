@@ -49,7 +49,6 @@ class _DetailQAState extends State<DetailQA> {
                   padding:
                       EdgeInsets.only(left: 7.sp, right: 7.sp, bottom: 7.sp),
                   decoration: BoxDecoration(
-                    // color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Column(
@@ -122,7 +121,6 @@ class _DetailQAState extends State<DetailQA> {
                                 value: FilterOptions.signale,
                                 child: SizedBox(
                                   width: 70.w,
-                                  // height: 60.h,
                                   child: Text(
                                     'Singaler',
                                     style: TextStyle(
@@ -138,7 +136,6 @@ class _DetailQAState extends State<DetailQA> {
                                   value: FilterOptions.supprime,
                                   child: SizedBox(
                                     width: 70.w,
-                                    //    height: 60.h,
                                     child: Text(
                                       'Supprimer',
                                       style: TextStyle(
@@ -154,7 +151,6 @@ class _DetailQAState extends State<DetailQA> {
                                   value: FilterOptions.modifie,
                                   child: SizedBox(
                                     width: 70.w,
-                                    //    height: 60.h,
                                     child: Text(
                                       'modifie',
                                       style: TextStyle(

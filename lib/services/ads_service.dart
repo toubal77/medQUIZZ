@@ -12,7 +12,6 @@ class AdManager {
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (InterstitialAd ad) {
-          // Keep a reference to the ad so you can show it later.
           Timer(Duration(seconds: minDure), () => ad.show());
         },
         onAdFailedToLoad: (LoadAdError error) {
@@ -25,10 +24,8 @@ class AdManager {
 
   static BannerAd buildBannerAd() {
     final BannerAd ad = BannerAd(
-      // adUnitId: 'ca-app-pub-7410810465692328/1352017336',
       size: AdSize.fullBanner,
       adUnitId: bannerAdUnitId,
-
       listener: BannerAdListener(
         onAdLoaded: (Ad ad) {
           // ignore: avoid_print

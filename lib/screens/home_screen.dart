@@ -82,7 +82,6 @@ class _HomePageState extends State<HomePage> {
       key: _scaffoldKey,
       bottomNavigationBar: SizedBox(
         height: AdManager.loading == false ? 60.h : 0.h,
-        //  padding: EdgeInsets.all(8.sp),
         key: UniqueKey(),
         child: AdWidget(
           ad: AdManager.buildBannerAd()..load(),
@@ -133,14 +132,6 @@ class _HomePageState extends State<HomePage> {
                               icon: const Icon(Icons.search),
                               color: Colors.white,
                             ),
-                            // Text(
-                            //   'Med QUIZZ',
-                            //   style: TextStyle(
-                            //     fontSize: 20.sp,
-                            //     fontWeight: FontWeight.w500,
-                            //     color: Colors.white,
-                            //   ),
-                            // ),
                             RichText(
                               text: TextSpan(
                                 text: 'MED',
@@ -199,7 +190,6 @@ class _HomePageState extends State<HomePage> {
                             Container(
                               width: 70.w,
                               height: 70.h,
-                              //margin: EdgeInsets.only(top: 25.sp, bottom: 20),
                               decoration: BoxDecoration(
                                 image: const DecorationImage(
                                   image: AssetImage(

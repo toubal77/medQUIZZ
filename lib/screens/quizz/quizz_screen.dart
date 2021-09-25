@@ -158,7 +158,6 @@ class _QuizzPlayState extends State<QuizzPlay> {
                       Container(
                         margin: EdgeInsets.only(left: 10.sp, right: 10.sp),
                         child: Stack(
-                          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             GestureDetector(
                               onTap: () {

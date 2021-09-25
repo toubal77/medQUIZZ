@@ -48,7 +48,6 @@ class _DiagnosticState extends State<Diagnostic> {
     return Scaffold(
       bottomNavigationBar: SizedBox(
         height: AdManager.loading == false ? 60.h : 0.h,
-        //  padding: EdgeInsets.all(8.sp),
         key: UniqueKey(),
         child: AdWidget(
           ad: AdManager.buildBannerAd()..load(),
@@ -71,15 +70,12 @@ class _DiagnosticState extends State<Diagnostic> {
               ),
               Expanded(
                 child: SizedBox(
-                  //  margin: EdgeInsets.only(bottom: 10.sp),
                   child: FutureBuilder<List<Diagnostics?>?>(
                     future: DatabaseMethods().getDiag(),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return ListView.builder(
                           shrinkWrap: true,
-                          //    physics: NeverScrollableScrollPhysics(),
-
                           itemCount: snapshot.data!.length,
                           itemBuilder: (context, index) {
                             return DiagTile(diag: snapshot.data![index]!);

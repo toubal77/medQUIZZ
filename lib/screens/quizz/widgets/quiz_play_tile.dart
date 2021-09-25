@@ -95,17 +95,16 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
           GestureDetector(
             onTap: () {
               if (optionSelected1 == '') {
-                ///correct
                 if (correctAnswer1) {
                   setState(() {
                     optionSelected1 = widget.questionModel!.rep1;
-                    //  widget.questionModel!.respo1 = true;
+
                     checkValue1 = true;
                   });
                 } else {
                   setState(() {
                     optionSelected1 = widget.questionModel!.rep1;
-                    //  widget.questionModel!.respo1 = true;
+
                     checkValue1 = false;
                   });
                 }
@@ -133,17 +132,16 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
           GestureDetector(
             onTap: () {
               if (optionSelected2 == '') {
-                ///correct
                 if (correctAnswer2) {
                   setState(() {
                     optionSelected2 = widget.questionModel!.rep2;
-                    //  widget.questionModel!.respo1 = true;
+
                     checkValue2 = true;
                   });
                 } else {
                   setState(() {
                     optionSelected2 = widget.questionModel!.rep2;
-                    //  widget.questionModel!.respo1 = true;
+
                     checkValue2 = false;
                   });
                 }
@@ -171,17 +169,16 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
           GestureDetector(
             onTap: () {
               if (optionSelected3 == '') {
-                ///correct
                 if (correctAnswer3) {
                   setState(() {
                     optionSelected3 = widget.questionModel!.rep3;
-                    //  widget.questionModel!.respo1 = true;
+
                     checkValue3 = true;
                   });
                 } else {
                   setState(() {
                     optionSelected3 = widget.questionModel!.rep3;
-                    //  widget.questionModel!.respo1 = true;
+
                     checkValue3 = false;
                   });
                 }
@@ -209,17 +206,16 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
           GestureDetector(
             onTap: () {
               if (optionSelected4 == '') {
-                ///correct
                 if (correctAnswer4) {
                   setState(() {
                     optionSelected4 = widget.questionModel!.rep4;
-                    //  widget.questionModel!.respo1 = true;
+
                     checkValue4 = true;
                   });
                 } else {
                   setState(() {
                     optionSelected4 = widget.questionModel!.rep4;
-                    //  widget.questionModel!.respo1 = true;
+
                     checkValue4 = false;
                   });
                 }
@@ -249,17 +245,15 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             GestureDetector(
               onTap: () {
                 if (optionSelected5 == '') {
-                  ///correct
                   if (correctAnswer5) {
                     setState(() {
                       optionSelected5 = widget.questionModel!.rep5;
-                      //  widget.questionModel!.respo1 = true;
                       checkValue5 = true;
                     });
                   } else {
                     setState(() {
                       optionSelected5 = widget.questionModel!.rep5;
-                      //  widget.questionModel!.respo1 = true;
+
                       checkValue5 = false;
                     });
                   }

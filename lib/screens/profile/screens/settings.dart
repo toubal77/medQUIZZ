@@ -37,19 +37,6 @@ class _SettingsState extends State<Settings> {
       isLoading = true;
     });
     try {
-      // DatabaseMethods().editProfile(email, username).then(
-      //   (result) {
-      //     if (result == true) {
-      //       Navigator.of(context).pop();
-      //     } else {
-      //       ScaffoldMessenger.of(context).showSnackBar(
-      //         SnackBar(
-      //           content: Text(result.toString()),
-      //         ),
-      //       );
-      //     }
-      //   },
-      // );
       DatabaseMethods().updateSettings(username).then((value) {
         usernameController.text = '';
         emailController.text = '';

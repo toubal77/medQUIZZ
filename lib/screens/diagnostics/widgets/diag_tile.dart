@@ -27,7 +27,6 @@ class DiagTile extends StatelessWidget {
         width: MediaQuery.of(context).size.width.w,
         height: 310.h,
         margin: EdgeInsets.only(right: 20.sp, left: 20.sp, bottom: 20.sp),
-        // padding: const EdgeInsets.symmetric(vertical: 130),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(30.sp),
@@ -90,20 +89,10 @@ class DiagTile extends StatelessWidget {
                       maxLines: 5,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: 10.sp, // kanat   13 tlf mama 3liha badaltha
+                        fontSize: 10.sp,
                         fontWeight: FontWeight.w500,
                       ),
-                    ), // ReadMoreText(
-                    //   'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-                    //   trimLines: 3,
-                    //   trimLength: 500,
-                    //   colorClickableText: Colors.pink,
-                    //   trimMode: TrimMode.Length,
-                    //   trimCollapsedText: 'Show more',
-                    //   trimExpandedText: 'Show less',
-                    //   moreStyle: TextStyle(
-                    //       fontSize: 13, fontWeight: FontWeight.bold),
-                    // ),
+                    ),
                   ],
                 ),
               ),

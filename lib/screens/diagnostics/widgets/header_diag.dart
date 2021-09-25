@@ -29,8 +29,8 @@ class HeaderDiag extends StatelessWidget {
             ),
             Center(
               child: Text(
-                //    title!.substring(0, 25) + ' ...',
-                title!, textAlign: TextAlign.center,
+                title!,
+                textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontSize: 18.sp,

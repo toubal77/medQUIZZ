@@ -56,7 +56,6 @@ class DetailDiag extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(left: 15.sp, right: 15.sp),
                   child: ListView(
-                    //        crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         diag.title,
