@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       builder: () => OverlaySupport(
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'med QUIZZ',
+          title: 'Med QCM',
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),

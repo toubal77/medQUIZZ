@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 children: <TextSpan>[
                                   TextSpan(
-                                    text: ' QUIZZ',
+                                    text: ' QCM',
                                     style: TextStyle(
                                       fontSize: 20.sp,
                                       fontWeight: FontWeight.w400,

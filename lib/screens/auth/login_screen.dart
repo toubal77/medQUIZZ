@@ -358,7 +358,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         children: [
           TextSpan(
-            text: 'QUIZZ',
+            text: 'QCM',
             style: TextStyle(
               color: Colors.green,
               fontSize: 28.sp,
