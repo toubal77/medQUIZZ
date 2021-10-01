@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:med_quizz/screens/quizz/quizz_screen.dart';
 import 'package:med_quizz/services/database.dart';
@@ -77,13 +78,14 @@ class _ScoreQuizzScreenState extends State<ScoreQuizzScreen> {
                           width: MediaQuery.of(context).size.width.w,
                           margin: const EdgeInsets.only(bottom: 20),
                           height: 230.h,
-                          decoration: const BoxDecoration(
-                            color: Colors.transparent,
-                            image: DecorationImage(
-                              image: AssetImage('assets/images/trophe.jpeg'),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                          // decoration: const BoxDecoration(
+                          //   color: Colors.transparent,
+                          //   image: DecorationImage(
+                          //     image: AssetImage('assets/images/Winners-rafiki.svg'),
+                          //     fit: BoxFit.cover,
+                          //   ),
+                          child: SvgPicture.asset(
+                              'assets/images/Winners-rafiki.svg'),
                         ),
                         Container(
                           margin: const EdgeInsets.only(bottom: 20),

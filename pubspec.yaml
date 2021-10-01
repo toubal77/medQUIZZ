@@ -46,6 +46,7 @@ dependencies:
   image_picker: ^0.8.3+3
   firebase_storage: ^10.0.3
   timeago: ^3.1.0
+  flutter_svg: ^0.22.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -77,8 +78,8 @@ flutter:
     - assets/images/modules.jpeg
     - assets/images/modules.jpeg
     - assets/images/questions.jpeg
-    - assets/images/trophe.jpeg
     - assets/images/background_page.jpeg
+    - assets/images/Winners-rafiki.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
