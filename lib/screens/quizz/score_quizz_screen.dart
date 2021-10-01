@@ -45,7 +45,7 @@ class _ScoreQuizzScreenState extends State<ScoreQuizzScreen> {
           ? SingleChildScrollView(
               child: SafeArea(
                 child: Container(
-                  height: MediaQuery.of(context).size.height.h * 0.76,
+                  height: MediaQuery.of(context).size.height.h,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/login-background.png'),
