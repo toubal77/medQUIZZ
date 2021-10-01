@@ -1,9 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:med_quizz/screens/Q&A/posts/add_post.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class Header extends StatelessWidget {
+class Header extends StatefulWidget {
   const Header({Key? key}) : super(key: key);
+
+  @override
+  State<Header> createState() => _HeaderState();
+}
+
+class _HeaderState extends State<Header> {
+  late String name;
+  Future getName() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    name = prefs.getString('username')!;
+  }
+
+  @override
+  void initState() {
+    getName();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +55,7 @@ class Header extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
-                          return const AddPost();
+                          return AddPost(name: name);
                         },
                       ),
                     );

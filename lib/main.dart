@@ -63,7 +63,9 @@ class MyApp extends StatelessWidget {
           routes: {
             Diagnostic.screenName: (context) => const Diagnostic(),
             HomePage.screenName: (context) => const HomePage(),
-            AddPost.screenName: (context) => const AddPost(),
+            AddPost.screenName: (context) => const AddPost(
+                  name: '',
+                ),
           },
         ),
       ),

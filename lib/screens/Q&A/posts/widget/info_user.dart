@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UserInfo extends StatelessWidget {
-  const UserInfo({Key? key}) : super(key: key);
-
+  final String name;
+  const UserInfo({
+    Key? key,
+    required this.name,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,7 +33,7 @@ class UserInfo extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(top: 16.sp, bottom: 7.sp),
             child: Text(
-              'toubal zineddine',
+              name,
               style: TextStyle(
                 fontSize: 15.sp,
                 fontWeight: FontWeight.w600,

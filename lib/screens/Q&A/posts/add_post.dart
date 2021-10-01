@@ -4,12 +4,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+
 import 'package:med_quizz/screens/Q&A/posts/widget/header.dart';
 import 'package:med_quizz/screens/Q&A/posts/widget/info_user.dart';
 import 'package:med_quizz/services/database.dart';
 
 class AddPost extends StatefulWidget {
-  const AddPost({Key? key}) : super(key: key);
+  final String name;
+  const AddPost({
+    Key? key,
+    required this.name,
+  }) : super(key: key);
   static const screenName = "AddPost";
   @override
   _AddPostState createState() => _AddPostState();
@@ -101,7 +106,7 @@ class _AddPostState extends State<AddPost> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Header(),
-              const UserInfo(),
+              UserInfo(name: widget.name),
               Form(
                 key: _formKey,
                 child: Container(
