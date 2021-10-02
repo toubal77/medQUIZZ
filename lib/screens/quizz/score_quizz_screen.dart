@@ -66,7 +66,7 @@ class _ScoreQuizzScreenState extends State<ScoreQuizzScreen> {
                           margin: const EdgeInsets.only(top: 15, bottom: 15),
                           alignment: Alignment.topCenter,
                           child: const Text(
-                            'Résultats de mon quizz',
+                            'Résultats de mon qcm',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,

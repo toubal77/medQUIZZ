@@ -30,7 +30,7 @@ class _ProgressBarState extends State<ProgressBar> {
             margin: EdgeInsets.only(top: 5.sp, bottom: 10.sp),
             child: RichText(
               text: TextSpan(
-                text: 'QUIZZ ',
+                text: 'QCM ',
                 style: TextStyle(
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w500,

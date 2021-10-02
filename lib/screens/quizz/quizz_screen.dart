@@ -171,7 +171,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                             ),
                             Center(
                               child: Text(
-                                'QUIZZ',
+                                'QCM',
                                 style: TextStyle(
                                   fontSize: 20.sp,
                                   fontWeight: FontWeight.w500,
